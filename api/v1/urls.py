@@ -9,6 +9,7 @@ from .jwt import views as jwt_views
 
 router = DefaultRouter()
 router.register(prefix=r'user', viewset=views.UserViewSet, base_name='user')
+router.register(prefix=r'gamesparks', viewset=views.GameSparksViewSet, base_name='gs')
 
 
 urlpatterns = [

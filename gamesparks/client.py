@@ -41,6 +41,15 @@ class GameSparksClient(object):
         response = self._send(endpoint='AuthenticationRequest', data=data)
         return response
 
+    def log_event_request(self, event_key, data, user_id):
+        data = {
+            'playerId': user_id,
+            'eventKey': event_key,
+            'scriptData': data,
+        }
+        response = self._send(endpoint='LogEventRequest', data=data)
+        return response
+
 
 client = GameSparksClient(
     api_key=settings.GAMESPARKS_CONFIG['api_key'],

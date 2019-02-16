@@ -1,18 +1,19 @@
 import logging
 
+from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from sesame import models
 
-from . import base_views
+from . import mixins
 from . import serializers
 from .utils import logout
 
 logger = logging.getLogger(__name__)
 
 
-class UserViewSet(base_views.LoggingModelViewSet):
+class UserViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
     queryset = models.User.objects.all().order_by('-date_joined')
     serializer_class = serializers.UserSerializer
 
@@ -32,3 +33,12 @@ class UserViewSet(base_views.LoggingModelViewSet):
         logout(user=request.user)
         return Response(data={'message': 'Logged out successfully'})
 
+
+class GameSparksViewSet(mixins.LoggingMixin, viewsets.ViewSet):
+
+    @action(methods=['post'], detail=False)
+    def delay(self, request):
+        from sesame.celery_stub import DummyThread
+        t = DummyThread(request=request)
+        t.start()
+        return Response(data={'message': 'Event is logged'})

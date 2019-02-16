@@ -193,19 +193,19 @@ LOGGING = {
         },
     },
     'loggers': {
-        # 'django': {
-        #     'handlers': ['console'],
-        #     'propagate': True,
-        # },
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+        },
         'django.request': {
             'handlers': ['console'],
             'level': 'INFO' if DEBUG else 'ERROR',
             'propagate': False,
         },
-        'django.db.backends': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-        },
+        # 'django.db.backends': {
+        #     'level': 'DEBUG',
+        #     'handlers': ['console'],
+        # },
         'sesame': {
             'handlers': ['console'],
             'level': 'DEBUG' if DEBUG else 'INFO',
