@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.utils.timezone
-import sesame.managers
+import sesam.managers
 import uuid
 
 
@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 'verbose_name': 'User',
             },
             managers=[
-                ('objects', sesame.managers.GameUserManager()),
+                ('objects', sesam.managers.GameUserManager()),
             ],
         ),
     ]

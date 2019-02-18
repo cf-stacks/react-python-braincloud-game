@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from sesame import models
+from sesam import models
 
 from . import mixins
 from . import serializers
@@ -38,7 +38,7 @@ class GameSparksViewSet(mixins.LoggingMixin, viewsets.ViewSet):
 
     @action(methods=['post'], detail=False)
     def delay(self, request):
-        from sesame.celery_stub import DummyThread
+        from sesam.celery_stub import DummyThread
         t = DummyThread(request=request)
         t.start()
         return Response(data={'message': 'Event is logged'})

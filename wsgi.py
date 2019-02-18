@@ -1,5 +1,5 @@
 """
-WSGI config for sesame project.
+WSGI config for sesam project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
