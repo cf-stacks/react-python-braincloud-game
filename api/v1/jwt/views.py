@@ -4,9 +4,17 @@ from . import serializers
 from .. import mixins
 
 
-class CustomTokenObtainPairView(mixins.LoggingMixin, views_sjwt.TokenObtainPairView):
-    serializer_class = serializers.CustomTokenObtainPairSerializer
+class UserTokenObtainPairView(mixins.LoggingMixin, views_sjwt.TokenObtainPairView):
+    serializer_class = serializers.UserTokenObtainPairSerializer
+
+
+class AnonymousTokenObtainPairView(mixins.LoggingMixin, views_sjwt.TokenObtainPairView):
+    serializer_class = serializers.AnonymousTokenObtainPairSerializer
 
 
 class CustomTokenRefreshView(mixins.LoggingMixin, views_sjwt.TokenRefreshView):
     serializer_class = serializers.CustomTokenRefreshSerializer
+
+
+class CustomTokenVerifyView(mixins.LoggingMixin, views_sjwt.TokenVerifyView):
+    serializer_class = serializers.CustomTokenVerifySerializer
