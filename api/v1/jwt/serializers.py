@@ -63,7 +63,6 @@ class AnonymousTokenObtainPairSerializer(BaseTokenObtainPairSerializer):
         return data
 
 
-
 # Overrode the implementation for:
 #  - to create `OutstandingToken` on refresh
 class CustomTokenRefreshSerializer(simplejwt_serializers.TokenRefreshSerializer):
@@ -80,6 +79,7 @@ class CustomTokenRefreshSerializer(simplejwt_serializers.TokenRefreshSerializer)
                     expires_at=datetime_from_epoch(token['exp']),
                 )
         return data
+
 
 # Overrode the implementation for:
 # - to return token's payload
