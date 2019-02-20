@@ -34,11 +34,19 @@ class GameSparksClient(object):
         return self._send(endpoint='RegistrationRequest', data=data)
 
     def login_user(self, user):
-        data = {
-            'userName': str(user.id),
-            'password': user.password,
-        }
-        response = self._send(endpoint='AuthenticationRequest', data=data)
+        if user.device_id:
+            data = {
+                'deviceId': str(user.device_id),
+                'deviceOS': 'iOS',
+            }
+            request_type = 'DeviceAuthenticationRequest'
+        else:
+            data = {
+                'userName': str(user.id),
+                'password': user.password,
+            }
+            request_type = 'AuthenticationRequest'
+        response = self._send(endpoint=request_type, data=data)
         return response
 
     def log_event_request(self, event_key, data, user_id):

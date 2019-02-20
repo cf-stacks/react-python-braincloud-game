@@ -16,8 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include
 from django.urls import path
+from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
+    # Documentation
+    path('docs/', include_docs_urls(title='My API title', authentication_classes=[], permission_classes=[])),
+    # Administration
     path('admin/', admin.site.urls),
+    # API endpoints
     path('api/', view=include('api.urls')),
 ]

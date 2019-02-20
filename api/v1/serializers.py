@@ -30,7 +30,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         return UserSerializer(instance=instance).data
 
 
-class RegisterDeviceSerializer(serializers.ModelSerializer):
+class RegisterAnonymousSerializer(serializers.ModelSerializer):
     class Meta:
         model = auth.get_user_model()
         fields = ('device_id',)
