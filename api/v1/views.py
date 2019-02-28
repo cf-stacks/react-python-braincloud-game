@@ -29,11 +29,11 @@ class UserViewSet(mixins.LoggingMixin, viewsets.GenericViewSet):
 
     @decorators.action(methods=['get'], detail=False)
     def info(self, request):
-        return response.Response(data=self.serializer_class(instance=request.user).data)
+        return response.Response(data=self.get_serializer(instance=request.user).data)
 
     @decorators.action(methods=['post'], detail=False, permission_classes=[])
     def register(self, request):
-        serializer = self.serializer_class(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return response.Response(data={'message': 'User registered successfully'}, status=201)
@@ -46,7 +46,6 @@ class UserViewSet(mixins.LoggingMixin, viewsets.GenericViewSet):
 
 class AnonymousViewSet(mixins.LoggingMixin, viewsets.GenericViewSet):
     queryset = models.User.objects.filter(device_id__isnull=False).order_by('-date_joined')
-    serializer_class = serializers.AnonymousSerializer
     permission_classes = (permissions.IsAnonymousPermission,)
     serializer_classes = {
         'info': serializers.AnonymousSerializer,
@@ -59,11 +58,11 @@ class AnonymousViewSet(mixins.LoggingMixin, viewsets.GenericViewSet):
 
     @decorators.action(methods=['get'], detail=False)
     def info(self, request):
-        return response.Response(data=self.serializer_class(instance=request.user).data)
+        return response.Response(data=self.get_serializer(instance=request.user).data)
 
     @decorators.action(methods=['post'], detail=False, permission_classes=[])
     def register(self, request):
-        serializer = serializers.RegisterAnonymousSerializer(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return response.Response(data={'message': 'Anonymous user registered successfully'}, status=201)
