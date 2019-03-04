@@ -1,7 +1,6 @@
 from rest_framework import decorators
 from rest_framework import permissions
 from rest_framework import response
-from rest_framework import serializers as drf_serializers
 from rest_framework import viewsets
 
 from . import serializers
@@ -10,13 +9,12 @@ from .. import mixins
 
 class GameSparksViewSet(mixins.LoggingMixin, viewsets.GenericViewSet):
     permission_classes = (permissions.IsAuthenticated,)
-    serializer_class = drf_serializers.Serializer
     serializer_classes = {
         'delay': serializers.GSDelaySerializer
     }
 
     def get_serializer_class(self):
-        return self.serializer_classes.get(self.action, self.serializer_class)
+        return self.serializer_classes.get(self.action)
 
     @decorators.action(methods=['post'], detail=False)
     def delay(self, request):
