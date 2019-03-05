@@ -22,4 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # API endpoints
     path('api/', view=include('api.urls')),
+    # Content
+    path('content/', view=include('sesam.urls')),
+    # Accounts
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

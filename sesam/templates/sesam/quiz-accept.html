@@ -1,0 +1,41 @@
+{% extends "sesam/base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+  <table class="table table-striped table-sm">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" style="width: 5%">#</th>
+      <th scope="col" style="width: 10%">{% trans "Question category" %}</th>
+      <th scope="col" style="width: 30%">{% trans "Description" %}</th>
+      <th scope="col" style="width: 10%">{% trans "Correct answer" %}</th>
+      <th scope="col" style="width: 10%">{% trans "Incorrect answer 1" %}</th>
+      <th scope="col" style="width: 10%">{% trans "Incorrect answer 2" %}</th>
+      <th scope="col" style="width: 15%">{% trans "Action" %}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <form method="post" action="">
+      {% csrf_token %}
+      {{ formset.management_form }}
+      {% for form in formset %}
+        {{ form.id }}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ form.instance.category.name }}</td>
+          <td>{{ form.description.value }}</td>
+          <td>{{ form.answer_correct.value }}</td>
+          <td>{{ form.answer_incorrect_1.value }}</td>
+          <td>{{ form.answer_incorrect_2.value }}</td>
+          <td>
+            <button class="btn btn-success" type="submit" name="accept" value="{{ form.instance.id }}">{% trans "Accept" %}</button>
+            <button class="btn btn-danger" type="submit" name="reject" value="{{ form.instance.id }}">{% trans "Reject" %}</button>
+          </td>
+        </tr>
+      {% endfor %}
+    </form>
+  </tbody>
+{% endblock %}

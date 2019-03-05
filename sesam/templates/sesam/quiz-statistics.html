@@ -1,0 +1,14 @@
+{% extends "sesam/base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+  <h1>{% trans "Statistics" %}:</h1>
+  <p>{% trans "Month total" %}: {{ total_month }}</p>
+  <p>{% trans "Added today" %}: {{ total_today }}</p>
+  <p>{% trans "Accepted last shift" %}: {{ accepted_yesterday }}</p>
+  <p>{% trans "Rejected last shift" %}: {{ accepted_yesterday }}</p>
+  <a href="{% url "quiz-create" %}" class="btn btn-primary">{% trans "Add question" %}</a>
+{% endblock %}

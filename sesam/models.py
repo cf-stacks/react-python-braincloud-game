@@ -14,15 +14,15 @@ from sesam.managers import UserManager
 
 class User(AbstractBaseUser, PermissionsMixin):
 
-    id = models.UUIDField(verbose_name='ID', primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(verbose_name=_('ID'), primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(verbose_name=_('Email'), unique=True, db_index=True, null=True)
     name = models.CharField(verbose_name=_('Name'), max_length=30)
     is_staff = models.BooleanField(verbose_name=_('Staff status'), default=False)
     is_active = models.BooleanField(verbose_name=_('Active'), default=True)
     date_joined = models.DateTimeField(verbose_name=_('Date joined'), default=timezone.now)
     device_id = models.UUIDField(verbose_name=_('Device ID'), unique=True, db_index=True, null=True)
-    money = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    points = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    money = models.DecimalField(verbose_name=_('Money'), max_digits=10, decimal_places=2, default=0)
+    points = models.DecimalField(verbose_name=_('Points'), max_digits=10, decimal_places=2, default=0)
 
     objects = UserManager()
 
@@ -30,7 +30,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
     class Meta:
-        verbose_name = 'User'
+        verbose_name = _('User')
 
     def __str__(self):
         return str(self.get_username())
@@ -75,9 +75,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class BaseModel(models.Model):
     id = models.UUIDField(verbose_name='ID', primary_key=True, default=uuid.uuid4, editable=False)
-    is_active = models.BooleanField(default=True)
-    added_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(verbose_name=_('Active'), default=True)
+    created_at = models.DateTimeField(verbose_name=_('Created at'), auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name=_('Updated at'), auto_now=True)
 
     class Meta:
         abstract = True
@@ -99,24 +99,53 @@ class UserMoneyLogModel(BaseModel):
 class QuestionCategory(BaseModel):
     name = models.CharField(max_length=50)
 
+    class Meta:
+        verbose_name = _('Question category')
+        verbose_name_plural = _('Question categories')
+
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return f'<QuestionCategory {self.id}: {self.__str__()}>'
+
 
 class Question(BaseModel):
     STATUS_NEW = 0
-    STATUS_APPROVED = 1
-    STATUS_DECLINED = 2
+    STATUS_ACCEPTED = 1
+    STATUS_REJECTED = 2
     STATUSES = (
         (STATUS_NEW, _('New')),
-        (STATUS_APPROVED, _('Approved')),
-        (STATUS_DECLINED, _('Declined')),
+        (STATUS_ACCEPTED, _('Accepted')),
+        (STATUS_REJECTED, _('Rejected')),
     )
-    category = models.ForeignKey(to='sesam.QuestionCategory', on_delete=models.CASCADE)
-    description = models.TextField()
-    author = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='authored_questions')
-    editor = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='edited_questions')
-    status = models.PositiveSmallIntegerField(choices=STATUSES, default=STATUS_NEW)
-    answer_correct = models.CharField(max_length=100)
-    answer_incorrect_1 = models.CharField(max_length=100)
-    answer_incorrect_2 = models.CharField(max_length=100)
+    category = models.ForeignKey(
+        verbose_name=_('Question category'),
+        to='sesam.QuestionCategory',
+        on_delete=models.CASCADE,
+    )
+    description = models.TextField(verbose_name=_('Description'))
+    author = models.ForeignKey(
+        verbose_name=_('Author'),
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='authored_questions',
+    )
+    editor = models.ForeignKey(
+        verbose_name=_('Editor'),
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='edited_questions',
+        null=True,
+    )
+    status = models.PositiveSmallIntegerField(verbose_name=_('Status'), choices=STATUSES, default=STATUS_NEW)
+    answer_correct = models.CharField(verbose_name=_('Correct answer'), max_length=100)
+    answer_incorrect_1 = models.CharField(verbose_name=_('Incorrect answer 1'), max_length=100)
+    answer_incorrect_2 = models.CharField(verbose_name=_('Incorrect answer 2'), max_length=100)
+
+    class Meta:
+        verbose_name = _('Question')
+        verbose_name_plural = _('Questions')
 
 
 class Game(BaseModel):
@@ -129,9 +158,11 @@ class Game(BaseModel):
         (GAME_ARKANOID, _('Arkanoid')),
     )
 
-    name = models.CharField(max_length=100)
-    game_type = models.CharField(choices=GAMES, default=GAME_QUIZ, max_length=20, unique=True)
-    setting = models.OneToOneField(to='sesam.GameSetting', on_delete=models.CASCADE)
+    name = models.CharField(verbose_name=_('Name'), max_length=100)
+    game_type = models.CharField(
+        verbose_name=_('Game type'), choices=GAMES, default=GAME_QUIZ, max_length=20, unique=True,
+    )
+    setting = models.OneToOneField(verbose_name=_('Setting'), to='sesam.GameSetting', on_delete=models.CASCADE)
 
 
 class GameSetting(BaseModel):

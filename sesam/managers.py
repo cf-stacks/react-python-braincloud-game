@@ -11,7 +11,7 @@ class UserManager(DjangoUserManager):
         if email is not None:
             email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
-        if password is not None:
+        if password is None:
             user.set_unusable_password()
         else:
             user.set_password(password)
