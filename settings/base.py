@@ -154,6 +154,8 @@ STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'sesam.User'
 
+LOGOUT_REDIRECT_URL = '/content/'
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',

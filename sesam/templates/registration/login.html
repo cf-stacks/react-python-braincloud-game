@@ -1,10 +1,36 @@
 {% extends "sesam/base.html" %}
 
+{% load i18n %}
+{% load static %}
+
+
+{% block additional_css %}
+  <link href="{% static 'sesam/css/login.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
+  <div class="d-flex p-3 justify-content-center">
+    <h1>{% trans "Authentication" %}</h1>
+  </div>
+  <div class="d-flex p-3 justify-content-center form_container">
+    <form method="post" style="width:30%">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      <div class="input-group form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fas fa-user"></i></span>
+        </div>
+        {{ form.username.errors }}
+        {{ form.username }}
+      </div>
+      <div class="input-group form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fas fa-key"></i></span>
+        </div>
+        {{ form.password.errors }}
+        {{ form.password }}
+      </div>
+      <button class="btn btn-success" type="submit">{% trans "Log in" %}</button>
+    </form>
+  </div>
 {% endblock %}

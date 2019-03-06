@@ -31,8 +31,8 @@
           <td>{{ form.answer_incorrect_1.value }}</td>
           <td>{{ form.answer_incorrect_2.value }}</td>
           <td>
-            <button class="btn btn-success" type="submit" name="accept" value="{{ form.instance.id }}">{% trans "Accept" %}</button>
-            <button class="btn btn-danger" type="submit" name="reject" value="{{ form.instance.id }}">{% trans "Reject" %}</button>
+            <button class="btn btn-success" type="submit" name="accept" value="{{ form.instance.id }}"><i class="fas fa-check"></i></button>
+            <button class="btn btn-danger" type="submit" name="reject" value="{{ form.instance.id }}"><i class="fas fa-times"></i></button>
           </td>
         </tr>
       {% endfor %}

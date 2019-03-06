@@ -1,12 +1,14 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+from django.utils.translation import ugettext
 
 from . import models
 
 
-class BaseModelForm(forms.ModelForm):
+class FormControlMixin(object):
 
     def __init__(self, *args, **kwargs):
-        super(BaseModelForm, self).__init__(*args, **kwargs)
+        super(FormControlMixin, self).__init__(*args, **kwargs)
         for field in self.fields.keys():
             value = self.fields[field].widget.attrs.get('class')
             if value is None:
@@ -16,13 +18,20 @@ class BaseModelForm(forms.ModelForm):
             self.fields[field].widget.attrs['class'] = value
 
 
-class QuestionCreateForm(BaseModelForm):
+class SesamAuthenticationForm(FormControlMixin, AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(SesamAuthenticationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs['placeholder'] = ugettext('Email')
+        self.fields['password'].widget.attrs['placeholder'] = ugettext('Password')
+
+
+class QuestionCreateForm(FormControlMixin, forms.ModelForm):
     class Meta:
         model = models.Question
         fields = ('category', 'description', 'answer_correct', 'answer_incorrect_1', 'answer_incorrect_2')
 
 
-class QuestionApproveForm(forms.ModelForm):
+class QuestionApproveForm(FormControlMixin, forms.ModelForm):
     class Meta:
         model = models.Question
         fields = ('category', 'description', 'answer_correct', 'answer_incorrect_1', 'answer_incorrect_2')

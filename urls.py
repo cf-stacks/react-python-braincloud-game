@@ -14,8 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import include
 from django.urls import path
+
+from sesam import forms
 
 urlpatterns = [
     # Administration
@@ -25,5 +28,6 @@ urlpatterns = [
     # Content
     path('content/', view=include('sesam.urls')),
     # Accounts
+    path('accounts/login/', auth_views.LoginView.as_view(authentication_form=forms.SesamAuthenticationForm), name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
