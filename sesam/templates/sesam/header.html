@@ -15,12 +15,17 @@
         <a class="nav-link" href="{% url "quiz-accept" %}">{% trans "Quiz Accept" %}</a>
       </li>
     </ul>
-    <span class="navbar-text">
-      {% if request.user.is_authenticated %}
-        {{ request.user.name }} <small>({{request.user.email }})</small> | <a href="{% url "logout" %}">{% trans "Log out" %}</a>
-      {% else %}
-        <a href="{% url "login" %}">{% trans "Log in" %}</a>
-      {% endif %}
-    </span>
+    <div class="collapse navbar-collapse flex-column">
+      <span class="navbar-text ml-auto p-0">
+        {% now "d.m.Y H:i" %}
+      </span>
+      <span class="navbar-text ml-auto p-0">
+        {% if request.user.is_authenticated %}
+          {{ request.user.name }} <small>({{request.user.email }})</small> | <a href="{% url "logout" %}">{% trans "Log out" %}</a>
+        {% else %}
+          <a href="{% url "login" %}">{% trans "Log in" %}</a>
+        {% endif %}
+      </span>
+    </div>
   </div>
 </nav>
