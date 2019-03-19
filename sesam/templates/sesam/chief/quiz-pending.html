@@ -10,7 +10,6 @@
 {% endblock %}
 
 {% block content %}
-  {% trans "chief" %}
   <form method="post" action="">
   {% csrf_token %}
   {{ formset.management_form }}
