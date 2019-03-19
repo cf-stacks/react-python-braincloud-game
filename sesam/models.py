@@ -92,12 +92,17 @@ class User(AbstractBaseUser, PermissionsMixin):
 class BaseModel(models.Model):
     id = models.UUIDField(verbose_name='id', primary_key=True, default=uuid.uuid4, editable=False)
     is_active = models.BooleanField(verbose_name=_('active'), default=True)
-    created_at = models.DateTimeField(verbose_name=_('created at'), auto_now_add=True)
-    updated_at = models.DateTimeField(verbose_name=_('updated at'), auto_now=True)
-    # created_at.editable = True
+    created_at = models.DateTimeField(verbose_name=_('created at'), default=timezone.now, editable=False, blank=True)
+    updated_at = models.DateTimeField(verbose_name=_('updated at'), default=timezone.now, editable=False, blank=True)
+    created_at.editable = True
 
     class Meta:
         abstract = True
+
+    def save(self, *args, **kwargs):
+        if not kwargs.pop('skip_update', False):
+            self.updated_at = timezone.now()
+        super(BaseModel, self).save(*args, **kwargs)
 
 
 class UserMoneyLogModel(BaseModel):
@@ -156,6 +161,7 @@ class Question(BaseModel):
         null=True,
         blank=True,
     )
+    reviewed_at = models.DateTimeField(null=True, blank=True)
     status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=STATUS_NEW)
     answer_correct = models.CharField(verbose_name=_('correct answer'), max_length=100)
     answer_incorrect_1 = models.CharField(verbose_name=_('incorrect answer 1'), max_length=100)

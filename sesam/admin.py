@@ -31,7 +31,8 @@ class UserAdmin(DjangoUserAdmin):
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'category', 'status', 'description', 'answer_correct', 'author')
+    list_display = ('id', 'category', 'status', 'description', 'answer_correct', 'author', 'created_at')
+    list_filter = ('status', 'category', 'author')
 
 
 admin.site.register(models.User, UserAdmin)

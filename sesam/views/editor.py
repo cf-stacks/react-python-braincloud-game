@@ -20,19 +20,21 @@ def accept(request, user_id=None):
             question = models.Question.objects.get(pk=accepted)
             question.status = models.Question.STATUS_ACCEPTED
             question.editor = request.user
-            question.save(update_fields=['status', 'editor'])
+            question.reviewed_at = timezone.now()
+            question.save(update_fields=['status', 'editor', 'reviewed_at'])
         elif rejected:
             question = models.Question.objects.get(pk=rejected)
             question.status = models.Question.STATUS_REJECTED
             question.editor = request.user
-            question.save(update_fields=['status', 'editor'])
+            question.reviewed_at = timezone.now()
+            question.save(update_fields=['status', 'editor', 'reviewed_at'])
         else:
             pass
 
     formset = forms.QuestionApproveFormSet(
         queryset=models.Question.objects.filter(
             status=models.Question.STATUS_NEW,
-            created_at__date__lt=timezone.now().date(),
+            created_at__date__lt=timezone.localtime(timezone.now()).date(),
             author__in=request.user.subordinates.all() if user_id is None else models.User.objects.filter(pk=user_id),
         ))
     return render(request=request, template_name='sesam/editor/quiz-accept.html', context={'formset': formset})

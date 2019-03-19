@@ -77,7 +77,7 @@ def quiz_statistics(request):
         new=Count('id', filter=Q(status=models.Question.STATUS_NEW)),
     )
     statistics_editor = models.Question.objects.exclude(status=models.Question.STATUS_NEW).values('editor').annotate(
-        updated_at=TruncDate('updated_at'),
+        reviewed_at=TruncDate('reviewed_at'),
     ).annotate(
         rejected=Count('id', filter=Q(status=models.Question.STATUS_REJECTED)),
         accepted=Count('id', filter=Q(status=models.Question.STATUS_ACCEPTED)),
@@ -85,7 +85,7 @@ def quiz_statistics(request):
     for s in statistics_author:
         statistics_all[s['author']][s['created_at']] = (s['new'], s['accepted'], s['rejected'])
     for s in statistics_editor:
-        statistics_all[s['editor']][s['updated_at']] = (s['accepted'], s['rejected'])
+        statistics_all[s['editor']][s['reviewed_at']] = (s['accepted'], s['rejected'])
 
     for editor in models.User.objects.filter(groups__name__iexact=models.USER_GROUP_EDITOR):
         data['editors'][editor.id] = {
