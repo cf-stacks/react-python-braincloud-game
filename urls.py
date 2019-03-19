@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import include
 from django.urls import path
+from django.http.response import HttpResponseRedirect
 
 from sesam import forms
 
 urlpatterns = [
+    path('', lambda x: HttpResponseRedirect('/content/')),
     # Administration
     path('admin/', admin.site.urls),
     # API endpoints

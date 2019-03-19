@@ -46,9 +46,9 @@ def quiz_statistics(request):
     shift = int(request.POST.get('shift', 0))
     if 'new_view' in request.POST:
         shift = 0
-        view_type = request.POST.get('new_view')
+        view_type = request.POST.get('new_view').lower()
     else:
-        view_type = request.POST.get('view', 'week')
+        view_type = request.POST.get('view', 'week').lower()
     if view_type == 'week':
         step = 1
         delta_arg = 'weeks'

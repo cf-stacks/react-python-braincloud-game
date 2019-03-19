@@ -20,9 +20,10 @@
     <div class="d-flex justify-content-around">
     <button class="btn btn-info" type="submit" name="backward"><</button>
     {% if view == "week" %}
-      <input class="btn btn-primary" type="submit" value="month" name="new_view" />
+
+      <button class="btn btn-primary" type="submit" value="month" name="new_view" >{% trans 'month'|title %}</button>
     {% else %}
-      <input class="btn btn-primary" type="submit" value="week" name="new_view" />
+      <button class="btn btn-primary" type="submit" value="week" name="new_view" >{% trans 'week'|title %}</button>
     {% endif %}
     <button class="btn btn-info" type="submit" name="forward">></button>
     </div>
