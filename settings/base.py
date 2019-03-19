@@ -244,3 +244,7 @@ GAMESPARKS_CONFIG = {
     'credential': env('GS_CREDENTIAL'),
     'secret': env('GS_SECRET'),
 }
+
+STRONGHOLD_PUBLIC_URLS = (
+    r'^/api/',
+)
