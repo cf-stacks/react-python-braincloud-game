@@ -100,10 +100,30 @@
     "device_id": null,
     "money": "0.00",
     "points": "0.00",
-    "boss": "7927f75f-b64f-4066-9932-95b0956a9c44",
+    "boss": "af87f0c1-2a52-461e-af0c-8655d47357e9",
     "groups": [
       1
     ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sesam.user",
+  "pk": "08781398-c91e-47ae-a3ea-383c898b9e18",
+  "fields": {
+    "password": "pbkdf2_sha256$120000$cxNJuqc8HlIH$rmUOhjPnvXRgwQJ6dpCF0HTq4KdZqjhY14IC/LmhswU=",
+    "last_login": null,
+    "is_superuser": true,
+    "email": "Kostya@bogunov.co.jp",
+    "name": "\u041a\u043e\u0441\u0442\u044f",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2019-03-19T13:29:05Z",
+    "device_id": null,
+    "money": "0.00",
+    "points": "0.00",
+    "boss": null,
+    "groups": [],
     "user_permissions": []
   }
 }

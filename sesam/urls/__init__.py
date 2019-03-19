@@ -1,6 +1,7 @@
 from decorator_include import decorator_include
 from django.urls import path
 
+from .. import models
 from .. import views
 from .. decorators import require_group
 
@@ -8,7 +9,16 @@ from .. decorators import require_group
 urlpatterns = [
     path(route='', view=views.home, name='home'),
 
-    path(route='chief/', view=decorator_include(require_group('chief'), ('sesam.urls.chief', 'chief'))),
-    path(route='author/', view=decorator_include(require_group('author'), ('sesam.urls.author', 'author'))),
-    path(route='editor/', view=decorator_include(require_group('editor'), ('sesam.urls.editor', 'editor'))),
+    path(
+        route=f'{models.USER_GROUP_CHIEF}/',
+        view=decorator_include(require_group(models.USER_GROUP_CHIEF), ('sesam.urls.chief', models.USER_GROUP_CHIEF))
+    ),
+    path(
+        route=f'{models.USER_GROUP_AUTHOR}/',
+        view=decorator_include(require_group(models.USER_GROUP_AUTHOR), ('sesam.urls.author', models.USER_GROUP_AUTHOR))
+    ),
+    path(
+        route=f'{models.USER_GROUP_EDITOR}/',
+        view=decorator_include(require_group(models.USER_GROUP_EDITOR), ('sesam.urls.editor', models.USER_GROUP_EDITOR))
+    ),
 ]

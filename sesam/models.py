@@ -11,6 +11,13 @@ from django.utils.translation import ugettext_lazy as _
 
 from sesam.managers import UserManager
 
+USER_GROUP_AUTHOR = 'author'
+USER_GROUP_EDITOR = 'editor'
+USER_GROUP_CHIEF = 'chief'
+USER_GROUPS = (
+    USER_GROUP_AUTHOR, USER_GROUP_EDITOR, USER_GROUP_CHIEF,
+)
+
 
 class User(AbstractBaseUser, PermissionsMixin):
 
@@ -87,7 +94,7 @@ class BaseModel(models.Model):
     is_active = models.BooleanField(verbose_name=_('active'), default=True)
     created_at = models.DateTimeField(verbose_name=_('created at'), auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name=_('updated at'), auto_now=True)
-    created_at.editable = True
+    # created_at.editable = True
 
     class Meta:
         abstract = True

@@ -2,19 +2,19 @@
 
 from django.db import migrations
 
+from ..models import USER_GROUPS
+
 
 def add_groups(apps, schema_editor):
     Group = apps.get_model('auth', 'Group')
-    Group.objects.get_or_create(name='author')
-    Group.objects.get_or_create(name='editor')
-    Group.objects.get_or_create(name='chief')
+    for group in USER_GROUPS:
+        Group.objects.get_or_create(name=group.title())
 
 
 def delete_groups(apps, schema_editor):
     Group = apps.get_model('auth', 'Group')
-    Group.objects.filter(name='author').delete()
-    Group.objects.filter(name='editor').delete()
-    Group.objects.filter(name='chief').delete()
+    for group in USER_GROUPS:
+        Group.objects.filter(name__iexact=group).delete()
 
 
 class Migration(migrations.Migration):

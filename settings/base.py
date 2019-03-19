@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'debug_toolbar',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'stronghold',
@@ -63,6 +64,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -211,10 +213,6 @@ LOGGING = {
         },
     },
     'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'propagate': True,
-        },
         'django.request': {
             'handlers': ['console'],
             'level': 'INFO' if DEBUG else 'ERROR',
@@ -248,4 +246,8 @@ GAMESPARKS_CONFIG = {
 STRONGHOLD_PUBLIC_URLS = (
     r'^/api/',
     r'^/admin/',
+)
+
+INTERNAL_IPS = (
+    '127.0.0.1',
 )

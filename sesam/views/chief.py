@@ -87,7 +87,7 @@ def quiz_statistics(request):
     for s in statistics_editor:
         statistics_all[s['editor']][s['updated_at']] = (s['accepted'], s['rejected'])
 
-    for editor in models.User.objects.filter(groups__name__exact='Editor'):
+    for editor in models.User.objects.filter(groups__name__iexact=models.USER_GROUP_EDITOR):
         data['editors'][editor.id] = {
             'data': statistics_all.get(editor.id, {}),
             'name': editor.name,
@@ -95,7 +95,7 @@ def quiz_statistics(request):
                 author.id: {
                     'data': statistics_all.get(author.id, {}),
                     'name': author.name,
-                } for author in models.User.objects.filter(groups__name__exact='Author', boss=editor)
+                } for author in models.User.objects.filter(groups__name__iexact=models.USER_GROUP_AUTHOR, boss=editor)
             }
         }
     return render(request=request, template_name='sesam/chief/quiz-statistics.html', context=data)
