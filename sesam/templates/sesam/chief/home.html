@@ -1,0 +1,14 @@
+{% extends "sesam/base.html" %}
+
+{% load i18n %}
+
+
+{% block content %}
+  <h1>{% trans "Chapters" %}:</h1>
+  <ul>
+    <li><a href="{% url "chief:quiz-statistics" %}">{% trans "Statistics for chief" %}</a></li>
+    <li><a href="{% url "chief:quiz-pending" %}">{% trans "Pending questions" %}</a></li>
+    <li><a href="">{% trans "Questions in game" %}</a></li>
+    <li><a href="">{% trans "Complains" %}</a></li>
+  </ul>
+{% endblock %}

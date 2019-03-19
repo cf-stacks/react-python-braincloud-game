@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'stronghold',
+    'widget_tweaks',
 
     'sesam',
 ]

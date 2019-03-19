@@ -6,22 +6,24 @@
 
 {% block content %}
   <table class="table table-striped table-sm">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col" style="width: 5%">#</th>
-      <th scope="col" style="width: 10%">{% trans "Question category" %}</th>
-      <th scope="col" style="width: 30%">{% trans "Description" %}</th>
-      <th scope="col" style="width: 10%">{% trans "Correct answer" %}</th>
-      <th scope="col" style="width: 10%">{% trans "Incorrect answer 1" %}</th>
-      <th scope="col" style="width: 10%">{% trans "Incorrect answer 2" %}</th>
-      <th scope="col" style="width: 15%">{% trans "Action" %}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <form method="post" action="">
-      {% csrf_token %}
-      {{ formset.management_form }}
-      {% for form in formset %}
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    {% for form in formset %}
+      {% if forloop.first %}
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" style="width: 5%">#</th>
+            <th scope="col" style="width: 10%">{{ form.category.label }}</th>
+            <th scope="col" style="width: 30%">{{ form.description.label }}</th>
+            <th scope="col" style="width: 10%">{{ form.answer_correct.label }}</th>
+            <th scope="col" style="width: 10%">{{ form.answer_incorrect_1.label }}</th>
+            <th scope="col" style="width: 10%">{{ form.answer_incorrect_2.label }}</th>
+            <th scope="col" style="width: 15%">{% trans "Action" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+      {% endif %}
         {{ form.id }}
         <tr>
           <th scope="row">{{ forloop.counter }}</th>
@@ -36,6 +38,6 @@
           </td>
         </tr>
       {% endfor %}
-    </form>
-  </tbody>
+    </tbody>
+  </form>
 {% endblock %}

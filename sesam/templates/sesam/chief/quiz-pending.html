@@ -1,0 +1,60 @@
+{% extends "sesam/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block additional_css %}
+  <link href="{% static 'sesam/css/quiz-pending.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <form method="post" action="">
+  {% csrf_token %}
+  {{ formset.management_form }}
+  {% for form in formset %}
+    <div class="card">
+      <div class="card-header">{% trans "author" %}: {{ form.instance.author }}</div>
+        <div class="card-body">
+          <h5 class="card-title">{% trans "editor" %}: {{ form.instance.editor }}</h5>
+          <div class="form-row form-group">
+            {{ form.description|add_label_class:"col-form-label" }}
+            <div class="col">
+              {{ form.description.errors }}
+              {{ form.description }}
+            </div>
+          </div>
+          <div class="form-row form-group">
+            {{ form.category|add_label_class:"col-form-label" }}
+            <div class="col">
+              {{ form.category.errors }}
+              {{ form.category }}
+            </div>
+            {{ form.answer_correct|add_label_class:"col-form-label" }}
+            <div class="col">
+              {{ form.answer_correct.errors }}
+              {{ form.answer_correct }}
+            </div>
+          </div>
+          <div class="form-row form-group">
+          {{ form.answer_incorrect_1|add_label_class:"col-form-label" }}
+            <div class="col">
+              {{ form.answer_incorrect_1.errors }}
+              {{ form.answer_incorrect_1 }}
+            </div>
+            {{ form.answer_incorrect_2|add_label_class:"col-form-label" }}
+            <div class="col">
+              {{ form.answer_incorrect_2.errors }}
+              {{ form.answer_incorrect_2 }}
+            </div>
+          </div>
+        </div>
+      <div class="card-footer text-muted">
+            {% trans "created at" %}: {{ form.instance.created_at }}
+      </div>
+    </div>
+  {% endfor %}
+  <button type="submit" class="btn btn-success">{% trans "Submit" %}</button>
+  </form>
+{% endblock %}

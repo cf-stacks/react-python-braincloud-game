@@ -3,6 +3,8 @@ Django==2.1.5
 djangorestframework==3.9.1
 djangorestframework-simplejwt==3.3
 django-bootstrap4==0.0.7
+django-decorator-include==2.1
 django-stronghold==0.3.0
+django-widget-tweaks==1.4.3
 envparse==0.2.0
 requests==2.21.0

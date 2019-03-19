@@ -1,0 +1,15 @@
+{% extends "sesam/base.html" %}
+
+{% load static %}
+
+
+{% block additional_css %}
+  <link href="{% static 'sesam/css/403.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <div>
+    <h1>403 ошибка</h1>
+    <h2>Доступ закрыт</h2>
+  </div>
+{% endblock %}

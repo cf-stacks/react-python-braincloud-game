@@ -14,15 +14,23 @@ from sesam.managers import UserManager
 
 class User(AbstractBaseUser, PermissionsMixin):
 
-    id = models.UUIDField(verbose_name=_('ID'), primary_key=True, default=uuid.uuid4, editable=False)
-    email = models.EmailField(verbose_name=_('Email'), unique=True, db_index=True, null=True)
-    name = models.CharField(verbose_name=_('Name'), max_length=30)
-    is_staff = models.BooleanField(verbose_name=_('Staff status'), default=False)
-    is_active = models.BooleanField(verbose_name=_('Active'), default=True)
-    date_joined = models.DateTimeField(verbose_name=_('Date joined'), default=timezone.now)
-    device_id = models.UUIDField(verbose_name=_('Device ID'), unique=True, db_index=True, null=True)
-    money = models.DecimalField(verbose_name=_('Money'), max_digits=10, decimal_places=2, default=0)
-    points = models.DecimalField(verbose_name=_('Points'), max_digits=10, decimal_places=2, default=0)
+    id = models.UUIDField(verbose_name=_('id'), primary_key=True, default=uuid.uuid4, editable=False)
+    email = models.EmailField(verbose_name=_('email address'), unique=True, db_index=True, null=True)
+    name = models.CharField(verbose_name=_('name'), max_length=30)
+    is_staff = models.BooleanField(verbose_name=_('staff status'), default=False)
+    is_active = models.BooleanField(verbose_name=_('active'), default=True)
+    date_joined = models.DateTimeField(verbose_name=_('date joined'), default=timezone.now)
+    device_id = models.UUIDField(verbose_name=_('device id'), unique=True, db_index=True, null=True)
+    money = models.DecimalField(verbose_name=_('money'), max_digits=10, decimal_places=2, default=0)
+    points = models.DecimalField(verbose_name=_('points'), max_digits=10, decimal_places=2, default=0)
+    boss = models.ForeignKey(
+        verbose_name=_('boss'),
+        to='sesam.User',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='subordinates',
+    )
 
     objects = UserManager()
 
@@ -30,10 +38,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
     class Meta:
-        verbose_name = _('User')
+        verbose_name = _('user')
+        verbose_name_plural = _('users')
 
     def __str__(self):
-        return str(self.get_username())
+        return f'{self.name} ({self.email})'
 
     def get_full_name(self):
         return self.name
@@ -74,10 +83,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class BaseModel(models.Model):
-    id = models.UUIDField(verbose_name='ID', primary_key=True, default=uuid.uuid4, editable=False)
-    is_active = models.BooleanField(verbose_name=_('Active'), default=True)
-    created_at = models.DateTimeField(verbose_name=_('Created at'), auto_now_add=True)
-    updated_at = models.DateTimeField(verbose_name=_('Updated at'), auto_now=True)
+    id = models.UUIDField(verbose_name='id', primary_key=True, default=uuid.uuid4, editable=False)
+    is_active = models.BooleanField(verbose_name=_('active'), default=True)
+    created_at = models.DateTimeField(verbose_name=_('created at'), auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name=_('updated at'), auto_now=True)
+    created_at.editable = True
 
     class Meta:
         abstract = True
@@ -87,8 +97,8 @@ class UserMoneyLogModel(BaseModel):
     DIRECTION_IN = 0
     DIRECTION_OUT = 1
     DIRECTIONS = (
-        (DIRECTION_IN, _('In')),
-        (DIRECTION_OUT, _('Out')),
+        (DIRECTION_IN, _('direction in')),
+        (DIRECTION_OUT, _('direction out')),
     )
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     direction = models.SmallIntegerField(choices=DIRECTIONS, default=DIRECTION_IN)
@@ -100,8 +110,8 @@ class QuestionCategory(BaseModel):
     name = models.CharField(max_length=50)
 
     class Meta:
-        verbose_name = _('Question category')
-        verbose_name_plural = _('Question categories')
+        verbose_name = _('question category')
+        verbose_name_plural = _('question categories')
 
     def __str__(self):
         return self.name
@@ -115,37 +125,38 @@ class Question(BaseModel):
     STATUS_ACCEPTED = 1
     STATUS_REJECTED = 2
     STATUSES = (
-        (STATUS_NEW, _('New')),
-        (STATUS_ACCEPTED, _('Accepted')),
-        (STATUS_REJECTED, _('Rejected')),
+        (STATUS_NEW, _('new')),
+        (STATUS_ACCEPTED, _('accepted')),
+        (STATUS_REJECTED, _('rejected')),
     )
     category = models.ForeignKey(
-        verbose_name=_('Question category'),
+        verbose_name=_('question category'),
         to='sesam.QuestionCategory',
         on_delete=models.CASCADE,
     )
-    description = models.TextField(verbose_name=_('Description'))
+    description = models.TextField(verbose_name=_('description'))
     author = models.ForeignKey(
-        verbose_name=_('Author'),
+        verbose_name=_('author'),
         to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='authored_questions',
     )
     editor = models.ForeignKey(
-        verbose_name=_('Editor'),
+        verbose_name=_('editor'),
         to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='edited_questions',
         null=True,
+        blank=True,
     )
-    status = models.PositiveSmallIntegerField(verbose_name=_('Status'), choices=STATUSES, default=STATUS_NEW)
-    answer_correct = models.CharField(verbose_name=_('Correct answer'), max_length=100)
-    answer_incorrect_1 = models.CharField(verbose_name=_('Incorrect answer 1'), max_length=100)
-    answer_incorrect_2 = models.CharField(verbose_name=_('Incorrect answer 2'), max_length=100)
+    status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=STATUS_NEW)
+    answer_correct = models.CharField(verbose_name=_('correct answer'), max_length=100)
+    answer_incorrect_1 = models.CharField(verbose_name=_('incorrect answer 1'), max_length=100)
+    answer_incorrect_2 = models.CharField(verbose_name=_('incorrect answer 2'), max_length=100)
 
     class Meta:
-        verbose_name = _('Question')
-        verbose_name_plural = _('Questions')
+        verbose_name = _('question')
+        verbose_name_plural = _('questions')
 
 
 class Game(BaseModel):
@@ -153,16 +164,16 @@ class Game(BaseModel):
     GAME_DURAK = 'durak'
     GAME_ARKANOID = 'arkanoid'
     GAMES = (
-        (GAME_QUIZ, _('Quiz')),
-        (GAME_DURAK, _('Durak')),
-        (GAME_ARKANOID, _('Arkanoid')),
+        (GAME_QUIZ, _('quiz')),
+        (GAME_DURAK, _('durak')),
+        (GAME_ARKANOID, _('arkanoid')),
     )
 
-    name = models.CharField(verbose_name=_('Name'), max_length=100)
+    name = models.CharField(verbose_name=_('name'), max_length=100)
     game_type = models.CharField(
-        verbose_name=_('Game type'), choices=GAMES, default=GAME_QUIZ, max_length=20, unique=True,
+        verbose_name=_('game type'), choices=GAMES, default=GAME_QUIZ, max_length=20, unique=True,
     )
-    setting = models.OneToOneField(verbose_name=_('Setting'), to='sesam.GameSetting', on_delete=models.CASCADE)
+    setting = models.OneToOneField(verbose_name=_('setting'), to='sesam.GameSetting', on_delete=models.CASCADE)
 
 
 class GameSetting(BaseModel):
