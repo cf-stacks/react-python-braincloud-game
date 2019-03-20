@@ -6,9 +6,11 @@
 
 {% block content %}
   <h1>{% trans "Statistics" %}:</h1>
-  <p>{% trans "Month total" %}: {{ total_month }}</p>
-  <p>{% trans "Added today" %}: {{ total_today }}</p>
-  <p>{% trans "Accepted last shift" %}: {{ accepted_yesterday }}</p>
-  <p>{% trans "Rejected last shift" %}: {{ accepted_yesterday }}</p>
+  <div class="d-flex flex-row justify-content-around">
+    <div>{% trans "Month total" %}: {{ total_month }}</div>
+    <div>{% trans "Added today" %}: {{ total_today }}</div>
+    <div>{% trans "Accepted last shift" %}: {{ accepted_yesterday }}</div>
+    <div>{% trans "Rejected last shift" %}: {{ accepted_yesterday }}</div>
+  </div>
   <a href="{% url "author:quiz-create" %}" class="btn btn-primary">{% trans "Add question" %}</a>
 {% endblock %}

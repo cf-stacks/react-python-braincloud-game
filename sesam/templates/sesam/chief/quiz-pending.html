@@ -10,51 +10,40 @@
 {% endblock %}
 
 {% block content %}
-  <form method="post" action="">
-  {% csrf_token %}
-  {{ formset.management_form }}
-  {% for form in formset %}
-    <div class="card">
-      <div class="card-header">{% trans "author" %}: {{ form.instance.author }}</div>
-        <div class="card-body">
-          <h5 class="card-title">{% trans "editor" %}: {{ form.instance.editor }}</h5>
-          <div class="form-row form-group">
-            {{ form.description|add_label_class:"col-form-label" }}
-            <div class="col">
-              {{ form.description.errors }}
-              {{ form.description }}
-            </div>
-          </div>
-          <div class="form-row form-group">
-            {{ form.category|add_label_class:"col-form-label" }}
-            <div class="col">
-              {{ form.category.errors }}
-              {{ form.category }}
-            </div>
-            {{ form.answer_correct|add_label_class:"col-form-label" }}
-            <div class="col">
-              {{ form.answer_correct.errors }}
-              {{ form.answer_correct }}
-            </div>
-          </div>
-          <div class="form-row form-group">
-          {{ form.answer_incorrect_1|add_label_class:"col-form-label" }}
-            <div class="col">
-              {{ form.answer_incorrect_1.errors }}
-              {{ form.answer_incorrect_1 }}
-            </div>
-            {{ form.answer_incorrect_2|add_label_class:"col-form-label" }}
-            <div class="col">
-              {{ form.answer_incorrect_2.errors }}
-              {{ form.answer_incorrect_2 }}
-            </div>
-          </div>
-        </div>
-      <div class="card-footer text-muted">
-            {% trans "created at" %}: {{ form.instance.created_at }}
-      </div>
-    </div>
-  {% endfor %}
-  <button type="submit" class="btn btn-success">{% trans "Submit" %}</button>
-  </form>
+  <table class="table table-striped table-sm">
+{% for form in forms %}
+  {% if forloop.first %}
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" style="width: 5%">#</th>
+        <th scope="col" style="width: 10%">{% trans "tags"|title %}</th>
+        <th scope="col" style="width: 30%">{{ form.description.label }}</th>
+        <th scope="col" style="width: 10%">{{ form.answer_correct.label }}</th>
+        <th scope="col" style="width: 10%">{{ form.answer_incorrect_1.label }}</th>
+        <th scope="col" style="width: 10%">{{ form.answer_incorrect_2.label }}</th>
+        <th scope="col" style="width: 15%">{% trans "Actions" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% endif %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>
+          <div><span class="badge badge-pill badge-warning">{{ form.instance.category.name }}</span></div>
+          <div><span class="badge badge-pill badge-dark">{{ form.instance.author.name }}</span></div>
+          <div><span class="badge badge-pill badge-secondary">{{ form.instance.editor.name }}</span></div>
+        </td>
+        <td>{{ form.description.value }}</td>
+        <td>{{ form.answer_correct.value }}</td>
+        <td>{{ form.answer_incorrect_1.value }}</td>
+        <td>{{ form.answer_incorrect_2.value }}</td>
+        <td>
+          <button class="btn btn-success" type="submit" name="accept" value="{{ form.instance.id }}"><i class="fas fa-check"></i></button>
+          <button class="btn btn-danger" type="submit" name="reject" value="{{ form.instance.id }}"><i class="fas fa-times"></i></button>
+          <a href="{% url "chief:quiz-question-edit" form.instance.id %}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+        </td>
+      </tr>
+{% endfor %}
+    </tbody>
+  </table>
 {% endblock %}

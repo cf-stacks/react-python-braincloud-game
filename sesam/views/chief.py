@@ -9,22 +9,27 @@ from django.shortcuts import render
 from django.utils import timezone
 
 from .. import models
-from ..forms import chief as forms
+from ..forms import chief as chief_forms
 
 
 def home(request):
-    context = {}
-    return render(request=request, template_name='sesam/chief/home.html', context=context)
+    return render(request=request, template_name='sesam/chief/home.html')
 
 
 def quiz_pending(request):
-    if request.method == 'POST':
-        formset = forms.QuestionPendingFormSet(data=request.POST)
-        if formset.is_valid():
-            formset.save()
-    else:
-        formset = forms.QuestionPendingFormSet(queryset=models.Question.objects.filter(status=models.Question.STATUS_NEW))
-    return render(request=request, template_name='sesam/chief/quiz-pending.html', context={'formset': formset})
+    forms = chief_forms.QuestionPendingFormSet(
+        queryset=models.Question.objects.filter(
+            status=models.Question.STATUS_NEW,
+        ).select_related(
+            'author', 'editor', 'category',
+        ),
+    )
+    return render(request=request, template_name='sesam/chief/quiz-pending.html', context={'forms': forms})
+
+
+def quiz_question_edit(request, question_id):
+    form = chief_forms.QuestionPendingForm(instance=models.Question.objects.get(pk=question_id))
+    return render(request=request, template_name='sesam/chief/quiz-question-edit.html', context={'form': form})
 
 
 def daterange(start_date, end_date):

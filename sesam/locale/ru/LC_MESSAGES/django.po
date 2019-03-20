@@ -278,8 +278,8 @@ msgid "All subordinates"
 msgstr "Все сотрудники"
 
 #: sesam/templates/sesam/editor/quiz-accept.html:22
-msgid "Action"
-msgstr "Действие"
+msgid "Actions"
+msgstr "Действия"
 
 #: sesam/templates/sesam/header.html:5
 msgid "sesam"
