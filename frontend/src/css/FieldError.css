@@ -1,0 +1,9 @@
+div.error {
+  transition: 300ms all ease;
+  opacity: 0.5;
+  will-change: opacity;
+}
+
+div.error-show {
+  opacity: 1;
+}

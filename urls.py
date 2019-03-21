@@ -33,6 +33,8 @@ urlpatterns = [
     # Accounts
     path('accounts/login/', auth_views.LoginView.as_view(authentication_form=forms.SesamAuthenticationForm), name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
+    # Frontend
+    path('fe/', include('frontend.urls')),
 ]
 
 if settings.DEBUG:

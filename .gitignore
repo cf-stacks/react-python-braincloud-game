@@ -117,3 +117,8 @@ dmypy.json
 
 # PyCharm
 .idea/
+
+# JS
+node_modules/
+
+frontend/static/
