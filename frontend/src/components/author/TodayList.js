@@ -7,17 +7,11 @@ export class TodayList extends Component {
   static propTypes = {
     todayList: PropTypes.array.isRequired,
     getTodayList: PropTypes.func.isRequired,
-    categories: PropTypes.array.isRequired,
   };
 
   componentDidMount = () => {
     this.props.getTodayList();
   };
-
-  getValue = (id) => {
-    const found = this.props.categories.find((elem) => elem.id === id)
-    return found ? found.name : null
-  }
 
   render () {
     return (
@@ -37,7 +31,7 @@ export class TodayList extends Component {
           { this.props.todayList.map(question => (
             <tr key={ question.id }>
               <td>{ question.description }</td>
-              <td>{ this.getValue(question.category) }</td>
+              <td>{ question.category.name }</td>
               <td>{ question.answer_correct }</td>
               <td>{ question.answer_incorrect_1 }</td>
               <td>{ question.answer_incorrect_2 }</td>
@@ -52,7 +46,6 @@ export class TodayList extends Component {
 
 const mapStateToProps = state => ({
   todayList: state.author.todayList,
-  categories: state.author.categories,
 });
 
 export default connect(mapStateToProps, { getTodayList })(TodayList);

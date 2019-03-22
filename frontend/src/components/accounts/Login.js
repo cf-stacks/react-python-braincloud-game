@@ -12,7 +12,7 @@ export class Login extends Component {
 
   static propTypes = {
     login: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool.isRequired,
+    user: PropTypes.object,
   };
 
   onSubmit = event => {
@@ -23,7 +23,7 @@ export class Login extends Component {
   onChange = event => this.setState({[event.target.name]: event.target.value});
 
   render() {
-    if (this.props.isAuthenticated) return <Redirect to="/" />
+    if (this.props.user) return <Redirect to="/" />
     const { email, password } = this.state;
     return (
       <div className="col-md-6 m-auto">
@@ -62,7 +62,7 @@ export class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps, { login })(Login);

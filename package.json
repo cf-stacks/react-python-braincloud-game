@@ -17,6 +17,7 @@
   "homepage": "https://bitbucket.org/BogunovInc/sesam_be#readme",
   "devDependencies": {
     "@babel/core": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.4.0",
     "@babel/preset-env": "^7.4.1",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
@@ -27,11 +28,13 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
+    "@lingui/react": "^2.7.4",
     "axios": "^0.18.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-alert": "^5.4.0",
     "react-alert-template-basic": "^1.0.0",
+    "react-bootstrap": "^1.0.0-beta.6",
     "react-cookies": "^0.1.0",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",

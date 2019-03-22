@@ -1,61 +1,47 @@
 import axios from "axios";
 
-import cookie from "react-cookies";
-
 import { createMessage, returnErrors } from "./messages";
 
 import {
-  GET_AUTHOR_STATISTICS,
-  ADD_QUIZ_QUESTION,
-  GET_TODAY_LIST,
-  RESET_FORM,
-  FORM_UPDATE,
-  GET_CATEGORIES,
+  AUTHOR_GET_STATISTICS,
+  AUTHOR_ADD_QUESTION,
+  AUTHOR_GET_TODAY_LIST,
+  AUTHOR_FORM_RESET,
+  AUTHOR_FORM_UPDATE,
+  AUTHOR_GET_CATEGORIES,
 } from "./types";
 
 // GET AUTHOR STATISTICS
-export const getStatistics = () => (dispatch, getState) => {
-  const config = {
-    headers: {
-      'Content-Type': "application/json",
-      'Authorization': `CustomJWT ${getState().auth.access}`,
-    }
-  };
+export const getStatistics = () => dispatch => {
   axios
-    .get("/api/internal/author/statistics/", config)
+    .get("/api/internal/author/statistics/")
     .then(res => {
-      dispatch({type: GET_AUTHOR_STATISTICS, payload: res.data});
+      dispatch({type: AUTHOR_GET_STATISTICS, payload: res.data});
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 // ADD QUIZ QUESTION
-export const addQuizQuestion = (question) => (dispatch, getState) => {
-  const config = {
-    headers: {
-      'Content-Type': "application/json",
-      'Authorization': `CustomJWT ${getState().auth.access}`,
-    }
-  };
+export const addQuizQuestion = (question) => dispatch => {
   axios
-    .post("/api/internal/quiz/question/", question, config)
+    .post("/api/internal/quiz/question/", question)
     .then(res => {
       // Show notification
       dispatch(createMessage({quizQuestionAdded: 'Question Added'}));
       // Hide errors
       dispatch(returnErrors({}, null));
       // Reset form
-      dispatch({type: RESET_FORM, payload: null});
+      dispatch({type: AUTHOR_FORM_RESET, payload: null});
       // Refetch statistics
       dispatch(getStatistics());
       // Add question
-      dispatch({type: ADD_QUIZ_QUESTION, payload: res.data});
+      dispatch({type: AUTHOR_ADD_QUESTION, payload: res.data});
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 // UPDATE FORM
 export const formUpdate = (name, value) => dispatch => {
   dispatch({
-    type: FORM_UPDATE,
+    type: AUTHOR_FORM_UPDATE,
     payload: {
       name: name,
       value: value,
@@ -64,30 +50,18 @@ export const formUpdate = (name, value) => dispatch => {
 };
 
 // GET TODAY LIST
-export const getTodayList = () => (dispatch, getState) => {
-  const config = {
-    headers: {
-      'Content-Type': "application/json",
-      'Authorization': `CustomJWT ${getState().auth.access}`,
-    }
-  };
+export const getTodayList = () => dispatch => {
   axios
-    .get("/api/internal/quiz/question/today/", config)
+    .get("/api/internal/quiz/question/today/")
     .then(res => {
-      dispatch({type: GET_TODAY_LIST, payload: res.data});
+      dispatch({type: AUTHOR_GET_TODAY_LIST, payload: res.data});
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
-export const getCategories = () => (dispatch, getState) => {
-  const config = {
-    headers: {
-      'Content-Type': "application/json",
-      'Authorization': `CustomJWT ${getState().auth.access}`,
-    }
-  };
+export const getCategories = () => dispatch => {
   axios
-    .get("/api/internal/quiz/category/", config)
+    .get("/api/internal/quiz/category/")
     .then(res => {
-      dispatch({type: GET_CATEGORIES, payload: res.data})
+      dispatch({type: AUTHOR_GET_CATEGORIES, payload: res.data})
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };

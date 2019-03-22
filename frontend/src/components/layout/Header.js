@@ -32,13 +32,13 @@ export class Header extends Component {
   }
 
   render () {
-    const { isAuthenticated, user } = this.props.auth;
+    const { user } = this.props.auth;
 
     const authLinks = (
       <ul className="navbar-nav">
         <li className="nav-item">
           <span className="nav-link">
-            {user ? <span>{user.name}<small>({user.email})</small></span> : <span>Loading...</span>}
+            {user ? <span>{user.name} <small>({user.email})</small></span> : <span>Loading...</span>}
           </span>
         </li>
         <li className="nav-item">
@@ -60,8 +60,6 @@ export class Header extends Component {
         </li>
       </ul>
     );
-    console.log('render header');
-    console.log(user);
     return (
       <header>
         <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -75,7 +73,7 @@ export class Header extends Component {
                 { this.state.currentTime }
               </span>
               <span className="navbar-text ml-auto p-0">
-                { isAuthenticated ? authLinks : guestLinks }
+                { user ? authLinks : guestLinks }
               </span>
             </div>
           </div>

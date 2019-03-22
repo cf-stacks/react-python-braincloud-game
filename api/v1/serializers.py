@@ -1,11 +1,35 @@
 from django.contrib import auth
+from django.contrib.auth import models as auth_models
 from rest_framework import serializers
 
 
-class UserSerializer(serializers.ModelSerializer):
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = auth_models.Group
+        fields = ('id', 'name')
+
+
+class SubordinateSerializer(serializers.ModelSerializer):
     class Meta:
         model = auth.get_user_model()
-        fields = ('id', 'email', 'name', 'is_active', 'is_staff', 'is_superuser', 'date_joined', 'last_login')
+        fields = ('id', 'name')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    groups = GroupSerializer(many=True)
+    subordinates = SubordinateSerializer(many=True)
+
+    class Meta:
+        model = auth.get_user_model()
+        fields = ('id', 'email', 'name', 'is_active', 'is_staff', 'is_superuser', 'date_joined', 'last_login', 'groups', 'subordinates')
+        staff_fields = ('groups', 'subordinates')
+        extra_kwargs = {'groups': {'read_only': True}, 'subordinates': {'read_only': True}}
+
+    def __init__(self, *args, **kwargs):
+        super(UserSerializer, self).__init__(*args, **kwargs)
+        if not self.context['request'].user.is_staff:
+            for field in self.Meta.staff_fields:
+                self.fields.pop(field)
 
 
 class AnonymousSerializer(serializers.ModelSerializer):

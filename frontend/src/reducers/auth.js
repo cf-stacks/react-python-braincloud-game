@@ -4,14 +4,13 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  LOGOUT_SUCCESS,
+  LOGOUT_SUCCESS, TOKEN_REFRESHED,
 } from "../actions/types"
 
 const initialState = {
-  access: localStorage.getItem("access"),
-  refresh: localStorage.getItem("refresh"),
+  authToken: localStorage.getItem("authToken"),
+  refreshToken: localStorage.getItem("refreshToken"),
   isLoading: false,
-  isAuthenticated: false,
   user: null,
 };
 
@@ -25,30 +24,27 @@ export default function (state = initialState, action) {
     case USER_LOADED:
       return {
         ...state,
-        isAuthenticated: true,
         isLoading: false,
         user: action.payload,
       };
     case LOGIN_SUCCESS:
-      localStorage.setItem('access' , action.payload.access);
-      localStorage.setItem('refresh' , action.payload.refresh);
+    case TOKEN_REFRESHED:
+      localStorage.setItem("authToken" , action.payload.authToken);
+      localStorage.setItem("refreshToken" , action.payload.refreshToken);
       return {
         ...state,
         ...action.payload,
-        isAuthenticated: true,
-        isLoading: false,
       };
     case AUTH_ERROR:
     case LOGIN_FAILURE:
     case LOGOUT_SUCCESS:
-      localStorage.removeItem("access");
-      localStorage.removeItem("refresh");
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("refreshToken");
       return {
         ...state,
-        access: null,
-        refresh: null,
+        authToken: null,
+        refreshToken: null,
         user: null,
-        isAuthenticated: false,
         isLoading: false,
       };
     default:

@@ -1,10 +1,10 @@
 import {
-  GET_AUTHOR_STATISTICS,
-  ADD_QUIZ_QUESTION,
-  GET_TODAY_LIST,
-  RESET_FORM,
-  FORM_UPDATE,
-  GET_CATEGORIES,
+  AUTHOR_GET_STATISTICS,
+  AUTHOR_ADD_QUESTION,
+  AUTHOR_GET_TODAY_LIST,
+  AUTHOR_FORM_RESET,
+  AUTHOR_FORM_UPDATE,
+  AUTHOR_GET_CATEGORIES,
 } from "../actions/types.js"
 
 const initialState = {
@@ -22,22 +22,22 @@ const initialState = {
 
 export default function (state=initialState, action) {
   switch (action.type) {
-    case GET_AUTHOR_STATISTICS:
+    case AUTHOR_GET_STATISTICS:
       return {
         ...state,
         statistics: action.payload,
       };
-    case ADD_QUIZ_QUESTION:
+    case AUTHOR_ADD_QUESTION:
       return {
         ...state,
         todayList: [...state.todayList, action.payload]
       };
-    case GET_TODAY_LIST:
+    case AUTHOR_GET_TODAY_LIST:
       return {
         ...state,
         todayList: action.payload,
       };
-    case FORM_UPDATE:
+    case AUTHOR_FORM_UPDATE:
       return {
         ...state,
         form_values: {
@@ -45,12 +45,12 @@ export default function (state=initialState, action) {
           [action.payload.name]: action.payload.value,
         }
       };
-    case RESET_FORM:
+    case AUTHOR_FORM_RESET:
       return {
         ...state,
         form_values: initialState.form_values,
       };
-    case GET_CATEGORIES:
+    case AUTHOR_GET_CATEGORIES:
       return {
         ...state,
         categories: action.payload,

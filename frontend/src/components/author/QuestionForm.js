@@ -24,6 +24,10 @@ export class QuestionForm extends Component {
     this.props.addQuizQuestion(question);
   };
 
+  componentDidMount() {
+    this.props.getCategories();
+  }
+
   render () {
     const { category, description, answer_correct, answer_incorrect_1, answer_incorrect_2} = this.props.form_values;
     return (
@@ -105,4 +109,4 @@ const mapStateToProps = state => ({
   categories: state.author.categories,
 });
 
-export default connect(mapStateToProps, { addQuizQuestion, formUpdate })(QuestionForm);
+export default connect(mapStateToProps, { addQuizQuestion, formUpdate, getCategories })(QuestionForm);
