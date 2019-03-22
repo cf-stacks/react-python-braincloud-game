@@ -2,6 +2,7 @@ import React, {Component, Fragment} from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getStatistics } from "../../actions/author";
+import { Trans } from "@lingui/macro";
 
 export class Statistics extends Component {
   static propTypes = {
@@ -16,7 +17,8 @@ export class Statistics extends Component {
   render () {
     return (
       <Fragment>
-        <h1>Statistics</h1>
+        <h1 className="text-center"><Trans>Statistics</Trans></h1>
+        <hr/>
         <div className="d-flex d-flex flex-row justify-content-around">
           { this.props.statistics.map(statistic => (
             <div key={ statistic.title }>{ statistic.title }: { statistic.value }</div>

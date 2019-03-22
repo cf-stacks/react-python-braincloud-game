@@ -15,7 +15,7 @@ export class FieldError extends Component {
     const { error, for: name } = this.props;
     const errorMessage = error[name] ? error[name] : "";
     return (
-      <div>{errorMessage}</div>
+      <p className="px-1 font-italic text-danger">{errorMessage}</p>
     )
   };
 }

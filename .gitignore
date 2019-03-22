@@ -122,3 +122,5 @@ dmypy.json
 node_modules/
 
 frontend/static/
+frontend/locale/*/*.js
+frontend/locale/_build/

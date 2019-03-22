@@ -5,6 +5,8 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 
+import { I18nProvider } from '@lingui/react'
+
 import Container from "./layout/Container";
 import Header from "./layout/Header";
 import Alert from "./layout/Alert";
@@ -22,6 +24,9 @@ const alertOptions = {
   position: "bottom center"
 };
 
+import catalogRu from '../../locale/ru/messages.js'
+const catalogs = { ru: catalogRu };
+
 class App extends Component {
 
   componentWillMount() {
@@ -31,21 +36,22 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <AlertProvider template={AlertTemplate} {...alertOptions}>
-          <Router>
-            <Fragment>
-              <Header />
-              <Alert />
-              <main role="main" className="container">
-                <Switch>
-                  <PrivateRoute exact path="/" component={Container} />
-                  <Route exact path="/login" component={Login} />
-                  <Route exact path="/register" component={Register} />
-                </Switch>
-              </main>
-            </Fragment>
-          </Router>
-        </AlertProvider>
+        <I18nProvider language="ru" catalogs={catalogs}>
+          <AlertProvider template={AlertTemplate} {...alertOptions}>
+            <Router>
+              <Fragment>
+                <Header />
+                <Alert />
+                <main role="main" className="container">
+                  <Switch>
+                    <PrivateRoute exact path="/" component={Container} />
+                    <Route exact path="/login" component={Login} />
+                  </Switch>
+                </main>
+              </Fragment>
+            </Router>
+          </AlertProvider>
+        </I18nProvider>
       </Provider>
     )
   }

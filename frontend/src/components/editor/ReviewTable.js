@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getQuestions } from "../../actions/editor";
 import { Tabs, Tab } from "react-bootstrap";
+import { Trans } from "@lingui/macro";
 
 export class ReviewTable extends Component {
   state = {
@@ -27,11 +28,13 @@ export class ReviewTable extends Component {
   render () {
     return (
       <Fragment>
-        <h1>Questions</h1>
+        <h1 className="text-center"><Trans>Questions for review</Trans></h1>
+        <hr/>
         <Tabs
           id="controlled-tab-example"
           activeKey={this.state.selectedTab}
           onSelect={key => this.setState({ selectedTab: key })}
+          className="py-3"
         >
           <Tab eventKey="" title="All" />
         { this.props.user.subordinates.map(subordinate => (
