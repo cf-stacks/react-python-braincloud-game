@@ -13,6 +13,14 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: frontend/src/components/author/Statistics.js:25
+msgid "Accepted last shift"
+msgstr "Accepted last shift"
+
+#: frontend/src/components/editor/ReviewTable.js:70
+msgid "Actions"
+msgstr "Actions"
+
 #: frontend/src/components/author/QuestionForm.js:100
 msgid "Add"
 msgstr "Add"
@@ -20,6 +28,14 @@ msgstr "Add"
 #: frontend/src/components/author/QuestionForm.js:36
 msgid "Add quiz question"
 msgstr "Add quiz question"
+
+#: frontend/src/components/author/Statistics.js:24
+msgid "Added today"
+msgstr "Added today"
+
+#: frontend/src/components/editor/Calendar.js:86
+msgid "Author"
+msgstr "Author"
 
 #: frontend/src/components/editor/CalendarData.js:24
 msgid "Authors"
@@ -35,16 +51,19 @@ msgstr "Categories"
 
 #: frontend/src/components/author/QuestionForm.js:40
 #: frontend/src/components/author/TodayList.js:27
+#: frontend/src/components/editor/ReviewTable.js:65
 msgid "Category"
 msgstr "Category"
 
 #: frontend/src/components/author/QuestionForm.js:67
 #: frontend/src/components/author/TodayList.js:28
+#: frontend/src/components/editor/ReviewTable.js:67
 msgid "Correct answer"
 msgstr "Correct answer"
 
 #: frontend/src/components/author/QuestionForm.js:55
 #: frontend/src/components/author/TodayList.js:26
+#: frontend/src/components/editor/ReviewTable.js:66
 msgid "Description"
 msgstr "Description"
 
@@ -53,10 +72,12 @@ msgid "Email"
 msgstr "Email"
 
 #: frontend/src/components/author/QuestionForm.js:78
+#: frontend/src/components/editor/ReviewTable.js:68
 msgid "Incorrect answer 1"
 msgstr "Incorrect answer 1"
 
 #: frontend/src/components/author/QuestionForm.js:89
+#: frontend/src/components/editor/ReviewTable.js:69
 msgid "Incorrect answer 2"
 msgstr "Incorrect answer 2"
 
@@ -77,6 +98,10 @@ msgstr "Log out"
 msgid "Login"
 msgstr "Login"
 
+#: frontend/src/components/editor/Calendar.js:67
+msgid "Month"
+msgstr "Month"
+
 #: frontend/src/components/accounts/Login.js:45
 msgid "Password"
 msgstr "Password"
@@ -84,6 +109,10 @@ msgstr "Password"
 #: frontend/src/components/editor/ReviewTable.js:31
 msgid "Questions for review"
 msgstr "Questions for review"
+
+#: frontend/src/components/author/Statistics.js:26
+msgid "Rejected last shift"
+msgstr "Rejected last shift"
 
 #: frontend/src/components/author/QuestionForm.js:50
 msgid "Select category..."
@@ -97,6 +126,18 @@ msgstr "Sesam LOGO"
 msgid "Statistics"
 msgstr "Statistics"
 
+#: frontend/src/components/editor/Calendar.js:73
+msgid "Today"
+msgstr "Today"
+
 #: frontend/src/components/author/TodayList.js:20
 msgid "Today added"
 msgstr "Today added"
+
+#: frontend/src/components/author/Statistics.js:23
+msgid "Total month"
+msgstr "Total month"
+
+#: frontend/src/components/editor/Calendar.js:67
+msgid "Week"
+msgstr "Week"

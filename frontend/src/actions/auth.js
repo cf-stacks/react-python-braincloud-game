@@ -56,7 +56,7 @@ export const login = (email, password) => dispatch => {
 };
 
 // LOGOUT USER
-export const logout = () => (dispatch, getState) => {
+export const logout = () => dispatch => {
   axios
     .post('/api/v1/user/logout/')
     .then(() => {

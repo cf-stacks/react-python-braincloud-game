@@ -8,6 +8,8 @@ export const AUTHOR_GET_CATEGORIES = "AUTHOR_GET_CATEGORIES";
 
 // ------------------------------------------- EDITOR --------------------------------------------------------//
 export const EDITOR_GET_QUESTIONS = "EDITOR_GET_QUESTIONS";
+export const EDITOR_GET_STATISTICS = "EDITOR_GET_STATISTICS";
+export const EDITOR_CALENDAR_CHANGE = "EDITOR_CALENDAR_CHANGE";
 
 // ------------------------------------------- CHIEF --------------------------------------------------------//
 

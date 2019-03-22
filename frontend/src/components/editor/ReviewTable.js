@@ -62,12 +62,12 @@ export class ReviewTab extends Component {
         <thead className="thead-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Category</th>
-            <th scope="col">Description</th>
-            <th scope="col">Correct answer</th>
-            <th scope="col">Incorrect answer 1</th>
-            <th scope="col">Incorrect answer 2</th>
-            <th scope="col">Actions</th>
+            <th scope="col"><Trans>Category</Trans></th>
+            <th scope="col"><Trans>Description</Trans></th>
+            <th scope="col"><Trans>Correct answer</Trans></th>
+            <th scope="col"><Trans>Incorrect answer 1</Trans></th>
+            <th scope="col"><Trans>Incorrect answer 2</Trans></th>
+            <th scope="col"><Trans>Actions</Trans></th>
           </tr>
         </thead>
         <tbody>

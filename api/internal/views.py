@@ -21,7 +21,6 @@ class AuthorViewSet(mixins.LoggingMixin, viewsets.GenericViewSet):
 
     @decorators.action(detail=False)
     def statistics(self, request):
-        request.user = models.User.objects.get(name='Автор 1')
         statistics = models.User.objects.filter(pk=request.user.pk).annotate(
         total_month=Count(
             'authored_questions',
@@ -35,14 +34,14 @@ class AuthorViewSet(mixins.LoggingMixin, viewsets.GenericViewSet):
             ),
         ),
         total_today=Count('authored_questions', filter=Q(authored_questions__created_at__date=datetime.today())),
-        accepted_yesterday=Count(
+        accepted_last_shift=Count(
             'authored_questions',
             filter=Q(
                 authored_questions__created_at__date=datetime.today() - timedelta(days=1),
                 authored_questions__status=models.Question.STATUS_ACCEPTED
             ),
         ),
-        rejected_yesterday=Count(
+        rejected_last_shift=Count(
             'authored_questions',
             filter=Q(
                 authored_questions__created_at__date=datetime.today() - timedelta(days=1),
@@ -51,22 +50,10 @@ class AuthorViewSet(mixins.LoggingMixin, viewsets.GenericViewSet):
         )
     )
         return response.Response(
-            data=[
-                {
-                    'title': ugettext('Month total'),
-                    'value': statistics[0].total_month,
-                },
-                {
-                    'title': ugettext('Added today'),
-                    'value': statistics[0].total_today,
-                },
-                {
-                    'title': ugettext('Accepted last shift'),
-                    'value': statistics[0].accepted_yesterday,
-                },
-                {
-                    'title': ugettext('Rejected last shift'),
-                    'value': statistics[0].rejected_yesterday,
-                },
-            ]
+            data={
+                'total_month': statistics[0].total_month,
+                'total_today': statistics[0].total_today,
+                'accepted_last_shift': statistics[0].accepted_last_shift,
+                'rejected_last_shift': statistics[0].rejected_last_shift,
+            }
         )

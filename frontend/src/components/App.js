@@ -11,13 +11,13 @@ import Container from "./layout/Container";
 import Header from "./layout/Header";
 import Alert from "./layout/Alert";
 import Login from "./accounts/Login";
-import Register from "./accounts/Register";
 import PrivateRoute from "./common/PrivateRoute";
 
 import { Provider } from "react-redux";
 import store from "../store";
 import { loadUser } from "../actions/auth";
 import "../axios_config";
+import "../moment_config";
 
 const alertOptions = {
   timeout: 1000,

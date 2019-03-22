@@ -8,7 +8,7 @@ import {
 } from "../actions/types.js"
 
 const initialState = {
-  statistics: [],
+  statistics: {},
   todayList: [],
   form_values: {
     category: "",

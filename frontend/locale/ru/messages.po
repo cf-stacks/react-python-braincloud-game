@@ -13,6 +13,14 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: frontend/src/components/author/Statistics.js:25
+msgid "Accepted last shift"
+msgstr "Принято за прошлую смену"
+
+#: frontend/src/components/editor/ReviewTable.js:70
+msgid "Actions"
+msgstr "Действия"
+
 #: frontend/src/components/author/QuestionForm.js:100
 msgid "Add"
 msgstr "Добавить"
@@ -20,6 +28,14 @@ msgstr "Добавить"
 #: frontend/src/components/author/QuestionForm.js:36
 msgid "Add quiz question"
 msgstr "Добавить вопрос"
+
+#: frontend/src/components/author/Statistics.js:24
+msgid "Added today"
+msgstr "Добавлено сегодня"
+
+#: frontend/src/components/editor/Calendar.js:86
+msgid "Author"
+msgstr "Автор"
 
 #: frontend/src/components/editor/CalendarData.js:24
 msgid "Authors"
@@ -35,16 +51,19 @@ msgstr "Темы"
 
 #: frontend/src/components/author/QuestionForm.js:40
 #: frontend/src/components/author/TodayList.js:27
+#: frontend/src/components/editor/ReviewTable.js:65
 msgid "Category"
 msgstr "Тема"
 
 #: frontend/src/components/author/QuestionForm.js:67
 #: frontend/src/components/author/TodayList.js:28
+#: frontend/src/components/editor/ReviewTable.js:67
 msgid "Correct answer"
 msgstr "Правильный ответ"
 
 #: frontend/src/components/author/QuestionForm.js:55
 #: frontend/src/components/author/TodayList.js:26
+#: frontend/src/components/editor/ReviewTable.js:66
 msgid "Description"
 msgstr "Описание"
 
@@ -53,10 +72,12 @@ msgid "Email"
 msgstr "Адрес электронной почты"
 
 #: frontend/src/components/author/QuestionForm.js:78
+#: frontend/src/components/editor/ReviewTable.js:68
 msgid "Incorrect answer 1"
 msgstr "Неправильный ответ 1"
 
 #: frontend/src/components/author/QuestionForm.js:89
+#: frontend/src/components/editor/ReviewTable.js:69
 msgid "Incorrect answer 2"
 msgstr "Неправильный ответ 2"
 
@@ -77,6 +98,10 @@ msgstr "Выйти"
 msgid "Login"
 msgstr "Вход"
 
+#: frontend/src/components/editor/Calendar.js:67
+msgid "Month"
+msgstr "Месяц"
+
 #: frontend/src/components/accounts/Login.js:45
 msgid "Password"
 msgstr "Пароль"
@@ -84,6 +109,10 @@ msgstr "Пароль"
 #: frontend/src/components/editor/ReviewTable.js:31
 msgid "Questions for review"
 msgstr "Вопросы для проверки"
+
+#: frontend/src/components/author/Statistics.js:26
+msgid "Rejected last shift"
+msgstr "Отказано за прошлую смену"
 
 #: frontend/src/components/author/QuestionForm.js:50
 msgid "Select category..."
@@ -97,6 +126,18 @@ msgstr "Сезам ЛОГО"
 msgid "Statistics"
 msgstr "Статистика"
 
+#: frontend/src/components/editor/Calendar.js:73
+msgid "Today"
+msgstr "Сегодня"
+
 #: frontend/src/components/author/TodayList.js:20
 msgid "Today added"
 msgstr "Добавлено сегодня"
+
+#: frontend/src/components/author/Statistics.js:23
+msgid "Total month"
+msgstr "Всего за месяц"
+
+#: frontend/src/components/editor/Calendar.js:67
+msgid "Week"
+msgstr "Неделя"

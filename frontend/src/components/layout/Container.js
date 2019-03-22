@@ -13,19 +13,19 @@ export class Container extends Component {
 
   render() {
     let component;
-    console.log(this.props.user);
-    switch (this.props.user.groups[0].name) {
-      case "Author":
+    if (this.props.user.groups.lenght === 0) return <h1>You do not have any group assigned. Contact chief to have one.</h1>
+    switch (this.props.user.groups[0].name.toLowerCase()) {
+      case "author":
         component = <AuthorDashboard />;
         break;
-      case "Editor":
+      case "editor":
         component = <EditorDashboard />;
         break;
-      case "Chief":
+      case "chief":
         component = <ChiefDashboard />;
         break;
       default:
-        component = <div>???</div>
+        component = <h1>Unknown group is assigned to you</h1>
     }
 
     return (

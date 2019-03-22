@@ -30,3 +30,8 @@ class CreateQuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Question
         fields = ('id', 'category', 'description', 'answer_correct', 'answer_incorrect_1', 'answer_incorrect_2')
+
+
+class StatisticsSerializer(serializers.Serializer):
+    start_date = serializers.DateField()
+    end_date = serializers.DateField()
