@@ -7,6 +7,7 @@ import {
   EDITOR_GET_QUESTIONS,
   EDITOR_GET_STATISTICS,
   EDITOR_CALENDAR_CHANGE,
+  EDITOR_GET_ASSIGNED_CATEGORIES,
 } from "./types";
 
 const getDays = (date, view) => {
@@ -31,9 +32,19 @@ export const getStatistics = (start_date, end_date) => dispatch => {
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
+// GET ASSIGNED CATEGORIES
+export const getAssignedCategories = (start_date, end_date) => dispatch => {
+  axios
+    .get("/api/internal/quiz/category/assigned/", {params: {start_date, end_date}})
+    .then(res => {
+      dispatch({type: EDITOR_GET_ASSIGNED_CATEGORIES, payload: res.data})
+    }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
 // CHANGE CALENDAR DATA
 export const changeCalendarData = (date, view) => dispatch => {
   dispatch({type: EDITOR_CALENDAR_CHANGE, payload: {date, view}});
   const {0 : start ,length : l, [l - 1] : end} = [...getDays(date, view)];
   dispatch(getStatistics(start.format("Y-MM-DD"), end.format("Y-MM-DD")));
+  dispatch(getAssignedCategories(start.format("Y-MM-DD"), end.format("Y-MM-DD")));
 };

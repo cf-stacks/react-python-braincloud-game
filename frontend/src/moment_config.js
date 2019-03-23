@@ -1,3 +1,4 @@
-import Moment from 'moment';
+import moment from 'moment';
+moment.locale('ru');
 import { extendMoment } from 'moment-range';
-const moment = extendMoment(Moment);
+extendMoment(moment);

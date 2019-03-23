@@ -4,12 +4,13 @@ import {
   EDITOR_GET_QUESTIONS,
   EDITOR_GET_STATISTICS,
   EDITOR_CALENDAR_CHANGE,
+  EDITOR_GET_ASSIGNED_CATEGORIES,
 } from "../actions/types.js"
 
 const initialState = {
   questions: [],
   statistics: {},
-  categorySchedule: {},
+  assignedCategories: {},
   calendarData: {
     date: moment(),
     view: "isoWeek",
@@ -32,6 +33,11 @@ export default function (state=initialState, action) {
       return {
         ...state,
         calendarData: action.payload
+      };
+    case EDITOR_GET_ASSIGNED_CATEGORIES:
+      return {
+        ...state,
+        assignedCategories: action.payload,
       };
     default:
       return state;

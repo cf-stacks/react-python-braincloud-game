@@ -119,6 +119,7 @@ class UserMoneyLogModel(BaseModel):
 
 class QuestionCategory(BaseModel):
     name = models.CharField(max_length=50, unique=True)
+    assigned_users = models.ManyToManyField(to=settings.AUTH_USER_MODEL, through='sesam.AssignedQuestionCategory')
 
     class Meta:
         verbose_name = _('question category')
@@ -129,6 +130,21 @@ class QuestionCategory(BaseModel):
 
     def __repr__(self):
         return f'<QuestionCategory {self.id}: {self.__str__()}>'
+
+
+class AssignedQuestionCategory(BaseModel):
+
+    class Meta:
+        unique_together = ('user', 'date', 'category')
+
+    user = models.ForeignKey(
+        verbose_name=_('user'),
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='assigned_categories'
+    )
+    date = models.DateField(verbose_name=_('assignment date'))
+    category = models.ForeignKey(verbose_name=_('category'), to='sesam.QuestionCategory', on_delete=models.CASCADE)
 
 
 class Question(BaseModel):

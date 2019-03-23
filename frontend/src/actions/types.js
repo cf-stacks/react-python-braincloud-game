@@ -10,6 +10,7 @@ export const AUTHOR_GET_CATEGORIES = "AUTHOR_GET_CATEGORIES";
 export const EDITOR_GET_QUESTIONS = "EDITOR_GET_QUESTIONS";
 export const EDITOR_GET_STATISTICS = "EDITOR_GET_STATISTICS";
 export const EDITOR_CALENDAR_CHANGE = "EDITOR_CALENDAR_CHANGE";
+export const EDITOR_GET_ASSIGNED_CATEGORIES = "EDITOR_GET_ASSIGNED_CATEGORIES";
 
 // ------------------------------------------- CHIEF --------------------------------------------------------//
 

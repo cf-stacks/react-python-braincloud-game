@@ -2,6 +2,7 @@ import React, {Component, Fragment} from "react";
 import PropTypes from "prop-types";
 import { Trans } from "@lingui/macro";
 import moment from 'moment';
+moment.locale('ru');
 
 import { safeGet } from "../../utils/object_utils"
 import "../../css/Calendar.css"
@@ -25,13 +26,23 @@ export class Calendar extends Component {
     statistics: PropTypes.object.isRequired,
     changeCalendarData: PropTypes.func,
     handleClickCell: PropTypes.func,
+    handleRenderTotal: PropTypes.func,
     handleRenderCell: PropTypes.func,
   };
 
   handleClickCell = e => {
     const date = moment(parseInt(e.target.getAttribute('data-date')));
-    const obj = e.target.getAttribute('data-object-id');
+    const obj = e.target.closest('td').getAttribute('data-object-id');
     if (this.props.handleClickCell) this.props.handleClickCell(date, obj);
+  };
+
+  handleRenderTotal = key => {
+    const value = safeGet(this.props.statistics, `${key}`);
+    if (value && this.props.handleRenderTotal) return this.props.handleRenderTotal(
+      Object.keys(value).map(key => {
+        return value[key]
+      })
+    );
   };
 
   handleRenderCell = (key1, key2) => {
@@ -83,6 +94,7 @@ export class Calendar extends Component {
             <thead className="thead-dark">
               <tr>
                 <th scope="col"><Trans>Author</Trans></th>
+                <th scope="col"><Trans>Total</Trans></th>
               { [...days].map(day => (
                 <th scope="col" key={day}>{day.format(this.formats[this.props.calendarData.view])}</th>
               ))}
@@ -92,6 +104,7 @@ export class Calendar extends Component {
             { this.props.objects.map(obj => (
               <tr key={obj.id}>
                 <th scope="row">{obj.name}</th>
+                <td>{this.handleRenderTotal(obj.id)}</td>
               { [...days].map(day => (
                 <td key={day} onClick={this.handleClickCell} data-object-id={obj.id} data-date={day}>
                   { this.handleRenderCell(obj.id, day.format("Y-MM-DD")) }

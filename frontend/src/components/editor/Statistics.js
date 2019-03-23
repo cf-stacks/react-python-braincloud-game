@@ -33,6 +33,13 @@ export class Statistics extends Component {
     )
   };
 
+  handleRenderTotal = values => {
+    const value = values.reduce((a, c) => (Object.keys(c).forEach(k => (a[k] = (a[k] || 0) + c[k])), a), {});
+    return (
+      this.handleRenderCell(value)
+    )
+  };
+
   render() {
     return (
       <Fragment>
@@ -42,6 +49,7 @@ export class Statistics extends Component {
           calendarData={this.props.calendarData}
           changeCalendarData={this.props.changeCalendarData}
           handleClickCell={this.handleClickCell}
+          handleRenderTotal={this.handleRenderTotal}
           handleRenderCell={this.handleRenderCell}
         />
       </Fragment>

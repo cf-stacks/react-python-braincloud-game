@@ -75,18 +75,19 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
                   'new': stat['new'], 'accepted': stat['accepted'], 'rejected': stat['rejected'],
                 }
 
-            statistic = models.Question.objects.exclude(status=models.Question.STATUS_NEW).values('editor_id').filter(
-                reviewed_at__date__range=(serializer.data['start_date'], serializer.data['end_date']),
-            ).annotate(
-                reviewed_at=TruncDate('reviewed_at'),
-            ).annotate(
-                rejected=Count('id', filter=Q(status=models.Question.STATUS_REJECTED)),
-                accepted=Count('id', filter=Q(status=models.Question.STATUS_ACCEPTED)),
-            )
-            for stat in statistic:
-                statistics[str(stat['editor_id'])][str(stat['reviewed_at'])] = {
-                  'accepted': stat['accepted'], 'rejected': stat['rejected'],
-                }
+            if request.user.groups.filter(name__iexact=models.USER_GROUP_CHIEF).exists():
+                statistic = models.Question.objects.exclude(status=models.Question.STATUS_NEW).values('editor_id').filter(
+                    reviewed_at__date__range=(serializer.data['start_date'], serializer.data['end_date']),
+                ).annotate(
+                    reviewed_at=TruncDate('reviewed_at'),
+                ).annotate(
+                    rejected=Count('id', filter=Q(status=models.Question.STATUS_REJECTED)),
+                    accepted=Count('id', filter=Q(status=models.Question.STATUS_ACCEPTED)),
+                )
+                for stat in statistic:
+                    statistics[str(stat['editor_id'])][str(stat['reviewed_at'])] = {
+                      'accepted': stat['accepted'], 'rejected': stat['rejected'],
+                    }
             return response.Response(data=statistics)
 
     def perform_create(self, serializer):
@@ -97,3 +98,22 @@ class QuestionCategoryViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
     permission_classes = [permissions.IsAdminUser]
     queryset = models.QuestionCategory.objects.all()
     serializer_class = serializers.QuestionCategorySerializer
+    serializer_classes = {
+        'list': serializers.QuestionCategorySerializer,
+        'assigned': serializers.StatisticsSerializer,
+    }
+
+    def get_serializer_class(self):
+        return self.serializer_classes.get(self.action, self.serializer_class)
+
+    @decorators.action(detail=False)
+    def assigned(self, request):
+        serializer = self.get_serializer(data=request.query_params)
+        if serializer.is_valid(raise_exception=True):
+            queryset = models.AssignedQuestionCategory.objects.filter(
+                date__range=(serializer.data['start_date'], serializer.data['end_date']),
+            )
+            data = defaultdict(lambda: defaultdict(list))
+            for item in queryset:
+                data[str(item.user_id)][str(item.date)].append(str(item.category_id))
+            return response.Response(data=data)
