@@ -132,3 +132,6 @@ collected_static/
 # Compose
 .data/
 .config/
+
+# Logs
+logs/

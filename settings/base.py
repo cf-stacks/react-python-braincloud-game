@@ -197,6 +197,12 @@ LOGGING = {
         'require_debug_true': {
             '()': 'django.utils.log.RequireDebugTrue',
         },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'request_id': {
+            '()': 'log_request_id.filters.RequestIDFilter',
+        },
     },
     'handlers': {
         'console': {
@@ -204,6 +210,15 @@ LOGGING = {
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'simple'
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'logs/sesam.log',
+            'formatter': 'default',
+            'filters': ['request_id', 'require_debug_false'],
+            'maxBytes': 1024 * 1024,
+            'backupCount': 3,
         },
     },
     'loggers': {
