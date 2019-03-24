@@ -121,6 +121,11 @@ dmypy.json
 # JS
 node_modules/
 
+# Frontend
 frontend/static/
 frontend/locale/*/*.js
 frontend/locale/_build/
+
+# Compose
+.data/
+.config/

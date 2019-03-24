@@ -17,11 +17,14 @@ from envparse import Env
 
 from django.utils.translation import ugettext_lazy as _
 
+from . import get_database_dict
+
 
 env = Env(
     # Application
     S_SECRET_KEY={'cast': str},
     S_DEBUG={'cast': bool, 'default': True},
+    S_DB_DEFAULT={'cast': str},
     # GameSparks
     GS_API_KEY={'cast': str},
     GS_CREDENTIAL={'cast': str},
@@ -57,8 +60,6 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
-    'stronghold',
-    'widget_tweaks',
 
     'frontend',
     'sesam',
@@ -73,7 +74,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'stronghold.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'urls'
@@ -101,10 +101,7 @@ WSGI_APPLICATION = 'wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+     'default': get_database_dict(db_url=env('S_DB_DEFAULT')),
 }
 
 
@@ -243,13 +240,3 @@ GAMESPARKS_CONFIG = {
     'credential': env('GS_CREDENTIAL'),
     'secret': env('GS_SECRET'),
 }
-
-STRONGHOLD_PUBLIC_URLS = (
-    r'^/api/',
-    r'^/admin/',
-    r'^/fe/',
-)
-
-INTERNAL_IPS = (
-    '127.0.0.1',
-)

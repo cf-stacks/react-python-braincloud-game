@@ -23,18 +23,18 @@ from django.http.response import HttpResponseRedirect
 from sesam import forms
 
 urlpatterns = [
-    path('', lambda x: HttpResponseRedirect('/content/')),
+    path('', lambda x: HttpResponseRedirect('/app/')),
     # Administration
     path('admin/', admin.site.urls),
     # API endpoints
     path('api/', view=include('api.urls')),
     # Content
-    path('content/', view=include('sesam.urls')),
+    # path('content/', view=include('sesam.urls')),
     # Accounts
-    path('accounts/login/', auth_views.LoginView.as_view(authentication_form=forms.SesamAuthenticationForm), name='login'),
-    path('accounts/', include('django.contrib.auth.urls')),
+    # path('accounts/login/', auth_views.LoginView.as_view(authentication_form=forms.SesamAuthenticationForm), name='login'),
+    # path('accounts/', include('django.contrib.auth.urls')),
     # Frontend
-    path('fe/', include('frontend.urls')),
+    path('app/', include('frontend.urls')),
 ]
 
 if settings.DEBUG:
