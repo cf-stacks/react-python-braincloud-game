@@ -208,7 +208,7 @@ LOGGING = {
         'file': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
-            'filename': 'logs/sesam.log',
+            'filename': 'logs/common.log',
             'formatter': 'default',
             'filters': ['request_id', 'require_debug_false'],
             'maxBytes': 1024 * 1024,
