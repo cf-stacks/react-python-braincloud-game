@@ -184,9 +184,8 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
-            'style': '{',
+       'default': {
+            'format': '%(levelname)s %(asctime)s %(module)s [%(request_id)s] %(message)s',
         },
         'simple': {
             'format': '{levelname} {message}',
@@ -212,7 +211,7 @@ LOGGING = {
             'formatter': 'simple'
         },
         'file': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': 'logs/sesam.log',
             'formatter': 'default',
@@ -223,24 +222,24 @@ LOGGING = {
     },
     'loggers': {
         'django.request': {
-            'handlers': ['console'],
+            'handlers': ['console, file'],
             'level': 'INFO' if DEBUG else 'ERROR',
             'propagate': False,
         },
         # 'django.db.backends': {
         #     'level': 'DEBUG',
-        #     'handlers': ['console'],
+        #     'handlers': ['console, file'],
         # },
         'sesam': {
-            'handlers': ['console'],
+            'handlers': ['console, file'],
             'level': 'DEBUG' if DEBUG else 'INFO',
         },
         'api': {
-            'handlers': ['console'],
+            'handlers': ['console, file'],
             'level': 'DEBUG' if DEBUG else 'INFO',
         },
         'gamesparks': {
-            'handlers': ['console'],
+            'handlers': ['console, file'],
             'level': 'DEBUG' if DEBUG else 'INFO',
         }
     }
