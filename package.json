@@ -4,8 +4,8 @@
   "description": "Sesame application",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./frontend/src/index.js --output ./frontend/static/frontend/main.js",
-    "build": "webpack --mode production ./frontend/src/index.js --output ./frontend/static/frontend/main.js"
+    "dev": "webpack --mode development --env.NODE_ENV=dev --config webpack/webpack.config.js --progress --profile --colors --watch ./frontend/src/index.js --output ./frontend/static/frontend/main.js",
+    "build": "webpack --mode production --env.NODE_ENV=prod --config webpack/webpack.config.js  ./frontend/src/index.js --output ./frontend/static/frontend/main.js"
   },
   "repository": {
     "type": "git",
