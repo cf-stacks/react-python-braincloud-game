@@ -232,7 +232,7 @@ LOGGING = {
         },
         'log_request_id.middleware': {
             'handlers': ['console', 'file'],
-            'level': 'INFO' if DEBUG else 'ERROR',
+            'level': 'DEBUG' if DEBUG else 'INFO',
             'propagate': False,
         },
         **{
