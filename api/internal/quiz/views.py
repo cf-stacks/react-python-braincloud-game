@@ -28,6 +28,8 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
         'pending': serializers.PendingQuestionSerializer,
         'create': serializers.CreateQuestionSerializer,
         'statistics': serializers.StatisticsSerializer,
+        'reject': serializers.QuestionSerializer,
+        'accept': serializers.QuestionSerializer,
     }
 
     def get_serializer_class(self):
@@ -45,16 +47,6 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
             status=models.Question.STATUS_NEW,
             created_at__date__lt=timezone.localtime(timezone.now()).date(),
             author__in=request.user.subordinates.all(),
-        )
-        serializer = self.get_serializer(queryset, many=True)
-        return response.Response(data=serializer.data)
-
-    @decorators.action(detail=True)
-    def pending_user(self, request, pk):
-        queryset = models.Question.objects.filter(
-            status=models.Question.STATUS_NEW,
-            created_at__date__lt=timezone.localtime(timezone.now()).date(),
-            author_id=pk,
         )
         serializer = self.get_serializer(queryset, many=True)
         return response.Response(data=serializer.data)
@@ -92,6 +84,26 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
                       'accepted': stat['accepted'], 'rejected': stat['rejected'],
                     }
             return response.Response(data=statistics)
+
+    @decorators.action(detail=True, methods=['POST'])
+    def reject(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.status = models.Question.STATUS_ACCEPTED
+        instance.editor = request.user
+        instance.reviewed_at = timezone.now()
+        instance.save(update_fields=['status', 'editor', 'reviewed_at'])
+        serializer = self.get_serializer(instance)
+        return response.Response(data=serializer.data)
+
+    @decorators.action(detail=True, methods=['POST'])
+    def accept(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.status = models.Question.STATUS_REJECTED
+        instance.editor = request.user
+        instance.reviewed_at = timezone.now()
+        instance.save(update_fields=['status', 'editor', 'reviewed_at'])
+        serializer = self.get_serializer(instance)
+        return response.Response(data=serializer.data)
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)

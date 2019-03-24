@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getQuestions } from "../../actions/editor";
+import { getQuestions, submitReview } from "../../actions/editor";
 import { Tabs, Tab } from "react-bootstrap";
 import { Trans } from "@lingui/macro";
 
@@ -14,6 +14,7 @@ export class ReviewTable extends Component {
     questions: PropTypes.array.isRequired,
     user: PropTypes.object.isRequired,
     getQuestions: PropTypes.func.isRequired,
+    submitReview: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -41,7 +42,11 @@ export class ReviewTable extends Component {
           <Tab key={subordinate.id} eventKey={subordinate.id} title={subordinate.name} />
         ))}
         </Tabs>
-        <ReviewTab questions={this.props.questions} user_id={this.state.selectedTab} />
+        <ReviewTab
+          questions={this.props.questions}
+          user_id={this.state.selectedTab}
+          submitReview={this.props.submitReview}
+        />
       </Fragment>
     )
   }
@@ -52,6 +57,12 @@ export class ReviewTab extends Component {
   static propTypes = {
     questions: PropTypes.array.isRequired,
     user_id: PropTypes.string.isRequired,
+    submitReview: PropTypes.func.isRequired,
+  };
+
+  onClick = event => {
+    const button = event.target.closest("button");
+    this.props.submitReview(button.getAttribute('data-id'), button.name);
   };
 
   render() {
@@ -61,29 +72,59 @@ export class ReviewTab extends Component {
       <table className="table table-striped table-sm">
         <thead className="thead-dark">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col"><Trans>Category</Trans></th>
-            <th scope="col"><Trans>Description</Trans></th>
-            <th scope="col"><Trans>Answers</Trans></th>
-            <th scope="col"><Trans>Actions</Trans></th>
+            <th className="text-center">#</th>
+            <th className="text-center" style={{width: "20%"}}><Trans>Category</Trans></th>
+            <th className="text-center"><Trans>Description</Trans></th>
+            <th className="text-center"><Trans>Answers</Trans></th>
           </tr>
         </thead>
         <tbody>
         { user_questions.map((question, index) => (
           <tr key={question.id}>
-            <th scope="row">{ index + 1}</th>
-            <td>{ question.category.name }</td>
-            <td>{ question.description }</td>
-            <td>
+            <th className="p-2 align-middle">
+              <div>{ index + 1}</div>
+            </th>
+            <td className="p-2 align-middle">
               <div className="d-flex flex-column">
-                <div>{ question.answer_correct }</div>
-                <div>{ question.answer_incorrect_1 }</div>
-                <div>{ question.answer_incorrect_2 }</div>
+                <div className="bg-warning rounded text-center border border-secondary my-1 font-weight-bold">
+                  { question.category.name }
+                </div>
+                <div className="d-flex flex-row justify-content-around">
+                  <button
+                    className="btn btn-success rounded-circle border border-secondary my-1"
+                    type="submit"
+                    name="accept"
+                    data-id={question.id}
+                    onClick={this.onClick}
+                  >
+                    <i className="fas fa-check"></i>
+                  </button>
+                  <button
+                    className="btn btn-danger rounded-circle border border-secondary my-1"
+                    type="submit"
+                    name="reject"
+                    data-id={question.id}
+                    onClick={this.onClick}
+                  >
+                    <i className="fas fa-times"></i>
+                  </button>
+                </div>
               </div>
             </td>
-            <td>
-              <button className="btn btn-success" type="submit" name="accept"><i className="fas fa-check"></i></button>
-              <button className="btn btn-danger" type="submit" name="reject"><i className="fas fa-times"></i></button>
+            <td className="p-2 align-middle">
+              <div className="text-justify">{ question.description }</div></td>
+            <td className="p-2 align-middle">
+              <div className="d-flex flex-column">
+                <div className="bg-success rounded text-center my-1 border border-secondary font-weight-bold">
+                  { question.answer_correct }
+                </div>
+                <div className="bg-danger rounded text-center my-1 border border-secondary font-weight-bold">
+                  { question.answer_incorrect_1 }
+                </div>
+                <div className="bg-danger rounded text-center my-1 border border-secondary font-weight-bold">
+                  { question.answer_incorrect_2 }
+                </div>
+              </div>
             </td>
           </tr>
         )) }
@@ -98,4 +139,4 @@ const mapStateToProps = state => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { getQuestions })(ReviewTable);
+export default connect(mapStateToProps, { getQuestions, submitReview })(ReviewTable);

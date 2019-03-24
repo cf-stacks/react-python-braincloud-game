@@ -5,6 +5,8 @@ import {
   EDITOR_GET_STATISTICS,
   EDITOR_CALENDAR_CHANGE,
   EDITOR_GET_ASSIGNED_CATEGORIES,
+  EDITOR_ACCEPT_QUESTION,
+  EDITOR_REJECT_QUESTION,
 } from "../actions/types.js"
 import {EDITOR_CHANGE_ASSIGNED_CATEGORIES} from "../actions/types";
 
@@ -53,6 +55,13 @@ export default function (state=initialState, action) {
           }
         }
       };
+    case EDITOR_ACCEPT_QUESTION:
+    case EDITOR_REJECT_QUESTION:
+      return {
+        ...state,
+        questions: state.questions.filter(question => question.id !== action.payload.id),
+      };
+
     default:
       return state;
   }

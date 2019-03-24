@@ -124,7 +124,7 @@ export class Calendar extends Component {
               </thead>
               <tbody>
               { [...days].map(day => (
-                <tr key={day} className={`text-center ${day.isoWeekday() === 6 ? 'weekend-sat' : day.isoWeekday() === 7 ? "weekend-sun" : ""}`}>
+                <tr key={day} className={`text-center ${[6, 7].includes(day.isoWeekday()) ? "weekend" : ""}`}>
                   <th className="text-center">{day.format(this.formats['isoWeek'])}</th>
                 { this.props.objects.map(obj => (
                   <td className="text-center" key={obj.id} onClick={this.handleClickCell} data-object-id={obj.id} data-date={day}>

@@ -9,8 +9,11 @@ import {
   EDITOR_CALENDAR_CHANGE,
   EDITOR_GET_ASSIGNED_CATEGORIES,
   EDITOR_CHANGE_ASSIGNED_CATEGORIES,
+  EDITOR_ACCEPT_QUESTION,
 } from "./types";
-import { flatten } from "../utils/object_utils"
+
+import {i18n} from "../components/App";
+import {t} from "@lingui/macro";
 
 const getDays = (date, view) => {
   return moment.range(date.clone().startOf(view), date.clone().endOf(view)).by('days');
@@ -60,4 +63,16 @@ export const changeCalendarData = (date, view) => dispatch => {
   const {0 : start ,length : l, [l - 1] : end} = [...getDays(date, view)];
   dispatch(getStatistics(start.format("Y-MM-DD"), end.format("Y-MM-DD")));
   dispatch(getAssignedCategories(start.format("Y-MM-DD"), end.format("Y-MM-DD")));
+};
+
+// SUBMIT REVIEW (ACCEPT OR REJECT)
+export const submitReview = (question_id, resolution) => dispatch => {
+  axios
+    .post(`/api/internal/quiz/question/${question_id}/${resolution}/`)
+    .then(res => {
+      dispatch(createMessage({
+        simpleSuccess: resolution === 'accept' ? i18n._(t`Question accepted`) : i18n._(t`Question rejected`),
+      }));
+      dispatch({type: EDITOR_ACCEPT_QUESTION, payload: res.data})
+    }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };

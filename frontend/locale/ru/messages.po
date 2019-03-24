@@ -17,15 +17,11 @@ msgstr ""
 msgid "Accepted last shift"
 msgstr "Принято за прошлую смену"
 
-#: frontend/src/components/editor/ReviewTable.js:70
-msgid "Actions"
-msgstr "Действия"
-
-#: frontend/src/components/author/QuestionForm.js:100
+#: frontend/src/components/author/QuestionForm.js:101
 msgid "Add"
 msgstr "Добавить"
 
-#: frontend/src/components/author/QuestionForm.js:36
+#: frontend/src/components/author/QuestionForm.js:37
 msgid "Add quiz question"
 msgstr "Добавить вопрос"
 
@@ -33,9 +29,9 @@ msgstr "Добавить вопрос"
 msgid "Added today"
 msgstr "Добавлено сегодня"
 
-#: frontend/src/components/editor/Calendar.js:86
-msgid "Author"
-msgstr "Автор"
+#: frontend/src/components/editor/ReviewTable.js:78
+msgid "Answers"
+msgstr "Ответы"
 
 #: frontend/src/components/editor/CalendarData.js:24
 msgid "Authors"
@@ -49,21 +45,20 @@ msgstr "Календарные данные"
 msgid "Categories"
 msgstr "Темы"
 
-#: frontend/src/components/author/QuestionForm.js:40
+#: frontend/src/components/author/QuestionForm.js:41
 #: frontend/src/components/author/TodayList.js:27
-#: frontend/src/components/editor/ReviewTable.js:65
+#: frontend/src/components/editor/ReviewTable.js:76
 msgid "Category"
 msgstr "Тема"
 
-#: frontend/src/components/author/QuestionForm.js:67
+#: frontend/src/components/author/QuestionForm.js:68
 #: frontend/src/components/author/TodayList.js:28
-#: frontend/src/components/editor/ReviewTable.js:67
 msgid "Correct answer"
 msgstr "Правильный ответ"
 
-#: frontend/src/components/author/QuestionForm.js:55
+#: frontend/src/components/author/QuestionForm.js:57
 #: frontend/src/components/author/TodayList.js:26
-#: frontend/src/components/editor/ReviewTable.js:66
+#: frontend/src/components/editor/ReviewTable.js:77
 msgid "Description"
 msgstr "Описание"
 
@@ -71,13 +66,11 @@ msgstr "Описание"
 msgid "Email"
 msgstr "Адрес электронной почты"
 
-#: frontend/src/components/author/QuestionForm.js:78
-#: frontend/src/components/editor/ReviewTable.js:68
+#: frontend/src/components/author/QuestionForm.js:79
 msgid "Incorrect answer 1"
 msgstr "Неправильный ответ 1"
 
-#: frontend/src/components/author/QuestionForm.js:89
-#: frontend/src/components/editor/ReviewTable.js:69
+#: frontend/src/components/author/QuestionForm.js:90
 msgid "Incorrect answer 2"
 msgstr "Неправильный ответ 2"
 
@@ -98,15 +91,31 @@ msgstr "Выйти"
 msgid "Login"
 msgstr "Вход"
 
-#: frontend/src/components/editor/Calendar.js:67
+#: frontend/src/components/editor/Calendar.js:99
 msgid "Month"
 msgstr "Месяц"
+
+#: frontend/src/components/author/QuestionForm.js:52
+msgid "No categories to show"
+msgstr "Нет категорий для выбора"
 
 #: frontend/src/components/accounts/Login.js:45
 msgid "Password"
 msgstr "Пароль"
 
-#: frontend/src/components/editor/ReviewTable.js:31
+#: frontend/src/actions/editor.js:74
+msgid "Question accepted"
+msgstr "Вопрос принят"
+
+#: frontend/src/actions/author.js:32
+msgid "Question added"
+msgstr "Вопрос добавлен"
+
+#: frontend/src/actions/editor.js:74
+msgid "Question rejected"
+msgstr "Вопрос отвергнут"
+
+#: frontend/src/components/editor/ReviewTable.js:32
 msgid "Questions for review"
 msgstr "Вопросы для проверки"
 
@@ -114,7 +123,8 @@ msgstr "Вопросы для проверки"
 msgid "Rejected last shift"
 msgstr "Отказано за прошлую смену"
 
-#: frontend/src/components/author/QuestionForm.js:50
+#: frontend/src/components/author/QuestionForm.js:51
+#: frontend/src/components/editor/Categories.js:91
 msgid "Select category..."
 msgstr "Выберите тему..."
 
@@ -126,7 +136,7 @@ msgstr "Сезам ЛОГО"
 msgid "Statistics"
 msgstr "Статистика"
 
-#: frontend/src/components/editor/Calendar.js:73
+#: frontend/src/components/editor/Calendar.js:105
 msgid "Today"
 msgstr "Сегодня"
 
@@ -134,10 +144,14 @@ msgstr "Сегодня"
 msgid "Today added"
 msgstr "Добавлено сегодня"
 
+#: frontend/src/components/editor/Calendar.js:73
+msgid "Total"
+msgstr "Всего"
+
 #: frontend/src/components/author/Statistics.js:23
 msgid "Total month"
 msgstr "Всего за месяц"
 
-#: frontend/src/components/editor/Calendar.js:67
+#: frontend/src/components/editor/Calendar.js:99
 msgid "Week"
 msgstr "Неделя"

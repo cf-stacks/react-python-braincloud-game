@@ -3,10 +3,10 @@
     /*cursor: pointer;*/
 /*}*/
 
-table.table tbody tr.weekend-sat {
-    background: linear-gradient(indianred 10%, 20%, rosybrown);
+table.table tbody tr.weekend:nth-of-type(even) {
+    background-color: rgba(255,0,0,0.2);
 }
 
-table.table tbody tr.weekend-sun {
-    background: linear-gradient(rosybrown, 80%, indianred 90%);
+table.table tbody tr.weekend:nth-of-type(odd) {
+    background-color: rgba(139,0,0,0.2);
 }

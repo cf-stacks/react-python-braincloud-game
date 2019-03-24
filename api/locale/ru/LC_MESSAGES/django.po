@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-19 15:15+0300\n"
+"POT-Creation-Date: 2019-03-24 21:29+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,10 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: api/internal/quiz/serializers.py:42
+msgid "Answer should be unique"
+msgstr "Ответ должен быть уникальным"
+
 #: api/v1/jwt/serializers.py:55
 msgid "No active account found with the given credentials"
-msgstr ""
+msgstr "Пользователя с такими данными не найдено"

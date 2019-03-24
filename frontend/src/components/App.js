@@ -5,6 +5,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 
+import { setupI18n } from "@lingui/core"
 import { I18nProvider } from '@lingui/react'
 
 import Container from "./layout/Container";
@@ -20,12 +21,13 @@ import "../axios_config";
 import "../moment_config";
 
 const alertOptions = {
-  timeout: 1000,
+  timeout: 3000,
   position: "bottom center"
 };
 
 import catalogRu from '../../locale/ru/messages.js'
 const catalogs = { ru: catalogRu };
+export const i18n = setupI18n({catalogs, language: "ru"});
 
 class App extends Component {
 
@@ -36,7 +38,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <I18nProvider language="ru" catalogs={catalogs}>
+        <I18nProvider i18n={i18n}>
           <AlertProvider template={AlertTemplate} {...alertOptions}>
             <Router>
               <Fragment>

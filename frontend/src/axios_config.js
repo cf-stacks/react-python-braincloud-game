@@ -35,5 +35,6 @@ const setAuthCb = createSetAuthInterceptor(store);
 const updateAuthCb = createUpdateAuthInterceptor(store, axios);
 
 axios.defaults.baseURL = "http://localhost:8000/";
+axios.defaults.headers.common['Accept-Language'] = "ru,en";
 axios.interceptors.request.use(setAuthCb);
 axios.interceptors.response.use(null, updateAuthCb);

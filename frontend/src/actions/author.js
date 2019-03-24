@@ -1,5 +1,8 @@
 import axios from "axios";
 
+import { i18n } from "../components/App";
+import { t } from "@lingui/macro"
+
 import { createMessage, returnErrors } from "./messages";
 
 import {
@@ -26,7 +29,7 @@ export const addQuizQuestion = (question) => dispatch => {
     .post("/api/internal/quiz/question/", question)
     .then(res => {
       // Show notification
-      dispatch(createMessage({quizQuestionAdded: 'Question Added'}));
+      dispatch(createMessage({simpleSuccess: i18n._(t`Question added`)}));
       // Hide errors
       dispatch(returnErrors({}, null));
       // Reset form

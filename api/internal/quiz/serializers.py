@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+from django.utils.translation import ugettext
 from rest_framework import serializers
 
 from sesam import models
@@ -30,6 +33,18 @@ class CreateQuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Question
         fields = ('id', 'category', 'description', 'answer_correct', 'answer_incorrect_1', 'answer_incorrect_2')
+
+    def validate(self, data):
+        unique = set([])
+        errors = defaultdict(list)
+        for item in ('answer_correct', 'answer_incorrect_1', 'answer_incorrect_2'):
+            if data[item] in unique:
+                errors[item] = ugettext("Answer should be unique")
+            unique.add(data[item])
+        if errors:
+            raise serializers.ValidationError(errors)
+
+        return data
 
     def to_representation(self, instance):
         return QuestionSerializer().to_representation(instance=instance)

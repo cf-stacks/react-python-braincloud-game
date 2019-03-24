@@ -17,15 +17,11 @@ msgstr ""
 msgid "Accepted last shift"
 msgstr "Accepted last shift"
 
-#: frontend/src/components/editor/ReviewTable.js:70
-msgid "Actions"
-msgstr "Actions"
-
-#: frontend/src/components/author/QuestionForm.js:100
+#: frontend/src/components/author/QuestionForm.js:101
 msgid "Add"
 msgstr "Add"
 
-#: frontend/src/components/author/QuestionForm.js:36
+#: frontend/src/components/author/QuestionForm.js:37
 msgid "Add quiz question"
 msgstr "Add quiz question"
 
@@ -33,9 +29,9 @@ msgstr "Add quiz question"
 msgid "Added today"
 msgstr "Added today"
 
-#: frontend/src/components/editor/Calendar.js:86
-msgid "Author"
-msgstr "Author"
+#: frontend/src/components/editor/ReviewTable.js:78
+msgid "Answers"
+msgstr "Answers"
 
 #: frontend/src/components/editor/CalendarData.js:24
 msgid "Authors"
@@ -49,21 +45,20 @@ msgstr "Calendar data"
 msgid "Categories"
 msgstr "Categories"
 
-#: frontend/src/components/author/QuestionForm.js:40
+#: frontend/src/components/author/QuestionForm.js:41
 #: frontend/src/components/author/TodayList.js:27
-#: frontend/src/components/editor/ReviewTable.js:65
+#: frontend/src/components/editor/ReviewTable.js:76
 msgid "Category"
 msgstr "Category"
 
-#: frontend/src/components/author/QuestionForm.js:67
+#: frontend/src/components/author/QuestionForm.js:68
 #: frontend/src/components/author/TodayList.js:28
-#: frontend/src/components/editor/ReviewTable.js:67
 msgid "Correct answer"
 msgstr "Correct answer"
 
-#: frontend/src/components/author/QuestionForm.js:55
+#: frontend/src/components/author/QuestionForm.js:57
 #: frontend/src/components/author/TodayList.js:26
-#: frontend/src/components/editor/ReviewTable.js:66
+#: frontend/src/components/editor/ReviewTable.js:77
 msgid "Description"
 msgstr "Description"
 
@@ -71,13 +66,11 @@ msgstr "Description"
 msgid "Email"
 msgstr "Email"
 
-#: frontend/src/components/author/QuestionForm.js:78
-#: frontend/src/components/editor/ReviewTable.js:68
+#: frontend/src/components/author/QuestionForm.js:79
 msgid "Incorrect answer 1"
 msgstr "Incorrect answer 1"
 
-#: frontend/src/components/author/QuestionForm.js:89
-#: frontend/src/components/editor/ReviewTable.js:69
+#: frontend/src/components/author/QuestionForm.js:90
 msgid "Incorrect answer 2"
 msgstr "Incorrect answer 2"
 
@@ -98,15 +91,31 @@ msgstr "Log out"
 msgid "Login"
 msgstr "Login"
 
-#: frontend/src/components/editor/Calendar.js:67
+#: frontend/src/components/editor/Calendar.js:99
 msgid "Month"
 msgstr "Month"
+
+#: frontend/src/components/author/QuestionForm.js:52
+msgid "No categories to show"
+msgstr "No categories to show"
 
 #: frontend/src/components/accounts/Login.js:45
 msgid "Password"
 msgstr "Password"
 
-#: frontend/src/components/editor/ReviewTable.js:31
+#: frontend/src/actions/editor.js:74
+msgid "Question accepted"
+msgstr "Question accepted"
+
+#: frontend/src/actions/author.js:32
+msgid "Question added"
+msgstr "Question added"
+
+#: frontend/src/actions/editor.js:74
+msgid "Question rejected"
+msgstr "Question rejected"
+
+#: frontend/src/components/editor/ReviewTable.js:32
 msgid "Questions for review"
 msgstr "Questions for review"
 
@@ -114,7 +123,8 @@ msgstr "Questions for review"
 msgid "Rejected last shift"
 msgstr "Rejected last shift"
 
-#: frontend/src/components/author/QuestionForm.js:50
+#: frontend/src/components/author/QuestionForm.js:51
+#: frontend/src/components/editor/Categories.js:91
 msgid "Select category..."
 msgstr "Select category..."
 
@@ -126,7 +136,7 @@ msgstr "Sesam LOGO"
 msgid "Statistics"
 msgstr "Statistics"
 
-#: frontend/src/components/editor/Calendar.js:73
+#: frontend/src/components/editor/Calendar.js:105
 msgid "Today"
 msgstr "Today"
 
@@ -134,10 +144,14 @@ msgstr "Today"
 msgid "Today added"
 msgstr "Today added"
 
+#: frontend/src/components/editor/Calendar.js:73
+msgid "Total"
+msgstr "Total"
+
 #: frontend/src/components/author/Statistics.js:23
 msgid "Total month"
 msgstr "Total month"
 
-#: frontend/src/components/editor/Calendar.js:67
+#: frontend/src/components/editor/Calendar.js:99
 msgid "Week"
 msgstr "Week"

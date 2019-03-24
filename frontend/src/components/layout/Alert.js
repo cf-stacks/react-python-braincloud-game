@@ -12,11 +12,12 @@ export class Alert extends Component {
   componentDidUpdate(prevProps) {
     const { error, alert, message } = this.props;
     if (error !== prevProps.error) {
+      if (error.status === 401) return
       if (error.msg.detail) alert.error(error.msg.detail);
       if (error.msg.non_field_errors) alert.error(error.msg.non_field_errors.join())
     }
     if (message && message !== prevProps.message) {
-      if (message.quizQuestionAdded) alert.success(message.quizQuestionAdded);
+      if (message.simpleSuccess) alert.success(message.simpleSuccess);
     }
   }
 

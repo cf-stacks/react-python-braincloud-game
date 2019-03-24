@@ -10,7 +10,6 @@ export class Register extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    console.log('submit');
   };
 
   onChange = event => this.setState({[event.target.name]: event.target.value});

@@ -49,14 +49,14 @@ export class QuestionForm extends Component {
             getOptionValue={ opt => opt.id }
             value={ category }
             placeholder={<Trans>Select category...</Trans>}
+            noOptionsMessage={() => <Trans>No categories to show</Trans>}
           />
           <FieldError for="category" />
         </div>
         <div className="form-group">
           <label><Trans>Description</Trans></label>
-          <input
+          <textarea
             className="form-control"
-            type="textarea"
             name="description"
             onChange={ this.onChange }
             value={ description }
@@ -67,7 +67,7 @@ export class QuestionForm extends Component {
           <div className="col-4 form-group">
             <label><Trans>Correct answer</Trans></label>
             <input
-              className="form-control"
+              className="form-control bg-success text-white border-dark"
               type="text"
               name="answer_correct"
               onChange={ this.onChange }
@@ -75,10 +75,10 @@ export class QuestionForm extends Component {
             />
             <FieldError for="answer_correct" />
           </div>
-          <div className="col-4 form-group has-warning">
+          <div className="col-4 form-group">
             <label><Trans>Incorrect answer 1</Trans></label>
             <input
-              className="form-control form-control-warning"
+              className="form-control bg-danger text-white border border-dark"
               type="text"
               name="answer_incorrect_1"
               onChange={ this.onChange }
@@ -89,7 +89,7 @@ export class QuestionForm extends Component {
           <div className="col-4 form-group">
             <label><Trans>Incorrect answer 2</Trans></label>
             <input
-              className="form-control"
+              className="form-control bg-danger text-white border-dark"
               type="text"
               name="answer_incorrect_2"
               onChange={ this.onChange }
