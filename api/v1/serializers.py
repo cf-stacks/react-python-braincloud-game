@@ -17,7 +17,8 @@ class SubordinateSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     groups = GroupSerializer(many=True)
-    subordinates = SubordinateSerializer(many=True)
+    # subordinates = SubordinateSerializer(many=True)
+    subordinates = serializers.SerializerMethodField()
 
     class Meta:
         model = auth.get_user_model()
@@ -30,6 +31,9 @@ class UserSerializer(serializers.ModelSerializer):
         if not self.context['request'].user.is_staff:
             for field in self.Meta.staff_fields:
                 self.fields.pop(field)
+
+    def get_subordinates(self, instance):
+        return SubordinateSerializer(instance.subordinates.order_by('name'), many=True).data
 
 
 class AnonymousSerializer(serializers.ModelSerializer):

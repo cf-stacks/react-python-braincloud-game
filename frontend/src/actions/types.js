@@ -4,15 +4,19 @@ export const AUTHOR_ADD_QUESTION = "AUTHOR_ADD_QUESTION";
 export const AUTHOR_GET_TODAY_LIST = "AUTHOR_GET_TODAY_LIST";
 export const AUTHOR_FORM_RESET = "AUTHOR_FORM_RESET";
 export const AUTHOR_FORM_UPDATE = "AUTHOR_FORM_UPDATE";
-export const AUTHOR_GET_CATEGORIES = "AUTHOR_GET_CATEGORIES";
+export const AUTHOR_TODAY_CATEGORIES = "AUTHOR_TODAY_CATEGORIES";
 
 // ------------------------------------------- EDITOR --------------------------------------------------------//
 export const EDITOR_GET_QUESTIONS = "EDITOR_GET_QUESTIONS";
 export const EDITOR_GET_STATISTICS = "EDITOR_GET_STATISTICS";
 export const EDITOR_CALENDAR_CHANGE = "EDITOR_CALENDAR_CHANGE";
 export const EDITOR_GET_ASSIGNED_CATEGORIES = "EDITOR_GET_ASSIGNED_CATEGORIES";
+export const EDITOR_CHANGE_ASSIGNED_CATEGORIES = "EDITOR_CHANGE_ASSIGNED_CATEGORIES";
 
 // ------------------------------------------- CHIEF --------------------------------------------------------//
+
+// ------------------------------------------- COMMON --------------------------------------------------------//
+export const COMMON_GET_CATEGORIES = "COMMON_GET_CATEGORIES";
 
 // -------------------------------------------- AUTH --------------------------------------------------------//
 export const USER_LOADING = "USER_LOADING";

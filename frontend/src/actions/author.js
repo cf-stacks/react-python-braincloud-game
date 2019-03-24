@@ -8,7 +8,7 @@ import {
   AUTHOR_GET_TODAY_LIST,
   AUTHOR_FORM_RESET,
   AUTHOR_FORM_UPDATE,
-  AUTHOR_GET_CATEGORIES,
+  AUTHOR_TODAY_CATEGORIES
 } from "./types";
 
 // GET AUTHOR STATISTICS
@@ -58,10 +58,11 @@ export const getTodayList = () => dispatch => {
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
-export const getCategories = () => dispatch => {
+// GET TODAY CATEGORIES
+export const getTodayCategories = () => dispatch => {
   axios
-    .get("/api/internal/quiz/category/")
+    .get("/api/internal/quiz/category/today/")
     .then(res => {
-      dispatch({type: AUTHOR_GET_CATEGORIES, payload: res.data})
+      dispatch({type: AUTHOR_TODAY_CATEGORIES, payload: res.data})
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };

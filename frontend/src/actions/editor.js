@@ -8,7 +8,9 @@ import {
   EDITOR_GET_STATISTICS,
   EDITOR_CALENDAR_CHANGE,
   EDITOR_GET_ASSIGNED_CATEGORIES,
+  EDITOR_CHANGE_ASSIGNED_CATEGORIES,
 } from "./types";
+import { flatten } from "../utils/object_utils"
 
 const getDays = (date, view) => {
   return moment.range(date.clone().startOf(view), date.clone().endOf(view)).by('days');
@@ -39,6 +41,17 @@ export const getAssignedCategories = (start_date, end_date) => dispatch => {
     .then(res => {
       dispatch({type: EDITOR_GET_ASSIGNED_CATEGORIES, payload: res.data})
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+// CHANGE ASSIGNED CATEGORIES
+export const changeAssignedCategories = (result, user, date, isDeleted, categories) => dispatch => {
+  axios({
+    method: isDeleted ? 'delete' : 'post',
+    url: "/api/internal/quiz/category/assigned/",
+    data: { user, date, categories },
+  }).then(() => {
+    dispatch({type: EDITOR_CHANGE_ASSIGNED_CATEGORIES, payload: result})
+  }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 // CHANGE CALENDAR DATA

@@ -4,6 +4,7 @@ import errors from "./errors";
 import messages from "./messages";
 import auth from "./auth";
 import editor from "./editor";
+import common from "./common";
 
 export default combineReducers({
   author,
@@ -11,4 +12,5 @@ export default combineReducers({
   messages,
   auth,
   editor,
+  common,
 });

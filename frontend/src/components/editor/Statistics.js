@@ -19,13 +19,9 @@ export class Statistics extends Component {
     this.props.changeCalendarData(this.props.calendarData.date, this.props.calendarData.view)
   }
 
-  handleClickCell = (date, obj) => {
-    console.log(date, obj)
-  };
-
-  handleRenderCell = value => {
+  handleRenderCell = (obj, date, value) => {
     return (
-      <div className="text-center">
+      <div>
         <span className="badge badge-primary px-2 mx-1">{ value.new ? value.new : ""}</span>
         <span className="badge badge-success px-2 mx-1">{ value.accepted ? value.accepted : ""}</span>
         <span className="badge badge-danger px-2 mx-1">{ value.rejected ? value.rejected : ""}</span>
@@ -33,10 +29,10 @@ export class Statistics extends Component {
     )
   };
 
-  handleRenderTotal = values => {
+  handleRenderTotal = (obj, values) => {
     const value = values.reduce((a, c) => (Object.keys(c).forEach(k => (a[k] = (a[k] || 0) + c[k])), a), {});
     return (
-      this.handleRenderCell(value)
+      this.handleRenderCell(obj, null, value)
     )
   };
 
@@ -48,7 +44,6 @@ export class Statistics extends Component {
           statistics={this.props.statistics}
           calendarData={this.props.calendarData}
           changeCalendarData={this.props.changeCalendarData}
-          handleClickCell={this.handleClickCell}
           handleRenderTotal={this.handleRenderTotal}
           handleRenderCell={this.handleRenderCell}
         />

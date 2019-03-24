@@ -1,10 +1,11 @@
 from collections import defaultdict
+from logging import getLogger
 
 from django.db.models import Count
 from django.db.models import Q
 from django.db.models.functions import TruncDate
-
 from django.utils import timezone
+
 from rest_framework import decorators
 from rest_framework import permissions
 from rest_framework import response
@@ -14,6 +15,8 @@ from sesam import models
 
 from . import serializers
 from ...v1 import mixins
+
+logger = getLogger(__name__)
 
 
 class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
@@ -101,19 +104,53 @@ class QuestionCategoryViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
     serializer_classes = {
         'list': serializers.QuestionCategorySerializer,
         'assigned': serializers.StatisticsSerializer,
+        'today': serializers.QuestionCategorySerializer,
     }
 
     def get_serializer_class(self):
         return self.serializer_classes.get(self.action, self.serializer_class)
 
     @decorators.action(detail=False)
+    def today(self, request):
+        queryset = request.user.assigned_categories.filter(
+            assignedquestioncategory__date=timezone.localdate(timezone.now()),
+        )
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return response.Response(serializer.data)
+
+    @decorators.action(detail=False, methods=('POST', 'GET', 'DELETE'))
     def assigned(self, request):
-        serializer = self.get_serializer(data=request.query_params)
-        if serializer.is_valid(raise_exception=True):
-            queryset = models.AssignedQuestionCategory.objects.filter(
-                date__range=(serializer.data['start_date'], serializer.data['end_date']),
-            )
-            data = defaultdict(lambda: defaultdict(list))
-            for item in queryset:
-                data[str(item.user_id)][str(item.date)].append(str(item.category_id))
-            return response.Response(data=data)
+        if request.method == 'GET':
+            serializer = self.get_serializer(data=request.query_params)
+            if serializer.is_valid(raise_exception=True):
+                queryset = models.AssignedQuestionCategory.objects.filter(
+                    date__range=(serializer.data['start_date'], serializer.data['end_date']),
+                )
+                data = defaultdict(lambda: defaultdict(list))
+                for item in queryset:
+                    data[str(item.user_id)][str(item.date)].append(str(item.category_id))
+                return response.Response(data=data)
+        else:
+            serializer = serializers.AssignedQuestionSerializer(data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                if request.method == 'POST':
+                    for category in serializer.data['categories']:
+                        models.AssignedQuestionCategory.objects.get_or_create(
+                            user_id=serializer.data['user'],
+                            date=serializer.data['date'],
+                            category_id=category,
+                        )
+                    return response.Response(data={}, status=201)
+                else:
+                    models.AssignedQuestionCategory.objects.filter(
+                        user_id=serializer.data['user'],
+                        date=serializer.data['date'],
+                        category_id__in=serializer.data['categories'],
+                    ).delete()
+                    return response.Response(data={}, status=200)
+

@@ -4,7 +4,7 @@ import {
   AUTHOR_GET_TODAY_LIST,
   AUTHOR_FORM_RESET,
   AUTHOR_FORM_UPDATE,
-  AUTHOR_GET_CATEGORIES,
+  AUTHOR_TODAY_CATEGORIES,
 } from "../actions/types.js"
 
 const initialState = {
@@ -50,7 +50,7 @@ export default function (state=initialState, action) {
         ...state,
         form_values: initialState.form_values,
       };
-    case AUTHOR_GET_CATEGORIES:
+    case AUTHOR_TODAY_CATEGORIES:
       return {
         ...state,
         categories: action.payload,

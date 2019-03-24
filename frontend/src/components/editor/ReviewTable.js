@@ -64,9 +64,7 @@ export class ReviewTab extends Component {
             <th scope="col">#</th>
             <th scope="col"><Trans>Category</Trans></th>
             <th scope="col"><Trans>Description</Trans></th>
-            <th scope="col"><Trans>Correct answer</Trans></th>
-            <th scope="col"><Trans>Incorrect answer 1</Trans></th>
-            <th scope="col"><Trans>Incorrect answer 2</Trans></th>
+            <th scope="col"><Trans>Answers</Trans></th>
             <th scope="col"><Trans>Actions</Trans></th>
           </tr>
         </thead>
@@ -76,9 +74,13 @@ export class ReviewTab extends Component {
             <th scope="row">{ index + 1}</th>
             <td>{ question.category.name }</td>
             <td>{ question.description }</td>
-            <td>{ question.answer_correct }</td>
-            <td>{ question.answer_incorrect_1 }</td>
-            <td>{ question.answer_incorrect_2 }</td>
+            <td>
+              <div className="d-flex flex-column">
+                <div>{ question.answer_correct }</div>
+                <div>{ question.answer_incorrect_1 }</div>
+                <div>{ question.answer_incorrect_2 }</div>
+              </div>
+            </td>
             <td>
               <button className="btn btn-success" type="submit" name="accept"><i className="fas fa-check"></i></button>
               <button className="btn btn-danger" type="submit" name="reject"><i className="fas fa-times"></i></button>

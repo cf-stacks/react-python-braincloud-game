@@ -1,4 +1,12 @@
-.table-hover-cell tbody tr td:hover {
-    background-color: rgba(0,0,0,.075);
-    cursor: pointer;
+/*.table-hover-cell tbody tr td:hover {*/
+    /*background-color: rgba(0,0,0,.075);*/
+    /*cursor: pointer;*/
+/*}*/
+
+table.table tbody tr.weekend-sat {
+    background: linear-gradient(indianred 10%, 20%, rosybrown);
+}
+
+table.table tbody tr.weekend-sun {
+    background: linear-gradient(rosybrown, 80%, indianred 90%);
 }

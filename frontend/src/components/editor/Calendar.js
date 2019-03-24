@@ -16,8 +16,8 @@ const getDays = (date, view) => {
 export class Calendar extends Component {
 
   formats = {
-    'isoWeek': "ddd D MMM",
-    'month': "DD/MM",
+    'isoWeek': "dd D MMMM Y",
+    'server': "Y-MM-DD",
   };
 
   static propTypes = {
@@ -28,26 +28,28 @@ export class Calendar extends Component {
     handleClickCell: PropTypes.func,
     handleRenderTotal: PropTypes.func,
     handleRenderCell: PropTypes.func,
+    defaultRenderValue:PropTypes.any,
   };
 
   handleClickCell = e => {
-    const date = moment(parseInt(e.target.getAttribute('data-date')));
-    const obj = e.target.closest('td').getAttribute('data-object-id');
-    if (this.props.handleClickCell) this.props.handleClickCell(date, obj);
+    const element = e.target.closest('td');
+    if (element) {
+      const date = moment(parseInt(element.getAttribute('data-date')));
+      const obj = element.getAttribute('data-object-id');
+      if (this.props.handleClickCell) this.props.handleClickCell(e.target, obj, date.format(this.formats.server));
+    }
   };
 
   handleRenderTotal = key => {
     const value = safeGet(this.props.statistics, `${key}`);
     if (value && this.props.handleRenderTotal) return this.props.handleRenderTotal(
-      Object.keys(value).map(key => {
-        return value[key]
-      })
+      key, Object.keys(value).map(key => value[key])
     );
   };
 
-  handleRenderCell = (key1, key2) => {
-    const value = safeGet(this.props.statistics, `${key1}.${key2}`);
-    if (value && this.props.handleRenderCell) return this.props.handleRenderCell(value)
+  handleRenderCell = (obj, date) => {
+    const value = safeGet(this.props.statistics, `${obj}.${date}`, this.props.defaultRenderValue);
+    if (value && this.props.handleRenderCell) return this.props.handleRenderCell(obj, date, value)
   };
 
   handleUpdateView = view => () => {
@@ -61,59 +63,79 @@ export class Calendar extends Component {
   render() {
     const days = getDays(this.props.calendarData.date, this.props.calendarData.view);
     const new_view = this.props.calendarData.view === "month"? "isoWeek": "month";
+    const layout = 'vertical'
+
+    // Total Row
+    let totalRow = <></>;
+    if (this.props.handleRenderTotal) {
+      totalRow = (
+        <tr>
+          <th className="text-center"><Trans>Total</Trans></th>
+        { this.props.objects.map(obj => (
+          <th key={obj.id} className="text-center">{this.handleRenderTotal(obj.id)}</th>
+        ))}
+        </tr>
+      )
+    }
+    // Width of columns
+    const colStyle = {
+      width: `${(100 - 20) / this.props.objects.length}%`,
+    };
+
     return (
       <Fragment>
-        <div className="row justify-content-center">
-          <div
-            className="btn btn-outline-primary"
-            onClick={this.handleUpdateDate(this.props.calendarData.date.clone().subtract(1, this.props.calendarData.view))}
-          >
-            <i className="fas fa-angle-double-left"></i>
+        <div className="d-flex flex-row">
+          <div className="d-flex flex-column p-2">
+            <div
+              className="btn btn-outline-primary m-1"
+              onClick={this.handleUpdateDate(this.props.calendarData.date.clone().subtract(1, this.props.calendarData.view))}
+            >
+              <i className="fas fa-angle-double-up"></i>
+            </div>
+            <div
+              className="btn btn-outline-primary m-1"
+              onClick={this.handleUpdateView(new_view)}
+            >
+              { new_view === "month" ? <Trans>Month</Trans> : <Trans>Week</Trans> }
+            </div>
+            <div
+              className="btn btn-outline-primary m-1"
+              onClick={this.handleUpdateDate(moment())}
+            >
+              <Trans>Today</Trans>
+            </div>
+            <div
+              className="btn btn-outline-primary m-1"
+              onClick={this.handleUpdateDate(this.props.calendarData.date.clone().add(1, this.props.calendarData.view))}
+            >
+              <i className="fas fa-angle-double-down"></i>
+            </div>
           </div>
-          <div
-            className="btn btn-outline-primary"
-            onClick={this.handleUpdateView(new_view)}
-          >
-            { new_view === "month" ? <Trans>Month</Trans> : <Trans>Week</Trans> }
-          </div>
-          <div
-            className="btn btn-outline-primary"
-            onClick={this.handleUpdateDate(moment())}
-          >
-            <Trans>Today</Trans>
-          </div>
-          <div
-            className="btn btn-outline-primary"
-            onClick={this.handleUpdateDate(this.props.calendarData.date.clone().add(1, this.props.calendarData.view))}
-          >
-            <i className="fas fa-angle-double-right"></i>
-          </div>
-        </div>
-        <div className="table-responsive">
-          <table className="table table-sm table-striped table-bordered table-hover-cell">
-            <thead className="thead-dark">
-              <tr>
-                <th scope="col"><Trans>Author</Trans></th>
-                <th scope="col"><Trans>Total</Trans></th>
+          <div className="table-responsive">
+            <table className="table table-sm table-striped table-hover-cell">
+              <thead className="thead-dark">
+                <tr>
+                  <th className="text-center" style={{width: "20%"}}>#</th>
+                { this.props.objects.map(obj => (
+                  <th key={obj.id} className="text-center" style={colStyle}>{obj.name}</th>
+                ))}
+                </tr>
+                { totalRow }
+              </thead>
+              <tbody>
               { [...days].map(day => (
-                <th scope="col" key={day}>{day.format(this.formats[this.props.calendarData.view])}</th>
+                <tr key={day} className={`text-center ${day.isoWeekday() === 6 ? 'weekend-sat' : day.isoWeekday() === 7 ? "weekend-sun" : ""}`}>
+                  <th className="text-center">{day.format(this.formats['isoWeek'])}</th>
+                { this.props.objects.map(obj => (
+                  <td className="text-center" key={obj.id} onClick={this.handleClickCell} data-object-id={obj.id} data-date={day}>
+                    { this.handleRenderCell(obj.id, day.format(this.formats.server)) }
+                  </td>
+                ))}
+                </tr>
               ))}
-              </tr>
-            </thead>
-            <tbody>
-            { this.props.objects.map(obj => (
-              <tr key={obj.id}>
-                <th scope="row">{obj.name}</th>
-                <td>{this.handleRenderTotal(obj.id)}</td>
-              { [...days].map(day => (
-                <td key={day} onClick={this.handleClickCell} data-object-id={obj.id} data-date={day}>
-                  { this.handleRenderCell(obj.id, day.format("Y-MM-DD")) }
-                </td>
-              ))}
-              </tr>
-            ))}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
       </Fragment>
     )

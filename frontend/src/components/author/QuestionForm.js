@@ -2,17 +2,18 @@ import React, {Component, Fragment} from "react";
 import Select from "react-select";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { addQuizQuestion, formUpdate, getCategories } from "../../actions/author";
+import { addQuizQuestion, formUpdate, getTodayCategories } from "../../actions/author";
 import FieldError from "../common/FieldError";
 import {Trans} from "@lingui/macro";
 
 export class QuestionForm extends Component {
 
   static propTypes = {
-    addQuizQuestion: PropTypes.func.isRequired,
     formUpdate: PropTypes.func.isRequired,
     error: PropTypes.object.isRequired,
     form_values: PropTypes.object.isRequired,
+    addQuizQuestion: PropTypes.func.isRequired,
+    getTodayCategories: PropTypes.func.isRequired,
   };
 
   onChange = e => this.props.formUpdate(e.target.name, e.target.value);
@@ -26,7 +27,7 @@ export class QuestionForm extends Component {
   };
 
   componentDidMount() {
-    this.props.getCategories();
+    this.props.getTodayCategories();
   }
 
   render () {
@@ -110,4 +111,4 @@ const mapStateToProps = state => ({
   categories: state.author.categories,
 });
 
-export default connect(mapStateToProps, { addQuizQuestion, formUpdate, getCategories })(QuestionForm);
+export default connect(mapStateToProps, { addQuizQuestion, formUpdate, getTodayCategories })(QuestionForm);

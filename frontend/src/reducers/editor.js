@@ -6,6 +6,7 @@ import {
   EDITOR_CALENDAR_CHANGE,
   EDITOR_GET_ASSIGNED_CATEGORIES,
 } from "../actions/types.js"
+import {EDITOR_CHANGE_ASSIGNED_CATEGORIES} from "../actions/types";
 
 const initialState = {
   questions: [],
@@ -38,6 +39,19 @@ export default function (state=initialState, action) {
       return {
         ...state,
         assignedCategories: action.payload,
+      };
+    case EDITOR_CHANGE_ASSIGNED_CATEGORIES:
+      let obj_id, date, value;
+      for (let o in action.payload) for (let d in action.payload[o]) obj_id = o, date = d, value = action.payload[obj_id][date].map(x => x.id)
+      return {
+        ...state,
+        assignedCategories: {
+          ...state.assignedCategories,
+          [obj_id]: {
+            ...state.assignedCategories[obj_id],
+            [date]: value
+          }
+        }
       };
     default:
       return state;
