@@ -222,24 +222,24 @@ LOGGING = {
     },
     'loggers': {
         'django.request': {
-            'handlers': ['console, file'],
+            'handlers': ['console', 'file'],
             'level': 'INFO' if DEBUG else 'ERROR',
             'propagate': False,
         },
         # 'django.db.backends': {
         #     'level': 'DEBUG',
-        #     'handlers': ['console, file'],
+        #     'handlers': ['console', 'file'],
         # },
         'sesam': {
-            'handlers': ['console, file'],
+            'handlers': ['console', 'file'],
             'level': 'DEBUG' if DEBUG else 'INFO',
         },
         'api': {
-            'handlers': ['console, file'],
+            'handlers': ['console', 'file'],
             'level': 'DEBUG' if DEBUG else 'INFO',
         },
         'gamesparks': {
-            'handlers': ['console, file'],
+            'handlers': ['console', 'file'],
             'level': 'DEBUG' if DEBUG else 'INFO',
         }
     }
