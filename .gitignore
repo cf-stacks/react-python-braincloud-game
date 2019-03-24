@@ -126,6 +126,9 @@ frontend/static/
 frontend/locale/*/*.js
 frontend/locale/_build/
 
+# Collected static
+collected_static/
+
 # Compose
 .data/
 .config/
