@@ -45,7 +45,7 @@ SECRET_KEY = env('S_SECRET_KEY')
 DEBUG = env('S_DEBUG')
 
 # Application definition
-
+INTERNAL_APPS = ['frontend', 'sesam', 'api', 'gamesparks']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,13 +56,10 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
-
-    'frontend',
-    'sesam',
-    'api',
-]
+] + INTERNAL_APPS
 
 MIDDLEWARE = [
+    'log_request_id.middleware.RequestIDMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -182,7 +179,7 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
-       'default': {
+        'default': {
             'format': '%(levelname)s %(asctime)s %(module)s [%(request_id)s] %(message)s',
         },
         'simple': {
@@ -204,7 +201,7 @@ LOGGING = {
     'handlers': {
         'console': {
             'level': 'DEBUG',
-            'filters': ['require_debug_true'],
+            'filters': ['request_id', 'require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'simple'
         },
@@ -217,6 +214,15 @@ LOGGING = {
             'maxBytes': 1024 * 1024,
             'backupCount': 3,
         },
+        **{f'file-{app}': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': f'logs/{app}.log',
+            'formatter': 'default',
+            'filters': ['request_id', 'require_debug_false'],
+            'maxBytes': 1024 * 1024,
+            'backupCount': 3,
+        } for app in INTERNAL_APPS}
     },
     'loggers': {
         'django.request': {
@@ -224,22 +230,17 @@ LOGGING = {
             'level': 'INFO' if DEBUG else 'ERROR',
             'propagate': False,
         },
-        # 'django.db.backends': {
-        #     'level': 'DEBUG',
-        #     'handlers': ['console', 'file'],
-        # },
-        'sesam': {
+        'log_request_id.middleware': {
             'handlers': ['console', 'file'],
-            'level': 'DEBUG' if DEBUG else 'INFO',
+            'level': 'INFO' if DEBUG else 'ERROR',
+            'propagate': False,
         },
-        'api': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG' if DEBUG else 'INFO',
+        **{
+            f'{app}': {
+                'handlers': ['console', f'file-{app}'],
+                'level': 'DEBUG' if DEBUG else 'INFO',
+            } for app in INTERNAL_APPS
         },
-        'gamesparks': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG' if DEBUG else 'INFO',
-        }
     }
 }
 
@@ -248,3 +249,9 @@ GAMESPARKS_CONFIG = {
     'credential': env('GS_CREDENTIAL'),
     'secret': env('GS_SECRET'),
 }
+
+# Request ID
+LOG_REQUEST_ID_HEADER = 'X-Request-Id'
+GENERATE_REQUEST_ID_IF_NOT_IN_HEADER = True
+REQUEST_ID_RESPONSE_HEADER = LOG_REQUEST_ID_HEADER
+LOG_REQUESTS = True
