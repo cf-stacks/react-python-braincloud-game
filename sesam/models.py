@@ -94,6 +94,7 @@ class BaseModel(models.Model):
     is_active = models.BooleanField(verbose_name=_('active'), default=True)
     created_at = models.DateTimeField(verbose_name=_('created at'), default=timezone.now, editable=False, blank=True)
     updated_at = models.DateTimeField(verbose_name=_('updated at'), default=timezone.now, editable=False, blank=True)
+    created_at.editable = True
 
     class Meta:
         abstract = True
