@@ -102,7 +102,7 @@ export class ReviewTab extends Component {
                   </button>
                   <div className="d-flex flex-column text-center justify-content-center font-italic">
                     <small>{ moment(question.created_at).format("Y-MM-DD") }</small>
-                    <small>{ moment(question.created_at).format("HH:MM") }</small>
+                    <small>{ moment(question.created_at).format("HH:mm") }</small>
                   </div>
                   <button
                     className="btn btn-danger rounded-circle border border-secondary my-1"
