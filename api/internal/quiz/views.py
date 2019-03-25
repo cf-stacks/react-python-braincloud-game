@@ -91,7 +91,7 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
         instance.status = models.Question.STATUS_ACCEPTED
         instance.editor = request.user
         instance.reviewed_at = timezone.now()
-        # instance.save(update_fields=['status', 'editor', 'reviewed_at'])
+        instance.save(update_fields=['status', 'editor', 'reviewed_at'])
         serializer = self.get_serializer(instance)
         return response.Response(data=serializer.data)
 
@@ -101,7 +101,7 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
         instance.status = models.Question.STATUS_REJECTED
         instance.editor = request.user
         instance.reviewed_at = timezone.now()
-        # instance.save(update_fields=['status', 'editor', 'reviewed_at'])
+        instance.save(update_fields=['status', 'editor', 'reviewed_at'])
         serializer = self.get_serializer(instance)
         return response.Response(data=serializer.data)
 

@@ -4,8 +4,6 @@ from datetime import timedelta
 from django.db.models import Count
 from django.db.models import Q
 from django.utils import timezone
-from django.utils.translation import ugettext
-from rest_framework import authentication
 from rest_framework import decorators
 from rest_framework import permissions
 from rest_framework import response
