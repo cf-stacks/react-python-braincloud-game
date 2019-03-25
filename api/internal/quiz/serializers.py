@@ -17,15 +17,10 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Question
-        fields = ('id', 'category', 'description', 'answer_correct', 'answer_incorrect_1', 'answer_incorrect_2')
-
-
-class PendingQuestionSerializer(serializers.ModelSerializer):
-    category = QuestionCategorySerializer()
-
-    class Meta:
-        model = models.Question
-        fields = ('id', 'category', 'description', 'answer_correct', 'answer_incorrect_1', 'answer_incorrect_2', 'author')
+        fields = (
+            'id', 'category', 'description', 'answer_correct', 'answer_incorrect_1', 'answer_incorrect_2', 'author',
+            'created_at', 'reviewed_at',
+        )
 
 
 class CreateQuestionSerializer(serializers.ModelSerializer):

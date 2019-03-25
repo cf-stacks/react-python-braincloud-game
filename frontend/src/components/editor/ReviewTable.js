@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { getQuestions, submitReview } from "../../actions/editor";
 import { Tabs, Tab } from "react-bootstrap";
 import { Trans } from "@lingui/macro";
+import moment from "moment";
 
 export class ReviewTable extends Component {
   state = {
@@ -99,6 +100,10 @@ export class ReviewTab extends Component {
                   >
                     <i className="fas fa-check"></i>
                   </button>
+                  <div className="d-flex flex-column text-center justify-content-center font-italic">
+                    <small>{ moment(question.created_at).format("Y-MM-DD") }</small>
+                    <small>{ moment(question.created_at).format("HH:MM") }</small>
+                  </div>
                   <button
                     className="btn btn-danger rounded-circle border border-secondary my-1"
                     type="submit"

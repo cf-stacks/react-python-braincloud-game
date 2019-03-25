@@ -21,11 +21,11 @@ logger = getLogger(__name__)
 
 class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
     permission_classes = [permissions.IsAdminUser]
-    queryset = models.Question.objects.all()
+    queryset = models.Question.objects.filter(is_active=True).order_by('-created_at')
     serializer_class = serializers.QuestionSerializer
     serializer_classes = {
         'today': serializers.QuestionSerializer,
-        'pending': serializers.PendingQuestionSerializer,
+        'pending': serializers.QuestionSerializer,
         'create': serializers.CreateQuestionSerializer,
         'statistics': serializers.StatisticsSerializer,
         'reject': serializers.QuestionSerializer,
@@ -37,13 +37,13 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
 
     @decorators.action(detail=False)
     def today(self, request):
-        queryset = models.Question.objects.filter(author=request.user, created_at__date=timezone.localdate(timezone.now()))
+        queryset = self.get_queryset().filter(author=request.user, created_at__date=timezone.localdate(timezone.now()))
         serializer = self.get_serializer(queryset, many=True)
         return response.Response(data=serializer.data)
 
     @decorators.action(detail=False)
     def pending(self, request):
-        queryset = models.Question.objects.filter(
+        queryset = self.get_queryset().filter(
             status=models.Question.STATUS_NEW,
             created_at__date__lt=timezone.localtime(timezone.now()).date(),
             author__in=request.user.subordinates.all(),
@@ -56,7 +56,7 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.query_params)
         if serializer.is_valid(raise_exception=True):
             statistics = defaultdict(dict)
-            statistic = models.Question.objects.all().values('author_id').filter(
+            statistic = self.get_queryset().values('author_id').filter(
                 created_at__date__range=(serializer.data['start_date'], serializer.data['end_date']),
             ).annotate(
                 created_at=TruncDate('created_at'),
@@ -71,7 +71,7 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
                 }
 
             if request.user.groups.filter(name__iexact=models.USER_GROUP_CHIEF).exists():
-                statistic = models.Question.objects.exclude(status=models.Question.STATUS_NEW).values('editor_id').filter(
+                statistic = self.get_queryset().exclude(status=models.Question.STATUS_NEW).values('editor_id').filter(
                     reviewed_at__date__range=(serializer.data['start_date'], serializer.data['end_date']),
                 ).annotate(
                     reviewed_at=TruncDate('reviewed_at'),
@@ -91,7 +91,7 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
         instance.status = models.Question.STATUS_ACCEPTED
         instance.editor = request.user
         instance.reviewed_at = timezone.now()
-        instance.save(update_fields=['status', 'editor', 'reviewed_at'])
+        # instance.save(update_fields=['status', 'editor', 'reviewed_at'])
         serializer = self.get_serializer(instance)
         return response.Response(data=serializer.data)
 
@@ -101,7 +101,7 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
         instance.status = models.Question.STATUS_REJECTED
         instance.editor = request.user
         instance.reviewed_at = timezone.now()
-        instance.save(update_fields=['status', 'editor', 'reviewed_at'])
+        # instance.save(update_fields=['status', 'editor', 'reviewed_at'])
         serializer = self.get_serializer(instance)
         return response.Response(data=serializer.data)
 
@@ -111,7 +111,7 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
 
 class QuestionCategoryViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
     permission_classes = [permissions.IsAdminUser]
-    queryset = models.QuestionCategory.objects.all()
+    queryset = models.QuestionCategory.objects.filter(is_active=True).order_by('name')
     serializer_class = serializers.QuestionCategorySerializer
     serializer_classes = {
         'list': serializers.QuestionCategorySerializer,

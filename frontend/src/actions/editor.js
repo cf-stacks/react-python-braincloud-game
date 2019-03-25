@@ -67,12 +67,15 @@ export const changeCalendarData = (date, view) => dispatch => {
 
 // SUBMIT REVIEW (ACCEPT OR REJECT)
 export const submitReview = (question_id, resolution) => dispatch => {
+
   axios
     .post(`/api/internal/quiz/question/${question_id}/${resolution}/`)
     .then(res => {
       dispatch(createMessage({
         simpleSuccess: resolution === 'accept' ? i18n._(t`Question accepted`) : i18n._(t`Question rejected`),
       }));
-      dispatch({type: EDITOR_ACCEPT_QUESTION, payload: res.data})
-    }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+      dispatch({type: EDITOR_ACCEPT_QUESTION, payload: {resolution, object: res.data}})
+    }).catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status))
+  });
 };

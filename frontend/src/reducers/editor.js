@@ -9,6 +9,7 @@ import {
   EDITOR_REJECT_QUESTION,
 } from "../actions/types.js"
 import {EDITOR_CHANGE_ASSIGNED_CATEGORIES} from "../actions/types";
+import {safeGet} from "../utils/object_utils";
 
 const initialState = {
   questions: [],
@@ -57,10 +58,31 @@ export default function (state=initialState, action) {
       };
     case EDITOR_ACCEPT_QUESTION:
     case EDITOR_REJECT_QUESTION:
-      return {
-        ...state,
-        questions: state.questions.filter(question => question.id !== action.payload.id),
-      };
+      const author = action.payload.object.author;
+      const created_at = moment(action.payload.object.created_at).format("Y-MM-DD");
+      const statistic = safeGet(state.statistics, `${author}.${created_at}`);
+      if (statistic) {
+        return {
+          ...state,
+          questions: state.questions.filter(question => question.id !== action.payload.object.id),
+          statistics: {
+            ...state.statistics,
+            [author]: {
+              ...state.statistics[author],
+              [created_at]: {
+                new: state.statistics[author][created_at].new - 1,
+                accepted: state.statistics[author][created_at].accepted + (action.payload.resolution === 'accept' ? 1 : 0),
+                rejected: state.statistics[author][created_at].rejected + (action.payload.resolution === 'reject' ? 1 : 0),
+              },
+            }
+          }
+        }
+      } else {
+        return {
+          ...state,
+          questions: state.questions.filter(question => question.id !== action.payload.object.id),
+        }
+      }
 
     default:
       return state;
