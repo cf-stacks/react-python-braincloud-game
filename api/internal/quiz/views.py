@@ -88,7 +88,7 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
     @decorators.action(detail=True, methods=['POST'])
     def reject(self, request, *args, **kwargs):
         instance = self.get_object()
-        instance.status = models.Question.STATUS_ACCEPTED
+        instance.status = models.Question.STATUS_REJECTED
         instance.editor = request.user
         instance.reviewed_at = timezone.now()
         instance.save(update_fields=['status', 'editor', 'reviewed_at'])
@@ -98,7 +98,7 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
     @decorators.action(detail=True, methods=['POST'])
     def accept(self, request, *args, **kwargs):
         instance = self.get_object()
-        instance.status = models.Question.STATUS_REJECTED
+        instance.status = models.Question.STATUS_ACCEPTED
         instance.editor = request.user
         instance.reviewed_at = timezone.now()
         instance.save(update_fields=['status', 'editor', 'reviewed_at'])
