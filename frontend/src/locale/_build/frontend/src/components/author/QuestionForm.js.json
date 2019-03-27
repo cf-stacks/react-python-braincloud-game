@@ -1,0 +1,74 @@
+{
+  "Add quiz question": {
+    "origin": [
+      [
+        "frontend/src/components/author/QuestionForm.js",
+        37
+      ]
+    ]
+  },
+  "Category": {
+    "origin": [
+      [
+        "frontend/src/components/author/QuestionForm.js",
+        41
+      ]
+    ]
+  },
+  "Select category...": {
+    "origin": [
+      [
+        "frontend/src/components/author/QuestionForm.js",
+        51
+      ]
+    ]
+  },
+  "No categories to show": {
+    "origin": [
+      [
+        "frontend/src/components/author/QuestionForm.js",
+        52
+      ]
+    ]
+  },
+  "Description": {
+    "origin": [
+      [
+        "frontend/src/components/author/QuestionForm.js",
+        57
+      ]
+    ]
+  },
+  "Correct answer": {
+    "origin": [
+      [
+        "frontend/src/components/author/QuestionForm.js",
+        68
+      ]
+    ]
+  },
+  "Incorrect answer 1": {
+    "origin": [
+      [
+        "frontend/src/components/author/QuestionForm.js",
+        79
+      ]
+    ]
+  },
+  "Incorrect answer 2": {
+    "origin": [
+      [
+        "frontend/src/components/author/QuestionForm.js",
+        90
+      ]
+    ]
+  },
+  "Add": {
+    "origin": [
+      [
+        "frontend/src/components/author/QuestionForm.js",
+        101
+      ]
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "Total": {
+    "origin": [
+      [
+        "frontend/src/components/editor/Calendar.js",
+        73
+      ]
+    ]
+  },
+  "Month": {
+    "origin": [
+      [
+        "frontend/src/components/editor/Calendar.js",
+        99
+      ]
+    ]
+  },
+  "Week": {
+    "origin": [
+      [
+        "frontend/src/components/editor/Calendar.js",
+        99
+      ]
+    ]
+  },
+  "Today": {
+    "origin": [
+      [
+        "frontend/src/components/editor/Calendar.js",
+        105
+      ]
+    ]
+  }
+}

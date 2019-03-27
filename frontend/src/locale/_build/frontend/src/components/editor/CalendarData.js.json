@@ -1,0 +1,26 @@
+{
+  "Calendar data": {
+    "origin": [
+      [
+        "frontend/src/components/editor/CalendarData.js",
+        16
+      ]
+    ]
+  },
+  "Authors": {
+    "origin": [
+      [
+        "frontend/src/components/editor/CalendarData.js",
+        24
+      ]
+    ]
+  },
+  "Categories": {
+    "origin": [
+      [
+        "frontend/src/components/editor/CalendarData.js",
+        27
+      ]
+    ]
+  }
+}

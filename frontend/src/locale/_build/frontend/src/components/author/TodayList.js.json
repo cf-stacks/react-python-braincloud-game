@@ -1,0 +1,34 @@
+{
+  "Today added": {
+    "origin": [
+      [
+        "frontend/src/components/author/TodayList.js",
+        20
+      ]
+    ]
+  },
+  "Description": {
+    "origin": [
+      [
+        "frontend/src/components/author/TodayList.js",
+        26
+      ]
+    ]
+  },
+  "Category": {
+    "origin": [
+      [
+        "frontend/src/components/author/TodayList.js",
+        27
+      ]
+    ]
+  },
+  "Correct answer": {
+    "origin": [
+      [
+        "frontend/src/components/author/TodayList.js",
+        28
+      ]
+    ]
+  }
+}

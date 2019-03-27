@@ -16,7 +16,7 @@ import CommonPrivateRoute from './common/PrivateRoute';
 import { loadUser } from '../actions/auth';
 import '../axios_config';
 import '../moment_config';
-import catalogRu from '../../locale/ru/messages';
+import catalogRu from '../locale/ru/messages';
 
 const alertOptions = {
   timeout: 3000,
