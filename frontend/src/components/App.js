@@ -59,4 +59,10 @@ class App extends Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const fApp = () => {
+  return (
+    <App />
+  )
+};
+
+export default fApp;
