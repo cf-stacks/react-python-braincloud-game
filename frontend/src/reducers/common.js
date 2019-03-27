@@ -1,12 +1,12 @@
 import {
   COMMON_GET_CATEGORIES,
-} from "../actions/types.js"
+} from '../actions/types';
 
 const initialState = {
   categories: [],
 };
 
-export default function (state=initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case COMMON_GET_CATEGORIES:
       return {

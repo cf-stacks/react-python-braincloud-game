@@ -5,22 +5,22 @@ import {
   AUTHOR_FORM_RESET,
   AUTHOR_FORM_UPDATE,
   AUTHOR_TODAY_CATEGORIES,
-} from "../actions/types.js"
+} from '../actions/types';
 
 const initialState = {
   statistics: {},
   todayList: [],
-  form_values: {
-    category: "",
-    description: "",
-    answer_correct: "",
-    answer_incorrect_1: "",
-    answer_incorrect_2: "",
+  formValues: {
+    category: '',
+    description: '',
+    answerCorrect: '',
+    answerIncorrect1: '',
+    answerIncorrect2: '',
   },
   categories: [],
 };
 
-export default function (state=initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case AUTHOR_GET_STATISTICS:
       return {
@@ -30,7 +30,7 @@ export default function (state=initialState, action) {
     case AUTHOR_ADD_QUESTION:
       return {
         ...state,
-        todayList: [...state.todayList, action.payload]
+        todayList: [...state.todayList, action.payload],
       };
     case AUTHOR_GET_TODAY_LIST:
       return {
@@ -40,15 +40,15 @@ export default function (state=initialState, action) {
     case AUTHOR_FORM_UPDATE:
       return {
         ...state,
-        form_values: {
-          ...state.form_values,
+        formValues: {
+          ...state.formValues,
           [action.payload.name]: action.payload.value,
-        }
+        },
       };
     case AUTHOR_FORM_RESET:
       return {
         ...state,
-        form_values: initialState.form_values,
+        formValues: initialState.formValues,
       };
     case AUTHOR_TODAY_CATEGORIES:
       return {

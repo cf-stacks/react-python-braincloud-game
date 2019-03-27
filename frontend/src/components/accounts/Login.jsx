@@ -1,15 +1,16 @@
-import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { login } from "../../actions/auth";
-import { Trans } from "@lingui/macro";
-import FieldError from "../common/FieldError";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Trans } from '@lingui/macro';
+
+import { login } from '../../actions/auth';
+import CommonFieldError from '../common/FieldError';
 
 export class Login extends Component {
   state = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   };
 
   static propTypes = {
@@ -17,16 +18,19 @@ export class Login extends Component {
     user: PropTypes.object,
   };
 
-  onSubmit = event => {
+  onSubmit = (event) => {
+    const { email, password } = this.state;
+    const { login: loginCall } = this.props;
     event.preventDefault();
-    this.props.login(this.state.email, this.state.password);
+    loginCall(email, password);
   };
 
-  onChange = event => this.setState({[event.target.name]: event.target.value});
+  onChange = event => this.setState({ [event.target.name]: event.target.value });
 
   render() {
-    if (this.props.user) return <Redirect to="/" />
+    const { user } = this.props;
     const { email, password } = this.state;
+    if (user) return <Redirect to="/" />;
     return (
       <div className="col-md-6 m-auto">
         <div className="card card-body mt-5">
@@ -41,7 +45,7 @@ export class Login extends Component {
                 onChange={this.onChange}
                 value={email}
               />
-              <FieldError for="email" />
+              <CommonFieldError for="email" />
             </div>
             <div className="form-group">
               <label><Trans>Password</Trans></label>
@@ -52,7 +56,7 @@ export class Login extends Component {
                 onChange={this.onChange}
                 value={password}
               />
-              <FieldError for="password" />
+              <CommonFieldError for="password" />
             </div>
             <div className="form-group">
               <button type="submit" className="btn btn-primary"><Trans>Log in</Trans></button>
@@ -60,7 +64,7 @@ export class Login extends Component {
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
 

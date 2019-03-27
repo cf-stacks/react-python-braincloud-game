@@ -1,18 +1,16 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export class Register extends Component {
   state = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
     password2: '',
   };
 
-  onSubmit = event => {
-    event.preventDefault();
-  };
+  onSubmit = event => event.preventDefault();
 
-  onChange = event => this.setState({[event.target.name]: event.target.value});
+  onChange = event => this.setState({ [event.target.name]: event.target.value });
 
   render() {
     const { email, password, password2 } = this.state;
@@ -54,11 +52,16 @@ export class Register extends Component {
             <div className="form-group">
               <button type="submit" className="btn btn-primary">Register</button>
             </div>
-            <p>Already have an account? <Link to="/login">Login</Link></p>
+            <p>
+              Already have an account?
+              <Link to="/login">
+                Login
+              </Link>
+            </p>
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
 

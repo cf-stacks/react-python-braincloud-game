@@ -1,15 +1,13 @@
-export const safeGet = (obj, key, defaultValue=undefined) => {
-  return key.split('.').reduce((nestedObject, key) => {
-    if(nestedObject && key in nestedObject) {
-      return nestedObject[key];
-    }
-    return defaultValue;
-  }, obj);
-};
+export const safeGet = (obj, key, defaultValue = undefined) => key.split('.').reduce((nestedObject, innerKey) => {
+  if (nestedObject && innerKey in nestedObject) {
+    return nestedObject[innerKey];
+  }
+  return defaultValue;
+}, obj);
 
 
-export const flatten = (objectOrArray, prefix = '', formatter = (k) => (k)) => {
-  const nestedFormatter = (k) => ('.' + k);
+export const flatten = (objectOrArray, prefix = '', formatter = k => (k)) => {
+  const nestedFormatter = k => (`.${k}`);
   const nestElement = (prev, value, key) => (
     (value && typeof value === 'object')
       ? { ...prev, ...flatten(value, `${prefix}${formatter(key)}`, nestedFormatter) }

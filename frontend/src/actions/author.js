@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { i18n } from "../components/App";
-import { t } from "@lingui/macro"
+import { t } from '@lingui/macro';
+import { i18n } from '../components/App';
 
-import { createMessage, returnErrors } from "./messages";
+import { createMessage, returnErrors } from './messages';
 
 import {
   AUTHOR_GET_STATISTICS,
@@ -11,61 +11,61 @@ import {
   AUTHOR_GET_TODAY_LIST,
   AUTHOR_FORM_RESET,
   AUTHOR_FORM_UPDATE,
-  AUTHOR_TODAY_CATEGORIES
-} from "./types";
+  AUTHOR_TODAY_CATEGORIES,
+} from './types';
 
 // GET AUTHOR STATISTICS
-export const getStatistics = () => dispatch => {
+export const getStatistics = () => (dispatch) => {
   axios
-    .get("/api/internal/author/statistics/")
-    .then(res => {
-      dispatch({type: AUTHOR_GET_STATISTICS, payload: res.data});
+    .get('/api/internal/author/statistics/')
+    .then((res) => {
+      dispatch({ type: AUTHOR_GET_STATISTICS, payload: res.data });
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 // ADD QUIZ QUESTION
-export const addQuizQuestion = (question) => dispatch => {
+export const addQuizQuestion = question => (dispatch) => {
   axios
-    .post("/api/internal/quiz/question/", question)
-    .then(res => {
+    .post('/api/internal/quiz/question/', question)
+    .then((res) => {
       // Show notification
-      dispatch(createMessage({simpleSuccess: i18n._(t`Question added`)}));
+      dispatch(createMessage({ simpleSuccess: i18n._(t`Question added`) }));
       // Hide errors
       dispatch(returnErrors({}, null));
       // Reset form
-      dispatch({type: AUTHOR_FORM_RESET, payload: null});
+      dispatch({ type: AUTHOR_FORM_RESET, payload: null });
       // Refetch statistics
       dispatch(getStatistics());
       // Add question
-      dispatch({type: AUTHOR_ADD_QUESTION, payload: res.data});
+      dispatch({ type: AUTHOR_ADD_QUESTION, payload: res.data });
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 // UPDATE FORM
-export const formUpdate = (name, value) => dispatch => {
+export const formUpdate = (name, value) => (dispatch) => {
   dispatch({
     type: AUTHOR_FORM_UPDATE,
     payload: {
-      name: name,
-      value: value,
-    }
-  })
+      name,
+      value,
+    },
+  });
 };
 
 // GET TODAY LIST
-export const getTodayList = () => dispatch => {
+export const getTodayList = () => (dispatch) => {
   axios
-    .get("/api/internal/quiz/question/today/")
-    .then(res => {
-      dispatch({type: AUTHOR_GET_TODAY_LIST, payload: res.data});
+    .get('/api/internal/quiz/question/today/')
+    .then((res) => {
+      dispatch({ type: AUTHOR_GET_TODAY_LIST, payload: res.data });
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 // GET TODAY CATEGORIES
-export const getTodayCategories = () => dispatch => {
+export const getTodayCategories = () => (dispatch) => {
   axios
-    .get("/api/internal/quiz/category/today/")
-    .then(res => {
-      dispatch({type: AUTHOR_TODAY_CATEGORIES, payload: res.data})
+    .get('/api/internal/quiz/category/today/')
+    .then((res) => {
+      dispatch({ type: AUTHOR_TODAY_CATEGORIES, payload: res.data });
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };

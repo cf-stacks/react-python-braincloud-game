@@ -18,8 +18,16 @@ module.exports = env => {
   return {
     module: {
       rules: [
+        // {
+        //   test: /\.(js| jsx)$/,
+        //   enforce: "pre",
+        //   exclude: /node_modules/,
+        //   use: {
+        //     loader: "eslint-loader"
+        //   }
+        // },
         {
-          test: /\.js$/,
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: {
             loader: "babel-loader"
@@ -35,5 +43,8 @@ module.exports = env => {
     plugins: [
       new webpack.DefinePlugin(envKeys)
     ],
+    resolve: {
+      extensions: ['.js', '.jsx'],
+    }
   }
-}
+};
