@@ -47,14 +47,17 @@ export const getAssignedCategories = (start_date, end_date) => dispatch => {
 };
 
 // CHANGE ASSIGNED CATEGORIES
-export const changeAssignedCategories = (result, user, date, isDeleted, categories) => dispatch => {
+export const changeAssignedCategories = (user, date, value, isDeleted, categories) => dispatch => {
   axios({
     method: isDeleted ? 'delete' : 'post',
     url: "/api/internal/quiz/category/assigned/",
     data: { user, date, categories },
   }).then(() => {
-    dispatch({type: EDITOR_CHANGE_ASSIGNED_CATEGORIES, payload: result})
-  }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+    dispatch({type: EDITOR_CHANGE_ASSIGNED_CATEGORIES, payload: {user, date, value}})
+  }).catch(err => {
+    console.log(err);
+    dispatch(returnErrors(err.response.data, err.response.status))
+  } );
 };
 
 // CHANGE CALENDAR DATA

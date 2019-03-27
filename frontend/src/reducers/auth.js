@@ -5,11 +5,11 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT_SUCCESS, TOKEN_REFRESHED,
-} from "../actions/types"
+} from '../actions/types';
 
 const initialState = {
-  authToken: localStorage.getItem("authToken"),
-  refreshToken: localStorage.getItem("refreshToken"),
+  authToken: localStorage.getItem('authToken'),
+  refreshToken: localStorage.getItem('refreshToken'),
   isLoading: false,
   user: null,
 };
@@ -19,7 +19,7 @@ export default function (state = initialState, action) {
     case USER_LOADING:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
     case USER_LOADED:
       return {
@@ -29,8 +29,8 @@ export default function (state = initialState, action) {
       };
     case LOGIN_SUCCESS:
     case TOKEN_REFRESHED:
-      localStorage.setItem("authToken" , action.payload.authToken);
-      localStorage.setItem("refreshToken" , action.payload.refreshToken);
+      localStorage.setItem('authToken', action.payload.authToken);
+      localStorage.setItem('refreshToken', action.payload.refreshToken);
       return {
         ...state,
         ...action.payload,
@@ -38,8 +38,8 @@ export default function (state = initialState, action) {
     case AUTH_ERROR:
     case LOGIN_FAILURE:
     case LOGOUT_SUCCESS:
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("refreshToken");
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('refreshToken');
       return {
         ...state,
         authToken: null,

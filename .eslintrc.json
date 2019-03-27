@@ -8,6 +8,7 @@
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -19,5 +20,6 @@
         "react"
     ],
     "rules": {
+        "max-len": ["error", { "code": 120 }]
     }
 }

@@ -40,7 +40,7 @@ export class Categories extends Component {
     let isDeleted = false;
     if (items.length !== 0) isDeleted = true;
     else items = value.map(v => v.id).filter(x => !lst.includes(x));
-    this.props.changeAssignedCategories({[obj]: {[date]: value}}, obj, date, isDeleted, items)
+    this.props.changeAssignedCategories(obj, date, value, isDeleted, items)
   };
 
 
