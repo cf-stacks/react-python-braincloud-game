@@ -7,10 +7,10 @@ export default function Dashboard() {
   return (
     <Fragment>
       <div className="jumbotron p-3">
-        <AuthorStatistics />
+        <AuthorQuestionForm />
       </div>
       <div className="jumbotron p-3">
-        <AuthorQuestionForm />
+        <AuthorStatistics />
       </div>
       <div className="jumbotron p-3">
         <AuthorTodayList />
