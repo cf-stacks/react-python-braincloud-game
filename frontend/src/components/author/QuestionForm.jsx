@@ -9,7 +9,6 @@ import CommonFieldError from '../common/FieldError';
 export class QuestionForm extends Component {
   static propTypes = {
     formUpdate: PropTypes.func.isRequired,
-    error: PropTypes.object.isRequired,
     formValues: PropTypes.object.isRequired,
     addQuizQuestion: PropTypes.func.isRequired,
     getTodayCategories: PropTypes.func.isRequired,
@@ -131,7 +130,6 @@ export class QuestionForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  error: state.errors.msg,
   formValues: state.author.formValues,
   categories: state.author.categories,
 });

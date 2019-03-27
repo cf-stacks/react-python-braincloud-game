@@ -56,22 +56,21 @@ export default function (state = initialState, action) {
       };
     case EDITOR_ACCEPT_QUESTION:
     case EDITOR_REJECT_QUESTION:
-      const author = action.payload.object.author;
-      const createdAt = moment(action.payload.object.created_at).format('Y-MM-DD');
-      const resolution = action.payload.resolution;
-      const statistic = safeGet(state.statistics, `${author}.${createdAt}`);
+      const { object: { author, created_at: createdAt, id }, resolution } = action.payload;
+      const formatCreatedAt = moment(createdAt).format('Y-MM-DD');
+      const statistic = safeGet(state.statistics, `${author}.${formatCreatedAt}`);
       if (statistic) {
         return {
           ...state,
-          questions: state.questions.filter(question => question.id !== action.payload.object.id),
+          questions: state.questions.filter(question => question.id !== id),
           statistics: {
             ...state.statistics,
             [author]: {
               ...state.statistics[author],
-              [createdAt]: {
-                new: state.statistics[author][createdAt].new - 1,
-                accepted: state.statistics[author][createdAt].accepted + (resolution === 'accept' ? 1 : 0),
-                rejected: state.statistics[author][createdAt].rejected + (resolution === 'reject' ? 1 : 0),
+              [formatCreatedAt]: {
+                new: state.statistics[author][formatCreatedAt].new - 1,
+                accepted: state.statistics[author][formatCreatedAt].accepted + (resolution === 'accept' ? 1 : 0),
+                rejected: state.statistics[author][formatCreatedAt].rejected + (resolution === 'reject' ? 1 : 0),
               },
             },
           },

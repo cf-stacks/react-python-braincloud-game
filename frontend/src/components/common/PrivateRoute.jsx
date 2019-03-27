@@ -1,13 +1,13 @@
 import React from 'react';
-import { Route, Redirect} from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Spinner } from './Spinner';
+import CommonSpinner from './Spinner';
 
-const PrivateRoute = ({ component: Component, auth, ...rest }) => (
+export const PrivateRoute = ({ component: Component, auth, ...rest }) => (
   <Route
     {...rest}
     render={(props) => {
-      if (auth.isLoading) return <Spinner />;
+      if (auth.isLoading) return <CommonSpinner />;
       if (!auth.user) return <Redirect to="/login" />;
       return <Component {...props} />;
     }}
