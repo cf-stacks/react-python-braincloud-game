@@ -43,6 +43,7 @@ export const addQuizQuestion = question => (dispatch) => {
 
 // UPDATE FORM
 export const formUpdate = (name, value) => (dispatch) => {
+  console.log(name, value)
   dispatch({
     type: AUTHOR_FORM_UPDATE,
     payload: {

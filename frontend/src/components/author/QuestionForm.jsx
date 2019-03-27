@@ -37,7 +37,11 @@ export class QuestionForm extends Component {
       category, description, answerCorrect, answerIncorrect1, answerIncorrect2,
     } = formValues;
     const question = {
-      category: category.id, description, answerCorrect, answerIncorrect1, answerIncorrect2,
+      category: category.id,
+      description,
+      answer_correct: answerCorrect,
+      answer_incorrect_1: answerIncorrect1,
+      answer_incorrect_2: answerIncorrect2,
     };
     addQuizQuestionCall(question);
   };
@@ -91,7 +95,7 @@ export class QuestionForm extends Component {
                 id="answer_correct-id"
                 className="form-control bg-success text-white border-dark"
                 type="text"
-                name="answer_correct"
+                name="answerCorrect"
                 onChange={this.onChange}
                 value={answerCorrect}
               />
@@ -103,7 +107,7 @@ export class QuestionForm extends Component {
                 id="answer_incorrect_1-id"
                 className="form-control bg-danger text-white border border-dark"
                 type="text"
-                name="answer_incorrect_1"
+                name="answerIncorrect1"
                 onChange={this.onChange}
                 value={answerIncorrect1}
               />
@@ -115,7 +119,7 @@ export class QuestionForm extends Component {
                 id="answer_incorrect_2-id"
                 className="form-control bg-danger text-white border-dark"
                 type="text"
-                name="answer_incorrect_2"
+                name="answerIncorrect2"
                 onChange={this.onChange}
                 value={answerIncorrect2}
               />
