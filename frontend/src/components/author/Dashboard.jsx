@@ -1,19 +1,19 @@
 import React, { Fragment } from 'react';
-import IStatistics from './Statistics';
-import IQuestionForm from './QuestionForm';
-import ITodayList from './TodayList';
+import AuthorStatistics from './Statistics';
+import AuthorQuestionForm from './QuestionForm';
+import AuthorTodayList from './TodayList';
 
 export default function Dashboard() {
   return (
     <Fragment>
       <div className="jumbotron p-3">
-        <IStatistics />
+        <AuthorStatistics />
       </div>
       <div className="jumbotron p-3">
-        <IQuestionForm />
+        <AuthorQuestionForm />
       </div>
       <div className="jumbotron p-3">
-        <ITodayList />
+        <AuthorTodayList />
       </div>
     </Fragment>
   );

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
 import { addQuizQuestion, formUpdate, getTodayCategories } from '../../actions/author';
-import IFieldError from '../common/FieldError';
+import CommonFieldError from '../common/FieldError';
 
 export class QuestionForm extends Component {
   static propTypes = {
@@ -72,7 +72,7 @@ export class QuestionForm extends Component {
               placeholder={<Trans>Select category...</Trans>}
               noOptionsMessage={() => <Trans>No categories to show</Trans>}
             />
-            <IFieldError for="category" />
+            <CommonFieldError for="category" />
           </div>
           <div className="form-group">
             <label htmlFor="description-id"><Trans>Description</Trans></label>
@@ -83,7 +83,7 @@ export class QuestionForm extends Component {
               onChange={this.onChange}
               value={description}
             />
-            <IFieldError for="description" />
+            <CommonFieldError for="description" />
           </div>
           <div className="row">
             <div className="col-4 form-group">
@@ -96,7 +96,7 @@ export class QuestionForm extends Component {
                 onChange={this.onChange}
                 value={answerCorrect}
               />
-              <IFieldError for="answer_correct" />
+              <CommonFieldError for="answer_correct" />
             </div>
             <div className="col-4 form-group">
               <label htmlFor="answer_incorrect_1-id"><Trans>Incorrect answer 1</Trans></label>
@@ -108,7 +108,7 @@ export class QuestionForm extends Component {
                 onChange={this.onChange}
                 value={answerIncorrect1}
               />
-              <IFieldError for="answer_incorrect_1" />
+              <CommonFieldError for="answer_incorrect_1" />
             </div>
             <div className="col-4 form-group">
               <label htmlFor="answer_incorrect_2-id"><Trans>Incorrect answer 2</Trans></label>
@@ -120,7 +120,7 @@ export class QuestionForm extends Component {
                 onChange={this.onChange}
                 value={answerIncorrect2}
               />
-              <IFieldError for="answer_incorrect_2" />
+              <CommonFieldError for="answer_incorrect_2" />
             </div>
           </div>
           <button type="submit" className="btn btn-primary"><Trans>Add</Trans></button>

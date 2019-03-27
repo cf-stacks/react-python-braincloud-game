@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Calendar } from './Calendar';
 import { changeCalendarData } from '../../actions/editor';
 
-export class Statistics extends Component {
+class Statistics extends Component {
   static propTypes = {
     user: PropTypes.object.isRequired,
     statistics: PropTypes.object.isRequired,

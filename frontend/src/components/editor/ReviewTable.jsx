@@ -7,7 +7,7 @@ import { Trans } from '@lingui/macro';
 
 import { getQuestions, submitReview } from '../../actions/editor';
 
-export class ReviewTable extends Component {
+class ReviewTable extends Component {
   state = {
     selectedTab: '',
   };
@@ -49,7 +49,7 @@ export class ReviewTable extends Component {
         </Tabs>
         <ReviewTab
           questions={questions}
-          user_id={selectedTab}
+          userId={selectedTab}
           submitReview={submitReviewCall}
         />
       </Fragment>
@@ -60,7 +60,7 @@ export class ReviewTable extends Component {
 export class ReviewTab extends Component {
   static propTypes = {
     questions: PropTypes.array.isRequired,
-    user_id: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired,
     submitReview: PropTypes.func.isRequired,
   };
 
@@ -71,8 +71,8 @@ export class ReviewTab extends Component {
   };
 
   render() {
-    const { questions, user_id } = this.props;
-    const user_questions = questions.filter(question => user_id === '' || question.author === user_id);
+    const { questions, userId } = this.props;
+    const userQuestions = questions.filter(question => userId === '' || question.author === userId);
     return (
       <table className="table table-striped table-sm">
         <thead className="thead-dark">
@@ -84,7 +84,7 @@ export class ReviewTab extends Component {
           </tr>
         </thead>
         <tbody>
-          { user_questions.map((question, index) => (
+          { userQuestions.map((question, index) => (
             <tr key={question.id}>
               <th className="p-2 align-middle">
                 <div>{ index + 1}</div>

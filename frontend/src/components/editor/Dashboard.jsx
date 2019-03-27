@@ -1,16 +1,18 @@
 import React, { Fragment } from 'react';
-import IReviewTable from './ReviewTable';
-import CalendarData from './CalendarData';
+import EditorReviewTable from './ReviewTable';
+import EditorCalendarData from './CalendarData';
 
-export default function Dashboard() {
+function Dashboard() {
   return (
     <Fragment>
       <div className="jumbotron p-3">
-        <CalendarData />
+        <EditorCalendarData />
       </div>
       <div className="jumbotron p-3">
-        <IReviewTable />
+        <EditorReviewTable />
       </div>
     </Fragment>
   );
 }
+
+export default Dashboard;
