@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 
-import "../../css/Spinner.css"
+import '../../css/Spinner.css'
 
 export class Spinner extends Component {
 

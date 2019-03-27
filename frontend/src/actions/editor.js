@@ -55,7 +55,6 @@ export const changeAssignedCategories = (user, date, value, isDeleted, categorie
   }).then(() => {
     dispatch({type: EDITOR_CHANGE_ASSIGNED_CATEGORIES, payload: {user, date, value}})
   }).catch(err => {
-    console.log(err);
     dispatch(returnErrors(err.response.data, err.response.status))
   } );
 };

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import ReviewTable from './ReviewTable';
-import { CalendarData } from './CalendarData';
+import IReviewTable from './ReviewTable';
+import CalendarData from './CalendarData';
 
 export default function Dashboard() {
   return (
@@ -9,7 +9,7 @@ export default function Dashboard() {
         <CalendarData />
       </div>
       <div className="jumbotron p-3">
-        <ReviewTable />
+        <IReviewTable />
       </div>
     </Fragment>
   );

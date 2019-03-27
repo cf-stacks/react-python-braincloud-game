@@ -58,6 +58,7 @@ export default function (state = initialState, action) {
     case EDITOR_REJECT_QUESTION:
       const author = action.payload.object.author;
       const createdAt = moment(action.payload.object.created_at).format('Y-MM-DD');
+      const resolution = action.payload.resolution;
       const statistic = safeGet(state.statistics, `${author}.${createdAt}`);
       if (statistic) {
         return {
@@ -69,8 +70,8 @@ export default function (state = initialState, action) {
               ...state.statistics[author],
               [createdAt]: {
                 new: state.statistics[author][createdAt].new - 1,
-                accepted: state.statistics[author][createdAt].accepted + (action.payload.resolution === 'accept' ? 1 : 0),
-                rejected: state.statistics[author][createdAt].rejected + (action.payload.resolution === 'reject' ? 1 : 0),
+                accepted: state.statistics[author][createdAt].accepted + (resolution === 'accept' ? 1 : 0),
+                rejected: state.statistics[author][createdAt].rejected + (resolution === 'reject' ? 1 : 0),
               },
             },
           },
