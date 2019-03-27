@@ -26,10 +26,14 @@ class Statistics extends Component {
     </div>
   );
 
-  handleRenderTotal = (obj, values) => {
-    const value = values.reduce((a, c) => (Object.keys(c).forEach(k => (a[k] = (a[k] || 0) + c[k])), a), {});
+  handleRenderTotal = (obj, valuesList) => {
+    const total = valuesList.reduce((accumulator, currentValue) => ({
+      new: accumulator.new + currentValue.new,
+      accepted: accumulator.accepted + currentValue.accepted,
+      rejected: accumulator.rejected + currentValue.rejected,
+    }));
     return (
-      this.handleRenderCell(obj, null, value)
+      this.handleRenderCell(obj, null, total)
     );
   };
 

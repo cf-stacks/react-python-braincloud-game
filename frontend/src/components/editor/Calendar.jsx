@@ -24,28 +24,30 @@ export class Calendar extends Component {
     defaultRenderValue: PropTypes.any,
   };
 
-  handleClickCell = e => {
+  handleClickCell = (event) => {
     const { handleClickCell: handleClickCellCall } = this.props;
-    const element = e.target.closest('td');
+    const element = event.target.closest('td');
     if (element) {
-      const date = moment(parseInt(element.getAttribute('data-date')));
+      const date = moment(parseInt(element.getAttribute('data-date'), 10));
       const obj = element.getAttribute('data-object-id');
-      if (handleClickCellCall) handleClickCellCall(e.target, obj, date.format(this.formats.server));
+      if (handleClickCellCall) handleClickCellCall(event.target, obj, date.format(this.formats.server));
     }
   };
 
-  handleRenderTotal = key => {
+  handleRenderTotal = (key) => {
     const { statistics, handleRenderTotal: handleRenderTotalCall } = this.props;
     const value = safeGet(statistics, `${key}`);
-    if (value && handleRenderTotalCall) return handleRenderTotalCall(
-      key, Object.keys(value).map(key => value[key])
-    );
+    if (value && handleRenderTotalCall) {
+      return handleRenderTotalCall(key, Object.keys(value).map(k => value[k]));
+    }
+    return null;
   };
 
   handleRenderCell = (obj, date) => {
     const { statistics, defaultRenderValue, handleRenderCell: handleRenderCellCall } = this.props;
     const value = safeGet(statistics, `${obj}.${date}`, defaultRenderValue);
     if (value && handleRenderCellCall) return handleRenderCellCall(obj, date, value);
+    return null;
   };
 
   handleUpdateView = view => () => {
@@ -87,35 +89,43 @@ export class Calendar extends Component {
             <div
               className="btn btn-outline-primary m-1"
               onClick={this.handleUpdateDate(date.clone().subtract(1, view))}
+              role="button"
+              tabIndex={0}
             >
               <i className="fas fa-angle-double-up" />
             </div>
             <div
               className="btn btn-outline-primary m-1"
               onClick={this.handleUpdateView(newView)}
+              role="button"
+              tabIndex={0}
             >
               { newView === 'month' ? <Trans>Month</Trans> : <Trans>Week</Trans> }
             </div>
             <div
               className="btn btn-outline-primary m-1"
               onClick={this.handleUpdateDate(moment())}
+              role="button"
+              tabIndex={0}
             >
               <Trans>Today</Trans>
             </div>
             <div
               className="btn btn-outline-primary m-1"
               onClick={this.handleUpdateDate(date.clone().add(1, view))}
+              role="button"
+              tabIndex={0}
             >
               <i className="fas fa-angle-double-down" />
             </div>
           </div>
           <div className="table-responsive">
-            <table className="table table-sm table-striped table-hover-cell">
+            <table className="table table-sm table-striped table-hover-cell" role="grid">
               <thead className="thead-dark">
                 <tr>
-                  <th className="text-center" style={{ width: '20%' }}>#</th>
+                  <th className="text-center" style={{ width: '20%' }} role="gridcell">#</th>
                   { objects.map(obj => (
-                    <th key={obj.id} className="text-center" style={colStyle}>{obj.name}</th>
+                    <th key={obj.id} className="text-center" style={colStyle} role="gridcell">{obj.name}</th>
                   ))}
                 </tr>
                 { totalRow }
@@ -123,14 +133,15 @@ export class Calendar extends Component {
               <tbody>
                 { [...days].map(day => (
                   <tr key={day} className={`text-center ${[6, 7].includes(day.isoWeekday()) ? 'weekend' : ''}`}>
-                    <th className="text-center">{day.format(this.formats.isoWeek)}</th>
+                    <th className="text-center" role="gridcell">{day.format(this.formats.isoWeek)}</th>
                     { objects.map(obj => (
                       <td
-                        className='text-center'
+                        className="text-center"
                         key={obj.id}
                         onClick={this.handleClickCell}
                         data-object-id={obj.id}
                         data-date={day}
+                        role="gridcell"
                       >
                         { this.handleRenderCell(obj.id, day.format(this.formats.server)) }
                       </td>

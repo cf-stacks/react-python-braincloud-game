@@ -55,7 +55,7 @@ export default function (state = initialState, action) {
         },
       };
     case EDITOR_ACCEPT_QUESTION:
-    case EDITOR_REJECT_QUESTION:
+    case EDITOR_REJECT_QUESTION: {
       const { object: { author, created_at: createdAt, id }, resolution } = action.payload;
       const formatCreatedAt = moment(createdAt).format('Y-MM-DD');
       const statistic = safeGet(state.statistics, `${author}.${formatCreatedAt}`);
@@ -80,6 +80,7 @@ export default function (state = initialState, action) {
         ...state,
         questions: state.questions.filter(question => question.id !== action.payload.object.id),
       };
+    }
     default:
       return state;
   }
