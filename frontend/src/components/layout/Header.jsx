@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
-import { logout as logoutFunc } from '../../actions/auth';
+import { logout } from '../../actions/auth';
 
 import '../../css/Header.css';
 
@@ -59,7 +59,7 @@ export class Header extends Component {
   }
 
   render() {
-    const { auth: { user }, logout } = this.props;
+    const { auth: { user }, logout: logoutCall } = this.props;
     const { currentTime } = this.state;
 
     const authLinks = (
@@ -83,7 +83,7 @@ export class Header extends Component {
           <span className="nav-link"> | </span>
         </li>
         <li className="nav-item">
-          <Link to="/" className="nav-link" onClick={logout}><Trans>Log out</Trans></Link>
+          <Link to="/" className="nav-link" onClick={logoutCall}><Trans>Log out</Trans></Link>
         </li>
       </ul>
     );
@@ -130,4 +130,4 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout: logoutFunc })(Header);
+export default connect(mapStateToProps, { logout })(Header);

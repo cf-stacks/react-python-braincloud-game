@@ -7,6 +7,7 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => (
   <Route
     {...rest}
     render={(props) => {
+      console.log('here', auth);
       if (auth.isLoading) return <Spinner />;
       if (!auth.user) return <Redirect to="/login" />;
       return <Component {...props} />;

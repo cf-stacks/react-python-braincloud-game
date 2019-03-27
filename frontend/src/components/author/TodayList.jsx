@@ -11,9 +11,8 @@ export class TodayList extends Component {
   };
 
   componentDidMount = () => {
-    console.log('this.props')
-    // const { getTodayList: getTodayListCall } = this.props;
-    // getTodayListCall();
+    const { getTodayList: getTodayListCall } = this.props;
+    getTodayListCall();
   };
 
   render() {

@@ -11,14 +11,11 @@ export class Statistics extends Component {
   };
 
   componentDidMount = () => {
-    console.log('getting stats');
-    // const { getStatistics: getStatisticsCall } = this.props;
-    // getStatisticsCall();
-    this.props.getStatistics();
+    const { getStatistics: getStatisticsCall } = this.props;
+    getStatisticsCall();
   }
 
   render() {
-    console.log(this.props);
     const { statistics } = this.props;
     return (
       <Fragment>
@@ -51,11 +48,8 @@ export class Statistics extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.log('ooo');
-  return {
-    statistics: state.author.statistics,
-  }
-};
+const mapStateToProps = state => ({
+  statistics: state.author.statistics,
+});
 
 export default connect(mapStateToProps, { getStatistics })(Statistics);

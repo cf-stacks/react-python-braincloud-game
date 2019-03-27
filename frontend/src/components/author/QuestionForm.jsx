@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
 import { addQuizQuestion, formUpdate, getTodayCategories } from '../../actions/author';
-import { FieldError } from '../common/FieldError';
+import IFieldError from '../common/FieldError';
 
 export class QuestionForm extends Component {
   static propTypes = {
@@ -17,7 +17,6 @@ export class QuestionForm extends Component {
   };
 
   componentDidMount() {
-    console.log('categ???')
     const { getTodayCategories: getTodayCategoriesCall } = this.props;
     getTodayCategoriesCall();
   }
@@ -60,79 +59,68 @@ export class QuestionForm extends Component {
         <hr />
         <form onSubmit={this.onSubmit} className="px-3" id="add-question-form">
           <div className="form-group">
-            <label htmlFor="category-id">
-              <Trans>Category</Trans>
-              <input type="hidden" id="category-id" />
-              <Select
-                cacheOptions
-                name="category"
-                options={categories}
-                defaultOptions
-                onChange={this.onSelectChange}
-                getOptionLabel={opt => opt.name}
-                getOptionValue={opt => opt.id}
-                value={category}
-                placeholder={<Trans>Select category...</Trans>}
-                noOptionsMessage={() => <Trans>No categories to show</Trans>}
-              />
-              <FieldError for="category" />
-            </label>
+            <label htmlFor="category-id"><Trans>Category</Trans></label>
+            <Select
+              cacheOptions
+              name="category"
+              options={categories}
+              defaultOptions
+              onChange={this.onSelectChange}
+              getOptionLabel={opt => opt.name}
+              getOptionValue={opt => opt.id}
+              value={category}
+              placeholder={<Trans>Select category...</Trans>}
+              noOptionsMessage={() => <Trans>No categories to show</Trans>}
+            />
+            <IFieldError for="category" />
           </div>
           <div className="form-group">
-            <label htmlFor="description-id">
-              <Trans>Description</Trans>
-              <textarea
-                id="description-id"
-                className="form-control"
-                name="description"
-                onChange={this.onChange}
-                value={description}
-              />
-              <FieldError for="description" />
-            </label>
+            <label htmlFor="description-id"><Trans>Description</Trans></label>
+            <textarea
+              id="description-id"
+              className="form-control"
+              name="description"
+              onChange={this.onChange}
+              value={description}
+            />
+            <IFieldError for="description" />
           </div>
           <div className="row">
             <div className="col-4 form-group">
-              <label htmlFor="answer_correct-id">
-                <Trans>Correct answer</Trans>
-                <input
-                  id="answer_correct-id"
-                  className="form-control bg-success text-white border-dark"
-                  type="text"
-                  name="answer_correct"
-                  onChange={this.onChange}
-                  value={answerCorrect}
-                />
-                <FieldError for="answer_correct" />
-              </label>
+              <label htmlFor="answer_correct-id"><Trans>Correct answer</Trans></label>
+              <input
+                id="answer_correct-id"
+                className="form-control bg-success text-white border-dark"
+                type="text"
+                name="answer_correct"
+                onChange={this.onChange}
+                value={answerCorrect}
+              />
+              <IFieldError for="answer_correct" />
             </div>
             <div className="col-4 form-group">
-              <label htmlFor="answer_incorrect_1-id">
-                <Trans>Incorrect answer 1</Trans>
-                <input
-                  id="answer_incorrect_1-id"
-                  className="form-control bg-danger text-white border border-dark"
-                  type="text"
-                  name="answer_incorrect_1"
-                  onChange={this.onChange}
-                  value={answerIncorrect1}
-                />
-                <FieldError for="answer_incorrect_1" />
-              </label>
+              <label htmlFor="answer_incorrect_1-id"><Trans>Incorrect answer 1</Trans></label>
+              <input
+                id="answer_incorrect_1-id"
+                className="form-control bg-danger text-white border border-dark"
+                type="text"
+                name="answer_incorrect_1"
+                onChange={this.onChange}
+                value={answerIncorrect1}
+              />
+              <IFieldError for="answer_incorrect_1" />
             </div>
             <div className="col-4 form-group">
-              <label htmlFor="answer_incorrect_2-id">
-                <Trans>Incorrect answer 2</Trans>
-                <input
-                  id="answer_incorrect_2-id"
-                  className="form-control bg-danger text-white border-dark"
-                  type="text"
-                  name="answer_incorrect_2"
-                  onChange={this.onChange}
-                  value={answerIncorrect2}
-                />
-                <FieldError for="answer_incorrect_2" />
-              </label>
+              <label htmlFor="answer_incorrect_2-id"><Trans>Incorrect answer 2</Trans></label>
+              <input
+                id="answer_incorrect_2-id"
+                className="form-control bg-danger text-white border-dark"
+                type="text"
+                name="answer_incorrect_2"
+                onChange={this.onChange}
+                value={answerIncorrect2}
+              />
+              <IFieldError for="answer_incorrect_2" />
             </div>
           </div>
           <button type="submit" className="btn btn-primary"><Trans>Add</Trans></button>

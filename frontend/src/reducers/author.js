@@ -10,12 +10,12 @@ import {
 const initialState = {
   statistics: {},
   todayList: [],
-  form_values: {
+  formValues: {
     category: '',
     description: '',
-    answer_correct: '',
-    answer_incorrect_1: '',
-    answer_incorrect_2: '',
+    answerCorrect: '',
+    answerIncorrect1: '',
+    answerIncorrect2: '',
   },
   categories: [],
 };
@@ -40,15 +40,15 @@ export default function (state = initialState, action) {
     case AUTHOR_FORM_UPDATE:
       return {
         ...state,
-        form_values: {
-          ...state.form_values,
+        formValues: {
+          ...state.formValues,
           [action.payload.name]: action.payload.value,
         },
       };
     case AUTHOR_FORM_RESET:
       return {
         ...state,
-        form_values: initialState.form_values,
+        formValues: initialState.formValues,
       };
     case AUTHOR_TODAY_CATEGORIES:
       return {
