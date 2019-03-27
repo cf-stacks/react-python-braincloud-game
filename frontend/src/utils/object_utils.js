@@ -1,5 +1,4 @@
 export const safeGet = (obj, key, defaultValue = undefined) => key.split('.').reduce((nestedObject, innerKey) => {
-  console.log('call safeGet');
   if (nestedObject && innerKey in nestedObject) {
     return nestedObject[innerKey];
   }
