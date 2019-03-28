@@ -43,6 +43,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@lingui/cli": "^2.7.4",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "eslint-config-airbnb": "^17.1.0"
   },
   "keywords": [],
