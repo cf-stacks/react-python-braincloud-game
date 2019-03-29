@@ -131,6 +131,7 @@ class QuestionCategoryViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
     serializer_classes = {
         'list': serializers.QuestionCategorySerializer,
         'assigned': serializers.StatisticsSerializer,
+        'assigned_change': serializers.AssignedQuestionSerializer,
         'today': serializers.QuestionCategorySerializer,
     }
 
@@ -152,32 +153,64 @@ class QuestionCategoryViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
 
     @decorators.action(detail=False, methods=('POST', 'GET', 'DELETE'))
     def assigned(self, request):
-        if request.method == 'GET':
-            serializer = self.get_serializer(data=request.query_params)
-            if serializer.is_valid(raise_exception=True):
-                queryset = models.AssignedQuestionCategory.objects.filter(
-                    date__range=(serializer.data['start_date'], serializer.data['end_date']),
-                )
-                data = defaultdict(lambda: defaultdict(list))
-                for item in queryset:
-                    data[str(item.user_id)][str(item.date)].append(str(item.category_id))
-                return response.Response(data=data)
-        else:
-            serializer = serializers.AssignedQuestionSerializer(data=request.data)
-            if serializer.is_valid(raise_exception=True):
-                if request.method == 'POST':
-                    for category in serializer.data['categories']:
-                        models.AssignedQuestionCategory.objects.get_or_create(
+        if request.user.groups.filter(name__iexact=models.USER_GROUP_EDITOR).exists():
+            if request.method == 'GET':
+                serializer = self.get_serializer(data=request.query_params)
+                if serializer.is_valid(raise_exception=True):
+                    queryset = models.AssignedQuestionCategory.objects.filter(
+                        Q(
+                            date__range=(serializer.data['start_date'], serializer.data['end_date']),
+                            user__in=request.user.subordinates.all()
+                        ) | Q(date__isnull=True, user=request.user),
+                    )
+                    data = defaultdict(lambda: defaultdict(list))
+                    for item in queryset:
+                        if item.date:
+                            data[str(item.user_id)][str(item.date)].append(str(item.category_id))
+                        else:
+                            data[str(item.user_id)]['all'].append(str(item.category_id))
+                    return response.Response(data=data)
+            else:
+                serializer = serializers.AssignedQuestionSerializer(data=request.data, context={'request': request})
+                if serializer.is_valid(raise_exception=True):
+                    if request.method == 'POST':
+                        for category in serializer.data['categories']:
+                            models.AssignedQuestionCategory.objects.get_or_create(
+                                user_id=serializer.data['user'],
+                                date=serializer.data['date'],
+                                category_id=category,
+                            )
+                        return response.Response(data={}, status=201)
+                    else:
+                        models.AssignedQuestionCategory.objects.filter(
                             user_id=serializer.data['user'],
                             date=serializer.data['date'],
-                            category_id=category,
-                        )
-                    return response.Response(data={}, status=201)
-                else:
-                    models.AssignedQuestionCategory.objects.filter(
-                        user_id=serializer.data['user'],
-                        date=serializer.data['date'],
-                        category_id__in=serializer.data['categories'],
-                    ).delete()
-                    return response.Response(data={}, status=200)
+                            category_id__in=serializer.data['categories'],
+                        ).delete()
+                        return response.Response(data={}, status=200)
+        else:
+            if request.method == 'GET':
+                queryset = models.AssignedQuestionCategory.objects.filter(
+                    user__in=request.user.subordinates.all(), date__isnull=True,
+                )
+                data = defaultdict(list)
+                for item in queryset:
+                    data[str(item.user_id)].append(str(item.category_id))
+                return response.Response(data=data)
+            else:
+                serializer = serializers.AssignedQuestionSerializer(data=request.data, context={'request': request})
+                if serializer.is_valid(raise_exception=True):
+                    if request.method == 'POST':
+                        for category in serializer.data['categories']:
+                            models.AssignedQuestionCategory.objects.get_or_create(
+                                user_id=serializer.data['user'],
+                                category_id=category,
+                            )
+                        return response.Response(data={}, status=201)
+                    else:
+                        models.AssignedQuestionCategory.objects.filter(
+                            user_id=serializer.data['user'],
+                            category_id__in=serializer.data['categories'],
+                        ).delete()
+                        return response.Response(data={}, status=200)
 

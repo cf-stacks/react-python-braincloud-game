@@ -2,12 +2,14 @@ import axios from 'axios';
 import moment from 'moment';
 
 import { returnErrors } from './messages';
+import { getStatistics } from './common';
 
 import {
   CHIEF_GET_PENDING_QUESTIONS,
   CHIEF_GET_ACTIVE_QUESTIONS,
-  EDITOR_CALENDAR_CHANGE,
-  EDITOR_GET_STATISTICS,
+  CHIEF_GET_ASSIGNED_CATEGORIES,
+  CHIEF_CHANGE_ASSIGNED_CATEGORIES,
+  COMMON_CALENDAR_CHANGE,
 } from './types';
 
 
@@ -31,18 +33,31 @@ export const getActiveQuestions = () => (dispatch) => {
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
-// GET STATISTICS
-export const getStatistics = (startDate, endDate) => (dispatch) => {
+// GET ASSIGNED CATEGORIES
+export const getAssignedCategories = () => (dispatch) => {
   axios
-    .get('/api/internal/quiz/question/statistics/', { params: { start_date: startDate, end_date: endDate } })
+    .get('/api/internal/quiz/category/assigned/')
     .then((res) => {
-      dispatch({ type: EDITOR_GET_STATISTICS, payload: res.data });
+      dispatch({ type: CHIEF_GET_ASSIGNED_CATEGORIES, payload: res.data });
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+// CHANGE ASSIGNED CATEGORIES
+export const changeAssignedCategories = (user, value, isDeleted, categories) => (dispatch) => {
+  axios({
+    method: isDeleted ? 'delete' : 'post',
+    url: '/api/internal/quiz/category/assigned/',
+    data: { user, categories },
+  }).then(() => {
+    dispatch({ type: CHIEF_CHANGE_ASSIGNED_CATEGORIES, payload: { user, value } });
+  }).catch((err) => {
+    dispatch(returnErrors(err.response.data, err.response.status));
+  });
 };
 
 // CHANGE CALENDAR DATA
 export const changeCalendarData = (date, view) => (dispatch) => {
-  dispatch({ type: EDITOR_CALENDAR_CHANGE, payload: { date, view } });
+  dispatch({ type: COMMON_CALENDAR_CHANGE, payload: { date, view } });
   const { 0: start, length: l, [l - 1]: end } = [...getDays(date, view)];
   dispatch(getStatistics(start.format('Y-MM-DD'), end.format('Y-MM-DD')));
 };

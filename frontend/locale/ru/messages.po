@@ -13,28 +13,28 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: frontend/src/components/author/Statistics.jsx:36
+#: frontend/src/components/author/Statistics.jsx:37
 msgid "Accepted last shift"
 msgstr "Принято за прошлую смену"
 
-#: frontend/src/components/chief/ActiveTable.jsx:37
+#: frontend/src/components/chief/ActiveTable.jsx:38
 msgid "Active questions"
 msgstr "Вопросы в игре"
 
-#: frontend/src/components/author/QuestionForm.jsx:156
+#: frontend/src/components/author/QuestionForm.jsx:94
 msgid "Add"
 msgstr "Добавить"
 
-#: frontend/src/components/author/QuestionForm.jsx:86
+#: frontend/src/components/author/QuestionForm.jsx:110
 msgid "Add quiz question"
 msgstr "Добавить вопрос"
 
-#: frontend/src/components/author/Statistics.jsx:31
+#: frontend/src/components/author/Statistics.jsx:32
 msgid "Added today"
 msgstr "Добавлено сегодня"
 
-#: frontend/src/components/chief/ActiveTable.jsx:45
-#: frontend/src/components/chief/PendingTable.jsx:45
+#: frontend/src/components/chief/ActiveTable.jsx:46
+#: frontend/src/components/chief/PendingTable.jsx:46
 #: frontend/src/components/editor/ReviewTable.jsx:47
 msgid "All"
 msgstr "Все"
@@ -45,49 +45,57 @@ msgstr "Все"
 msgid "Answers"
 msgstr "Ответы"
 
-#: frontend/src/components/author/QuestionForm.jsx:156
+#: frontend/src/components/author/QuestionForm.jsx:94
 msgid "Apply"
 msgstr "Применить"
 
-#: frontend/src/components/editor/CalendarData.jsx:24
+#: frontend/src/components/chief/AssignCategory.jsx:58
+msgid "Assigned categories"
+msgstr "Закрепленные темы"
+
+#: frontend/src/components/editor/CalendarData.jsx:33
 msgid "Authors"
 msgstr "Авторы"
 
-#: frontend/src/components/chief/CalendarData.jsx:17
-#: frontend/src/components/editor/CalendarData.jsx:16
+#: frontend/src/components/chief/CalendarData.jsx:24
+#: frontend/src/components/editor/CalendarData.jsx:25
 msgid "Calendar data"
 msgstr "Календарные данные"
 
-#: frontend/src/components/editor/CalendarData.jsx:27
+#: frontend/src/components/author/QuestionForm.jsx:101
+msgid "Cancel"
+msgstr "Отменить"
+
+#: frontend/src/components/editor/CalendarData.jsx:36
 msgid "Categories"
 msgstr "Темы"
 
-#: frontend/src/components/author/QuestionForm.jsx:91
-#: frontend/src/components/author/TodayList.jsx:29
+#: frontend/src/components/author/QuestionForm.jsx:115
+#: frontend/src/components/author/TodayList.jsx:30
 #: frontend/src/components/chief/ActiveTab.jsx:54
 #: frontend/src/components/chief/PendingTab.jsx:55
 #: frontend/src/components/editor/ReviewTab.jsx:31
 msgid "Category"
 msgstr "Тема"
 
-#: frontend/src/components/author/QuestionForm.jsx:119
-#: frontend/src/components/author/TodayList.jsx:30
+#: frontend/src/components/author/QuestionForm.jsx:136
+#: frontend/src/components/author/TodayList.jsx:31
 msgid "Correct answer"
 msgstr "Правильный ответ"
 
-#: frontend/src/components/author/QuestionForm.jsx:107
-#: frontend/src/components/author/TodayList.jsx:28
+#: frontend/src/components/author/QuestionForm.jsx:124
+#: frontend/src/components/author/TodayList.jsx:29
 #: frontend/src/components/chief/ActiveTab.jsx:55
 #: frontend/src/components/chief/PendingTab.jsx:56
 #: frontend/src/components/editor/ReviewTab.jsx:32
 msgid "Description"
 msgstr "Описание"
 
-#: frontend/src/components/author/QuestionForm.jsx:86
+#: frontend/src/components/author/QuestionForm.jsx:110
 msgid "Edit quiz question"
 msgstr "Редактировать вопрос"
 
-#: frontend/src/components/chief/CalendarData.jsx:25
+#: frontend/src/components/chief/CalendarData.jsx:32
 msgid "Editors"
 msgstr "Редакторы"
 
@@ -95,11 +103,11 @@ msgstr "Редакторы"
 msgid "Email"
 msgstr "Адрес электронной почты"
 
-#: frontend/src/components/author/QuestionForm.jsx:131
+#: frontend/src/components/author/QuestionForm.jsx:148
 msgid "Incorrect answer 1"
 msgstr "Неправильный ответ 1"
 
-#: frontend/src/components/author/QuestionForm.jsx:143
+#: frontend/src/components/author/QuestionForm.jsx:160
 msgid "Incorrect answer 2"
 msgstr "Неправильный ответ 2"
 
@@ -124,7 +132,7 @@ msgstr "Вход"
 msgid "Month"
 msgstr "Месяц"
 
-#: frontend/src/components/author/QuestionForm.jsx:102
+#: frontend/src/components/common/CategorySelect.jsx:41
 msgid "No categories to show"
 msgstr "Нет категорий для выбора"
 
@@ -132,11 +140,11 @@ msgstr "Нет категорий для выбора"
 msgid "Password"
 msgstr "Пароль"
 
-#: frontend/src/components/chief/PendingTable.jsx:37
+#: frontend/src/components/chief/PendingTable.jsx:38
 msgid "Pending questions"
 msgstr "Вопросы в очереди"
 
-#: frontend/src/actions/editor.js:75
+#: frontend/src/actions/editor.js:66
 msgid "Question accepted"
 msgstr "Вопрос принят"
 
@@ -144,7 +152,7 @@ msgstr "Вопрос принят"
 msgid "Question added"
 msgstr "Вопрос добавлен"
 
-#: frontend/src/actions/editor.js:75
+#: frontend/src/actions/editor.js:66
 msgid "Question rejected"
 msgstr "Вопрос отвергнут"
 
@@ -156,7 +164,7 @@ msgstr "Вопрос обновлен"
 msgid "Questions for review"
 msgstr "Вопросы для проверки"
 
-#: frontend/src/components/author/Statistics.jsx:41
+#: frontend/src/components/author/Statistics.jsx:42
 msgid "Rejected last shift"
 msgstr "Отказано за прошлую смену"
 
@@ -165,8 +173,7 @@ msgstr "Отказано за прошлую смену"
 msgid "See all"
 msgstr "Смотреть все"
 
-#: frontend/src/components/author/QuestionForm.jsx:101
-#: frontend/src/components/editor/Categories.jsx:91
+#: frontend/src/components/common/CategorySelect.jsx:40
 msgid "Select category..."
 msgstr "Выберите тему..."
 
@@ -174,7 +181,7 @@ msgstr "Выберите тему..."
 msgid "Sesam LOGO"
 msgstr "Сезам ЛОГО"
 
-#: frontend/src/components/author/Statistics.jsx:22
+#: frontend/src/components/author/Statistics.jsx:23
 msgid "Statistics"
 msgstr "Статистика"
 
@@ -182,7 +189,7 @@ msgstr "Статистика"
 msgid "Today"
 msgstr "Сегодня"
 
-#: frontend/src/components/author/TodayList.jsx:22
+#: frontend/src/components/author/TodayList.jsx:23
 msgid "Today added"
 msgstr "Добавлено сегодня"
 
@@ -190,7 +197,7 @@ msgstr "Добавлено сегодня"
 msgid "Total"
 msgstr "Всего"
 
-#: frontend/src/components/author/Statistics.jsx:26
+#: frontend/src/components/author/Statistics.jsx:27
 msgid "Total month"
 msgstr "Всего за месяц"
 

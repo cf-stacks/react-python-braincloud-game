@@ -17,7 +17,6 @@ class SubordinateSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     groups = GroupSerializer(many=True)
-    # subordinates = SubordinateSerializer(many=True)
     subordinates = serializers.SerializerMethodField()
 
     class Meta:

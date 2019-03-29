@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'react-bootstrap';
@@ -8,7 +8,7 @@ import { getPendingQuestions } from '../../actions/chief';
 import PendingTab from './PendingTab';
 import { i18n } from '../App';
 
-export class IPendingTable extends Component {
+export class IPendingTable extends React.Component {
   static propTypes = {
     questions: PropTypes.array.isRequired,
     user: PropTypes.object.isRequired,
@@ -33,7 +33,7 @@ export class IPendingTable extends Component {
     const { selectedTab } = this.state;
     const { questions, user: { subordinates } } = this.props;
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="jumbotron p-3">
           <h1 className="text-center"><Trans>Pending questions</Trans></h1>
           <hr />
@@ -55,7 +55,7 @@ export class IPendingTable extends Component {
             userId={selectedTab}
           />
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

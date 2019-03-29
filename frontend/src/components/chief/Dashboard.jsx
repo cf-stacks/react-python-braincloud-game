@@ -4,6 +4,7 @@ import CalendarData from './CalendarData';
 import PendingTable from './PendingTable';
 import ActiveTable from './ActiveTable';
 import QuestionForm from '../author/QuestionForm';
+import AssignCategory from './AssignCategory';
 
 export const IDashboard = () => (
   <Switch>
@@ -13,6 +14,7 @@ export const IDashboard = () => (
       component={() => (
         <Fragment>
           <CalendarData />
+          <AssignCategory />
           <PendingTable />
           <ActiveTable />
         </Fragment>

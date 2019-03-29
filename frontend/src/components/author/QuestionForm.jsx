@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Select from 'react-select';
+// import Select from 'react-select';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
@@ -7,6 +7,7 @@ import axios from 'axios';
 import { addQuizQuestion, editQuizQuestion, getTodayCategories } from '../../actions/author';
 import { returnErrors } from '../../actions/messages';
 import FieldError from '../common/FieldError';
+import CategorySelect from '../common/CategorySelect';
 
 const initialState = {
   category: '',
@@ -112,17 +113,10 @@ export class IQuestionForm extends Component {
           <form onSubmit={this.onSubmit} className="px-3" id="add-question-form">
             <div className="form-group">
               <label htmlFor="category-id"><Trans>Category</Trans></label>
-              <Select
-                cacheOptions
-                name="category"
+              <CategorySelect
                 options={categories}
-                defaultOptions
                 onChange={this.onSelectChange}
-                getOptionLabel={opt => opt.name}
-                getOptionValue={opt => opt.id}
                 value={category}
-                placeholder={<Trans>Select category...</Trans>}
-                noOptionsMessage={() => <Trans>No categories to show</Trans>}
               />
               <FieldError for="category" />
             </div>

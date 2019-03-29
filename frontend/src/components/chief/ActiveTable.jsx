@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'react-bootstrap';
@@ -8,7 +8,7 @@ import { getActiveQuestions } from '../../actions/chief';
 import ActiveTab from './ActiveTab';
 import { i18n } from '../App';
 
-export class IActiveTable extends Component {
+export class IActiveTable extends React.Component {
   static propTypes = {
     questions: PropTypes.array.isRequired,
     user: PropTypes.object.isRequired,
@@ -33,7 +33,7 @@ export class IActiveTable extends Component {
     const { selectedTab } = this.state;
     const { questions, user: { subordinates } } = this.props;
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="jumbotron p-3">
           <h1 className="text-center"><Trans>Active questions</Trans></h1>
           <hr />
@@ -55,7 +55,7 @@ export class IActiveTable extends Component {
             userId={selectedTab}
           />
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

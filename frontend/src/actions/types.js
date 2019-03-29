@@ -6,20 +6,21 @@ export const AUTHOR_TODAY_CATEGORIES = 'AUTHOR_TODAY_CATEGORIES';
 
 // ------------------------------------------- EDITOR --------------------------------------------------------//
 export const EDITOR_GET_QUESTIONS = 'EDITOR_GET_QUESTIONS';
-export const EDITOR_GET_STATISTICS = 'EDITOR_GET_STATISTICS';
-export const EDITOR_CALENDAR_CHANGE = 'EDITOR_CALENDAR_CHANGE';
 export const EDITOR_GET_ASSIGNED_CATEGORIES = 'EDITOR_GET_ASSIGNED_CATEGORIES';
 export const EDITOR_CHANGE_ASSIGNED_CATEGORIES = 'EDITOR_CHANGE_ASSIGNED_CATEGORIES';
 export const EDITOR_ACCEPT_QUESTION = 'EDITOR_ACCEPT_QUESTION';
 export const EDITOR_REJECT_QUESTION = 'EDITOR_REJECT_QUESTION';
 
 // ------------------------------------------- CHIEF --------------------------------------------------------//
-export const CHIEF_CALENDAR_CHANGE = 'CHIEF_CALENDAR_CHANGE';
 export const CHIEF_GET_PENDING_QUESTIONS = 'CHIEF_GET_PENDING_QUESTIONS';
 export const CHIEF_GET_ACTIVE_QUESTIONS = 'CHIEF_GET_ACTIVE_QUESTIONS';
+export const CHIEF_GET_ASSIGNED_CATEGORIES = 'CHIEF_GET_ASSIGNED_CATEGORIES';
 
 // ------------------------------------------- COMMON --------------------------------------------------------//
 export const COMMON_GET_CATEGORIES = 'COMMON_GET_CATEGORIES';
+export const COMMON_CALENDAR_CHANGE = 'COMMON_CALENDAR_CHANGE';
+export const COMMON_GET_STATISTICS = 'COMMON_GET_STATISTICS';
+export const CHIEF_CHANGE_ASSIGNED_CATEGORIES = 'CHIEF_CHANGE_ASSIGNED_CATEGORIES';
 
 // -------------------------------------------- AUTH --------------------------------------------------------//
 export const USER_LOADING = 'USER_LOADING';

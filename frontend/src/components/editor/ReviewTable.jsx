@@ -20,7 +20,7 @@ class ReviewTable extends Component {
     submitReview: PropTypes.func.isRequired,
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     const { getQuestions: getQuestionsCall } = this.props;
     getQuestionsCall();
   }

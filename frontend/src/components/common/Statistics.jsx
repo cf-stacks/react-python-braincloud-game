@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Calendar from './Calendar';
-import { changeCalendarData } from '../../actions/editor';
 
 export class IStatistics extends Component {
   static propTypes = {
@@ -58,9 +57,9 @@ export class IStatistics extends Component {
 
 const mapStateToProps = (state, parentProps) => ({
   user: parentProps.user || state.auth.user,
-  statistics: state.editor.statistics,
-  calendarData: state.editor.calendarData,
+  statistics: state.common.statistics,
+  calendarData: state.common.calendarData,
 });
 
-const Statistics = connect(mapStateToProps, { changeCalendarData })(IStatistics);
+const Statistics = connect(mapStateToProps)(IStatistics);
 export default Statistics;

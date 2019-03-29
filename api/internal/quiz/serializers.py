@@ -54,3 +54,8 @@ class AssignedQuestionSerializer(serializers.Serializer):
     user = serializers.UUIDField()
     categories = serializers.ListField(child=serializers.UUIDField())
     date = serializers.DateField()
+
+    def __init__(self, *args, **kwargs):
+        super(AssignedQuestionSerializer, self).__init__(*args, **kwargs)
+        if not self.context['request'].user.groups.filter(name__iexact=models.USER_GROUP_EDITOR).exists():
+            self.fields.pop('date')

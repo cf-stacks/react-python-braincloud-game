@@ -13,28 +13,28 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: frontend/src/components/author/Statistics.jsx:36
+#: frontend/src/components/author/Statistics.jsx:37
 msgid "Accepted last shift"
 msgstr "Accepted last shift"
 
-#: frontend/src/components/chief/ActiveTable.jsx:37
+#: frontend/src/components/chief/ActiveTable.jsx:38
 msgid "Active questions"
 msgstr "Active questions"
 
-#: frontend/src/components/author/QuestionForm.jsx:156
+#: frontend/src/components/author/QuestionForm.jsx:94
 msgid "Add"
 msgstr "Add"
 
-#: frontend/src/components/author/QuestionForm.jsx:86
+#: frontend/src/components/author/QuestionForm.jsx:110
 msgid "Add quiz question"
 msgstr "Add quiz question"
 
-#: frontend/src/components/author/Statistics.jsx:31
+#: frontend/src/components/author/Statistics.jsx:32
 msgid "Added today"
 msgstr "Added today"
 
-#: frontend/src/components/chief/ActiveTable.jsx:45
-#: frontend/src/components/chief/PendingTable.jsx:45
+#: frontend/src/components/chief/ActiveTable.jsx:46
+#: frontend/src/components/chief/PendingTable.jsx:46
 #: frontend/src/components/editor/ReviewTable.jsx:47
 msgid "All"
 msgstr "All"
@@ -45,49 +45,57 @@ msgstr "All"
 msgid "Answers"
 msgstr "Answers"
 
-#: frontend/src/components/author/QuestionForm.jsx:156
+#: frontend/src/components/author/QuestionForm.jsx:94
 msgid "Apply"
 msgstr "Apply"
 
-#: frontend/src/components/editor/CalendarData.jsx:24
+#: frontend/src/components/chief/AssignCategory.jsx:58
+msgid "Assigned categories"
+msgstr "Assigned categories"
+
+#: frontend/src/components/editor/CalendarData.jsx:33
 msgid "Authors"
 msgstr "Authors"
 
-#: frontend/src/components/chief/CalendarData.jsx:17
-#: frontend/src/components/editor/CalendarData.jsx:16
+#: frontend/src/components/chief/CalendarData.jsx:24
+#: frontend/src/components/editor/CalendarData.jsx:25
 msgid "Calendar data"
 msgstr "Calendar data"
 
-#: frontend/src/components/editor/CalendarData.jsx:27
+#: frontend/src/components/author/QuestionForm.jsx:101
+msgid "Cancel"
+msgstr "Cancel"
+
+#: frontend/src/components/editor/CalendarData.jsx:36
 msgid "Categories"
 msgstr "Categories"
 
-#: frontend/src/components/author/QuestionForm.jsx:91
-#: frontend/src/components/author/TodayList.jsx:29
+#: frontend/src/components/author/QuestionForm.jsx:115
+#: frontend/src/components/author/TodayList.jsx:30
 #: frontend/src/components/chief/ActiveTab.jsx:54
 #: frontend/src/components/chief/PendingTab.jsx:55
 #: frontend/src/components/editor/ReviewTab.jsx:31
 msgid "Category"
 msgstr "Category"
 
-#: frontend/src/components/author/QuestionForm.jsx:119
-#: frontend/src/components/author/TodayList.jsx:30
+#: frontend/src/components/author/QuestionForm.jsx:136
+#: frontend/src/components/author/TodayList.jsx:31
 msgid "Correct answer"
 msgstr "Correct answer"
 
-#: frontend/src/components/author/QuestionForm.jsx:107
-#: frontend/src/components/author/TodayList.jsx:28
+#: frontend/src/components/author/QuestionForm.jsx:124
+#: frontend/src/components/author/TodayList.jsx:29
 #: frontend/src/components/chief/ActiveTab.jsx:55
 #: frontend/src/components/chief/PendingTab.jsx:56
 #: frontend/src/components/editor/ReviewTab.jsx:32
 msgid "Description"
 msgstr "Description"
 
-#: frontend/src/components/author/QuestionForm.jsx:86
+#: frontend/src/components/author/QuestionForm.jsx:110
 msgid "Edit quiz question"
 msgstr "Edit quiz question"
 
-#: frontend/src/components/chief/CalendarData.jsx:25
+#: frontend/src/components/chief/CalendarData.jsx:32
 msgid "Editors"
 msgstr "Editors"
 
@@ -95,11 +103,11 @@ msgstr "Editors"
 msgid "Email"
 msgstr "Email"
 
-#: frontend/src/components/author/QuestionForm.jsx:131
+#: frontend/src/components/author/QuestionForm.jsx:148
 msgid "Incorrect answer 1"
 msgstr "Incorrect answer 1"
 
-#: frontend/src/components/author/QuestionForm.jsx:143
+#: frontend/src/components/author/QuestionForm.jsx:160
 msgid "Incorrect answer 2"
 msgstr "Incorrect answer 2"
 
@@ -124,7 +132,7 @@ msgstr "Login"
 msgid "Month"
 msgstr "Month"
 
-#: frontend/src/components/author/QuestionForm.jsx:102
+#: frontend/src/components/common/CategorySelect.jsx:41
 msgid "No categories to show"
 msgstr "No categories to show"
 
@@ -132,11 +140,11 @@ msgstr "No categories to show"
 msgid "Password"
 msgstr "Password"
 
-#: frontend/src/components/chief/PendingTable.jsx:37
+#: frontend/src/components/chief/PendingTable.jsx:38
 msgid "Pending questions"
 msgstr "Pending questions"
 
-#: frontend/src/actions/editor.js:75
+#: frontend/src/actions/editor.js:66
 msgid "Question accepted"
 msgstr "Question accepted"
 
@@ -144,7 +152,7 @@ msgstr "Question accepted"
 msgid "Question added"
 msgstr "Question added"
 
-#: frontend/src/actions/editor.js:75
+#: frontend/src/actions/editor.js:66
 msgid "Question rejected"
 msgstr "Question rejected"
 
@@ -156,7 +164,7 @@ msgstr "Question updated"
 msgid "Questions for review"
 msgstr "Questions for review"
 
-#: frontend/src/components/author/Statistics.jsx:41
+#: frontend/src/components/author/Statistics.jsx:42
 msgid "Rejected last shift"
 msgstr "Rejected last shift"
 
@@ -165,8 +173,7 @@ msgstr "Rejected last shift"
 msgid "See all"
 msgstr "See all"
 
-#: frontend/src/components/author/QuestionForm.jsx:101
-#: frontend/src/components/editor/Categories.jsx:91
+#: frontend/src/components/common/CategorySelect.jsx:40
 msgid "Select category..."
 msgstr "Select category..."
 
@@ -174,7 +181,7 @@ msgstr "Select category..."
 msgid "Sesam LOGO"
 msgstr "Sesam LOGO"
 
-#: frontend/src/components/author/Statistics.jsx:22
+#: frontend/src/components/author/Statistics.jsx:23
 msgid "Statistics"
 msgstr "Statistics"
 
@@ -182,7 +189,7 @@ msgstr "Statistics"
 msgid "Today"
 msgstr "Today"
 
-#: frontend/src/components/author/TodayList.jsx:22
+#: frontend/src/components/author/TodayList.jsx:23
 msgid "Today added"
 msgstr "Today added"
 
@@ -190,7 +197,7 @@ msgstr "Today added"
 msgid "Total"
 msgstr "Total"
 
-#: frontend/src/components/author/Statistics.jsx:26
+#: frontend/src/components/author/Statistics.jsx:27
 msgid "Total month"
 msgstr "Total month"
 

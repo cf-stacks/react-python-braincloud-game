@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Trans } from '@lingui/macro';
-import Select from 'react-select';
 
 import Calendar from '../common/Calendar';
 import { changeCalendarData, changeAssignedCategories } from '../../actions/editor';
 import { getCategories } from '../../actions/common';
 import { safeGet } from '../../utils/object_utils';
+import CategorySelect from '../common/CategorySelect';
 
 export class ICategories extends Component {
   static propTypes = {
@@ -20,7 +19,7 @@ export class ICategories extends Component {
     changeAssignedCategories: PropTypes.func.isRequired,
   };
 
-  componentDidMount() {
+  componentDidMount = () => {
     const {
       changeCalendarData: changeCalendarDataCall,
       getCategories: getCategoriesCall,
@@ -28,7 +27,7 @@ export class ICategories extends Component {
     } = this.props;
     changeCalendarDataCall(date, view);
     getCategoriesCall();
-  }
+  };
 
   onSelectChange = (obj, date, value) => {
     const { assignedCategories, changeAssignedCategories: changeAssignedCategoriesCall } = this.props;
@@ -49,46 +48,17 @@ export class ICategories extends Component {
   };
 
   handleRenderCell = (obj, date, value) => {
-    const { categories } = this.props;
-    const customStyles = {
-      control: (base, state) => ({
-        ...base,
-        backgroundColor: state.isFocused ? 'rgba(255,255,255,0.7)' : 'transparent',
-        ':hover': {
-          backgroundColor: 'rgba(255,255,255,0.3)',
-        },
-      }),
-      multiValue: base => ({
-        ...base,
-        backgroundColor: 'rgb(115, 158, 226, 0.5)',
-        border: 'solid 2px blue',
-        borderRadius: '25px',
-      }),
-      multiValueLabel: base => ({
-        ...base,
-        color: 'black',
-        fontWeight: 'bold',
-      }),
-      multiValueRemove: base => ({
-        ...base,
-        borderRadius: '25px',
-      }),
-    };
+    const { categories, assignedCategories, user } = this.props;
     return (
       <div className={value.length === 0 ? 'd-none' : ''}>
-        <Select
-          styles={customStyles}
-          menuPortalTarget={document.body}
-          cacheOptions
+        <CategorySelect
           isMulti
           name="category"
-          options={categories}
-          defaultOptions
+          options={categories.filter(
+            option => safeGet(assignedCategories, `${user.id}.all`, []).includes(option.id),
+          )}
           onChange={e => this.onSelectChange(obj, date, e)}
-          getOptionLabel={opt => opt.name}
-          getOptionValue={opt => opt.id}
           value={categories.filter(option => value.includes(option.id))}
-          placeholder={<Trans>Select category...</Trans>}
         />
       </div>
     );
@@ -117,7 +87,7 @@ export class ICategories extends Component {
 const mapStateToProps = state => ({
   user: state.auth.user,
   assignedCategories: state.editor.assignedCategories,
-  calendarData: state.editor.calendarData,
+  calendarData: state.common.calendarData,
   categories: state.common.categories,
 });
 

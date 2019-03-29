@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
-export class IPendingTab extends Component {
+export class IPendingTab extends React.Component {
   static propTypes = {
     count: PropTypes.number,
     users: PropTypes.array.isRequired,

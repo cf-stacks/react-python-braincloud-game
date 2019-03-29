@@ -2,8 +2,6 @@ import moment from 'moment';
 
 import {
   EDITOR_GET_QUESTIONS,
-  EDITOR_GET_STATISTICS,
-  EDITOR_CALENDAR_CHANGE,
   EDITOR_GET_ASSIGNED_CATEGORIES,
   EDITOR_ACCEPT_QUESTION,
   EDITOR_REJECT_QUESTION,
@@ -13,12 +11,7 @@ import { safeGet } from '../utils/object_utils';
 
 const initialState = {
   questions: [],
-  statistics: {},
   assignedCategories: {},
-  calendarData: {
-    date: moment(),
-    view: 'isoWeek',
-  },
 };
 
 export default function (state = initialState, action) {
@@ -27,16 +20,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         questions: action.payload,
-      };
-    case EDITOR_GET_STATISTICS:
-      return {
-        ...state,
-        statistics: action.payload,
-      };
-    case EDITOR_CALENDAR_CHANGE:
-      return {
-        ...state,
-        calendarData: action.payload,
       };
     case EDITOR_GET_ASSIGNED_CATEGORIES:
       return {

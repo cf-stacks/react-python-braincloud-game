@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { COMMON_GET_CATEGORIES } from './types';
+import {
+  COMMON_GET_CATEGORIES,
+  COMMON_GET_STATISTICS,
+} from './types';
 import { returnErrors } from './messages';
 
 // GET CATEGORY LIST
@@ -11,4 +14,11 @@ export const getCategories = () => (dispatch) => {
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
-export default getCategories;
+// GET STATISTICS
+export const getStatistics = (startDate, endDate) => (dispatch) => {
+  axios
+    .get('/api/internal/quiz/question/statistics/', { params: { start_date: startDate, end_date: endDate } })
+    .then((res) => {
+      dispatch({ type: COMMON_GET_STATISTICS, payload: res.data });
+    }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};

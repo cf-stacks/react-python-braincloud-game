@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
 import moment from 'moment';
 
-export class IActiveTab extends Component {
+export class IActiveTab extends React.Component {
   static propTypes = {
     count: PropTypes.number,
     users: PropTypes.array.isRequired,
