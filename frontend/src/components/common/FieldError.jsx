@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import '../../css/FieldError.css';
 
-export const FieldError = (props) => {
+export const IFieldError = (props) => {
   const { error, for: name } = props;
   const errorMessage = error[name] ? error[name] : '';
   return (
@@ -12,7 +12,7 @@ export const FieldError = (props) => {
   );
 };
 
-FieldError.propTypes = {
+IFieldError.propTypes = {
   for: PropTypes.string.isRequired,
   error: PropTypes.object.isRequired,
 };
@@ -21,4 +21,5 @@ const mapStateToProps = state => ({
   error: state.errors.msg,
 });
 
-export default connect(mapStateToProps)(FieldError);
+const FieldError = connect(mapStateToProps)(IFieldError);
+export default FieldError;

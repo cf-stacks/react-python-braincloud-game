@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
 import Select from 'react-select';
 
-import { Calendar } from './Calendar';
+import Calendar from '../common/Calendar';
 import { changeCalendarData, changeAssignedCategories } from '../../actions/editor';
 import { getCategories } from '../../actions/common';
 import { safeGet } from '../../utils/object_utils';
 
-class Categories extends Component {
+export class ICategories extends Component {
   static propTypes = {
     user: PropTypes.object.isRequired,
     categories: PropTypes.array.isRequired,
@@ -121,6 +121,7 @@ const mapStateToProps = state => ({
   categories: state.common.categories,
 });
 
-export default connect(mapStateToProps, {
+const Categories = connect(mapStateToProps, {
   changeCalendarData, getCategories, changeAssignedCategories,
-})(Categories);
+})(ICategories);
+export default Categories;

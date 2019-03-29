@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
 import { getTodayList } from '../../actions/author';
 
-export class TodayList extends Component {
+export class ITodayList extends Component {
   static propTypes = {
     todayList: PropTypes.array.isRequired,
     getTodayList: PropTypes.func.isRequired,
@@ -62,4 +62,5 @@ const mapStateToProps = state => ({
   todayList: state.author.todayList,
 });
 
-export default connect(mapStateToProps, { getTodayList })(TodayList);
+const TodayList = connect(mapStateToProps, { getTodayList })(ITodayList);
+export default TodayList;

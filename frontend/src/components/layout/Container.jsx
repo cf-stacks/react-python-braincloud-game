@@ -5,7 +5,7 @@ import AuthorDashboard from '../author/Dashboard';
 import EditorDashboard from '../editor/Dashboard';
 import ChiefDashboard from '../chief/Dashboard';
 
-export class Container extends Component {
+export class IContainer extends Component {
   static propTypes = {
     user: PropTypes.shape({
       date_joined: PropTypes.string.isRequired,
@@ -57,7 +57,7 @@ export class Container extends Component {
   }
 }
 
-Container.defaultProps = {
+IContainer.defaultProps = {
   user: null,
 };
 
@@ -65,4 +65,5 @@ const mapStateTpProps = state => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateTpProps)(Container);
+const Container = connect(mapStateTpProps)(IContainer);
+export default Container;

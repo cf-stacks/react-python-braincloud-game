@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
 
 import { login } from '../../actions/auth';
-import CommonFieldError from '../common/FieldError';
+import FieldError from '../common/FieldError';
 
 export class Login extends Component {
   state = {
@@ -45,7 +45,7 @@ export class Login extends Component {
                 onChange={this.onChange}
                 value={email}
               />
-              <CommonFieldError for="email" />
+              <FieldError for="email" />
             </div>
             <div className="form-group">
               <label><Trans>Password</Trans></label>
@@ -56,7 +56,7 @@ export class Login extends Component {
                 onChange={this.onChange}
                 value={password}
               />
-              <CommonFieldError for="password" />
+              <FieldError for="password" />
             </div>
             <div className="form-group">
               <button type="submit" className="btn btn-primary"><Trans>Log in</Trans></button>

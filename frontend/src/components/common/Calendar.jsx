@@ -7,12 +7,7 @@ import '../../css/Calendar.css';
 
 const getDays = (date, view) => moment.range(date.clone().startOf(view), date.clone().endOf(view)).by('days');
 
-export class Calendar extends Component {
-  formats = {
-    isoWeek: 'dd D MMMM Y',
-    server: 'Y-MM-DD',
-  };
-
+export class ICalendar extends Component {
   static propTypes = {
     calendarData: PropTypes.object,
     objects: PropTypes.array.isRequired,
@@ -22,6 +17,11 @@ export class Calendar extends Component {
     handleRenderTotal: PropTypes.func,
     handleRenderCell: PropTypes.func,
     defaultRenderValue: PropTypes.any,
+  };
+
+  formats = {
+    isoWeek: 'dd D MMMM Y',
+    server: 'Y-MM-DD',
   };
 
   handleClickCell = (event) => {
@@ -157,4 +157,5 @@ export class Calendar extends Component {
   }
 }
 
+const Calendar = ICalendar;
 export default Calendar;

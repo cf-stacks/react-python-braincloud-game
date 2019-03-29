@@ -7,7 +7,7 @@ import { logout } from '../../actions/auth';
 
 import '../../css/Header.css';
 
-export class Header extends Component {
+export class IHeader extends Component {
   state = {
     currentTime: new Date().toLocaleString(),
     intervalID: null,
@@ -130,4 +130,5 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout })(Header);
+const Header = connect(mapStateToProps, { logout })(IHeader);
+export default Header;

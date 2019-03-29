@@ -1,14 +1,15 @@
 import React, { Fragment } from 'react';
-import AuthorStatistics from './Statistics';
-import AuthorQuestionForm from './QuestionForm';
-import AuthorTodayList from './TodayList';
+import Statistics from './Statistics';
+import QuestionForm from './QuestionForm';
+import TodayList from './TodayList';
 
-export default function Dashboard() {
-  return (
-    <Fragment>
-      <AuthorQuestionForm />
-      <AuthorStatistics />
-      <AuthorTodayList />
-    </Fragment>
-  );
-}
+export const IDashboard = () => (
+  <Fragment>
+    <QuestionForm />
+    <Statistics />
+    <TodayList />
+  </Fragment>
+);
+
+const Dashboard = IDashboard;
+export default Dashboard;

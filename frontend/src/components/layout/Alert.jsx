@@ -3,7 +3,7 @@ import { withAlert } from 'react-alert';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-export class Alert extends Component {
+export class _Alert extends Component {
   static propTypes = {
     error: PropTypes.shape({
       status: PropTypes.number,
@@ -25,6 +25,7 @@ export class Alert extends Component {
     const { error, alert, message } = this.props;
     if (error !== prevProps.error) {
       if (error.status === 401) return;
+      if (error.status === 404) alert.error('Page not found');
       if (error.msg.detail) alert.error(error.msg.detail);
       if (error.msg.non_field_errors) alert.error(error.msg.non_field_errors.join());
     }
@@ -43,4 +44,6 @@ const mapStateToProps = state => ({
   message: state.messages,
 });
 
-export default connect(mapStateToProps)(withAlert()(Alert));
+
+const Alert = connect(mapStateToProps)(withAlert()(_Alert));
+export default Alert;

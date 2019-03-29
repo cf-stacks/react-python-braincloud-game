@@ -4,33 +4,57 @@ import { Trans } from '@lingui/macro';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
-export class ReviewTab extends Component {
+export class IPendingTab extends Component {
   static propTypes = {
+    count: PropTypes.number,
+    users: PropTypes.array.isRequired,
     questions: PropTypes.array.isRequired,
     userId: PropTypes.string.isRequired,
-    submitReview: PropTypes.func.isRequired,
   };
 
-  onClick = (event) => {
-    const button = event.target.closest('button');
-    const { submitReview: submitReviewCall } = this.props;
-    submitReviewCall(button.getAttribute('data-id'), button.name);
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: props.count,
+    };
+  }
+
+  onClickSeeMore = () => {
+    this.setState({ count: null });
   };
 
   render() {
-    const { questions, userId } = this.props;
+    const { questions, userId, users } = this.props;
+    const { count } = this.state;
     let userQuestions = questions;
     if (userId) {
-      userQuestions = questions.filter(question => question.author === userId);
+      userQuestions = userQuestions.filter(
+        question => users.find(obj => obj.id === userId).subordinates.map(obj => obj.id).includes(question.author),
+      );
+    }
+    let seeAll = null;
+    if (count && userQuestions.length > count) {
+      userQuestions = userQuestions.slice(0, count);
+      seeAll = (
+        <tr>
+          <td colSpan="4" className="p-2">
+            <div className="text-center">
+              <button type="button" onClick={this.onClickSeeMore} className="btn btn-outline-secondary">
+                <Trans>See all</Trans>
+              </button>
+            </div>
+          </td>
+        </tr>
+      );
     }
     return (
       <table className="table table-striped table-sm">
         <thead className="thead-dark">
           <tr>
-            <th className="text-center">#</th>
+            <th className="text-center" style={{ width: '5%' }}>#</th>
             <th className="text-center" style={{ width: '25%' }}><Trans>Category</Trans></th>
-            <th className="text-center"><Trans>Description</Trans></th>
-            <th className="text-center"><Trans>Answers</Trans></th>
+            <th className="text-center" style={{ width: '50%' }}><Trans>Description</Trans></th>
+            <th className="text-center" style={{ width: '20%' }}><Trans>Answers</Trans></th>
           </tr>
         </thead>
         <tbody>
@@ -46,20 +70,20 @@ export class ReviewTab extends Component {
                   </div>
                   <div className="d-flex flex-row justify-content-around">
                     <button
+                      disabled
                       className="btn btn-success rounded-circle border border-secondary my-1"
                       type="submit"
                       name="accept"
                       data-id={question.id}
-                      onClick={this.onClick}
                     >
                       <i className="fas fa-check" />
                     </button>
                     <button
+                      disabled
                       className="btn btn-danger rounded-circle border border-secondary my-1"
                       type="submit"
                       name="reject"
                       data-id={question.id}
-                      onClick={this.onClick}
                     >
                       <i className="fas fa-times" />
                     </button>
@@ -94,10 +118,12 @@ export class ReviewTab extends Component {
               </td>
             </tr>
           )) }
+          { seeAll }
         </tbody>
       </table>
     );
   }
 }
 
-export default ReviewTab;
+const PendingTab = IPendingTab;
+export default PendingTab;

@@ -6,7 +6,7 @@ import { Trans } from '@lingui/macro';
 import axios from 'axios';
 import { addQuizQuestion, editQuizQuestion, getTodayCategories } from '../../actions/author';
 import { returnErrors } from '../../actions/messages';
-import CommonFieldError from '../common/FieldError';
+import FieldError from '../common/FieldError';
 
 const initialState = {
   category: '',
@@ -16,7 +16,7 @@ const initialState = {
   answerIncorrect2: '',
 };
 
-export class QuestionForm extends Component {
+export class IQuestionForm extends Component {
   state = initialState;
 
   static propTypes = {
@@ -38,7 +38,7 @@ export class QuestionForm extends Component {
             answerCorrect: res.data.answer_correct,
             answerIncorrect1: res.data.answer_incorrect_1,
             answerIncorrect2: res.data.answer_incorrect_2,
-          })
+          });
         }).catch(err => returnErrorsCall(err.response.data, err.response.status));
     }
     const { getTodayCategories: getTodayCategoriesCall } = this.props;
@@ -50,13 +50,13 @@ export class QuestionForm extends Component {
   };
 
   onSelectChange = (value) => {
-    this.setState({ category: value })
+    this.setState({ category: value });
   };
 
   onSubmit = (e) => {
     e.preventDefault();
     const {
-      questionId, history, addQuizQuestion: addQuizQuestionCall, editQuizQuestion: editQuizQuestionCall
+      questionId, history, addQuizQuestion: addQuizQuestionCall, editQuizQuestion: editQuizQuestionCall,
     } = this.props;
     const {
       category, description, answerCorrect, answerIncorrect1, answerIncorrect2,
@@ -73,13 +73,34 @@ export class QuestionForm extends Component {
         history.push('/');
       });
     } else {
-      addQuizQuestionCall(data, () => this.setState({form: initialState.form}));
+      addQuizQuestionCall(data, () => this.setState(initialState));
     }
+  };
+
+  onCancel = (e) => {
+    e.preventDefault();
+    const { history } = this.props;
+    history.goBack();
   };
 
   render() {
     const { categories, questionId } = this.props;
-    const { category, description, answerCorrect, answerIncorrect1, answerIncorrect2 } = this.state;
+    const {
+      category, description, answerCorrect, answerIncorrect1, answerIncorrect2,
+    } = this.state;
+    const submitButton = (
+      <button type="submit" className="btn btn-outline-primary m-2">
+        { questionId ? <Trans>Apply</Trans> : <Trans>Add</Trans> }
+      </button>
+    );
+    let cancelButton = null;
+    if (questionId) {
+      cancelButton = (
+        <button type="button" className="btn btn-outline-danger m-2" onClick={this.onCancel}>
+          <Trans>Cancel</Trans>
+        </button>
+      );
+    }
 
     return (
       <Fragment>
@@ -103,7 +124,7 @@ export class QuestionForm extends Component {
                 placeholder={<Trans>Select category...</Trans>}
                 noOptionsMessage={() => <Trans>No categories to show</Trans>}
               />
-              <CommonFieldError for="category" />
+              <FieldError for="category" />
             </div>
             <div className="form-group">
               <label htmlFor="description-id"><Trans>Description</Trans></label>
@@ -114,7 +135,7 @@ export class QuestionForm extends Component {
                 onChange={this.onChange}
                 value={description}
               />
-              <CommonFieldError for="description" />
+              <FieldError for="description" />
             </div>
             <div className="row">
               <div className="col-4 form-group">
@@ -127,7 +148,7 @@ export class QuestionForm extends Component {
                   onChange={this.onChange}
                   value={answerCorrect}
                 />
-                <CommonFieldError for="answer_correct" />
+                <FieldError for="answer_correct" />
               </div>
               <div className="col-4 form-group">
                 <label htmlFor="answer_incorrect_1-id"><Trans>Incorrect answer 1</Trans></label>
@@ -139,7 +160,7 @@ export class QuestionForm extends Component {
                   onChange={this.onChange}
                   value={answerIncorrect1}
                 />
-                <CommonFieldError for="answer_incorrect_1" />
+                <FieldError for="answer_incorrect_1" />
               </div>
               <div className="col-4 form-group">
                 <label htmlFor="answer_incorrect_2-id"><Trans>Incorrect answer 2</Trans></label>
@@ -151,12 +172,13 @@ export class QuestionForm extends Component {
                   onChange={this.onChange}
                   value={answerIncorrect2}
                 />
-                <CommonFieldError for="answer_incorrect_2" />
+                <FieldError for="answer_incorrect_2" />
               </div>
             </div>
-            <button type="submit" className="btn btn-primary">
-              { questionId ? <Trans>Apply</Trans> : <Trans>Add</Trans> }
-            </button>
+            <div className="d-flex flex-row justify-content-center">
+              { submitButton }
+              { cancelButton }
+            </div>
           </form>
         </div>
       </Fragment>
@@ -169,9 +191,8 @@ const mapStateToProps = (state, parentProps) => ({
   categories: state.author.categories,
 });
 
-export default connect(
-  mapStateToProps,
+const QuestionForm = connect(mapStateToProps,
   {
-    addQuizQuestion, getTodayCategories, editQuizQuestion, returnErrors
-  },
-)(QuestionForm);
+    addQuizQuestion, getTodayCategories, editQuizQuestion, returnErrors,
+  })(IQuestionForm);
+export default QuestionForm;

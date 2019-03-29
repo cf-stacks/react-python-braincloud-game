@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
 import { getStatistics } from '../../actions/author';
 
-export class Statistics extends Component {
+export class IStatistics extends Component {
   static propTypes = {
     statistics: PropTypes.object,
     getStatistics: PropTypes.func,
@@ -22,7 +22,7 @@ export class Statistics extends Component {
         <div className="jumbotron p-3">
           <h1 className="text-center"><Trans>Statistics</Trans></h1>
           <hr />
-          <div className="d-flex d-flex flex-row justify-content-around">
+          <div className="d-flex flex-row justify-content-around">
             <div>
               <Trans>Total month</Trans>
               :
@@ -54,4 +54,5 @@ const mapStateToProps = state => ({
   statistics: state.author.statistics,
 });
 
-export default connect(mapStateToProps, { getStatistics })(Statistics);
+const Statistics = connect(mapStateToProps, { getStatistics })(IStatistics);
+export default Statistics;

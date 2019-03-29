@@ -1,15 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 import { Trans } from '@lingui/macro';
+import { connect } from 'react-redux';
 import Statistics from '../common/Statistics';
-import Categories from './Categories';
 
-export class CalendarData extends Component {
+export class ICalendarData extends Component {
   state = {
-    selectedTab: 'stats',
+    selectedTab: 'editors',
   };
 
   render() {
+    const { user } = this.props;
     const { selectedTab } = this.state;
     return (
       <Fragment>
@@ -22,12 +23,14 @@ export class CalendarData extends Component {
             onSelect={key => this.setState({ selectedTab: key })}
             className="py-3"
           >
-            <Tab eventKey="stats" title={<Trans>Authors</Trans>}>
+            <Tab eventKey="editors" title={<Trans>Editors</Trans>}>
               <Statistics />
             </Tab>
-            <Tab eventKey="categories" title={<Trans>Categories</Trans>}>
-              <Categories />
-            </Tab>
+            { user.subordinates.map(subordinate => (
+              <Tab key={subordinate.id} eventKey={subordinate.id} title={subordinate.name}>
+                <Statistics user={subordinate} />
+              </Tab>
+            ))}
           </Tabs>
         </div>
       </Fragment>
@@ -35,4 +38,9 @@ export class CalendarData extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  user: state.auth.user,
+});
+
+const CalendarData = connect(mapStateToProps)(ICalendarData);
 export default CalendarData;

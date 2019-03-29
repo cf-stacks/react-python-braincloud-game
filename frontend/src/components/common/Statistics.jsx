@@ -2,10 +2,10 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Calendar } from './Calendar';
+import Calendar from './Calendar';
 import { changeCalendarData } from '../../actions/editor';
 
-class Statistics extends Component {
+export class IStatistics extends Component {
   static propTypes = {
     user: PropTypes.object.isRequired,
     statistics: PropTypes.object.isRequired,
@@ -56,10 +56,11 @@ class Statistics extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.auth.user,
+const mapStateToProps = (state, parentProps) => ({
+  user: parentProps.user || state.auth.user,
   statistics: state.editor.statistics,
   calendarData: state.editor.calendarData,
 });
 
-export default connect(mapStateToProps, { changeCalendarData })(Statistics);
+const Statistics = connect(mapStateToProps, { changeCalendarData })(IStatistics);
+export default Statistics;
