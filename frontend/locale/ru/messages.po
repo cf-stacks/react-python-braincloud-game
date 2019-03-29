@@ -13,145 +13,187 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: frontend/src/components/author/Statistics.js:25
+#: frontend/src/components/author/Statistics.jsx:36
 msgid "Accepted last shift"
 msgstr "Принято за прошлую смену"
 
-#: frontend/src/components/author/QuestionForm.js:101
+#: frontend/src/components/chief/ActiveTable.jsx:37
+msgid "Active questions"
+msgstr "Вопросы в игре"
+
+#: frontend/src/components/author/QuestionForm.jsx:156
 msgid "Add"
 msgstr "Добавить"
 
-#: frontend/src/components/author/QuestionForm.js:37
+#: frontend/src/components/author/QuestionForm.jsx:86
 msgid "Add quiz question"
 msgstr "Добавить вопрос"
 
-#: frontend/src/components/author/Statistics.js:24
+#: frontend/src/components/author/Statistics.jsx:31
 msgid "Added today"
 msgstr "Добавлено сегодня"
 
-#: frontend/src/components/editor/ReviewTable.js:78
+#: frontend/src/components/chief/ActiveTable.jsx:45
+#: frontend/src/components/chief/PendingTable.jsx:45
+#: frontend/src/components/editor/ReviewTable.jsx:47
+msgid "All"
+msgstr "Все"
+
+#: frontend/src/components/chief/ActiveTab.jsx:56
+#: frontend/src/components/chief/PendingTab.jsx:57
+#: frontend/src/components/editor/ReviewTab.jsx:33
 msgid "Answers"
 msgstr "Ответы"
 
-#: frontend/src/components/editor/CalendarData.js:24
+#: frontend/src/components/author/QuestionForm.jsx:156
+msgid "Apply"
+msgstr "Применить"
+
+#: frontend/src/components/editor/CalendarData.jsx:24
 msgid "Authors"
 msgstr "Авторы"
 
-#: frontend/src/components/editor/CalendarData.js:16
+#: frontend/src/components/chief/CalendarData.jsx:17
+#: frontend/src/components/editor/CalendarData.jsx:16
 msgid "Calendar data"
 msgstr "Календарные данные"
 
-#: frontend/src/components/editor/CalendarData.js:27
+#: frontend/src/components/editor/CalendarData.jsx:27
 msgid "Categories"
 msgstr "Темы"
 
-#: frontend/src/components/author/QuestionForm.js:41
-#: frontend/src/components/author/TodayList.js:27
-#: frontend/src/components/editor/ReviewTable.js:76
+#: frontend/src/components/author/QuestionForm.jsx:91
+#: frontend/src/components/author/TodayList.jsx:29
+#: frontend/src/components/chief/ActiveTab.jsx:54
+#: frontend/src/components/chief/PendingTab.jsx:55
+#: frontend/src/components/editor/ReviewTab.jsx:31
 msgid "Category"
 msgstr "Тема"
 
-#: frontend/src/components/author/QuestionForm.js:68
-#: frontend/src/components/author/TodayList.js:28
+#: frontend/src/components/author/QuestionForm.jsx:119
+#: frontend/src/components/author/TodayList.jsx:30
 msgid "Correct answer"
 msgstr "Правильный ответ"
 
-#: frontend/src/components/author/QuestionForm.js:57
-#: frontend/src/components/author/TodayList.js:26
-#: frontend/src/components/editor/ReviewTable.js:77
+#: frontend/src/components/author/QuestionForm.jsx:107
+#: frontend/src/components/author/TodayList.jsx:28
+#: frontend/src/components/chief/ActiveTab.jsx:55
+#: frontend/src/components/chief/PendingTab.jsx:56
+#: frontend/src/components/editor/ReviewTab.jsx:32
 msgid "Description"
 msgstr "Описание"
 
-#: frontend/src/components/accounts/Login.js:35
+#: frontend/src/components/author/QuestionForm.jsx:86
+msgid "Edit quiz question"
+msgstr "Редактировать вопрос"
+
+#: frontend/src/components/chief/CalendarData.jsx:25
+msgid "Editors"
+msgstr "Редакторы"
+
+#: frontend/src/components/accounts/Login.jsx:40
 msgid "Email"
 msgstr "Адрес электронной почты"
 
-#: frontend/src/components/author/QuestionForm.js:79
+#: frontend/src/components/author/QuestionForm.jsx:131
 msgid "Incorrect answer 1"
 msgstr "Неправильный ответ 1"
 
-#: frontend/src/components/author/QuestionForm.js:90
+#: frontend/src/components/author/QuestionForm.jsx:143
 msgid "Incorrect answer 2"
 msgstr "Неправильный ответ 2"
 
-#: frontend/src/components/layout/Header.js:42
+#: frontend/src/components/layout/Header.jsx:79
 msgid "Loading..."
 msgstr "Загрузка..."
 
-#: frontend/src/components/accounts/Login.js:55
-#: frontend/src/components/layout/Header.js:57
+#: frontend/src/components/accounts/Login.jsx:62
+#: frontend/src/components/layout/Header.jsx:94
 msgid "Log in"
 msgstr "Войти"
 
-#: frontend/src/components/layout/Header.js:49
+#: frontend/src/components/layout/Header.jsx:86
 msgid "Log out"
 msgstr "Выйти"
 
-#: frontend/src/components/accounts/Login.js:32
+#: frontend/src/components/accounts/Login.jsx:37
 msgid "Login"
 msgstr "Вход"
 
-#: frontend/src/components/editor/Calendar.js:99
+#: frontend/src/components/common/Calendar.jsx:103
 msgid "Month"
 msgstr "Месяц"
 
-#: frontend/src/components/author/QuestionForm.js:52
+#: frontend/src/components/author/QuestionForm.jsx:102
 msgid "No categories to show"
 msgstr "Нет категорий для выбора"
 
-#: frontend/src/components/accounts/Login.js:45
+#: frontend/src/components/accounts/Login.jsx:51
 msgid "Password"
 msgstr "Пароль"
 
-#: frontend/src/actions/editor.js:74
+#: frontend/src/components/chief/PendingTable.jsx:37
+msgid "Pending questions"
+msgstr "Вопросы в очереди"
+
+#: frontend/src/actions/editor.js:75
 msgid "Question accepted"
 msgstr "Вопрос принят"
 
-#: frontend/src/actions/author.js:32
+#: frontend/src/actions/author.js:30
 msgid "Question added"
 msgstr "Вопрос добавлен"
 
-#: frontend/src/actions/editor.js:74
+#: frontend/src/actions/editor.js:75
 msgid "Question rejected"
 msgstr "Вопрос отвергнут"
 
-#: frontend/src/components/editor/ReviewTable.js:32
+#: frontend/src/actions/author.js:46
+msgid "Question updated"
+msgstr "Вопрос обновлен"
+
+#: frontend/src/components/editor/ReviewTable.jsx:39
 msgid "Questions for review"
 msgstr "Вопросы для проверки"
 
-#: frontend/src/components/author/Statistics.js:26
+#: frontend/src/components/author/Statistics.jsx:41
 msgid "Rejected last shift"
 msgstr "Отказано за прошлую смену"
 
-#: frontend/src/components/author/QuestionForm.js:51
-#: frontend/src/components/editor/Categories.js:91
+#: frontend/src/components/chief/ActiveTab.jsx:42
+#: frontend/src/components/chief/PendingTab.jsx:43
+msgid "See all"
+msgstr "Смотреть все"
+
+#: frontend/src/components/author/QuestionForm.jsx:101
+#: frontend/src/components/editor/Categories.jsx:91
 msgid "Select category..."
 msgstr "Выберите тему..."
 
-#: frontend/src/components/layout/Header.js:65
+#: frontend/src/components/layout/Header.jsx:102
 msgid "Sesam LOGO"
 msgstr "Сезам ЛОГО"
 
-#: frontend/src/components/author/Statistics.js:20
+#: frontend/src/components/author/Statistics.jsx:22
 msgid "Statistics"
 msgstr "Статистика"
 
-#: frontend/src/components/editor/Calendar.js:105
+#: frontend/src/components/common/Calendar.jsx:111
 msgid "Today"
 msgstr "Сегодня"
 
-#: frontend/src/components/author/TodayList.js:20
+#: frontend/src/components/author/TodayList.jsx:22
 msgid "Today added"
 msgstr "Добавлено сегодня"
 
-#: frontend/src/components/editor/Calendar.js:73
+#: frontend/src/components/common/Calendar.jsx:73
 msgid "Total"
 msgstr "Всего"
 
-#: frontend/src/components/author/Statistics.js:23
+#: frontend/src/components/author/Statistics.jsx:26
 msgid "Total month"
 msgstr "Всего за месяц"
 
-#: frontend/src/components/editor/Calendar.js:99
+#: frontend/src/components/common/Calendar.jsx:103
 msgid "Week"
 msgstr "Неделя"
