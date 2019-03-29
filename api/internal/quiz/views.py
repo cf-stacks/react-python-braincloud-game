@@ -27,6 +27,7 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
         'today': serializers.QuestionSerializer,
         'pending': serializers.QuestionSerializer,
         'create': serializers.CreateQuestionSerializer,
+        'update': serializers.CreateQuestionSerializer,
         'statistics': serializers.StatisticsSerializer,
         'reject': serializers.QuestionSerializer,
         'accept': serializers.QuestionSerializer,
@@ -43,10 +44,23 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
 
     @decorators.action(detail=False)
     def pending(self, request):
+        if request.user.groups.filter(name__iexact=models.USER_GROUP_CHIEF).exists():
+            authors = models.User.objects.filter(boss__in=request.user.subordinates.all())
+        else:
+            authors = request.user.subordinates.all()
         queryset = self.get_queryset().filter(
             status=models.Question.STATUS_NEW,
             created_at__date__lt=timezone.localtime(timezone.now()).date(),
-            author__in=request.user.subordinates.all(),
+            author__in=authors,
+        )
+        serializer = self.get_serializer(queryset, many=True)
+        return response.Response(data=serializer.data)
+
+    @decorators.action(detail=False)
+    def active(self, request):
+        queryset = self.get_queryset().filter(
+            status=models.Question.STATUS_ACCEPTED,
+            editor__in=request.user.subordinates.all(),
         )
         serializer = self.get_serializer(queryset, many=True)
         return response.Response(data=serializer.data)
@@ -71,8 +85,9 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
                 }
 
             if request.user.groups.filter(name__iexact=models.USER_GROUP_CHIEF).exists():
-                statistic = self.get_queryset().exclude(status=models.Question.STATUS_NEW).values('editor_id').filter(
+                statistic = self.get_queryset().order_by('reviewed_at').values('editor_id').filter(
                     reviewed_at__date__range=(serializer.data['start_date'], serializer.data['end_date']),
+                    editor__in=request.user.subordinates.all(),
                 ).annotate(
                     reviewed_at=TruncDate('reviewed_at'),
                 ).annotate(

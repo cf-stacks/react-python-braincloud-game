@@ -33,7 +33,11 @@ class UserSerializer(serializers.ModelSerializer):
                 self.fields.pop(field)
 
     def get_subordinates(self, instance):
-        return SubordinateSerializer(instance.subordinates.order_by('name'), many=True).data
+        return UserSerializer(
+            instance.subordinates.order_by('name'),
+            context=self.context,
+            many=True
+        ).data
 
 
 class AnonymousSerializer(serializers.ModelSerializer):
