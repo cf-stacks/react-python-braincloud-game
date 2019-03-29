@@ -13,34 +13,36 @@ export class Statistics extends Component {
   componentDidMount = () => {
     const { getStatistics: getStatisticsCall } = this.props;
     getStatisticsCall();
-  }
+  };
 
   render() {
     const { statistics } = this.props;
     return (
       <Fragment>
-        <h1 className="text-center"><Trans>Statistics</Trans></h1>
-        <hr />
-        <div className="d-flex d-flex flex-row justify-content-around">
-          <div>
-            <Trans>Total month</Trans>
-            :
-            {statistics.total_month}
-          </div>
-          <div>
-            <Trans>Added today</Trans>
-            :
-            {statistics.total_today}
-          </div>
-          <div>
-            <Trans>Accepted last shift</Trans>
-            :
-            {statistics.accepted_last_shift}
-          </div>
-          <div>
-            <Trans>Rejected last shift</Trans>
-            :
-            {statistics.rejected_last_shift}
+        <div className="jumbotron p-3">
+          <h1 className="text-center"><Trans>Statistics</Trans></h1>
+          <hr />
+          <div className="d-flex d-flex flex-row justify-content-around">
+            <div>
+              <Trans>Total month</Trans>
+              :
+              {statistics.total_month}
+            </div>
+            <div>
+              <Trans>Added today</Trans>
+              :
+              {statistics.total_today}
+            </div>
+            <div>
+              <Trans>Accepted last shift</Trans>
+              :
+              {statistics.accepted_last_shift}
+            </div>
+            <div>
+              <Trans>Rejected last shift</Trans>
+              :
+              {statistics.rejected_last_shift}
+            </div>
           </div>
         </div>
       </Fragment>
