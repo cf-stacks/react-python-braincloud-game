@@ -94,7 +94,6 @@ class BaseModel(models.Model):
     is_active = models.BooleanField(verbose_name=_('active'), default=True)
     created_at = models.DateTimeField(verbose_name=_('created at'), default=timezone.now, editable=False, blank=True)
     updated_at = models.DateTimeField(verbose_name=_('updated at'), default=timezone.now, editable=False, blank=True)
-    created_at.editable = True
 
     class Meta:
         abstract = True
@@ -147,7 +146,7 @@ class AssignedQuestionCategory(BaseModel):
         to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    date = models.DateField(verbose_name=_('assignment date'))
+    date = models.DateField(verbose_name=_('assignment date'), null=True)
     category = models.ForeignKey(verbose_name=_('category'), to='sesam.QuestionCategory', on_delete=models.CASCADE)
 
 
