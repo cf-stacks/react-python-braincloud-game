@@ -1,12 +1,13 @@
 import axios from 'axios';
 import moment from 'moment';
 
-import { createMessage, returnErrors } from './messages';
+import { returnErrors } from './messages';
 
 import {
   CHIEF_GET_PENDING_QUESTIONS,
   CHIEF_GET_ACTIVE_QUESTIONS,
   EDITOR_CALENDAR_CHANGE,
+  EDITOR_GET_STATISTICS,
 } from './types';
 
 

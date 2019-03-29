@@ -22,7 +22,7 @@ export const getStatistics = () => (dispatch) => {
 };
 
 // ADD QUIZ QUESTION
-export const addQuizQuestion = (data, callback=null) => (dispatch) => {
+export const addQuizQuestion = (data, callback = null) => (dispatch) => {
   axios
     .post('/api/internal/quiz/question/', data)
     .then((res) => {
@@ -34,19 +34,19 @@ export const addQuizQuestion = (data, callback=null) => (dispatch) => {
       dispatch(getStatistics());
       // Add question
       dispatch({ type: AUTHOR_ADD_QUESTION, payload: res.data });
-      if (callback) callback()
+      if (callback) callback();
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
-export const editQuizQuestion = (questionId, data, callback=null) => (dispatch) => {
+export const editQuizQuestion = (questionId, data, callback = null) => (dispatch) => {
   axios
     .put(`/api/internal/quiz/question/${questionId}/`, data)
-    .then((res) => {
+    .then(() => {
       // Show notification
       dispatch(createMessage({ simpleSuccess: i18n._(t`Question updated`) }));
       // Hide errors
       dispatch(returnErrors({}, null));
-      if (callback) callback()
+      if (callback) callback();
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
