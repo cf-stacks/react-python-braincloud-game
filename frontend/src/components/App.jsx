@@ -10,6 +10,7 @@ import store from '../store';
 import LayoutContainer from './layout/Container';
 import LayoutHeader from './layout/Header';
 import LayoutAlert from './layout/Alert';
+import ScrollToTop from './layout/ScrollToTop';
 import AccountsLogin from './accounts/Login';
 import CommonPrivateRoute from './common/PrivateRoute';
 import { loadUser } from '../actions/auth';
@@ -36,16 +37,18 @@ class App extends Component {
         <I18nProvider i18n={i18n}>
           <AlertProvider template={AlertTemplate} {...alertOptions}>
             <Router>
-              <Fragment>
-                <LayoutHeader />
-                <LayoutAlert />
-                <main role="main" className="container">
-                  <Switch>
-                    <CommonPrivateRoute exact path="/" component={LayoutContainer} />
-                    <Route exact path="/login" component={AccountsLogin} />
-                  </Switch>
-                </main>
-              </Fragment>
+              <ScrollToTop>
+                <Fragment>
+                  <LayoutHeader />
+                  <LayoutAlert />
+                  <main role="main" className="container">
+                    <Switch>
+                      <Route exact path="/login" component={AccountsLogin} />
+                      <CommonPrivateRoute path="/" component={LayoutContainer} />
+                    </Switch>
+                  </main>
+                </Fragment>
+              </ScrollToTop>
             </Router>
           </AlertProvider>
         </I18nProvider>
@@ -53,6 +56,7 @@ class App extends Component {
     );
   }
 }
+
 
 const fApp = () => (
   <App />
