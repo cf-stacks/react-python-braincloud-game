@@ -8,6 +8,7 @@ import { addQuizQuestion, editQuizQuestion, getTodayCategories } from '../../act
 import { returnErrors } from '../../actions/messages';
 import FieldError from '../common/FieldError';
 import CategorySelect from '../common/CategorySelect';
+import Spinner from '../common/Spinner';
 
 const initialState = {
   category: '',
@@ -89,6 +90,7 @@ export class IQuestionForm extends Component {
     const {
       category, description, answerCorrect, answerIncorrect1, answerIncorrect2,
     } = this.state;
+    if (questionId && category === '') return <Spinner />;
     const submitButton = (
       <button type="submit" className="btn btn-outline-primary m-2">
         { questionId ? <Trans>Apply</Trans> : <Trans>Add</Trans> }
