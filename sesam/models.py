@@ -89,11 +89,25 @@ class User(AbstractBaseUser, PermissionsMixin):
         self.save()
 
 
+class ActiveManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_active=True)
+
+
+class InactiveManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_active=False)
+
+
 class BaseModel(models.Model):
     id = models.UUIDField(verbose_name='id', primary_key=True, default=uuid.uuid4, editable=False)
     is_active = models.BooleanField(verbose_name=_('active'), default=True)
     created_at = models.DateTimeField(verbose_name=_('created at'), default=timezone.now, editable=False, blank=True)
     updated_at = models.DateTimeField(verbose_name=_('updated at'), default=timezone.now, editable=False, blank=True)
+
+    objects = models.Manager()
+    active = ActiveManager()
+    inactive = InactiveManager()
 
     class Meta:
         abstract = True

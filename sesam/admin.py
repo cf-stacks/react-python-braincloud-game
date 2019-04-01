@@ -32,7 +32,7 @@ class UserAdmin(DjangoUserAdmin):
 
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ('id', 'category', 'status', 'description', 'answer_correct', 'author', 'created_at')
-    list_filter = ('status', 'category', 'author')
+    list_filter = ('status', 'category', 'author', 'is_active')
 
 
 admin.site.register(models.User, UserAdmin)
