@@ -1,9 +1,15 @@
 import React from 'react';
 import Select from 'react-select';
+import CreatableSelect from 'react-select/lib/Creatable';
 import { Trans } from '@lingui/macro';
 
+const isValidNewOption = (inputValue, selectValue, selectOptions) => {
+  if (inputValue.trim().length === 0 || selectOptions.find(option => option.name === inputValue)) return false;
+  return true;
+};
+
 export const ICategorySelect = (props) => {
-  const { isMulti } = props;
+  const { isMulti, isCreatable } = props;
   const customStyles = {
     control: (base, state) => ({
       ...base,
@@ -28,7 +34,27 @@ export const ICategorySelect = (props) => {
       borderRadius: '25px',
     }),
   };
-  return (
+
+  return isCreatable ? (
+    <CreatableSelect
+      isMulti
+      isCreatable
+      styles={isMulti ? customStyles : {}}
+      menuPortalTarget={document.body}
+      cacheOptions
+      name="category"
+      defaultOptions
+      getOptionLabel={opt => opt.name}
+      getOptionValue={opt => opt.id}
+      getNewOptionData={(inputValue, optionLabel) => ({
+        id: inputValue,
+        name: optionLabel,
+      })}
+      placeholder={<Trans>Select category...</Trans>}
+      isValidNewOption={isValidNewOption}
+      {...props}
+    />
+  ) : (
     <Select
       styles={isMulti ? customStyles : {}}
       menuPortalTarget={document.body}

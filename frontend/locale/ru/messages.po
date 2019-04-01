@@ -17,7 +17,12 @@ msgstr ""
 msgid "Accepted last shift"
 msgstr "Принято за прошлую смену"
 
+#: frontend/src/components/chief/QuestionCategoryTab.jsx:70
+msgid "Actions"
+msgstr "Действия"
+
 #: frontend/src/components/author/QuestionForm.jsx:96
+#: frontend/src/components/chief/QuestionCategoryTable.jsx:107
 msgid "Add"
 msgstr "Добавить"
 
@@ -43,7 +48,7 @@ msgstr "Ответы"
 msgid "Apply"
 msgstr "Применить"
 
-#: frontend/src/components/chief/AssignCategory.jsx:54
+#: frontend/src/components/chief/AssignCategory.jsx:65
 msgid "Assigned categories"
 msgstr "Закрепленные темы"
 
@@ -60,6 +65,7 @@ msgstr "Календарные данные"
 msgid "Cancel"
 msgstr "Отменить"
 
+#: frontend/src/components/chief/QuestionCategoryTable.jsx:84
 #: frontend/src/components/editor/CalendarData.jsx:36
 msgid "Categories"
 msgstr "Темы"
@@ -71,6 +77,22 @@ msgstr "Темы"
 #: frontend/src/components/editor/ReviewTab.jsx:31
 msgid "Category"
 msgstr "Тема"
+
+#: frontend/src/actions/common.js:25
+msgid "Category added"
+msgstr "Категория добавлена"
+
+#: frontend/src/actions/chief.js:185
+msgid "Category deleted"
+msgstr "Категория удалена"
+
+#: frontend/src/actions/chief.js:209
+msgid "Category resumed"
+msgstr "Категория добавлена в игру"
+
+#: frontend/src/actions/chief.js:197
+msgid "Category stopped"
+msgstr "Категория снята с игры"
 
 #: frontend/src/components/author/QuestionForm.jsx:138
 #: frontend/src/components/author/TodayList.jsx:31
@@ -97,10 +119,12 @@ msgstr "Редакторы"
 msgid "Email"
 msgstr "Адрес электронной почты"
 
+#: frontend/src/components/chief/QuestionCategoryTable.jsx:90
 #: frontend/src/components/chief/QuestionTable.jsx:90
 msgid "Filters"
 msgstr "Фильтры"
 
+#: frontend/src/components/chief/QuestionCategoryTable.jsx:135
 #: frontend/src/components/chief/QuestionTable.jsx:138
 msgid "In game"
 msgstr "В игре"
@@ -134,7 +158,13 @@ msgstr "Вход"
 msgid "Month"
 msgstr "Месяц"
 
-#: frontend/src/components/common/CategorySelect.jsx:41
+#: frontend/src/components/chief/QuestionCategoryTab.jsx:71
+#: frontend/src/components/chief/QuestionCategoryTable.jsx:99
+#: frontend/src/components/chief/QuestionCategoryTable.jsx:117
+msgid "Name"
+msgstr "Название"
+
+#: frontend/src/components/common/CategorySelect.jsx:67
 msgid "No categories to show"
 msgstr "Нет категорий для выбора"
 
@@ -146,7 +176,7 @@ msgstr "Пароль"
 msgid "Pending"
 msgstr "Ожидающие"
 
-#: frontend/src/actions/chief.js:98
+#: frontend/src/actions/chief.js:103
 #: frontend/src/actions/editor.js:66
 msgid "Question accepted"
 msgstr "Вопрос принят"
@@ -155,20 +185,20 @@ msgstr "Вопрос принят"
 msgid "Question added"
 msgstr "Вопрос добавлен"
 
-#: frontend/src/actions/chief.js:126
+#: frontend/src/actions/chief.js:131
 msgid "Question deleted"
 msgstr "Вопрос удален"
 
-#: frontend/src/actions/chief.js:112
+#: frontend/src/actions/chief.js:117
 #: frontend/src/actions/editor.js:66
 msgid "Question rejected"
 msgstr "Вопрос отвергнут"
 
-#: frontend/src/actions/chief.js:150
+#: frontend/src/actions/chief.js:155
 msgid "Question resumed"
 msgstr "Вопрос добавлен в игру"
 
-#: frontend/src/actions/chief.js:138
+#: frontend/src/actions/chief.js:143
 msgid "Question stopped"
 msgstr "Вопрос снят с игры"
 
@@ -192,11 +222,13 @@ msgstr "Отклоненные"
 msgid "Rejected last shift"
 msgstr "Отказано за прошлую смену"
 
+#: frontend/src/components/chief/QuestionCategoryTab.jsx:57
 #: frontend/src/components/chief/QuestionTab.jsx:64
 msgid "See all"
 msgstr "Смотреть все"
 
-#: frontend/src/components/common/CategorySelect.jsx:40
+#: frontend/src/components/common/CategorySelect.jsx:53
+#: frontend/src/components/common/CategorySelect.jsx:66
 msgid "Select category..."
 msgstr "Выберите тему..."
 
@@ -208,6 +240,7 @@ msgstr "Сезам ЛОГО"
 msgid "Statistics"
 msgstr "Статистика"
 
+#: frontend/src/components/chief/QuestionCategoryTable.jsx:145
 #: frontend/src/components/chief/QuestionTable.jsx:149
 msgid "Stopped"
 msgstr "Остановленные"

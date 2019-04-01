@@ -4,6 +4,7 @@ import CalendarData from './CalendarData';
 import QuestionForm from '../author/QuestionForm';
 import AssignCategory from './AssignCategory';
 import QuestionTable from './QuestionTable';
+import QuestionCategoryTable from './QuestionCategoryTable';
 
 export const IDashboard = () => (
   <Switch>
@@ -15,10 +16,11 @@ export const IDashboard = () => (
           <CalendarData />
           <AssignCategory />
           <QuestionTable />
+          <QuestionCategoryTable />
         </Fragment>
       )}
     />
-    <Route exact path="/question/:questionId" component={QuestionForm} />
+    <Route exact path="/quiz/question/:questionId" component={QuestionForm} />
   </Switch>
 );
 

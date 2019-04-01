@@ -132,12 +132,19 @@ class UserMoneyLogModel(BaseModel):
 
 
 class QuestionCategory(BaseModel):
+    STATUS_ACTIVE = 0
+    STATUS_STOPPED = 1
+    STATUSES = (
+        (STATUS_ACTIVE, _('active')),
+        (STATUS_STOPPED, _('stopped')),
+    )
     name = models.CharField(max_length=50, unique=True)
     assigned_users = models.ManyToManyField(
         to=settings.AUTH_USER_MODEL,
         through='sesam.AssignedQuestionCategory',
         related_name='assigned_categories',
     )
+    status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=STATUS_ACTIVE)
 
     class Meta:
         verbose_name = _('question category')

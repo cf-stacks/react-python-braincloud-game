@@ -1,9 +1,12 @@
 import axios from 'axios';
 import {
   COMMON_GET_CATEGORIES,
+  COMMON_CREATE_CATEGORY,
   COMMON_GET_STATISTICS,
 } from './types';
-import { returnErrors } from './messages';
+import { createMessage, returnErrors } from './messages';
+import {i18n} from "../components/App";
+import {t} from "@lingui/macro";
 
 // GET CATEGORY LIST
 export const getCategories = () => (dispatch) => {
@@ -13,6 +16,18 @@ export const getCategories = () => (dispatch) => {
       dispatch({ type: COMMON_GET_CATEGORIES, payload: res.data });
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
+
+// CREATE CATEGORY
+export const createCategory = (name, callback = null) => dispatch => (
+  axios
+    .post('/api/internal/quiz/category/', { name })
+    .then((res) => {
+      dispatch(createMessage({ simpleSuccess: i18n._(t`Category added`) }));
+      dispatch({ type: COMMON_CREATE_CATEGORY, payload: res.data });
+      if (callback) callback(res.data);
+    })
+    .catch(err => dispatch(returnErrors(err.response.data, err.response.status)))
+);
 
 // GET STATISTICS
 export const getStatistics = (startDate, endDate) => (dispatch) => {

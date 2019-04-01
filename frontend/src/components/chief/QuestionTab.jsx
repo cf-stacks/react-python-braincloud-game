@@ -107,7 +107,7 @@ export class IQuestionTab extends React.Component {
                       ) : (
                         null
                       )}
-                      { allowActions.accept ? (
+                      { allowActions.reject ? (
                         <button
                           type="button"
                           className="btn btn-danger rounded-circle border border-secondary my-1"
@@ -143,7 +143,7 @@ export class IQuestionTab extends React.Component {
                       { allowActions.edit ? (
                         <Link
                           className="btn btn-primary rounded-circle border border-secondary my-1"
-                          to={`/question/${question.id}`}
+                          to={`/quiz/question/${question.id}`}
                         >
                           <i className="fas fa-edit" />
                         </Link>

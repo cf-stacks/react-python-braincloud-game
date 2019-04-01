@@ -69,7 +69,7 @@ export class ReviewTab extends Component {
                     </div>
                     <Link
                       className="btn btn-primary rounded-circle border border-secondary my-1"
-                      to={`/question/${question.id}`}
+                      to={`/quiz/question/${question.id}`}
                     >
                       <i className="fas fa-edit" />
                     </Link>

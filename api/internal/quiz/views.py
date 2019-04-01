@@ -171,6 +171,10 @@ class QuestionCategoryViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
         'assigned': serializers.StatisticsSerializer,
         'assigned_change': serializers.AssignedQuestionSerializer,
         'today': serializers.QuestionCategorySerializer,
+        'active': serializers.QuestionCategorySerializer,
+        'stopped': serializers.QuestionCategorySerializer,
+        'stop': serializers.QuestionCategorySerializer,
+        'resume': serializers.QuestionCategorySerializer,
     }
 
     def get_serializer_class(self):
@@ -186,6 +190,18 @@ class QuestionCategoryViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
             serializer = self.get_serializer(page, many=True)
             return self.get_paginated_response(serializer.data)
 
+        serializer = self.get_serializer(queryset, many=True)
+        return response.Response(serializer.data)
+
+    @decorators.action(detail=False)
+    def active(self, request):
+        queryset = self.get_queryset().filter(status=models.QuestionCategory.STATUS_ACTIVE)
+        serializer = self.get_serializer(queryset, many=True)
+        return response.Response(serializer.data)
+
+    @decorators.action(detail=False)
+    def stopped(self, request):
+        queryset = self.get_queryset().filter(status=models.QuestionCategory.STATUS_STOPPED)
         serializer = self.get_serializer(queryset, many=True)
         return response.Response(serializer.data)
 
@@ -251,4 +267,24 @@ class QuestionCategoryViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
                             category_id__in=serializer.data['categories'],
                         ).delete()
                         return response.Response(data={}, status=200)
+
+    @decorators.action(detail=True, methods=['POST'])
+    def stop(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.status = models.QuestionCategory.STATUS_STOPPED
+        instance.save(update_fields=['status'])
+        serializer = self.get_serializer(instance)
+        return response.Response(data=serializer.data)
+
+    @decorators.action(detail=True, methods=['POST'])
+    def resume(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.status = models.QuestionCategory.STATUS_ACTIVE
+        instance.save(update_fields=['status'])
+        serializer = self.get_serializer(instance)
+        return response.Response(data=serializer.data)
+
+    def perform_destroy(self, instance):
+        instance.is_active = False
+        instance.save(update_fields=['is_active'])
 

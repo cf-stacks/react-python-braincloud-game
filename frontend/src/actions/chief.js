@@ -10,6 +10,8 @@ import {
   CHIEF_GET_ACTIVE_QUESTIONS,
   CHIEF_GET_STOPPED_QUESTIONS,
   CHIEF_GET_REJECTED_QUESTIONS,
+  CHIEF_GET_ACTIVE_CATEGORIES,
+  CHIEF_GET_STOPPED_CATEGORIES,
   CHIEF_GET_ASSIGNED_CATEGORIES,
   CHIEF_CHANGE_ASSIGNED_CATEGORIES,
   CHIEF_ACCEPT_QUESTION,
@@ -17,6 +19,9 @@ import {
   CHIEF_DELETE_QUESTION,
   CHIEF_STOP_QUESTION,
   CHIEF_RESUME_QUESTION,
+  CHIEF_DELETE_CATEGORY,
+  CHIEF_STOP_CATEGORY,
+  CHIEF_RESUME_CATEGORY,
   COMMON_CALENDAR_CHANGE,
 } from './types';
 
@@ -149,6 +154,60 @@ export const resumeQuestion = question => dispatch => (
     .then((res) => {
       dispatch(createMessage({ simpleSuccess: i18n._(t`Question resumed`) }));
       dispatch({type: CHIEF_RESUME_QUESTION, payload: res.data });
+    }).catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+    })
+);
+
+// GET ACTIVE CATEGORIES
+export const getActiveCategories = () => (dispatch) => {
+  axios
+    .get('/api/internal/quiz/category/active/')
+    .then((res) => {
+      dispatch({ type: CHIEF_GET_ACTIVE_CATEGORIES, payload: res.data });
+    }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+// GET STOPPED CATEGORIES
+export const getStoppedCategories = () => (dispatch) => {
+  axios
+    .get('/api/internal/quiz/category/stopped/')
+    .then((res) => {
+      dispatch({ type: CHIEF_GET_STOPPED_CATEGORIES, payload: res.data });
+    }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+// DELETE QUESTION
+export const deleteCategory = category => dispatch => (
+  axios
+    .delete(`/api/internal/quiz/category/${category.id}/`)
+    .then(() => {
+      dispatch(createMessage({ simpleSuccess: i18n._(t`Category deleted`) }));
+      dispatch({type: CHIEF_DELETE_CATEGORY, payload: category });
+    }).catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+    })
+);
+
+// STOP QUESTION
+export const stopCategory = category => dispatch => (
+  axios
+    .post(`/api/internal/quiz/category/${category.id}/stop/`)
+    .then((res) => {
+      dispatch(createMessage({ simpleSuccess: i18n._(t`Category stopped`) }));
+      dispatch({type: CHIEF_STOP_CATEGORY, payload: res.data });
+    }).catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+    })
+);
+
+// RESUME QUESTION
+export const resumeCategory = category => dispatch => (
+  axios
+    .post(`/api/internal/quiz/category/${category.id}/resume/`)
+    .then((res) => {
+      dispatch(createMessage({ simpleSuccess: i18n._(t`Category resumed`) }));
+      dispatch({type: CHIEF_RESUME_CATEGORY, payload: res.data });
     }).catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
     })

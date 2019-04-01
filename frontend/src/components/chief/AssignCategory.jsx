@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
-import { getCategories } from '../../actions/common';
+import { getCategories, createCategory } from '../../actions/common';
 import { getAssignedCategories, changeAssignedCategories } from '../../actions/chief';
 import { safeGet } from '../../utils/object_utils';
 import CategorySelect from '../common/CategorySelect';
@@ -12,6 +12,7 @@ export class IAssignCategory extends React.Component {
     user: PropTypes.object.isRequired,
     assignedCategories: PropTypes.object.isRequired,
     getCategories: PropTypes.func.isRequired,
+    createCategory: PropTypes.func.isRequired,
     getAssignedCategories: PropTypes.func.isRequired,
   };
 
@@ -19,6 +20,14 @@ export class IAssignCategory extends React.Component {
     const { getCategories: getCategoriesCall, getAssignedCategories: getAssignedCategoriesCall } = this.props;
     getCategoriesCall();
     getAssignedCategoriesCall();
+  };
+
+  onCreateOption = (obj, inputValue) => {
+    const { createCategory: createCategoryCall, assignedCategories, categories } = this.props;
+    const lst = safeGet(assignedCategories, obj, []);
+    createCategoryCall(inputValue, data => this.onSelectChange(
+      obj, [...categories.filter(x => lst.includes(x.id)), data],
+    ));
   };
 
   onSelectChange = (obj, value) => {
@@ -36,9 +45,11 @@ export class IAssignCategory extends React.Component {
     const value = safeGet(assignedCategories, id, []);
     return (
       <CategorySelect
+        isCreatable
         isMulti
         name="category"
         options={categories}
+        onCreateOption={e => this.onCreateOption(id, e)}
         onChange={e => this.onSelectChange(id, e)}
         value={categories.filter(option => value.includes(option.id))}
       />
@@ -80,6 +91,9 @@ const mapStateToProps = state => ({
 });
 
 const AssignCategory = connect(mapStateToProps, {
-  getCategories, getAssignedCategories, changeAssignedCategories,
+  getCategories,
+  createCategory,
+  getAssignedCategories,
+  changeAssignedCategories,
 })(IAssignCategory);
 export default AssignCategory;

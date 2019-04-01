@@ -16,7 +16,7 @@ export const IDashboard = () => (
         </Fragment>
       )}
     />
-    <Route exact path="/question/:questionId" component={QuestionForm} />
+    <Route exact path="/quiz/question/:questionId" component={QuestionForm} />
   </Switch>
 );
 

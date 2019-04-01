@@ -17,7 +17,12 @@ msgstr ""
 msgid "Accepted last shift"
 msgstr "Accepted last shift"
 
+#: frontend/src/components/chief/QuestionCategoryTab.jsx:70
+msgid "Actions"
+msgstr "Actions"
+
 #: frontend/src/components/author/QuestionForm.jsx:96
+#: frontend/src/components/chief/QuestionCategoryTable.jsx:107
 msgid "Add"
 msgstr "Add"
 
@@ -43,7 +48,7 @@ msgstr "Answers"
 msgid "Apply"
 msgstr "Apply"
 
-#: frontend/src/components/chief/AssignCategory.jsx:54
+#: frontend/src/components/chief/AssignCategory.jsx:65
 msgid "Assigned categories"
 msgstr "Assigned categories"
 
@@ -60,6 +65,7 @@ msgstr "Calendar data"
 msgid "Cancel"
 msgstr "Cancel"
 
+#: frontend/src/components/chief/QuestionCategoryTable.jsx:84
 #: frontend/src/components/editor/CalendarData.jsx:36
 msgid "Categories"
 msgstr "Categories"
@@ -71,6 +77,22 @@ msgstr "Categories"
 #: frontend/src/components/editor/ReviewTab.jsx:31
 msgid "Category"
 msgstr "Category"
+
+#: frontend/src/actions/common.js:25
+msgid "Category added"
+msgstr "Category added"
+
+#: frontend/src/actions/chief.js:185
+msgid "Category deleted"
+msgstr "Category deleted"
+
+#: frontend/src/actions/chief.js:209
+msgid "Category resumed"
+msgstr "Category resumed"
+
+#: frontend/src/actions/chief.js:197
+msgid "Category stopped"
+msgstr "Category stopped"
 
 #: frontend/src/components/author/QuestionForm.jsx:138
 #: frontend/src/components/author/TodayList.jsx:31
@@ -97,10 +119,12 @@ msgstr "Editors"
 msgid "Email"
 msgstr "Email"
 
+#: frontend/src/components/chief/QuestionCategoryTable.jsx:90
 #: frontend/src/components/chief/QuestionTable.jsx:90
 msgid "Filters"
 msgstr "Filters"
 
+#: frontend/src/components/chief/QuestionCategoryTable.jsx:135
 #: frontend/src/components/chief/QuestionTable.jsx:138
 msgid "In game"
 msgstr "In game"
@@ -134,7 +158,13 @@ msgstr "Login"
 msgid "Month"
 msgstr "Month"
 
-#: frontend/src/components/common/CategorySelect.jsx:41
+#: frontend/src/components/chief/QuestionCategoryTab.jsx:71
+#: frontend/src/components/chief/QuestionCategoryTable.jsx:99
+#: frontend/src/components/chief/QuestionCategoryTable.jsx:117
+msgid "Name"
+msgstr "Name"
+
+#: frontend/src/components/common/CategorySelect.jsx:67
 msgid "No categories to show"
 msgstr "No categories to show"
 
@@ -146,7 +176,7 @@ msgstr "Password"
 msgid "Pending"
 msgstr "Pending"
 
-#: frontend/src/actions/chief.js:98
+#: frontend/src/actions/chief.js:103
 #: frontend/src/actions/editor.js:66
 msgid "Question accepted"
 msgstr "Question accepted"
@@ -155,20 +185,20 @@ msgstr "Question accepted"
 msgid "Question added"
 msgstr "Question added"
 
-#: frontend/src/actions/chief.js:126
+#: frontend/src/actions/chief.js:131
 msgid "Question deleted"
 msgstr "Question deleted"
 
-#: frontend/src/actions/chief.js:112
+#: frontend/src/actions/chief.js:117
 #: frontend/src/actions/editor.js:66
 msgid "Question rejected"
 msgstr "Question rejected"
 
-#: frontend/src/actions/chief.js:150
+#: frontend/src/actions/chief.js:155
 msgid "Question resumed"
 msgstr "Question resumed"
 
-#: frontend/src/actions/chief.js:138
+#: frontend/src/actions/chief.js:143
 msgid "Question stopped"
 msgstr "Question stopped"
 
@@ -192,11 +222,13 @@ msgstr "Rejected"
 msgid "Rejected last shift"
 msgstr "Rejected last shift"
 
+#: frontend/src/components/chief/QuestionCategoryTab.jsx:57
 #: frontend/src/components/chief/QuestionTab.jsx:64
 msgid "See all"
 msgstr "See all"
 
-#: frontend/src/components/common/CategorySelect.jsx:40
+#: frontend/src/components/common/CategorySelect.jsx:53
+#: frontend/src/components/common/CategorySelect.jsx:66
 msgid "Select category..."
 msgstr "Select category..."
 
@@ -208,6 +240,7 @@ msgstr "Sesam LOGO"
 msgid "Statistics"
 msgstr "Statistics"
 
+#: frontend/src/components/chief/QuestionCategoryTable.jsx:145
 #: frontend/src/components/chief/QuestionTable.jsx:149
 msgid "Stopped"
 msgstr "Stopped"
