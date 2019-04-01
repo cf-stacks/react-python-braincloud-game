@@ -1,11 +1,9 @@
 import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router';
 import CalendarData from './CalendarData';
-import PendingTable from './PendingTable';
-import ActiveTable from './ActiveTable';
-import StoppedTable from './StoppedTable';
 import QuestionForm from '../author/QuestionForm';
 import AssignCategory from './AssignCategory';
+import QuestionTable from './QuestionTable';
 
 export const IDashboard = () => (
   <Switch>
@@ -16,9 +14,7 @@ export const IDashboard = () => (
         <Fragment>
           <CalendarData />
           <AssignCategory />
-          <PendingTable />
-          <ActiveTable />
-          <StoppedTable />
+          <QuestionTable />
         </Fragment>
       )}
     />

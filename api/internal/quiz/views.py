@@ -59,8 +59,8 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
     @decorators.action(detail=False)
     def active(self, request):
         queryset = self.get_queryset().filter(
+            Q(editor__in=request.user.subordinates.all()) | Q(editor=request.user),
             status=models.Question.STATUS_ACCEPTED,
-            editor__in=request.user.subordinates.all(),
         )
         serializer = self.get_serializer(queryset, many=True)
         return response.Response(data=serializer.data)
@@ -68,8 +68,17 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
     @decorators.action(detail=False)
     def stopped(self, request):
         queryset = self.get_queryset().filter(
+            Q(editor__in=request.user.subordinates.all()) | Q(editor=request.user),
             status=models.Question.STATUS_STOPPED,
-            editor__in=request.user.subordinates.all(),
+        )
+        serializer = self.get_serializer(queryset, many=True)
+        return response.Response(data=serializer.data)
+
+    @decorators.action(detail=False)
+    def rejected(self, request):
+        queryset = self.get_queryset().filter(
+            Q(editor__in=request.user.subordinates.all()) | Q(editor=request.user),
+            status=models.Question.STATUS_REJECTED,
         )
         serializer = self.get_serializer(queryset, many=True)
         return response.Response(data=serializer.data)

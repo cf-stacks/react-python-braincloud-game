@@ -2,6 +2,7 @@ import {
   CHIEF_GET_PENDING_QUESTIONS,
   CHIEF_GET_ACTIVE_QUESTIONS,
   CHIEF_GET_STOPPED_QUESTIONS,
+  CHIEF_GET_REJECTED_QUESTIONS,
   CHIEF_GET_ASSIGNED_CATEGORIES,
   CHIEF_CHANGE_ASSIGNED_CATEGORIES,
   CHIEF_ACCEPT_QUESTION,
@@ -10,13 +11,12 @@ import {
   CHIEF_RESUME_QUESTION,
   CHIEF_STOP_QUESTION,
 } from '../actions/types';
-import moment from "./editor";
-import {safeGet} from "../utils/object_utils";
 
 const initialState = {
   pendingQuestions: [],
   activeQuestions: [],
   stoppedQuestions: [],
+  rejectedQuestions: [],
   assignedCategories: {},
 };
 
@@ -42,6 +42,11 @@ export default function (state = initialState, action) {
         ...state,
         assignedCategories: action.payload,
       };
+    case CHIEF_GET_REJECTED_QUESTIONS:
+      return {
+        ...state,
+        rejectedQuestions: action.payload,
+      };
     case CHIEF_CHANGE_ASSIGNED_CATEGORIES:
       return {
         ...state,
@@ -54,13 +59,19 @@ export default function (state = initialState, action) {
     case CHIEF_REJECT_QUESTION:
       return {
         ...state,
-        pendingQuestions: state.pendingQuestions.filter(question => question.id !== action.payload.object.id),
+        pendingQuestions: state.pendingQuestions.filter(question => question.id !== action.payload.id),
+        activeQuestions: action.type === CHIEF_ACCEPT_QUESTION ? (
+          [action.payload, ...state.activeQuestions]
+        ) : (
+          [...state.activeQuestions]
+        ),
       };
     case CHIEF_DELETE_QUESTION:
       return {
         ...state,
-        pendingQuestions: state.pendingQuestions.filter(question => question.id !== action.payload.questionId),
-        stoppedQuestions: state.stoppedQuestions.filter(question => question.id !== action.payload.questionId),
+        pendingQuestions: state.pendingQuestions.filter(question => question.id !== action.payload.id),
+        stoppedQuestions: state.stoppedQuestions.filter(question => question.id !== action.payload.id),
+        rejectedQuestions: state.rejectedQuestions.filter(question => question.id !== action.payload.id),
       };
     case CHIEF_STOP_QUESTION:
       return {

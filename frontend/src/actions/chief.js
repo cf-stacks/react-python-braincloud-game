@@ -9,6 +9,7 @@ import {
   CHIEF_GET_PENDING_QUESTIONS,
   CHIEF_GET_ACTIVE_QUESTIONS,
   CHIEF_GET_STOPPED_QUESTIONS,
+  CHIEF_GET_REJECTED_QUESTIONS,
   CHIEF_GET_ASSIGNED_CATEGORIES,
   CHIEF_CHANGE_ASSIGNED_CATEGORIES,
   CHIEF_ACCEPT_QUESTION,
@@ -41,12 +42,21 @@ export const getActiveQuestions = () => (dispatch) => {
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
-// GET PAUSED QUESTIONS
+// GET STOPPED QUESTIONS
 export const getStoppedQuestions = () => (dispatch) => {
   axios
     .get('/api/internal/quiz/question/stopped/')
     .then((res) => {
       dispatch({ type: CHIEF_GET_STOPPED_QUESTIONS, payload: res.data });
+    }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+// GET REJECTED QUESTIONS
+export const getRejectedQuestions = () => (dispatch) => {
+  axios
+    .get('/api/internal/quiz/question/rejected/')
+    .then((res) => {
+      dispatch({ type: CHIEF_GET_REJECTED_QUESTIONS, payload: res.data });
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
@@ -80,55 +90,66 @@ export const changeCalendarData = (date, view) => (dispatch) => {
   dispatch(getStatistics(start.format('Y-MM-DD'), end.format('Y-MM-DD')));
 };
 
-// SUBMIT REVIEW (ACCEPT OR REJECT)
-export const submitReview = (questionId, resolution) => (dispatch) => {
+// ACCEPT QUESTION
+export const acceptQuestion = question => dispatch => (
   axios
-    .post(`/api/internal/quiz/question/${questionId}/${resolution}/`)
+    .post(`/api/internal/quiz/question/${question.id}/accept/`)
     .then((res) => {
-      dispatch(createMessage({
-        simpleSuccess: resolution === 'accept' ? i18n._(t`Question accepted`) : i18n._(t`Question rejected`),
-      }));
+      dispatch(createMessage({ simpleSuccess: i18n._(t`Question accepted`) }));
       dispatch({
-        type: resolution === 'accept' ? CHIEF_ACCEPT_QUESTION : CHIEF_REJECT_QUESTION,
-        payload: { resolution, object: res.data },
+        type: CHIEF_ACCEPT_QUESTION, payload: res.data,
       });
     }).catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
-    });
-};
+    })
+);
 
-// DELETE QUESTION
-export const deleteQuestion = questionId => (dispatch) => {
+// ACCEPT QUESTION
+export const rejectQuestion = question => dispatch => (
   axios
-    .delete(`/api/internal/quiz/question/${questionId}/`)
-    .then(() => {
-      dispatch(createMessage({ simpleSuccess: i18n._(t`Question deleted`) }));
-      dispatch({type: CHIEF_DELETE_QUESTION, payload: { questionId }});
+    .post(`/api/internal/quiz/question/${question.id}/reject/`)
+    .then((res) => {
+      dispatch(createMessage({ simpleSuccess: i18n._(t`Question rejected`) }));
+      dispatch({
+        type: CHIEF_REJECT_QUESTION, payload: res.data,
+      });
     }).catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
-    });
-};
+    })
+);
+
+// DELETE QUESTION
+export const deleteQuestion = question => dispatch => (
+  axios
+    .delete(`/api/internal/quiz/question/${question.id}/`)
+    .then(() => {
+      dispatch(createMessage({ simpleSuccess: i18n._(t`Question deleted`) }));
+      dispatch({type: CHIEF_DELETE_QUESTION, payload: question });
+    }).catch((err) => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+    })
+);
 
 // STOP QUESTION
-export const stopQuestion = questionId => (dispatch) => {
+export const stopQuestion = question => dispatch => (
   axios
-    .post(`/api/internal/quiz/question/${questionId}/stop/`)
+    .post(`/api/internal/quiz/question/${question.id}/stop/`)
     .then((res) => {
       dispatch(createMessage({ simpleSuccess: i18n._(t`Question stopped`) }));
       dispatch({type: CHIEF_STOP_QUESTION, payload: res.data });
     }).catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
-    });
-};
+    })
+);
 
 // RESUME QUESTION
-export const resumeQuestion = questionId => (dispatch) => {
+export const resumeQuestion = question => dispatch => (
   axios
-    .post(`/api/internal/quiz/question/${questionId}/resume/`)
+    .post(`/api/internal/quiz/question/${question.id}/resume/`)
     .then((res) => {
       dispatch(createMessage({ simpleSuccess: i18n._(t`Question resumed`) }));
       dispatch({type: CHIEF_RESUME_QUESTION, payload: res.data });
     }).catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
-    });
-};
+    })
+);

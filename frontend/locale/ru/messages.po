@@ -17,15 +17,11 @@ msgstr ""
 msgid "Accepted last shift"
 msgstr "Принято за прошлую смену"
 
-#: frontend/src/components/chief/ActiveTable.jsx:38
-msgid "Active questions"
-msgstr "Вопросы в игре"
-
-#: frontend/src/components/author/QuestionForm.jsx:94
+#: frontend/src/components/author/QuestionForm.jsx:96
 msgid "Add"
 msgstr "Добавить"
 
-#: frontend/src/components/author/QuestionForm.jsx:110
+#: frontend/src/components/author/QuestionForm.jsx:112
 msgid "Add quiz question"
 msgstr "Добавить вопрос"
 
@@ -33,23 +29,21 @@ msgstr "Добавить вопрос"
 msgid "Added today"
 msgstr "Добавлено сегодня"
 
-#: frontend/src/components/chief/ActiveTable.jsx:46
-#: frontend/src/components/chief/PendingTable.jsx:46
 #: frontend/src/components/editor/ReviewTable.jsx:47
 msgid "All"
 msgstr "Все"
 
-#: frontend/src/components/chief/ActiveTab.jsx:56
-#: frontend/src/components/chief/PendingTab.jsx:57
+#: frontend/src/components/chief/QuestionTab.jsx:79
+#: frontend/src/components/chief/QuestionTable.jsx:118
 #: frontend/src/components/editor/ReviewTab.jsx:33
 msgid "Answers"
 msgstr "Ответы"
 
-#: frontend/src/components/author/QuestionForm.jsx:94
+#: frontend/src/components/author/QuestionForm.jsx:96
 msgid "Apply"
 msgstr "Применить"
 
-#: frontend/src/components/chief/AssignCategory.jsx:58
+#: frontend/src/components/chief/AssignCategory.jsx:54
 msgid "Assigned categories"
 msgstr "Закрепленные темы"
 
@@ -62,7 +56,7 @@ msgstr "Авторы"
 msgid "Calendar data"
 msgstr "Календарные данные"
 
-#: frontend/src/components/author/QuestionForm.jsx:101
+#: frontend/src/components/author/QuestionForm.jsx:103
 msgid "Cancel"
 msgstr "Отменить"
 
@@ -70,28 +64,28 @@ msgstr "Отменить"
 msgid "Categories"
 msgstr "Темы"
 
-#: frontend/src/components/author/QuestionForm.jsx:115
+#: frontend/src/components/author/QuestionForm.jsx:117
 #: frontend/src/components/author/TodayList.jsx:30
-#: frontend/src/components/chief/ActiveTab.jsx:54
-#: frontend/src/components/chief/PendingTab.jsx:55
+#: frontend/src/components/chief/QuestionTab.jsx:77
+#: frontend/src/components/chief/QuestionTable.jsx:109
 #: frontend/src/components/editor/ReviewTab.jsx:31
 msgid "Category"
 msgstr "Тема"
 
-#: frontend/src/components/author/QuestionForm.jsx:136
+#: frontend/src/components/author/QuestionForm.jsx:138
 #: frontend/src/components/author/TodayList.jsx:31
 msgid "Correct answer"
 msgstr "Правильный ответ"
 
-#: frontend/src/components/author/QuestionForm.jsx:124
+#: frontend/src/components/author/QuestionForm.jsx:126
 #: frontend/src/components/author/TodayList.jsx:29
-#: frontend/src/components/chief/ActiveTab.jsx:55
-#: frontend/src/components/chief/PendingTab.jsx:56
+#: frontend/src/components/chief/QuestionTab.jsx:78
+#: frontend/src/components/chief/QuestionTable.jsx:100
 #: frontend/src/components/editor/ReviewTab.jsx:32
 msgid "Description"
 msgstr "Описание"
 
-#: frontend/src/components/author/QuestionForm.jsx:110
+#: frontend/src/components/author/QuestionForm.jsx:112
 msgid "Edit quiz question"
 msgstr "Редактировать вопрос"
 
@@ -103,11 +97,19 @@ msgstr "Редакторы"
 msgid "Email"
 msgstr "Адрес электронной почты"
 
-#: frontend/src/components/author/QuestionForm.jsx:148
+#: frontend/src/components/chief/QuestionTable.jsx:90
+msgid "Filters"
+msgstr "Фильтры"
+
+#: frontend/src/components/chief/QuestionTable.jsx:138
+msgid "In game"
+msgstr "В игре"
+
+#: frontend/src/components/author/QuestionForm.jsx:150
 msgid "Incorrect answer 1"
 msgstr "Неправильный ответ 1"
 
-#: frontend/src/components/author/QuestionForm.jsx:160
+#: frontend/src/components/author/QuestionForm.jsx:162
 msgid "Incorrect answer 2"
 msgstr "Неправильный ответ 2"
 
@@ -140,10 +142,11 @@ msgstr "Нет категорий для выбора"
 msgid "Password"
 msgstr "Пароль"
 
-#: frontend/src/components/chief/PendingTable.jsx:38
-msgid "Pending questions"
-msgstr "Вопросы в очереди"
+#: frontend/src/components/chief/QuestionTable.jsx:127
+msgid "Pending"
+msgstr "Ожидающие"
 
+#: frontend/src/actions/chief.js:98
 #: frontend/src/actions/editor.js:66
 msgid "Question accepted"
 msgstr "Вопрос принят"
@@ -152,24 +155,44 @@ msgstr "Вопрос принят"
 msgid "Question added"
 msgstr "Вопрос добавлен"
 
+#: frontend/src/actions/chief.js:126
+msgid "Question deleted"
+msgstr "Вопрос удален"
+
+#: frontend/src/actions/chief.js:112
 #: frontend/src/actions/editor.js:66
 msgid "Question rejected"
 msgstr "Вопрос отвергнут"
+
+#: frontend/src/actions/chief.js:150
+msgid "Question resumed"
+msgstr "Вопрос добавлен в игру"
+
+#: frontend/src/actions/chief.js:138
+msgid "Question stopped"
+msgstr "Вопрос снят с игры"
 
 #: frontend/src/actions/author.js:46
 msgid "Question updated"
 msgstr "Вопрос обновлен"
 
+#: frontend/src/components/chief/QuestionTable.jsx:86
+msgid "Questions"
+msgstr "Вопросы"
+
 #: frontend/src/components/editor/ReviewTable.jsx:39
 msgid "Questions for review"
 msgstr "Вопросы для проверки"
+
+#: frontend/src/components/chief/QuestionTable.jsx:160
+msgid "Rejected"
+msgstr "Отклоненные"
 
 #: frontend/src/components/author/Statistics.jsx:42
 msgid "Rejected last shift"
 msgstr "Отказано за прошлую смену"
 
-#: frontend/src/components/chief/ActiveTab.jsx:42
-#: frontend/src/components/chief/PendingTab.jsx:43
+#: frontend/src/components/chief/QuestionTab.jsx:64
 msgid "See all"
 msgstr "Смотреть все"
 
@@ -184,6 +207,10 @@ msgstr "Сезам ЛОГО"
 #: frontend/src/components/author/Statistics.jsx:23
 msgid "Statistics"
 msgstr "Статистика"
+
+#: frontend/src/components/chief/QuestionTable.jsx:149
+msgid "Stopped"
+msgstr "Остановленные"
 
 #: frontend/src/components/common/Calendar.jsx:111
 msgid "Today"
