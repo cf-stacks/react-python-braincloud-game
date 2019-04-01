@@ -21,7 +21,7 @@ logger = getLogger(__name__)
 
 class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
     permission_classes = [permissions.IsAdminUser]
-    queryset = models.Question.objects.filter(is_active=True).order_by('-created_at')
+    queryset = models.Question.active.order_by('-created_at')
     serializer_class = serializers.QuestionSerializer
     serializer_classes = {
         'today': serializers.QuestionSerializer,
@@ -60,6 +60,15 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
     def active(self, request):
         queryset = self.get_queryset().filter(
             status=models.Question.STATUS_ACCEPTED,
+            editor__in=request.user.subordinates.all(),
+        )
+        serializer = self.get_serializer(queryset, many=True)
+        return response.Response(data=serializer.data)
+
+    @decorators.action(detail=False)
+    def stopped(self, request):
+        queryset = self.get_queryset().filter(
+            status=models.Question.STATUS_STOPPED,
             editor__in=request.user.subordinates.all(),
         )
         serializer = self.get_serializer(queryset, many=True)
@@ -120,13 +129,33 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
         serializer = self.get_serializer(instance)
         return response.Response(data=serializer.data)
 
+    @decorators.action(detail=True, methods=['POST'])
+    def stop(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.status = models.Question.STATUS_STOPPED
+        instance.save(update_fields=['status'])
+        serializer = self.get_serializer(instance)
+        return response.Response(data=serializer.data)
+
+    @decorators.action(detail=True, methods=['POST'])
+    def resume(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.status = models.Question.STATUS_ACCEPTED
+        instance.save(update_fields=['status'])
+        serializer = self.get_serializer(instance)
+        return response.Response(data=serializer.data)
+
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+    def perform_destroy(self, instance):
+        instance.is_active = False
+        instance.save(update_fields=['is_active'])
 
 
 class QuestionCategoryViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
     permission_classes = [permissions.IsAdminUser]
-    queryset = models.QuestionCategory.objects.filter(is_active=True).order_by('name')
+    queryset = models.QuestionCategory.active.order_by('name')
     serializer_class = serializers.QuestionCategorySerializer
     serializer_classes = {
         'list': serializers.QuestionCategorySerializer,
