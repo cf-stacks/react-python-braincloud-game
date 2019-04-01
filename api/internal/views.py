@@ -28,7 +28,7 @@ class AuthorViewSet(mixins.LoggingMixin, viewsets.GenericViewSet):
                 )
             ) & (
                 Q(authored_questions__status=models.Question.STATUS_ACCEPTED) |
-                Q(authored_questions__status=models.Question.STATUS_NEW)
+                Q(authored_questions__status=models.Question.STATUS_DRAFT)
             ),
         ),
         total_today=Count('authored_questions', filter=Q(authored_questions__created_at__date=datetime.today())),

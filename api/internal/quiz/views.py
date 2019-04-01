@@ -49,7 +49,7 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
         else:
             authors = request.user.subordinates.all()
         queryset = self.get_queryset().filter(
-            status=models.Question.STATUS_NEW,
+            status=models.Question.STATUS_DRAFT,
             created_at__date__lt=timezone.localtime(timezone.now()).date(),
             author__in=authors,
         )
@@ -77,7 +77,7 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
             ).annotate(
                 rejected=Count('id', filter=Q(status=models.Question.STATUS_REJECTED)),
                 accepted=Count('id', filter=Q(status=models.Question.STATUS_ACCEPTED)),
-                new=Count('id', filter=Q(status=models.Question.STATUS_NEW)),
+                new=Count('id', filter=Q(status=models.Question.STATUS_DRAFT)),
             )
             for stat in statistic:
                 statistics[str(stat['author_id'])][str(stat['created_at'])] = {

@@ -151,13 +151,15 @@ class AssignedQuestionCategory(BaseModel):
 
 
 class Question(BaseModel):
-    STATUS_NEW = 0
+    STATUS_DRAFT = 0
     STATUS_ACCEPTED = 1
     STATUS_REJECTED = 2
+    STATUS_STOPPED = 3
     STATUSES = (
-        (STATUS_NEW, _('new')),
+        (STATUS_DRAFT, _('new')),
         (STATUS_ACCEPTED, _('accepted')),
         (STATUS_REJECTED, _('rejected')),
+        (STATUS_STOPPED, _('stopped')),
     )
     category = models.ForeignKey(
         verbose_name=_('question category'),
@@ -180,7 +182,7 @@ class Question(BaseModel):
         blank=True,
     )
     reviewed_at = models.DateTimeField(null=True, blank=True)
-    status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=STATUS_NEW)
+    status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=STATUS_DRAFT)
     answer_correct = models.CharField(verbose_name=_('correct answer'), max_length=100)
     answer_incorrect_1 = models.CharField(verbose_name=_('incorrect answer 1'), max_length=100)
     answer_incorrect_2 = models.CharField(verbose_name=_('incorrect answer 2'), max_length=100)

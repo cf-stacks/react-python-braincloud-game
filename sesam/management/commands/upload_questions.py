@@ -19,7 +19,7 @@ class Command(BaseCommand):
         category = models.QuestionCategory.objects.get_or_create(
             name='Несортированные'
         )[0]
-        author = models.User.objects.get(email='author_1@example.com')
+        author = models.User.objects.get(email='author@example.com')
         try:
             with open(filename, 'r') as csv_file:
                 reader = csv.DictReader(csv_file, delimiter=';')

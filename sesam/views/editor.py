@@ -33,7 +33,7 @@ def accept(request, user_id=None):
 
     formset = forms.QuestionApproveFormSet(
         queryset=models.Question.objects.filter(
-            status=models.Question.STATUS_NEW,
+            status=models.Question.STATUS_DRAFT,
             created_at__date__lt=timezone.localtime(timezone.now()).date(),
             author__in=request.user.subordinates.all() if user_id is None else models.User.objects.filter(pk=user_id),
         ))

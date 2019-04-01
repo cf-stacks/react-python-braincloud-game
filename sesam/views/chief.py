@@ -19,7 +19,7 @@ def home(request):
 def quiz_pending(request):
     forms = chief_forms.QuestionPendingFormSet(
         queryset=models.Question.objects.filter(
-            status=models.Question.STATUS_NEW,
+            status=models.Question.STATUS_DRAFT,
         ).select_related(
             'author', 'editor', 'category',
         ),
@@ -79,9 +79,9 @@ def quiz_statistics(request):
     ).annotate(
         rejected=Count('id', filter=Q(status=models.Question.STATUS_REJECTED)),
         accepted=Count('id', filter=Q(status=models.Question.STATUS_ACCEPTED)),
-        new=Count('id', filter=Q(status=models.Question.STATUS_NEW)),
+        new=Count('id', filter=Q(status=models.Question.STATUS_DRAFT)),
     )
-    statistics_editor = models.Question.objects.exclude(status=models.Question.STATUS_NEW).values('editor').annotate(
+    statistics_editor = models.Question.objects.exclude(status=models.Question.STATUS_DRAFT).values('editor').annotate(
         reviewed_at=TruncDate('reviewed_at'),
     ).annotate(
         rejected=Count('id', filter=Q(status=models.Question.STATUS_REJECTED)),
