@@ -16,6 +16,7 @@ class QuestionCategoryFactory(factory.django.DjangoModelFactory):
         model = models.QuestionCategory
 
     name = factory.Faker('color_name', locale='ru')
+    django_get_or_create = ('name',)
 
 
 class QuestionFactory(factory.django.DjangoModelFactory):

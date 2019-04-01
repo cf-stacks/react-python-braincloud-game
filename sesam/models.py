@@ -156,7 +156,7 @@ class Question(BaseModel):
     STATUS_REJECTED = 2
     STATUS_STOPPED = 3
     STATUSES = (
-        (STATUS_DRAFT, _('new')),
+        (STATUS_DRAFT, _('draft')),
         (STATUS_ACCEPTED, _('accepted')),
         (STATUS_REJECTED, _('rejected')),
         (STATUS_STOPPED, _('stopped')),
