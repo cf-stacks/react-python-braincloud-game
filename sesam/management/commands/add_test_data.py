@@ -7,7 +7,7 @@ class Command(BaseCommand):
     help = 'Creates questions and question categories if needed'
 
     def add_arguments(self, parser):
-        parser.add_argument('question_count', nargs=1, type=int)
+        parser.add_argument('question_count', type=int)
 
         parser.add_argument(
             '--create-categories',
@@ -21,5 +21,5 @@ class Command(BaseCommand):
             for x in range(10):
                 factories.QuestionCategoryFactory()
 
-        for x in range(options['question_count'][0]):
+        for x in range(options['question_count']):
             factories.QuestionFactory()
