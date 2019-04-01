@@ -9,6 +9,7 @@ export class IActiveTab extends React.Component {
     users: PropTypes.array.isRequired,
     questions: PropTypes.array.isRequired,
     userId: PropTypes.string.isRequired,
+    stopQuestion: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -17,6 +18,12 @@ export class IActiveTab extends React.Component {
       count: props.count,
     };
   }
+
+  onStopClick = (event) => {
+    const button = event.target.closest('button');
+    const { stopQuestion: stopQuestionCall } = this.props;
+    stopQuestionCall(button.getAttribute('data-id'));
+  };
 
   onClickSeeMore = () => {
     this.setState({ count: null });
@@ -67,36 +74,21 @@ export class IActiveTab extends React.Component {
                   <div className="bg-warning rounded text-center border border-secondary my-1 font-weight-bold">
                     { question.category.name }
                   </div>
-                  <div className="d-flex flex-row justify-content-around">
-                    <button
-                      disabled
-                      className="btn btn-success rounded-circle border border-secondary my-1"
-                      type="submit"
-                      name="accept"
-                      data-id={question.id}
-                    >
-                      <i className="fas fa-check" />
-                    </button>
-                    <button
-                      disabled
-                      className="btn btn-danger rounded-circle border border-secondary my-1"
-                      type="submit"
-                      name="reject"
-                      data-id={question.id}
-                    >
-                      <i className="fas fa-times" />
-                    </button>
+                  <div className="d-flex flex-row justify-content-between">
                     <div className="d-flex flex-column text-center justify-content-center font-italic">
                       <small>{ moment(question.created_at).format('Y-MM-DD') }</small>
                       <small>{ moment(question.created_at).format('HH:mm') }</small>
                     </div>
-                    <button
-                      type="button"
-                      disabled
-                      className="btn btn-primary rounded-circle border border-secondary my-1"
-                    >
-                      <i className="fas fa-edit" />
-                    </button>
+                    <div className="d-flex justify-content-end">
+                      <button
+                        type="button"
+                        className="btn btn-danger rounded-circle border border-secondary my-1"
+                        data-id={question.id}
+                        onClick={this.onStopClick}
+                      >
+                        <i className="fas fa-stop" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </td>

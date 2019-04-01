@@ -4,16 +4,17 @@ import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'react-bootstrap';
 import { t, Trans } from '@lingui/macro';
 
-import { getActiveQuestions, stopQuestion } from '../../actions/chief';
-import ActiveTab from './ActiveTab';
+import { getStoppedQuestions, deleteQuestion, resumeQuestion } from '../../actions/chief';
+import StoppedTab from './StoppedTab';
 import { i18n } from '../App';
 
-export class IActiveTable extends React.Component {
+export class IStoppedTable extends React.Component {
   static propTypes = {
     questions: PropTypes.array.isRequired,
     user: PropTypes.object.isRequired,
-    getActiveQuestions: PropTypes.func.isRequired,
-    stopQuestion: PropTypes.func.isRequired,
+    getStoppedQuestions: PropTypes.func.isRequired,
+    deleteQuestion: PropTypes.func.isRequired,
+    resumeQuestion: PropTypes.func.isRequired,
   };
 
   state = {
@@ -21,8 +22,8 @@ export class IActiveTable extends React.Component {
   };
 
   componentDidMount() {
-    const { getActiveQuestions: getActiveQuestionsCall } = this.props;
-    getActiveQuestionsCall();
+    const { getStoppedQuestions: getStoppedQuestionsCall } = this.props;
+    getStoppedQuestionsCall();
   }
 
   onClick = (event) => {
@@ -32,11 +33,16 @@ export class IActiveTable extends React.Component {
 
   render() {
     const { selectedTab } = this.state;
-    const { questions, user: { subordinates }, stopQuestion: stopQuestionCall } = this.props;
+    const {
+      questions,
+      user: { subordinates },
+      deleteQuestion: deleteQuestionCall,
+      resumeQuestion: resumeQuestionCall,
+    } = this.props;
     return (
       <React.Fragment>
         <div className="jumbotron p-3">
-          <h1 className="text-center"><Trans>Active questions</Trans></h1>
+          <h1 className="text-center"><Trans>Stopped questions</Trans></h1>
           <hr />
           <Tabs
             id="controlled-tab-example"
@@ -49,12 +55,13 @@ export class IActiveTable extends React.Component {
               <Tab key={subordinate.id} eventKey={subordinate.id} title={subordinate.name} />
             ))}
           </Tabs>
-          <ActiveTab
+          <StoppedTab
             count={5}
             users={subordinates}
             questions={questions}
             userId={selectedTab}
-            stopQuestion={stopQuestionCall}
+            deleteQuestion={deleteQuestionCall}
+            resumeQuestion={resumeQuestionCall}
           />
         </div>
       </React.Fragment>
@@ -63,12 +70,13 @@ export class IActiveTable extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  questions: state.chief.activeQuestions,
+  questions: state.chief.stoppedQuestions,
   user: state.auth.user,
 });
 
-const ActiveTable = connect(mapStateToProps, {
-  getActiveQuestions,
-  stopQuestion,
-})(IActiveTable);
-export default ActiveTable;
+const StoppedTable = connect(mapStateToProps, {
+  getStoppedQuestions,
+  deleteQuestion,
+  resumeQuestion,
+})(IStoppedTable);
+export default StoppedTable;

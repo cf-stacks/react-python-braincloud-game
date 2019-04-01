@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'react-bootstrap';
 import { t, Trans } from '@lingui/macro';
 
-import { getPendingQuestions } from '../../actions/chief';
+import { getPendingQuestions, submitReview, deleteQuestion } from '../../actions/chief';
 import PendingTab from './PendingTab';
 import { i18n } from '../App';
 
@@ -13,6 +13,8 @@ export class IPendingTable extends React.Component {
     questions: PropTypes.array.isRequired,
     user: PropTypes.object.isRequired,
     getPendingQuestions: PropTypes.func.isRequired,
+    submitReview: PropTypes.func.isRequired,
+    deleteQuestion: PropTypes.func.isRequired,
   };
 
   state = {
@@ -31,7 +33,12 @@ export class IPendingTable extends React.Component {
 
   render() {
     const { selectedTab } = this.state;
-    const { questions, user: { subordinates } } = this.props;
+    const {
+      questions,
+      user: { subordinates },
+      submitReview: submitReviewCall,
+      deleteQuestion: deleteQuestionCall,
+    } = this.props;
     return (
       <React.Fragment>
         <div className="jumbotron p-3">
@@ -53,6 +60,8 @@ export class IPendingTable extends React.Component {
             users={subordinates}
             questions={questions}
             userId={selectedTab}
+            submitReview={submitReviewCall}
+            deleteQuestion={deleteQuestionCall}
           />
         </div>
       </React.Fragment>
@@ -65,5 +74,5 @@ const mapStateToProps = state => ({
   user: state.auth.user,
 });
 
-const PendingTable = connect(mapStateToProps, { getPendingQuestions })(IPendingTable);
+const PendingTable = connect(mapStateToProps, { getPendingQuestions, submitReview, deleteQuestion })(IPendingTable);
 export default PendingTable;

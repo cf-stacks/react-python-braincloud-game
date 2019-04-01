@@ -10,8 +10,8 @@ export class IPendingTab extends React.Component {
     users: PropTypes.array.isRequired,
     questions: PropTypes.array.isRequired,
     userId: PropTypes.string.isRequired,
-    submitReview: PropTypes.func.isRequired,
     deleteQuestion: PropTypes.func.isRequired,
+    resumeQuestion: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -21,16 +21,16 @@ export class IPendingTab extends React.Component {
     };
   }
 
-  onClick = (event) => {
-    const button = event.target.closest('button');
-    const { submitReview: submitReviewCall } = this.props;
-    submitReviewCall(button.getAttribute('data-id'), button.name);
-  };
-
   onDeleteClick = (event) => {
     const button = event.target.closest('button');
     const { deleteQuestion: deleteQuestionCall } = this.props;
     deleteQuestionCall(button.getAttribute('data-id'));
+  };
+
+  onPlayClick = (event) => {
+    const button = event.target.closest('button');
+    const { resumeQuestion: resumeQuestionCall } = this.props;
+    resumeQuestionCall(button.getAttribute('data-id'));
   };
 
   onClickSeeMore = () => {
@@ -89,22 +89,12 @@ export class IPendingTab extends React.Component {
                     </div>
                     <div className="d-flex justify-content-end">
                       <button
+                        type="button"
                         className="btn btn-success rounded-circle border border-secondary my-1"
-                        type="submit"
-                        name="accept"
                         data-id={question.id}
-                        onClick={this.onClick}
+                        onClick={this.onPlayClick}
                       >
-                        <i className="fas fa-check" />
-                      </button>
-                      <button
-                        className="btn btn-danger rounded-circle border border-secondary my-1"
-                        type="submit"
-                        name="reject"
-                        data-id={question.id}
-                        onClick={this.onClick}
-                      >
-                        <i className="fas fa-times" />
+                        <i className="fas fa-play" />
                       </button>
                       <Link
                         className="btn btn-primary rounded-circle border border-secondary my-1"

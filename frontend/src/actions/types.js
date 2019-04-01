@@ -14,7 +14,13 @@ export const EDITOR_REJECT_QUESTION = 'EDITOR_REJECT_QUESTION';
 // ------------------------------------------- CHIEF --------------------------------------------------------//
 export const CHIEF_GET_PENDING_QUESTIONS = 'CHIEF_GET_PENDING_QUESTIONS';
 export const CHIEF_GET_ACTIVE_QUESTIONS = 'CHIEF_GET_ACTIVE_QUESTIONS';
+export const CHIEF_GET_STOPPED_QUESTIONS = 'CHIEF_GET_STOPPED_QUESTIONS';
 export const CHIEF_GET_ASSIGNED_CATEGORIES = 'CHIEF_GET_ASSIGNED_CATEGORIES';
+export const CHIEF_ACCEPT_QUESTION = 'CHIEF_ACCEPT_QUESTION';
+export const CHIEF_REJECT_QUESTION = 'CHIEF_REJECT_QUESTION';
+export const CHIEF_DELETE_QUESTION = 'CHIEF_DELETE_QUESTION';
+export const CHIEF_STOP_QUESTION = 'CHIEF_STOP_QUESTION';
+export const CHIEF_RESUME_QUESTION = 'CHIEF_RESUME_QUESTION';
 
 // ------------------------------------------- COMMON --------------------------------------------------------//
 export const COMMON_GET_CATEGORIES = 'COMMON_GET_CATEGORIES';
