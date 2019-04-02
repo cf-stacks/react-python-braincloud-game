@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cd build && mkdir root && cp *.js *.json *.ico root && cd ..",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
