@@ -10,3 +10,11 @@ services:
     volumes:
       - .config/mysql/config-file.cnf:/etc/my.cnf
       - .data:/var/lib/mysql
+
+  ubuntu:
+    container_name: ubuntu
+    image: tiangolo/uwsgi-nginx:python3.7
+    ports:
+      - 8080:80
+    volumes:
+      - .:/home/ubuntu/app
