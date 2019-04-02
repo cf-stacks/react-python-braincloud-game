@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Statistics from './Statistics';
-import QuestionForm from './QuestionForm';
+import QuestionForm from '../common/QuestionForm';
 import TodayList from './TodayList';
 
 export const IDashboard = () => (

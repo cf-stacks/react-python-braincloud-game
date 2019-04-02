@@ -1,14 +1,13 @@
 import {
   AUTHOR_GET_STATISTICS,
-  AUTHOR_ADD_QUESTION,
   AUTHOR_GET_TODAY_LIST,
-  AUTHOR_TODAY_CATEGORIES,
+
+  COMMON_ADD_QUESTION,
 } from '../actions/types';
 
 const initialState = {
   statistics: {},
   todayList: [],
-  categories: [],
 };
 
 export default function (state = initialState, action) {
@@ -18,7 +17,7 @@ export default function (state = initialState, action) {
         ...state,
         statistics: action.payload,
       };
-    case AUTHOR_ADD_QUESTION:
+    case COMMON_ADD_QUESTION:
       return {
         ...state,
         todayList: [...state.todayList, action.payload],
@@ -27,11 +26,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         todayList: action.payload,
-      };
-    case AUTHOR_TODAY_CATEGORIES:
-      return {
-        ...state,
-        categories: action.payload,
       };
     default:
       return state;

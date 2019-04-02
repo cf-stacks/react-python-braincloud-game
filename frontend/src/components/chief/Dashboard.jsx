@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router';
 import CalendarData from './CalendarData';
-import QuestionForm from '../author/QuestionForm';
+import QuestionForm from '../common/QuestionForm';
 import AssignCategory from './AssignCategory';
 import QuestionTable from './QuestionTable';
 import QuestionCategoryTable from './QuestionCategoryTable';

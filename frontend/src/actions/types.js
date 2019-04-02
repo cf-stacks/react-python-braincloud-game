@@ -1,8 +1,6 @@
 // ------------------------------------------- AUTHOR --------------------------------------------------------//
 export const AUTHOR_GET_STATISTICS = 'AUTHOR_GET_STATISTICS';
-export const AUTHOR_ADD_QUESTION = 'AUTHOR_ADD_QUESTION';
 export const AUTHOR_GET_TODAY_LIST = 'AUTHOR_GET_TODAY_LIST';
-export const AUTHOR_TODAY_CATEGORIES = 'AUTHOR_TODAY_CATEGORIES';
 
 // ------------------------------------------- EDITOR --------------------------------------------------------//
 export const EDITOR_GET_QUESTIONS = 'EDITOR_GET_QUESTIONS';
@@ -27,14 +25,15 @@ export const CHIEF_RESUME_QUESTION = 'CHIEF_RESUME_QUESTION';
 export const CHIEF_DELETE_CATEGORY = 'CHIEF_DELETE_CATEGORY';
 export const CHIEF_RESUME_CATEGORY = 'CHIEF_RESUME_CATEGORY';
 export const CHIEF_STOP_CATEGORY = 'CHIEF_STOP_CATEGORY';
+export const CHIEF_CHANGE_ASSIGNED_CATEGORIES = 'CHIEF_CHANGE_ASSIGNED_CATEGORIES';
 
 
 // ------------------------------------------- COMMON --------------------------------------------------------//
-export const COMMON_GET_CATEGORIES = 'COMMON_GET_CATEGORIES';
 export const COMMON_CREATE_CATEGORY = 'COMMON_CREATE_CATEGORY';
 export const COMMON_CALENDAR_CHANGE = 'COMMON_CALENDAR_CHANGE';
 export const COMMON_GET_STATISTICS = 'COMMON_GET_STATISTICS';
-export const CHIEF_CHANGE_ASSIGNED_CATEGORIES = 'CHIEF_CHANGE_ASSIGNED_CATEGORIES';
+export const COMMON_ADD_QUESTION = 'COMMON_ADD_QUESTION';
+export const COMMON_GET_AVAILABLE_CATEGORIES = 'COMMON_GET_AVAILABLE_CATEGORIES';
 
 // -------------------------------------------- AUTH --------------------------------------------------------//
 export const USER_LOADING = 'USER_LOADING';

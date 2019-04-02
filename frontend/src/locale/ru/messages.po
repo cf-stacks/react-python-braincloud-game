@@ -21,13 +21,13 @@ msgstr "Принято за прошлую смену"
 msgid "Actions"
 msgstr "Действия"
 
-#: src/components/author/QuestionForm.jsx:96
 #: src/components/chief/QuestionCategoryTable.jsx:108
 #: src/components/common/CategorySelect.jsx:57
+#: src/components/common/QuestionForm.jsx:101
 msgid "Add"
 msgstr "Добавить"
 
-#: src/components/author/QuestionForm.jsx:112
+#: src/components/common/QuestionForm.jsx:117
 msgid "Add quiz question"
 msgstr "Добавить вопрос"
 
@@ -45,11 +45,11 @@ msgstr "Все"
 msgid "Answers"
 msgstr "Ответы"
 
-#: src/components/author/QuestionForm.jsx:96
+#: src/components/common/QuestionForm.jsx:101
 msgid "Apply"
 msgstr "Применить"
 
-#: src/components/chief/AssignCategory.jsx:65
+#: src/components/chief/AssignCategory.jsx:70
 msgid "Assigned categories"
 msgstr "Закрепленные темы"
 
@@ -62,7 +62,7 @@ msgstr "Авторы"
 msgid "Calendar data"
 msgstr "Календарные данные"
 
-#: src/components/author/QuestionForm.jsx:103
+#: src/components/common/QuestionForm.jsx:108
 msgid "Cancel"
 msgstr "Отменить"
 
@@ -71,15 +71,15 @@ msgstr "Отменить"
 msgid "Categories"
 msgstr "Темы"
 
-#: src/components/author/QuestionForm.jsx:117
 #: src/components/author/TodayList.jsx:30
 #: src/components/chief/QuestionTab.jsx:77
 #: src/components/chief/QuestionTable.jsx:109
+#: src/components/common/QuestionForm.jsx:122
 #: src/components/editor/ReviewTab.jsx:31
 msgid "Category"
 msgstr "Тема"
 
-#: src/actions/common.js:26
+#: src/actions/common.js:18
 msgid "Category \"{name}\" added"
 msgstr "Категория \"{name}\" добавлена"
 
@@ -95,20 +95,20 @@ msgstr "Категория добавлена в игру"
 msgid "Category stopped"
 msgstr "Категория снята с игры"
 
-#: src/components/author/QuestionForm.jsx:138
 #: src/components/author/TodayList.jsx:31
+#: src/components/common/QuestionForm.jsx:143
 msgid "Correct answer"
 msgstr "Правильный ответ"
 
-#: src/components/author/QuestionForm.jsx:126
 #: src/components/author/TodayList.jsx:29
 #: src/components/chief/QuestionTab.jsx:78
 #: src/components/chief/QuestionTable.jsx:100
+#: src/components/common/QuestionForm.jsx:131
 #: src/components/editor/ReviewTab.jsx:32
 msgid "Description"
 msgstr "Описание"
 
-#: src/components/author/QuestionForm.jsx:112
+#: src/components/common/QuestionForm.jsx:117
 msgid "Edit quiz question"
 msgstr "Редактировать вопрос"
 
@@ -130,24 +130,24 @@ msgstr "Фильтры"
 msgid "In game"
 msgstr "В игре"
 
-#: src/components/author/QuestionForm.jsx:150
+#: src/components/common/QuestionForm.jsx:155
 msgid "Incorrect answer 1"
 msgstr "Неправильный ответ 1"
 
-#: src/components/author/QuestionForm.jsx:162
+#: src/components/common/QuestionForm.jsx:167
 msgid "Incorrect answer 2"
 msgstr "Неправильный ответ 2"
 
-#: src/components/layout/Header.jsx:79
+#: src/components/layout/Header.jsx:81
 msgid "Loading..."
 msgstr "Загрузка..."
 
 #: src/components/accounts/Login.jsx:62
-#: src/components/layout/Header.jsx:94
+#: src/components/layout/Header.jsx:96
 msgid "Log in"
 msgstr "Войти"
 
-#: src/components/layout/Header.jsx:86
+#: src/components/layout/Header.jsx:88
 msgid "Log out"
 msgstr "Выйти"
 
@@ -178,11 +178,11 @@ msgid "Pending"
 msgstr "Ожидающие"
 
 #: src/actions/chief.js:103
-#: src/actions/editor.js:66
+#: src/actions/editor.js:67
 msgid "Question accepted"
 msgstr "Вопрос принят"
 
-#: src/actions/author.js:30
+#: src/actions/common.js:40
 msgid "Question added"
 msgstr "Вопрос добавлен"
 
@@ -191,7 +191,7 @@ msgid "Question deleted"
 msgstr "Вопрос удален"
 
 #: src/actions/chief.js:117
-#: src/actions/editor.js:66
+#: src/actions/editor.js:67
 msgid "Question rejected"
 msgstr "Вопрос отвергнут"
 
@@ -203,7 +203,7 @@ msgstr "Вопрос добавлен в игру"
 msgid "Question stopped"
 msgstr "Вопрос снят с игры"
 
-#: src/actions/author.js:46
+#: src/actions/common.js:56
 msgid "Question updated"
 msgstr "Вопрос обновлен"
 
@@ -232,10 +232,6 @@ msgstr "Смотреть все"
 #: src/components/common/CategorySelect.jsx:69
 msgid "Select category..."
 msgstr "Выберите тему..."
-
-#: src/components/layout/Header.jsx:102
-msgid "Sesam LOGO"
-msgstr "Сезам ЛОГО"
 
 #: src/components/author/Statistics.jsx:23
 msgid "Statistics"

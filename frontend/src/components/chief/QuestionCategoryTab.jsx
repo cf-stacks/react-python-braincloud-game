@@ -28,8 +28,8 @@ export class IQuestionTab extends React.Component {
   }
 
   componentDidMount() {
-    const { getQuerySet: getQuerySetCall } = this.props;
-    getQuerySetCall();
+    const { getQuerySet: getQuerySetCall, categories } = this.props;
+    if (!categories.length) getQuerySetCall();
   }
 
   onClickSeeMore = () => {

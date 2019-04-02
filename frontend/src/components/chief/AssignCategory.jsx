@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
-import { getCategories, createCategory } from '../../actions/common';
+import { getAvailableCategories, createCategory } from '../../actions/common';
 import { getAssignedCategories, changeAssignedCategories } from '../../actions/chief';
 import { safeGet } from '../../utils/object_utils';
 import CategorySelect from '../common/CategorySelect';
@@ -11,15 +11,20 @@ export class IAssignCategory extends React.Component {
   static propTypes = {
     user: PropTypes.object.isRequired,
     assignedCategories: PropTypes.object.isRequired,
-    getCategories: PropTypes.func.isRequired,
+    getAvailableCategories: PropTypes.func.isRequired,
     createCategory: PropTypes.func.isRequired,
     getAssignedCategories: PropTypes.func.isRequired,
   };
 
   componentDidMount = () => {
-    const { getCategories: getCategoriesCall, getAssignedCategories: getAssignedCategoriesCall } = this.props;
-    getCategoriesCall();
-    getAssignedCategoriesCall();
+    const {
+      getAvailableCategories: getAvailableCategoriesCall,
+      getAssignedCategories: getAssignedCategoriesCall,
+      categories,
+      assignedCategories,
+    } = this.props;
+    if (!categories.length) getAvailableCategoriesCall();
+    if (!Object.keys(assignedCategories).length) getAssignedCategoriesCall();
   };
 
   onCreateOption = (obj, inputValue) => {
@@ -87,11 +92,11 @@ export class IAssignCategory extends React.Component {
 const mapStateToProps = state => ({
   user: state.auth.user,
   assignedCategories: state.chief.assignedCategories,
-  categories: state.common.categories,
+  categories: state.common.availableCategories,
 });
 
 const AssignCategory = connect(mapStateToProps, {
-  getCategories,
+  getAvailableCategories,
   createCategory,
   getAssignedCategories,
   changeAssignedCategories,

@@ -4,18 +4,20 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
 import axios from 'axios';
-import { addQuizQuestion, editQuizQuestion, getTodayCategories } from '../../actions/author';
+import { addQuizQuestion, editQuizQuestion, getAvailableCategories } from '../../actions/common';
 import { returnErrors } from '../../actions/messages';
-import FieldError from '../common/FieldError';
-import CategorySelect from '../common/CategorySelect';
-import Spinner from '../common/Spinner';
+import FieldError from './FieldError';
+import CategorySelect from './CategorySelect';
+import Spinner from './Spinner';
 
 const initialState = {
-  category: '',
-  description: '',
-  answerCorrect: '',
-  answerIncorrect1: '',
-  answerIncorrect2: '',
+  form: {
+    category: '',
+    description: '',
+    answerCorrect: '',
+    answerIncorrect1: '',
+    answerIncorrect2: '',
+  },
 };
 
 export class IQuestionForm extends Component {
@@ -24,35 +26,42 @@ export class IQuestionForm extends Component {
   static propTypes = {
     questionId: PropTypes.string,
     addQuizQuestion: PropTypes.func.isRequired,
-    getTodayCategories: PropTypes.func.isRequired,
-    categories: PropTypes.any,
+    editQuizQuestion: PropTypes.func.isRequired,
+    categories: PropTypes.array.isRequired,
   };
 
-  componentDidMount() {
-    const { questionId, returnErrors: returnErrorsCall } = this.props;
+  componentDidMount = () => {
+    const {
+      questionId,
+      returnErrors: returnErrorsCall,
+      getAvailableCategories: getAvailableCategoriesCall,
+      categories,
+    } = this.props;
     if (questionId) {
       axios
         .get(`/api/internal/quiz/question/${questionId}/`)
         .then((res) => {
           this.setState({
-            category: res.data.category,
-            description: res.data.description,
-            answerCorrect: res.data.answer_correct,
-            answerIncorrect1: res.data.answer_incorrect_1,
-            answerIncorrect2: res.data.answer_incorrect_2,
+            form: {
+              category: res.data.category,
+              description: res.data.description,
+              answerCorrect: res.data.answer_correct,
+              answerIncorrect1: res.data.answer_incorrect_1,
+              answerIncorrect2: res.data.answer_incorrect_2,
+            },
           });
         }).catch(err => returnErrorsCall(err.response.data, err.response.status));
     }
-    const { getTodayCategories: getTodayCategoriesCall } = this.props;
-    getTodayCategoriesCall();
-  }
+    if (!categories.length) getAvailableCategoriesCall();
+  };
 
   onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    this.setState(prevState => ({ ...prevState, form: { ...prevState.form, [name]: value } }));
   };
 
   onSelectChange = (value) => {
-    this.setState({ category: value });
+    this.setState(prevState => ({ ...prevState, form: { ...prevState.form, category: value } }));
   };
 
   onSubmit = (e) => {
@@ -60,22 +69,20 @@ export class IQuestionForm extends Component {
     const {
       questionId, history, addQuizQuestion: addQuizQuestionCall, editQuizQuestion: editQuizQuestionCall,
     } = this.props;
-    const {
-      category, description, answerCorrect, answerIncorrect1, answerIncorrect2,
-    } = this.state;
+    const { form } = this.state;
     const data = {
-      category: category.id,
-      description,
-      answer_correct: answerCorrect,
-      answer_incorrect_1: answerIncorrect1,
-      answer_incorrect_2: answerIncorrect2,
+      category: form.category.id,
+      description: form.description,
+      answer_correct: form.answerCorrect,
+      answer_incorrect_1: form.answerIncorrect1,
+      answer_incorrect_2: form.answerIncorrect2,
     };
     if (questionId) {
       editQuizQuestionCall(questionId, data, () => {
         history.push('/');
       });
     } else {
-      addQuizQuestionCall(data, () => this.setState(initialState));
+      addQuizQuestionCall(data, () => this.setState({ form: initialState.form }));
     }
   };
 
@@ -87,10 +94,8 @@ export class IQuestionForm extends Component {
 
   render() {
     const { categories, questionId } = this.props;
-    const {
-      category, description, answerCorrect, answerIncorrect1, answerIncorrect2,
-    } = this.state;
-    if (questionId && category === '') return <Spinner />;
+    const { form } = this.state;
+    if (questionId && form.category === '') return <Spinner />;
     const submitButton = (
       <button type="submit" className="btn btn-outline-primary m-2">
         { questionId ? <Trans>Apply</Trans> : <Trans>Add</Trans> }
@@ -118,7 +123,7 @@ export class IQuestionForm extends Component {
               <CategorySelect
                 options={categories}
                 onChange={this.onSelectChange}
-                value={category}
+                value={form.category}
               />
               <FieldError for="category" />
             </div>
@@ -129,7 +134,7 @@ export class IQuestionForm extends Component {
                 className="form-control"
                 name="description"
                 onChange={this.onChange}
-                value={description}
+                value={form.description}
               />
               <FieldError for="description" />
             </div>
@@ -142,7 +147,7 @@ export class IQuestionForm extends Component {
                   type="text"
                   name="answerCorrect"
                   onChange={this.onChange}
-                  value={answerCorrect}
+                  value={form.answerCorrect}
                 />
                 <FieldError for="answer_correct" />
               </div>
@@ -154,7 +159,7 @@ export class IQuestionForm extends Component {
                   type="text"
                   name="answerIncorrect1"
                   onChange={this.onChange}
-                  value={answerIncorrect1}
+                  value={form.answerIncorrect1}
                 />
                 <FieldError for="answer_incorrect_1" />
               </div>
@@ -166,7 +171,7 @@ export class IQuestionForm extends Component {
                   type="text"
                   name="answerIncorrect2"
                   onChange={this.onChange}
-                  value={answerIncorrect2}
+                  value={form.answerIncorrect2}
                 />
                 <FieldError for="answer_incorrect_2" />
               </div>
@@ -184,11 +189,10 @@ export class IQuestionForm extends Component {
 
 const mapStateToProps = (state, parentProps) => ({
   questionId: parentProps.match ? parentProps.match.params.questionId : null,
-  categories: state.author.categories,
+  categories: state.common.availableCategories,
 });
 
-const QuestionForm = connect(mapStateToProps,
-  {
-    addQuizQuestion, getTodayCategories, editQuizQuestion, returnErrors,
-  })(IQuestionForm);
+const QuestionForm = connect(mapStateToProps, {
+  addQuizQuestion, editQuizQuestion, returnErrors, getAvailableCategories,
+})(IQuestionForm);
 export default QuestionForm;

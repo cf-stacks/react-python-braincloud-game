@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router';
 import EditorReviewTable from './ReviewTable';
 import EditorCalendarData from './CalendarData';
-import QuestionForm from '../author/QuestionForm';
+import QuestionForm from '../common/QuestionForm';
 
 export const IDashboard = () => (
   <Switch>

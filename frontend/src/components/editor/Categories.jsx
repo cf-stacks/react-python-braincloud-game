@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Calendar from '../common/Calendar';
 import { changeCalendarData, changeAssignedCategories } from '../../actions/editor';
-import { getCategories } from '../../actions/common';
+import { getAvailableCategories } from '../../actions/common';
 import { safeGet } from '../../utils/object_utils';
 import CategorySelect from '../common/CategorySelect';
 
@@ -15,18 +15,19 @@ export class ICategories extends Component {
     assignedCategories: PropTypes.object.isRequired,
     calendarData: PropTypes.object.isRequired,
     changeCalendarData: PropTypes.func.isRequired,
-    getCategories: PropTypes.func.isRequired,
+    getAvailableCategories: PropTypes.func.isRequired,
     changeAssignedCategories: PropTypes.func.isRequired,
   };
 
   componentDidMount = () => {
     const {
       changeCalendarData: changeCalendarDataCall,
-      getCategories: getCategoriesCall,
+      getAvailableCategories: getAvailableCategoriesCall,
       calendarData: { date, view },
+      categories,
     } = this.props;
     changeCalendarDataCall(date, view);
-    getCategoriesCall();
+    if (!categories.length) getAvailableCategoriesCall();
   };
 
   onSelectChange = (obj, date, value) => {
@@ -88,10 +89,10 @@ const mapStateToProps = state => ({
   user: state.auth.user,
   assignedCategories: state.editor.assignedCategories,
   calendarData: state.common.calendarData,
-  categories: state.common.categories,
+  categories: state.common.availableCategories,
 });
 
 const Categories = connect(mapStateToProps, {
-  changeCalendarData, getCategories, changeAssignedCategories,
+  changeCalendarData, getAvailableCategories, changeAssignedCategories,
 })(ICategories);
 export default Categories;

@@ -3,6 +3,7 @@ from logging import getLogger
 
 from django.db.models import Count
 from django.db.models import Q
+from django.db.models.functions import Lower
 from django.db.models.functions import TruncDate
 from django.utils import timezone
 
@@ -181,15 +182,17 @@ class QuestionCategoryViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
         return self.serializer_classes.get(self.action, self.serializer_class)
 
     @decorators.action(detail=False)
-    def today(self, request):
-        queryset = request.user.assigned_categories.filter(
-            assignedquestioncategory__date=timezone.localdate(timezone.now()),
-        )
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
+    def available(self, request):
+        queryset = request.user.assigned_categories.all()
+        groups = request.user.groups.annotate(name_lower=Lower('name')).values_list('name_lower', flat=True)
+        if models.USER_GROUP_AUTHOR in groups:
+            queryset = queryset.filter(assignedquestioncategory__date=timezone.localdate(timezone.now()))
+        elif models.USER_GROUP_EDITOR in groups:
+            queryset = queryset.filter(assignedquestioncategory__date__isnull=True)
+        elif models.USER_GROUP_CHIEF in groups:
+            queryset = self.get_queryset()
+        else:
+            queryset = queryset.none()
         serializer = self.get_serializer(queryset, many=True)
         return response.Response(serializer.data)
 

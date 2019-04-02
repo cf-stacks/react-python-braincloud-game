@@ -21,13 +21,13 @@ msgstr "Accepted last shift"
 msgid "Actions"
 msgstr "Actions"
 
-#: src/components/author/QuestionForm.jsx:96
 #: src/components/chief/QuestionCategoryTable.jsx:108
 #: src/components/common/CategorySelect.jsx:57
+#: src/components/common/QuestionForm.jsx:101
 msgid "Add"
 msgstr "Add"
 
-#: src/components/author/QuestionForm.jsx:112
+#: src/components/common/QuestionForm.jsx:117
 msgid "Add quiz question"
 msgstr "Add quiz question"
 
@@ -45,11 +45,11 @@ msgstr "All"
 msgid "Answers"
 msgstr "Answers"
 
-#: src/components/author/QuestionForm.jsx:96
+#: src/components/common/QuestionForm.jsx:101
 msgid "Apply"
 msgstr "Apply"
 
-#: src/components/chief/AssignCategory.jsx:65
+#: src/components/chief/AssignCategory.jsx:70
 msgid "Assigned categories"
 msgstr "Assigned categories"
 
@@ -62,7 +62,7 @@ msgstr "Authors"
 msgid "Calendar data"
 msgstr "Calendar data"
 
-#: src/components/author/QuestionForm.jsx:103
+#: src/components/common/QuestionForm.jsx:108
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -71,15 +71,15 @@ msgstr "Cancel"
 msgid "Categories"
 msgstr "Categories"
 
-#: src/components/author/QuestionForm.jsx:117
 #: src/components/author/TodayList.jsx:30
 #: src/components/chief/QuestionTab.jsx:77
 #: src/components/chief/QuestionTable.jsx:109
+#: src/components/common/QuestionForm.jsx:122
 #: src/components/editor/ReviewTab.jsx:31
 msgid "Category"
 msgstr "Category"
 
-#: src/actions/common.js:26
+#: src/actions/common.js:18
 msgid "Category \"{name}\" added"
 msgstr "Category \"{name}\" added"
 
@@ -95,20 +95,20 @@ msgstr "Category resumed"
 msgid "Category stopped"
 msgstr "Category stopped"
 
-#: src/components/author/QuestionForm.jsx:138
 #: src/components/author/TodayList.jsx:31
+#: src/components/common/QuestionForm.jsx:143
 msgid "Correct answer"
 msgstr "Correct answer"
 
-#: src/components/author/QuestionForm.jsx:126
 #: src/components/author/TodayList.jsx:29
 #: src/components/chief/QuestionTab.jsx:78
 #: src/components/chief/QuestionTable.jsx:100
+#: src/components/common/QuestionForm.jsx:131
 #: src/components/editor/ReviewTab.jsx:32
 msgid "Description"
 msgstr "Description"
 
-#: src/components/author/QuestionForm.jsx:112
+#: src/components/common/QuestionForm.jsx:117
 msgid "Edit quiz question"
 msgstr "Edit quiz question"
 
@@ -130,24 +130,24 @@ msgstr "Filters"
 msgid "In game"
 msgstr "In game"
 
-#: src/components/author/QuestionForm.jsx:150
+#: src/components/common/QuestionForm.jsx:155
 msgid "Incorrect answer 1"
 msgstr "Incorrect answer 1"
 
-#: src/components/author/QuestionForm.jsx:162
+#: src/components/common/QuestionForm.jsx:167
 msgid "Incorrect answer 2"
 msgstr "Incorrect answer 2"
 
-#: src/components/layout/Header.jsx:79
+#: src/components/layout/Header.jsx:81
 msgid "Loading..."
 msgstr "Loading..."
 
 #: src/components/accounts/Login.jsx:62
-#: src/components/layout/Header.jsx:94
+#: src/components/layout/Header.jsx:96
 msgid "Log in"
 msgstr "Log in"
 
-#: src/components/layout/Header.jsx:86
+#: src/components/layout/Header.jsx:88
 msgid "Log out"
 msgstr "Log out"
 
@@ -178,11 +178,11 @@ msgid "Pending"
 msgstr "Pending"
 
 #: src/actions/chief.js:103
-#: src/actions/editor.js:66
+#: src/actions/editor.js:67
 msgid "Question accepted"
 msgstr "Question accepted"
 
-#: src/actions/author.js:30
+#: src/actions/common.js:40
 msgid "Question added"
 msgstr "Question added"
 
@@ -191,7 +191,7 @@ msgid "Question deleted"
 msgstr "Question deleted"
 
 #: src/actions/chief.js:117
-#: src/actions/editor.js:66
+#: src/actions/editor.js:67
 msgid "Question rejected"
 msgstr "Question rejected"
 
@@ -203,7 +203,7 @@ msgstr "Question resumed"
 msgid "Question stopped"
 msgstr "Question stopped"
 
-#: src/actions/author.js:46
+#: src/actions/common.js:56
 msgid "Question updated"
 msgstr "Question updated"
 
@@ -232,10 +232,6 @@ msgstr "See all"
 #: src/components/common/CategorySelect.jsx:69
 msgid "Select category..."
 msgstr "Select category..."
-
-#: src/components/layout/Header.jsx:102
-msgid "Sesam LOGO"
-msgstr "Sesam LOGO"
 
 #: src/components/author/Statistics.jsx:23
 msgid "Statistics"

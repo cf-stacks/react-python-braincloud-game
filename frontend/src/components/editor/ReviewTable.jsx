@@ -23,7 +23,7 @@ class ReviewTable extends Component {
   componentDidMount = () => {
     const { getQuestions: getQuestionsCall } = this.props;
     getQuestionsCall();
-  }
+  };
 
   onClick = (event) => {
     event.preventDefault();
