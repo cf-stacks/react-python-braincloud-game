@@ -35,3 +35,12 @@ body main.container {
 code {
   font-size: 80%;
 }
+
+.navbar-brand {
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-brand img {
+  max-height: 64px;
+}

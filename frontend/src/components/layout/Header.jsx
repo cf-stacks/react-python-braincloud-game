@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
+
 import { logout } from '../../actions/auth';
+import logo from '../../images/logo.png';
 
 import '../../css/Header.css';
 
@@ -99,7 +101,9 @@ export class IHeader extends Component {
       <header>
         <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
           <div className="container">
-            <Link className="navbar-brand" to="/"><Trans>Sesam LOGO</Trans></Link>
+            <Link className="navbar-brand" to="/">
+              <img src={logo} alt="logo" />
+            </Link>
             <button
               className="navbar-toggler"
               type="button"
