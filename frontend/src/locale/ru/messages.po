@@ -13,254 +13,255 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: frontend/src/components/author/Statistics.jsx:37
+#: src/components/author/Statistics.jsx:37
 msgid "Accepted last shift"
 msgstr "Принято за прошлую смену"
 
-#: frontend/src/components/chief/QuestionCategoryTab.jsx:70
+#: src/components/chief/QuestionCategoryTab.jsx:70
 msgid "Actions"
 msgstr "Действия"
 
-#: frontend/src/components/author/QuestionForm.jsx:96
-#: frontend/src/components/chief/QuestionCategoryTable.jsx:107
+#: src/components/author/QuestionForm.jsx:96
+#: src/components/chief/QuestionCategoryTable.jsx:108
+#: src/components/common/CategorySelect.jsx:57
 msgid "Add"
 msgstr "Добавить"
 
-#: frontend/src/components/author/QuestionForm.jsx:112
+#: src/components/author/QuestionForm.jsx:112
 msgid "Add quiz question"
 msgstr "Добавить вопрос"
 
-#: frontend/src/components/author/Statistics.jsx:32
+#: src/components/author/Statistics.jsx:32
 msgid "Added today"
 msgstr "Добавлено сегодня"
 
-#: frontend/src/components/editor/ReviewTable.jsx:47
+#: src/components/editor/ReviewTable.jsx:47
 msgid "All"
 msgstr "Все"
 
-#: frontend/src/components/chief/QuestionTab.jsx:79
-#: frontend/src/components/chief/QuestionTable.jsx:118
-#: frontend/src/components/editor/ReviewTab.jsx:33
+#: src/components/chief/QuestionTab.jsx:79
+#: src/components/chief/QuestionTable.jsx:118
+#: src/components/editor/ReviewTab.jsx:33
 msgid "Answers"
 msgstr "Ответы"
 
-#: frontend/src/components/author/QuestionForm.jsx:96
+#: src/components/author/QuestionForm.jsx:96
 msgid "Apply"
 msgstr "Применить"
 
-#: frontend/src/components/chief/AssignCategory.jsx:65
+#: src/components/chief/AssignCategory.jsx:65
 msgid "Assigned categories"
 msgstr "Закрепленные темы"
 
-#: frontend/src/components/editor/CalendarData.jsx:33
+#: src/components/editor/CalendarData.jsx:33
 msgid "Authors"
 msgstr "Авторы"
 
-#: frontend/src/components/chief/CalendarData.jsx:24
-#: frontend/src/components/editor/CalendarData.jsx:25
+#: src/components/chief/CalendarData.jsx:24
+#: src/components/editor/CalendarData.jsx:25
 msgid "Calendar data"
 msgstr "Календарные данные"
 
-#: frontend/src/components/author/QuestionForm.jsx:103
+#: src/components/author/QuestionForm.jsx:103
 msgid "Cancel"
 msgstr "Отменить"
 
-#: frontend/src/components/chief/QuestionCategoryTable.jsx:84
-#: frontend/src/components/editor/CalendarData.jsx:36
+#: src/components/chief/QuestionCategoryTable.jsx:85
+#: src/components/editor/CalendarData.jsx:36
 msgid "Categories"
 msgstr "Темы"
 
-#: frontend/src/components/author/QuestionForm.jsx:117
-#: frontend/src/components/author/TodayList.jsx:30
-#: frontend/src/components/chief/QuestionTab.jsx:77
-#: frontend/src/components/chief/QuestionTable.jsx:109
-#: frontend/src/components/editor/ReviewTab.jsx:31
+#: src/components/author/QuestionForm.jsx:117
+#: src/components/author/TodayList.jsx:30
+#: src/components/chief/QuestionTab.jsx:77
+#: src/components/chief/QuestionTable.jsx:109
+#: src/components/editor/ReviewTab.jsx:31
 msgid "Category"
 msgstr "Тема"
 
-#: frontend/src/actions/common.js:25
+#: src/actions/common.js:26
 msgid "Category \"{name}\" added"
 msgstr "Категория \"{name}\" добавлена"
 
-#: frontend/src/actions/chief.js:185
+#: src/actions/chief.js:185
 msgid "Category deleted"
 msgstr "Категория удалена"
 
-#: frontend/src/actions/chief.js:209
+#: src/actions/chief.js:209
 msgid "Category resumed"
 msgstr "Категория добавлена в игру"
 
-#: frontend/src/actions/chief.js:197
+#: src/actions/chief.js:197
 msgid "Category stopped"
 msgstr "Категория снята с игры"
 
-#: frontend/src/components/author/QuestionForm.jsx:138
-#: frontend/src/components/author/TodayList.jsx:31
+#: src/components/author/QuestionForm.jsx:138
+#: src/components/author/TodayList.jsx:31
 msgid "Correct answer"
 msgstr "Правильный ответ"
 
-#: frontend/src/components/author/QuestionForm.jsx:126
-#: frontend/src/components/author/TodayList.jsx:29
-#: frontend/src/components/chief/QuestionTab.jsx:78
-#: frontend/src/components/chief/QuestionTable.jsx:100
-#: frontend/src/components/editor/ReviewTab.jsx:32
+#: src/components/author/QuestionForm.jsx:126
+#: src/components/author/TodayList.jsx:29
+#: src/components/chief/QuestionTab.jsx:78
+#: src/components/chief/QuestionTable.jsx:100
+#: src/components/editor/ReviewTab.jsx:32
 msgid "Description"
 msgstr "Описание"
 
-#: frontend/src/components/author/QuestionForm.jsx:112
+#: src/components/author/QuestionForm.jsx:112
 msgid "Edit quiz question"
 msgstr "Редактировать вопрос"
 
-#: frontend/src/components/chief/CalendarData.jsx:32
+#: src/components/chief/CalendarData.jsx:32
 msgid "Editors"
 msgstr "Редакторы"
 
-#: frontend/src/components/accounts/Login.jsx:40
+#: src/components/accounts/Login.jsx:40
 msgid "Email"
 msgstr "Адрес электронной почты"
 
-#: frontend/src/components/chief/QuestionCategoryTable.jsx:90
-#: frontend/src/components/chief/QuestionTable.jsx:90
+#: src/components/chief/QuestionCategoryTable.jsx:91
+#: src/components/chief/QuestionTable.jsx:90
 msgid "Filters"
 msgstr "Фильтры"
 
-#: frontend/src/components/chief/QuestionCategoryTable.jsx:135
-#: frontend/src/components/chief/QuestionTable.jsx:138
+#: src/components/chief/QuestionCategoryTable.jsx:137
+#: src/components/chief/QuestionTable.jsx:138
 msgid "In game"
 msgstr "В игре"
 
-#: frontend/src/components/author/QuestionForm.jsx:150
+#: src/components/author/QuestionForm.jsx:150
 msgid "Incorrect answer 1"
 msgstr "Неправильный ответ 1"
 
-#: frontend/src/components/author/QuestionForm.jsx:162
+#: src/components/author/QuestionForm.jsx:162
 msgid "Incorrect answer 2"
 msgstr "Неправильный ответ 2"
 
-#: frontend/src/components/layout/Header.jsx:79
+#: src/components/layout/Header.jsx:79
 msgid "Loading..."
 msgstr "Загрузка..."
 
-#: frontend/src/components/accounts/Login.jsx:62
-#: frontend/src/components/layout/Header.jsx:94
+#: src/components/accounts/Login.jsx:62
+#: src/components/layout/Header.jsx:94
 msgid "Log in"
 msgstr "Войти"
 
-#: frontend/src/components/layout/Header.jsx:86
+#: src/components/layout/Header.jsx:86
 msgid "Log out"
 msgstr "Выйти"
 
-#: frontend/src/components/accounts/Login.jsx:37
+#: src/components/accounts/Login.jsx:37
 msgid "Login"
 msgstr "Вход"
 
-#: frontend/src/components/common/Calendar.jsx:103
+#: src/components/common/Calendar.jsx:103
 msgid "Month"
 msgstr "Месяц"
 
-#: frontend/src/components/chief/QuestionCategoryTab.jsx:71
-#: frontend/src/components/chief/QuestionCategoryTable.jsx:99
-#: frontend/src/components/chief/QuestionCategoryTable.jsx:117
+#: src/components/chief/QuestionCategoryTab.jsx:71
+#: src/components/chief/QuestionCategoryTable.jsx:100
+#: src/components/chief/QuestionCategoryTable.jsx:118
 msgid "Name"
 msgstr "Название"
 
-#: frontend/src/components/common/CategorySelect.jsx:67
+#: src/components/common/CategorySelect.jsx:70
 msgid "No categories to show"
 msgstr "Нет категорий для выбора"
 
-#: frontend/src/components/accounts/Login.jsx:51
+#: src/components/accounts/Login.jsx:51
 msgid "Password"
 msgstr "Пароль"
 
-#: frontend/src/components/chief/QuestionTable.jsx:127
+#: src/components/chief/QuestionTable.jsx:127
 msgid "Pending"
 msgstr "Ожидающие"
 
-#: frontend/src/actions/chief.js:103
-#: frontend/src/actions/editor.js:66
+#: src/actions/chief.js:103
+#: src/actions/editor.js:66
 msgid "Question accepted"
 msgstr "Вопрос принят"
 
-#: frontend/src/actions/author.js:30
+#: src/actions/author.js:30
 msgid "Question added"
 msgstr "Вопрос добавлен"
 
-#: frontend/src/actions/chief.js:131
+#: src/actions/chief.js:131
 msgid "Question deleted"
 msgstr "Вопрос удален"
 
-#: frontend/src/actions/chief.js:117
-#: frontend/src/actions/editor.js:66
+#: src/actions/chief.js:117
+#: src/actions/editor.js:66
 msgid "Question rejected"
 msgstr "Вопрос отвергнут"
 
-#: frontend/src/actions/chief.js:155
+#: src/actions/chief.js:155
 msgid "Question resumed"
 msgstr "Вопрос добавлен в игру"
 
-#: frontend/src/actions/chief.js:143
+#: src/actions/chief.js:143
 msgid "Question stopped"
 msgstr "Вопрос снят с игры"
 
-#: frontend/src/actions/author.js:46
+#: src/actions/author.js:46
 msgid "Question updated"
 msgstr "Вопрос обновлен"
 
-#: frontend/src/components/chief/QuestionTable.jsx:86
+#: src/components/chief/QuestionTable.jsx:86
 msgid "Questions"
 msgstr "Вопросы"
 
-#: frontend/src/components/editor/ReviewTable.jsx:39
+#: src/components/editor/ReviewTable.jsx:39
 msgid "Questions for review"
 msgstr "Вопросы для проверки"
 
-#: frontend/src/components/chief/QuestionTable.jsx:160
+#: src/components/chief/QuestionTable.jsx:160
 msgid "Rejected"
 msgstr "Отклоненные"
 
-#: frontend/src/components/author/Statistics.jsx:42
+#: src/components/author/Statistics.jsx:42
 msgid "Rejected last shift"
 msgstr "Отказано за прошлую смену"
 
-#: frontend/src/components/chief/QuestionCategoryTab.jsx:57
-#: frontend/src/components/chief/QuestionTab.jsx:64
+#: src/components/chief/QuestionCategoryTab.jsx:57
+#: src/components/chief/QuestionTab.jsx:64
 msgid "See all"
 msgstr "Смотреть все"
 
-#: frontend/src/components/common/CategorySelect.jsx:53
-#: frontend/src/components/common/CategorySelect.jsx:66
+#: src/components/common/CategorySelect.jsx:55
+#: src/components/common/CategorySelect.jsx:69
 msgid "Select category..."
 msgstr "Выберите тему..."
 
-#: frontend/src/components/layout/Header.jsx:102
+#: src/components/layout/Header.jsx:102
 msgid "Sesam LOGO"
 msgstr "Сезам ЛОГО"
 
-#: frontend/src/components/author/Statistics.jsx:23
+#: src/components/author/Statistics.jsx:23
 msgid "Statistics"
 msgstr "Статистика"
 
-#: frontend/src/components/chief/QuestionCategoryTable.jsx:145
-#: frontend/src/components/chief/QuestionTable.jsx:149
+#: src/components/chief/QuestionCategoryTable.jsx:147
+#: src/components/chief/QuestionTable.jsx:149
 msgid "Stopped"
 msgstr "Остановленные"
 
-#: frontend/src/components/common/Calendar.jsx:111
+#: src/components/common/Calendar.jsx:111
 msgid "Today"
 msgstr "Сегодня"
 
-#: frontend/src/components/author/TodayList.jsx:23
+#: src/components/author/TodayList.jsx:23
 msgid "Today added"
 msgstr "Добавлено сегодня"
 
-#: frontend/src/components/common/Calendar.jsx:73
+#: src/components/common/Calendar.jsx:73
 msgid "Total"
 msgstr "Всего"
 
-#: frontend/src/components/author/Statistics.jsx:27
+#: src/components/author/Statistics.jsx:27
 msgid "Total month"
 msgstr "Всего за месяц"
 
-#: frontend/src/components/common/Calendar.jsx:103
+#: src/components/common/Calendar.jsx:103
 msgid "Week"
 msgstr "Неделя"
