@@ -119,12 +119,12 @@ dmypy.json
 .idea/
 
 # JS
-node_modules/
+frontend/node_modules/
 
 # Frontend
-frontend/static/
-frontend/locale/*/*.js
-frontend/locale/_build/
+frontend/build/static/
+frontend/src/locale/*/*.js
+frontend/src/locale/_build/
 
 # Collected static
 collected_static/

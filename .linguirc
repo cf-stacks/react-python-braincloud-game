@@ -1,6 +1,0 @@
-{
-   "localeDir": "frontend/locale/",
-   "srcPathDirs": ["frontend/src/"],
-   "format": "po",
-   "sourceLocale": "en"
-}

@@ -37,7 +37,7 @@ const createUpdateAuthInterceptor = (store, http) => async (error) => {
 const setAuthCb = createSetAuthInterceptor(globalStore);
 const updateAuthCb = createUpdateAuthInterceptor(globalStore, axios);
 
-axios.defaults.baseURL = process.env.apiHost;
+axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8000';
 axios.defaults.headers.common['Accept-Language'] = 'ru,en';
 axios.interceptors.request.use(setAuthCb);
 axios.interceptors.response.use(null, updateAuthCb);
