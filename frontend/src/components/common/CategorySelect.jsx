@@ -1,7 +1,9 @@
 import React from 'react';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/lib/Creatable';
-import { Trans } from '@lingui/macro';
+import { t, Trans } from '@lingui/macro';
+
+import { i18n } from '../App';
 
 const isValidNewOption = (inputValue, selectValue, selectOptions) => {
   if (inputValue.trim().length === 0 || selectOptions.find(option => option.name === inputValue)) return false;
@@ -52,6 +54,7 @@ export const ICategorySelect = (props) => {
       })}
       placeholder={<Trans>Select category...</Trans>}
       isValidNewOption={isValidNewOption}
+      formatCreateLabel={inputValue => `${i18n._(t`Add`)} "${inputValue}"`}
       {...props}
     />
   ) : (
