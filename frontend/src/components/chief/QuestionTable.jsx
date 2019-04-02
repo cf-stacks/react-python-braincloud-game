@@ -35,7 +35,7 @@ export class IStoppedTable extends React.Component {
   };
 
   onChange = (event) => {
-    const { name, value } = event.target
+    const { name, value } = event.target;
     this.setState(prevState => ({
       ...prevState,
       search: {

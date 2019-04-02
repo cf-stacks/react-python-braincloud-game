@@ -11,6 +11,7 @@ import {
 import {
   createCategory,
 } from '../../actions/common';
+import FieldError from '../common/FieldError';
 import QuestionCategoryTab from './QuestionCategoryTab';
 import { i18n } from '../App';
 
@@ -126,6 +127,7 @@ export class IStoppedTable extends React.Component {
                   <i className="fas fa-plus" />
                 </button>
               </div>
+              <FieldError for="name" />
             </div>
           </div>
           <Tabs

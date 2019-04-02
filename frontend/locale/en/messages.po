@@ -79,8 +79,8 @@ msgid "Category"
 msgstr "Category"
 
 #: frontend/src/actions/common.js:25
-msgid "Category added"
-msgstr "Category added"
+msgid "Category \"{name}\" added"
+msgstr "Category \"{name}\" added"
 
 #: frontend/src/actions/chief.js:185
 msgid "Category deleted"

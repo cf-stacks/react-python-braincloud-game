@@ -1,12 +1,13 @@
 import axios from 'axios';
+import { t } from '@lingui/macro';
+
 import {
   COMMON_GET_CATEGORIES,
   COMMON_CREATE_CATEGORY,
   COMMON_GET_STATISTICS,
 } from './types';
 import { createMessage, returnErrors } from './messages';
-import {i18n} from "../components/App";
-import {t} from "@lingui/macro";
+import { i18n } from '../components/App';
 
 // GET CATEGORY LIST
 export const getCategories = () => (dispatch) => {
@@ -22,7 +23,7 @@ export const createCategory = (name, callback = null) => dispatch => (
   axios
     .post('/api/internal/quiz/category/', { name })
     .then((res) => {
-      dispatch(createMessage({ simpleSuccess: i18n._(t`Category added`) }));
+      dispatch(createMessage({ simpleSuccess: i18n._(t`Category "${name}" added`) }));
       dispatch({ type: COMMON_CREATE_CATEGORY, payload: res.data });
       if (callback) callback(res.data);
     })
