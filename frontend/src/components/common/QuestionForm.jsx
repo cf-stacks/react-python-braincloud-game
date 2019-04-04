@@ -1,5 +1,4 @@
-import React, { Component, Fragment } from 'react';
-// import Select from 'react-select';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
@@ -20,7 +19,7 @@ const initialState = {
   },
 };
 
-export class IQuestionForm extends Component {
+export class IQuestionForm extends React.Component {
   state = initialState;
 
   static propTypes = {
@@ -52,6 +51,7 @@ export class IQuestionForm extends Component {
           });
         }).catch(err => returnErrorsCall(err.response.data, err.response.status));
     }
+    console.log(categories)
     if (!categories.length) getAvailableCategoriesCall();
   };
 
@@ -111,7 +111,7 @@ export class IQuestionForm extends Component {
     }
 
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="jumbotron p-3">
           <h1 className="text-center">
             { questionId ? <Trans>Edit quiz question</Trans> : <Trans>Add quiz question</Trans> }
@@ -182,7 +182,7 @@ export class IQuestionForm extends Component {
             </div>
           </form>
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

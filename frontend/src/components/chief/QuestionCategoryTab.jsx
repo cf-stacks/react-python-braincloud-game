@@ -85,7 +85,7 @@ export class IQuestionTab extends React.Component {
                       className="btn btn-danger rounded-circle border border-secondary my-1"
                       onClick={() => stopCategoryCall(category)}
                     >
-                      <i className="fas fa-stop" />
+                      <i className="fas fa-pause" />
                     </button>
                   ) : (
                     null
@@ -106,7 +106,7 @@ export class IQuestionTab extends React.Component {
                       className="btn btn-primary rounded-circle border border-secondary my-1"
                       to={`/category/${category.id}`}
                     >
-                      <i className="fas fa-edit" />
+                      <i className="fas fa-pencil-alt" />
                     </Link>
                   ) : (
                     null
@@ -117,7 +117,7 @@ export class IQuestionTab extends React.Component {
                       className="btn btn-danger rounded-circle border border-secondary my-1"
                       onClick={() => deleteCategoryCall(category)}
                     >
-                      <i className="fas fa-trash" />
+                      <i className="fas fa-trash-alt" />
                     </button>
                   ) : (
                     null

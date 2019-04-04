@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-export class Register extends Component {
+export class Register extends React.Component {
   state = {
     email: '',
     password: '',

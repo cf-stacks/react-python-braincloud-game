@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import AuthorDashboard from '../author/Dashboard';
-import EditorDashboard from '../editor/Dashboard';
-import ChiefDashboard from '../chief/Dashboard';
+import { Trans } from '@lingui/macro';
 
-export class IContainer extends Component {
+import styles from '../../css/GameApp.module.sass'
+
+export class IGameApp extends React.Component {
   static propTypes = {
     user: PropTypes.shape({
       date_joined: PropTypes.string.isRequired,
@@ -32,32 +32,29 @@ export class IContainer extends Component {
   };
 
   render() {
-    let component;
-    const { user: { groups } } = this.props;
-    if (groups.lenght === 0) {
-      return <h1>You do not have any group assigned. Contact chief to have one.</h1>;
-    }
-    switch (groups[0].name.toLowerCase()) {
-      case 'author':
-        component = <AuthorDashboard />;
-        break;
-      case 'editor':
-        component = <EditorDashboard />;
-        break;
-      case 'chief':
-        component = <ChiefDashboard />;
-        break;
-      default:
-        component = <h1>Unknown group is assigned to you</h1>;
-    }
+    const { user } = this.props;
 
     return (
-      component
+      <div className="d-flex justify-content-center align-items-center" style={{ height: '90vh'}}>
+        <div>
+          <p className={styles.info}>
+            {user ? <Trans key="1">{`Welcome, ${user.name}!`}</Trans> : null}
+          </p>
+          <p className={styles.info}>
+            <Trans key="2">Soon games will be here...</Trans>
+          </p>
+          <iframe
+            title="HexGL game on HTML5"
+            src="http://hexgl.bkcore.com/play/"
+            style={{ width: '100vh', height: '60vh' }}
+          />
+        </div>
+      </div>
     );
   }
 }
 
-IContainer.defaultProps = {
+IGameApp.defaultProps = {
   user: null,
 };
 
@@ -65,5 +62,5 @@ const mapStateTpProps = state => ({
   user: state.auth.user,
 });
 
-const Container = connect(mapStateTpProps)(IContainer);
-export default Container;
+const GameApp = connect(mapStateTpProps)(IGameApp);
+export default GameApp;

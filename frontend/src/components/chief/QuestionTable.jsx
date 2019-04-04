@@ -121,6 +121,7 @@ export class IStoppedTable extends React.Component {
             </div>
           </div>
           <Tabs
+            justify
             defaultActiveKey="pending"
             className="py-3"
           >

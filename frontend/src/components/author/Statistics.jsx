@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
 import { getStatistics } from '../../actions/author';
 
-export class IStatistics extends Component {
+export class IStatistics extends React.Component {
   static propTypes = {
     statistics: PropTypes.object,
     getStatistics: PropTypes.func,
@@ -18,7 +18,7 @@ export class IStatistics extends Component {
   render() {
     const { statistics } = this.props;
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="jumbotron p-3">
           <h1 className="text-center"><Trans>Statistics</Trans></h1>
           <hr />
@@ -45,7 +45,7 @@ export class IStatistics extends Component {
             </div>
           </div>
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

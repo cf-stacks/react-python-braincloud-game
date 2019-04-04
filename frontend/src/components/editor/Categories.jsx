@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -8,7 +8,7 @@ import { getAvailableCategories } from '../../actions/common';
 import { safeGet } from '../../utils/object_utils';
 import CategorySelect from '../common/CategorySelect';
 
-export class ICategories extends Component {
+export class ICategories extends React.Component {
   static propTypes = {
     user: PropTypes.object.isRequired,
     categories: PropTypes.array.isRequired,
@@ -70,7 +70,7 @@ export class ICategories extends Component {
       user: { subordinates }, assignedCategories, calendarData, changeCalendarData: changeCalendarDataCall,
     } = this.props;
     return (
-      <Fragment>
+      <React.Fragment>
         <Calendar
           objects={subordinates}
           statistics={assignedCategories}
@@ -80,7 +80,7 @@ export class ICategories extends Component {
           handleRenderCell={this.handleRenderCell}
           defaultRenderValue={[]}
         />
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

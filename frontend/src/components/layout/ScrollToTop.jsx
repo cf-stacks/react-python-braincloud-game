@@ -1,7 +1,7 @@
-import { Component } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router';
 
-export class IScrollToTop extends Component {
+export class IScrollToTop extends React.Component {
   componentDidUpdate(prevProps) {
     const { location } = this.props;
     if (location.pathname !== prevProps.location.pathname) {

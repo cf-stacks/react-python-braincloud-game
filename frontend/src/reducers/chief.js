@@ -14,7 +14,9 @@ import {
   CHIEF_STOP_QUESTION,
   CHIEF_DELETE_CATEGORY,
   CHIEF_RESUME_CATEGORY,
-  CHIEF_STOP_CATEGORY, COMMON_CREATE_CATEGORY,
+  CHIEF_STOP_CATEGORY,
+  COMMON_CREATE_CATEGORY,
+  LOGOUT_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -125,6 +127,8 @@ export default function (state = initialState, action) {
         ...state,
         activeCategories: [action.payload, ...state.activeCategories],
       };
+    case LOGOUT_SUCCESS:
+      return initialState;
     default:
       return state;
   }

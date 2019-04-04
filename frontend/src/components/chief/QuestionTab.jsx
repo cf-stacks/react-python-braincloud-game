@@ -102,7 +102,7 @@ export class IQuestionTab extends React.Component {
                           className="btn btn-success rounded-circle border border-secondary my-1"
                           onClick={() => acceptQuestionCall(question)}
                         >
-                          <i className="fas fa-check" />
+                          <i className="fas fa-thumbs-up" />
                         </button>
                       ) : (
                         null
@@ -113,7 +113,7 @@ export class IQuestionTab extends React.Component {
                           className="btn btn-danger rounded-circle border border-secondary my-1"
                           onClick={() => rejectQuestionCall(question)}
                         >
-                          <i className="fas fa-times" />
+                          <i className="fas fa-thumbs-down" />
                         </button>
                       ) : (
                         null
@@ -124,7 +124,7 @@ export class IQuestionTab extends React.Component {
                           className="btn btn-danger rounded-circle border border-secondary my-1"
                           onClick={() => stopQuestionCall(question)}
                         >
-                          <i className="fas fa-stop" />
+                          <i className="fas fa-pause" />
                         </button>
                       ) : (
                         null
@@ -145,7 +145,7 @@ export class IQuestionTab extends React.Component {
                           className="btn btn-primary rounded-circle border border-secondary my-1"
                           to={`/quiz/question/${question.id}`}
                         >
-                          <i className="fas fa-edit" />
+                          <i className="fas fa-pencil-alt" />
                         </Link>
                       ) : (
                         null
@@ -156,7 +156,7 @@ export class IQuestionTab extends React.Component {
                           className="btn btn-danger rounded-circle border border-secondary my-1"
                           onClick={() => deleteQuestionCall(question)}
                         >
-                          <i className="fas fa-trash" />
+                          <i className="fas fa-trash-alt" />
                         </button>
                       ) : (
                         null

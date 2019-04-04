@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import { withAlert } from 'react-alert';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-export class _Alert extends Component {
+export class _Alert extends React.Component {
   static propTypes = {
     error: PropTypes.shape({
       status: PropTypes.number,
@@ -35,7 +35,7 @@ export class _Alert extends Component {
   }
 
   render() {
-    return <Fragment />;
+    return <React.Fragment />;
   }
 }
 

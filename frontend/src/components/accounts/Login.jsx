@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -7,7 +7,7 @@ import { Trans } from '@lingui/macro';
 import { login } from '../../actions/auth';
 import FieldError from '../common/FieldError';
 
-export class Login extends Component {
+export class ILogin extends React.Component {
   state = {
     email: '',
     password: '',
@@ -30,7 +30,10 @@ export class Login extends Component {
   render() {
     const { user } = this.props;
     const { email, password } = this.state;
-    if (user) return <Redirect to="/" />;
+    if (user) {
+      if (user.is_staff) return <Redirect to="/dashboard/" />;
+      return <Redirect to="/" />;
+    }
     return (
       <div className="col-md-6 m-auto">
         <div className="card card-body mt-5">
@@ -72,4 +75,5 @@ const mapStateToProps = state => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { login })(Login);
+const Login = connect(mapStateToProps, { login })(ILogin);
+export default Login;

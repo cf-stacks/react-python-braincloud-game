@@ -24,6 +24,7 @@ export class ICalendarData extends React.Component {
           <h1 className="text-center"><Trans>Calendar data</Trans></h1>
           <hr />
           <Tabs
+            justify
             id="controlled-tab-example"
             activeKey={selectedTab}
             onSelect={key => this.setState({ selectedTab: key })}

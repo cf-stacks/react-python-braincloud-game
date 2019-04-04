@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
+import { Navbar, Nav} from 'react-bootstrap';
 
 import { logout } from '../../actions/auth';
 import logo from '../../images/logo.png';
 
 import '../../css/Header.css';
 
-export class IHeader extends Component {
+export class IHeader extends React.Component {
   state = {
     currentTime: new Date().toLocaleString(),
     intervalID: null,
@@ -61,70 +62,80 @@ export class IHeader extends Component {
   }
 
   render() {
-    const { auth: { user }, logout: logoutCall } = this.props;
+    const { auth: { user }, logout: logoutCall, match } = this.props;
     const { currentTime } = this.state;
+    console.log(match.url, match.url.startsWith('/dashboard/') ? 2 : 1);
+
+    let beginLink = (
+      <Trans>Loading...</Trans>
+    );
+    if (user) {
+      beginLink = (
+        <span>
+          {user.name}
+          {' '}
+          <small>
+            (
+            {user.email}
+            )
+          </small>
+        </span>
+      );
+    }
 
     const authLinks = (
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <span className="nav-link">
-            {user ? (
-              <span>
-                {user.name}
-                {' '}
-                <small>
-(
-                  {user.email}
-)
-                </small>
-              </span>
-            ) : <span><Trans>Loading...</Trans></span>}
-          </span>
-        </li>
-        <li className="nav-item">
-          <span className="nav-link"> | </span>
-        </li>
-        <li className="nav-item">
-          <Link to="/" className="nav-link" onClick={logoutCall}><Trans>Log out</Trans></Link>
-        </li>
-      </ul>
+      <Nav>
+        <Nav.Link>
+          {beginLink}
+        </Nav.Link>
+        <span className="nav-link">|</span>
+        <Nav.Link as={Link} to="/" onClick={logoutCall}>
+          <Trans>Log out</Trans>
+        </Nav.Link>
+      </Nav>
     );
 
     const guestLinks = (
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link to="/login" className="nav-link"><Trans>Log in</Trans></Link>
-        </li>
-      </ul>
+      <Nav>
+        <Nav.Link as={Link} to="/login/"><Trans>Log in</Trans></Nav.Link>
+      </Nav>
     );
+
+    const navLinks = [];
+    if (user) {
+      navLinks.push(<Nav.Link as={Link} to="/" eventKey={1} key="home"><Trans>Home</Trans></Nav.Link>);
+      if (user.groups) {
+        navLinks.push(
+          <Nav.Link as={Link} to="/dashboard/" eventKey={2} key="dashboard">
+            <Trans>Dashboard</Trans>
+          </Nav.Link>
+        );
+      }
+    }
+    const ddd = match.url.startsWith('/dashboard/') ? 2 : 1;
     return (
       <header>
-        <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <Navbar variant="dark" bg="dark" expand="md" fixed="top">
           <div className="container">
-            <Link className="navbar-brand" to="/">
+            <Navbar.Brand href="/">
               <img src={logo} alt="logo" />
-            </Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarCollapse"
-              aria-controls="navbarCollapse"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon">button</span>
-            </button>
-            <div className="collapse navbar-collapse flex-column">
-              <span className="navbar-text ml-auto p-0">
-                { currentTime }
-              </span>
-              <span className="navbar-text ml-auto p-0">
-                { user ? authLinks : guestLinks }
-              </span>
-            </div>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto" activeKey={ddd}>
+                {navLinks}
+              </Nav>
+              <Nav className="flex-column">
+                <Navbar.Text className="ml-auto p-0">
+                  {currentTime}
+                </Navbar.Text>
+                <Navbar.Text className="ml-auto p-0">
+                  { user ? authLinks : guestLinks }
+                </Navbar.Text>
+              </Nav>
+            </Navbar.Collapse>
           </div>
-        </nav>
+        </Navbar>
       </header>
     );
   }

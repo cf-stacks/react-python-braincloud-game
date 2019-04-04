@@ -35,7 +35,7 @@ msgstr "Добавить вопрос"
 msgid "Added today"
 msgstr "Добавлено сегодня"
 
-#: src/components/editor/ReviewTable.jsx:47
+#: src/components/editor/ReviewTable.jsx:48
 msgid "All"
 msgstr "Все"
 
@@ -53,7 +53,7 @@ msgstr "Применить"
 msgid "Assigned categories"
 msgstr "Закрепленные темы"
 
-#: src/components/editor/CalendarData.jsx:33
+#: src/components/editor/CalendarData.jsx:34
 msgid "Authors"
 msgstr "Авторы"
 
@@ -67,7 +67,7 @@ msgid "Cancel"
 msgstr "Отменить"
 
 #: src/components/chief/QuestionCategoryTable.jsx:85
-#: src/components/editor/CalendarData.jsx:36
+#: src/components/editor/CalendarData.jsx:37
 msgid "Categories"
 msgstr "Темы"
 
@@ -100,6 +100,10 @@ msgstr "Категория снята с игры"
 msgid "Correct answer"
 msgstr "Правильный ответ"
 
+#: src/components/layout/Header.jsx:109
+msgid "Dashboard"
+msgstr "Панель управления"
+
 #: src/components/author/TodayList.jsx:29
 #: src/components/chief/QuestionTab.jsx:78
 #: src/components/chief/QuestionTable.jsx:100
@@ -112,11 +116,11 @@ msgstr "Описание"
 msgid "Edit quiz question"
 msgstr "Редактировать вопрос"
 
-#: src/components/chief/CalendarData.jsx:32
+#: src/components/chief/CalendarData.jsx:33
 msgid "Editors"
 msgstr "Редакторы"
 
-#: src/components/accounts/Login.jsx:40
+#: src/components/accounts/Login.jsx:43
 msgid "Email"
 msgstr "Адрес электронной почты"
 
@@ -125,8 +129,16 @@ msgstr "Адрес электронной почты"
 msgid "Filters"
 msgstr "Фильтры"
 
-#: src/components/chief/QuestionCategoryTable.jsx:137
-#: src/components/chief/QuestionTable.jsx:138
+#: src/components/layout/ErrorPage.jsx:23
+msgid "Go home"
+msgstr "На главную"
+
+#: src/components/layout/Header.jsx:105
+msgid "Home"
+msgstr "Главная"
+
+#: src/components/chief/QuestionCategoryTable.jsx:138
+#: src/components/chief/QuestionTable.jsx:139
 msgid "In game"
 msgstr "В игре"
 
@@ -138,20 +150,20 @@ msgstr "Неправильный ответ 1"
 msgid "Incorrect answer 2"
 msgstr "Неправильный ответ 2"
 
-#: src/components/layout/Header.jsx:81
+#: src/components/layout/Header.jsx:69
 msgid "Loading..."
 msgstr "Загрузка..."
 
-#: src/components/accounts/Login.jsx:62
-#: src/components/layout/Header.jsx:96
+#: src/components/accounts/Login.jsx:65
+#: src/components/layout/Header.jsx:99
 msgid "Log in"
 msgstr "Войти"
 
-#: src/components/layout/Header.jsx:88
+#: src/components/layout/Header.jsx:92
 msgid "Log out"
 msgstr "Выйти"
 
-#: src/components/accounts/Login.jsx:37
+#: src/components/accounts/Login.jsx:40
 msgid "Login"
 msgstr "Вход"
 
@@ -169,11 +181,15 @@ msgstr "Название"
 msgid "No categories to show"
 msgstr "Нет категорий для выбора"
 
-#: src/components/accounts/Login.jsx:51
+#: src/components/layout/NotFoundPage.jsx:9
+msgid "Page not found. Are you sure the path is correct?"
+msgstr "Страница не найдена. Вы уверены что Вам нужно сюда?"
+
+#: src/components/accounts/Login.jsx:54
 msgid "Password"
 msgstr "Пароль"
 
-#: src/components/chief/QuestionTable.jsx:127
+#: src/components/chief/QuestionTable.jsx:128
 msgid "Pending"
 msgstr "Ожидающие"
 
@@ -215,7 +231,7 @@ msgstr "Вопросы"
 msgid "Questions for review"
 msgstr "Вопросы для проверки"
 
-#: src/components/chief/QuestionTable.jsx:160
+#: src/components/chief/QuestionTable.jsx:161
 msgid "Rejected"
 msgstr "Отклоненные"
 
@@ -233,12 +249,20 @@ msgstr "Смотреть все"
 msgid "Select category..."
 msgstr "Выберите тему..."
 
+#: src/components/layout/ServerErrorPage.jsx:13
+msgid "Server error happened. Report to developer!"
+msgstr "Произошла серверная ошибка. Сообщите об этом разработчику!"
+
+#: src/components/layout/GameApp.jsx:44
+msgid "Soon games will be here..."
+msgstr "Скоро будет добавление игр..."
+
 #: src/components/author/Statistics.jsx:23
 msgid "Statistics"
 msgstr "Статистика"
 
-#: src/components/chief/QuestionCategoryTable.jsx:147
-#: src/components/chief/QuestionTable.jsx:149
+#: src/components/chief/QuestionCategoryTable.jsx:148
+#: src/components/chief/QuestionTable.jsx:150
 msgid "Stopped"
 msgstr "Остановленные"
 
@@ -261,3 +285,11 @@ msgstr "Всего за месяц"
 #: src/components/common/Calendar.jsx:103
 msgid "Week"
 msgstr "Неделя"
+
+#: src/components/layout/GameApp.jsx:41
+msgid "Welcome, {0}!"
+msgstr "Здравствуйте, {0}!"
+
+#: src/components/layout/ForbiddenPage.jsx:9
+msgid "You do not have access to this page"
+msgstr "У вас нет прав для доступа к этой странице"

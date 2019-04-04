@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Calendar from './Calendar';
 
-export class IStatistics extends Component {
+export class IStatistics extends React.Component {
   static propTypes = {
     user: PropTypes.object.isRequired,
     statistics: PropTypes.object.isRequired,
@@ -41,7 +41,7 @@ export class IStatistics extends Component {
       user: { subordinates }, statistics, calendarData, changeCalendarData: changeCalendarDataCall,
     } = this.props;
     return (
-      <Fragment>
+      <React.Fragment>
         <Calendar
           objects={subordinates}
           statistics={statistics}
@@ -50,7 +50,7 @@ export class IStatistics extends Component {
           handleRenderTotal={this.handleRenderTotal}
           handleRenderCell={this.handleRenderCell}
         />
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

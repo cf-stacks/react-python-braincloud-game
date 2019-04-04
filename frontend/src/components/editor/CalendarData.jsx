@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 import { Trans } from '@lingui/macro';
 import { connect } from 'react-redux';
@@ -7,7 +7,7 @@ import Statistics from '../common/Statistics';
 import Categories from './Categories';
 import { changeCalendarData } from '../../actions/editor';
 
-export class ICalendarData extends Component {
+export class ICalendarData extends React.Component {
   static propTypes = {
     changeCalendarData: PropTypes.func.isRequired,
   };
@@ -20,11 +20,12 @@ export class ICalendarData extends Component {
     const { changeCalendarData: changeCalendarDataCall } = this.props;
     const { selectedTab } = this.state;
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="jumbotron p-3">
           <h1 className="text-center"><Trans>Calendar data</Trans></h1>
           <hr />
           <Tabs
+            justify
             id="controlled-tab-example"
             activeKey={selectedTab}
             onSelect={key => this.setState({ selectedTab: key })}
@@ -38,7 +39,7 @@ export class ICalendarData extends Component {
             </Tab>
           </Tabs>
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

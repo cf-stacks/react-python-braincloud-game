@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'react-bootstrap';
@@ -8,7 +8,7 @@ import { i18n } from '../App';
 import { getQuestions, submitReview } from '../../actions/editor';
 import EditorReviewTab from './ReviewTab';
 
-class ReviewTable extends Component {
+export class ReviewTable extends React.Component {
   state = {
     selectedTab: '',
   };
@@ -34,11 +34,12 @@ class ReviewTable extends Component {
     const { selectedTab } = this.state;
     const { questions, submitReview: submitReviewCall, user: { subordinates } } = this.props;
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="jumbotron p-3">
           <h1 className="text-center"><Trans>Questions for review</Trans></h1>
           <hr />
           <Tabs
+            justify
             id="controlled-tab-example"
             activeKey={selectedTab}
             onSelect={key => this.setState({ selectedTab: key })}
@@ -55,7 +56,7 @@ class ReviewTable extends Component {
             submitReview={submitReviewCall}
           />
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

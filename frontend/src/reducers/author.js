@@ -3,6 +3,7 @@ import {
   AUTHOR_GET_TODAY_LIST,
 
   COMMON_ADD_QUESTION,
+  LOGOUT_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -27,6 +28,8 @@ export default function (state = initialState, action) {
         ...state,
         todayList: action.payload,
       };
+    case LOGOUT_SUCCESS:
+      return initialState;
     default:
       return state;
   }

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
-export class ReviewTab extends Component {
+export class ReviewTab extends React.Component {
   static propTypes = {
     questions: PropTypes.array.isRequired,
     userId: PropTypes.string.isRequired,
@@ -52,7 +52,7 @@ export class ReviewTab extends Component {
                       data-id={question.id}
                       onClick={this.onClick}
                     >
-                      <i className="fas fa-check" />
+                      <i className="fas fa-thumbs-up" />
                     </button>
                     <button
                       className="btn btn-danger rounded-circle border border-secondary my-1"
@@ -61,7 +61,7 @@ export class ReviewTab extends Component {
                       data-id={question.id}
                       onClick={this.onClick}
                     >
-                      <i className="fas fa-times" />
+                      <i className="fas fa-thumbs-down" />
                     </button>
                     <div className="d-flex flex-column text-center justify-content-center font-italic">
                       <small>{ moment(question.created_at).format('Y-MM-DD') }</small>
@@ -69,9 +69,9 @@ export class ReviewTab extends Component {
                     </div>
                     <Link
                       className="btn btn-primary rounded-circle border border-secondary my-1"
-                      to={`/quiz/question/${question.id}`}
+                      to={`quiz/question/${question.id}/`}
                     >
-                      <i className="fas fa-edit" />
+                      <i className="fas fa-pencil-alt" />
                     </Link>
                   </div>
                 </div>

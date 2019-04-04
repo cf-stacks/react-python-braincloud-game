@@ -1,22 +1,24 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router';
 import EditorReviewTable from './ReviewTable';
 import EditorCalendarData from './CalendarData';
 import QuestionForm from '../common/QuestionForm';
+import NotFoundPage from '../layout/NotFoundPage';
 
-export const IDashboard = () => (
+export const IDashboard = ({ match }) => (
   <Switch>
     <Route
       exact
-      path="/"
+      path={match.path}
       component={() => (
-        <Fragment>
+        <React.Fragment>
           <EditorCalendarData />
           <EditorReviewTable />
-        </Fragment>
+        </React.Fragment>
       )}
     />
-    <Route exact path="/quiz/question/:questionId" component={QuestionForm} />
+    <Route exact path={`${match.path}/quiz/question/:questionId`} component={QuestionForm} />
+    <Route component={NotFoundPage} />
   </Switch>
 );
 

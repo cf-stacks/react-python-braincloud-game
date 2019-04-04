@@ -131,6 +131,7 @@ export class IStoppedTable extends React.Component {
             </div>
           </div>
           <Tabs
+            justify
             defaultActiveKey="active"
             className="py-3"
           >

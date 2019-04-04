@@ -6,6 +6,7 @@ import {
   EDITOR_ACCEPT_QUESTION,
   EDITOR_REJECT_QUESTION,
   EDITOR_CHANGE_ASSIGNED_CATEGORIES,
+  LOGOUT_SUCCESS,
 } from '../actions/types';
 import { safeGet } from '../utils/object_utils';
 
@@ -64,6 +65,8 @@ export default function (state = initialState, action) {
         questions: state.questions.filter(question => question.id !== action.payload.object.id),
       };
     }
+    case LOGOUT_SUCCESS:
+      return initialState;
     default:
       return state;
   }

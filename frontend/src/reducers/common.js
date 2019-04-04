@@ -4,6 +4,7 @@ import {
   COMMON_CALENDAR_CHANGE,
   COMMON_GET_STATISTICS,
   COMMON_GET_AVAILABLE_CATEGORIES,
+  LOGOUT_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -41,6 +42,8 @@ export default function (state = initialState, action) {
         ...state,
         statistics: action.payload,
       };
+    case LOGOUT_SUCCESS:
+      return initialState;
     default:
       return state;
   }

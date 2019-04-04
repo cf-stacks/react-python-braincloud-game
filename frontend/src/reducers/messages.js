@@ -1,4 +1,7 @@
-import { CREATE_MESSAGE } from '../actions/types';
+import {
+  CREATE_MESSAGE,
+  LOGOUT_SUCCESS,
+} from '../actions/types';
 
 const initialState = {};
 
@@ -9,6 +12,8 @@ export default function (state = initialState, action) {
         ...state,
         ...action.payload,
       };
+    case LOGOUT_SUCCESS:
+      return initialState;
     default:
       return state;
   }

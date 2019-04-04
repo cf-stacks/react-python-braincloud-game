@@ -1,4 +1,7 @@
-import { GET_ERRORS } from '../actions/types';
+import {
+  GET_ERRORS,
+  LOGOUT_SUCCESS,
+} from '../actions/types';
 
 const initialState = {
   msg: {},
@@ -12,6 +15,8 @@ export default function (state = initialState, action) {
         msg: action.payload.msg,
         status: action.payload.status,
       };
+    case LOGOUT_SUCCESS:
+      return initialState;
     default:
       return state;
   }

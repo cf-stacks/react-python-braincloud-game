@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
 import moment from 'moment';
@@ -7,7 +7,7 @@ import '../../css/Calendar.css';
 
 const getDays = (date, view) => moment.range(date.clone().startOf(view), date.clone().endOf(view)).by('days');
 
-export class ICalendar extends Component {
+export class ICalendar extends React.Component {
   static propTypes = {
     calendarData: PropTypes.object,
     objects: PropTypes.array.isRequired,
@@ -83,7 +83,7 @@ export class ICalendar extends Component {
     };
 
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="d-flex flex-row">
           <div className="d-flex flex-column p-2">
             <div
@@ -152,7 +152,7 @@ export class ICalendar extends Component {
             </table>
           </div>
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }

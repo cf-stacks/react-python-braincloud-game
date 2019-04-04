@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
 import { getTodayList } from '../../actions/author';
 
-export class ITodayList extends Component {
+export class ITodayList extends React.Component {
   static propTypes = {
     todayList: PropTypes.array.isRequired,
     getTodayList: PropTypes.func.isRequired,
@@ -18,7 +18,7 @@ export class ITodayList extends Component {
   render() {
     const { todayList } = this.props;
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="jumbotron p-3">
           <h1 className="text-center"><Trans>Today added</Trans></h1>
           <hr />
@@ -53,7 +53,7 @@ export class ITodayList extends Component {
             </tbody>
           </table>
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
