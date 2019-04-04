@@ -10,7 +10,7 @@ export const IStaffRoute = ({ component: Component, auth, ...rest }) => (
     {...rest}
     render={(props) => {
       if (auth.isLoading) return <Spinner />;
-      if (!auth.user) return <Redirect to="/login" />;
+      if (!auth.user) return <Redirect to="/login/" />;
       if (!auth.user.is_staff || !auth.user.groups.length) return <ForbiddenPage />;
       return <Component {...props} />;
     }}

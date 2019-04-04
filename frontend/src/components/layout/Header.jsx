@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Trans } from '@lingui/macro';
-import { Navbar, Nav} from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 
 import { logout } from '../../actions/auth';
 import logo from '../../images/logo.png';
@@ -64,7 +64,6 @@ export class IHeader extends React.Component {
   render() {
     const { auth: { user }, logout: logoutCall, match } = this.props;
     const { currentTime } = this.state;
-    console.log(match.url, match.url.startsWith('/dashboard/') ? 2 : 1);
 
     let beginLink = (
       <Trans>Loading...</Trans>
@@ -108,7 +107,7 @@ export class IHeader extends React.Component {
         navLinks.push(
           <Nav.Link as={Link} to="/dashboard/" eventKey={2} key="dashboard">
             <Trans>Dashboard</Trans>
-          </Nav.Link>
+          </Nav.Link>,
         );
       }
     }

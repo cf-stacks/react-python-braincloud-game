@@ -51,7 +51,6 @@ export class IQuestionForm extends React.Component {
           });
         }).catch(err => returnErrorsCall(err.response.data, err.response.status));
     }
-    console.log(categories)
     if (!categories.length) getAvailableCategoriesCall();
   };
 

@@ -54,7 +54,7 @@ export class Register extends React.Component {
             </div>
             <p>
               Already have an account?
-              <Link to="/login">
+              <Link to="/login/">
                 Login
               </Link>
             </p>

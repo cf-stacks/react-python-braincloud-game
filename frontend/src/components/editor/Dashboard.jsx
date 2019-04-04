@@ -17,7 +17,7 @@ export const IDashboard = ({ match }) => (
         </React.Fragment>
       )}
     />
-    <Route exact path={`${match.path}/quiz/question/:questionId`} component={QuestionForm} />
+    <Route exact path={`${match.path}/quiz/question/:questionId/`} component={QuestionForm} />
     <Route component={NotFoundPage} />
   </Switch>
 );

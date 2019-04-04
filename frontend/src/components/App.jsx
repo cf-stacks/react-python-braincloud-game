@@ -48,9 +48,9 @@ class App extends React.Component {
                     <Route path="*" component={Alert} />
                     <main role="main" className="container">
                       <Switch>
-                        <Route exact path="/login" component={Login} />
+                        <Route exact path="/login/" component={Login} />
                         <Route exact path="/" component={GameApp} />
-                        <StaffRoute path="/dashboard" component={Dashboard} />
+                        <StaffRoute path="/dashboard/" component={Dashboard} />
                         <Route component={NotFoundPage} />
                       </Switch>
                     </main>
