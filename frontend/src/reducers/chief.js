@@ -123,7 +123,6 @@ export default function (state = initialState, action) {
       };
     case CHIEF_STOP_CATEGORY: {
       const stoppedQuestions = state.activeQuestions.filter(question => question.category.id === action.payload.id);
-      console.log(stoppedQuestions);
       return {
         ...state,
         activeQuestions: state.activeQuestions.filter(question => question.category.id !== action.payload.id),
