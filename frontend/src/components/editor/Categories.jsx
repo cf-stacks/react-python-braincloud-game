@@ -1,17 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { t } from '@lingui/macro';
 
 import Calendar from '../common/Calendar';
 import { changeCalendarData, changeAssignedCategories } from '../../actions/editor';
 import { getAvailableCategories } from '../../actions/common';
 import { safeGet } from '../../utils/object_utils';
 import CategorySelect from '../common/CategorySelect';
+import Spinner from '../common/Spinner';
+import { i18n } from '../App';
 
 export class ICategories extends React.Component {
   static propTypes = {
     user: PropTypes.object.isRequired,
-    categories: PropTypes.array.isRequired,
+    categories: PropTypes.array,
     assignedCategories: PropTypes.object.isRequired,
     calendarData: PropTypes.object.isRequired,
     changeCalendarData: PropTypes.func.isRequired,
@@ -27,7 +30,7 @@ export class ICategories extends React.Component {
       categories,
     } = this.props;
     changeCalendarDataCall(date, view);
-    if (!categories.length) getAvailableCategoriesCall();
+    if (!categories) getAvailableCategoriesCall();
   };
 
   onSelectChange = (obj, date, value) => {
@@ -67,8 +70,9 @@ export class ICategories extends React.Component {
 
   render() {
     const {
-      user: { subordinates }, assignedCategories, calendarData, changeCalendarData: changeCalendarDataCall,
+      user: { subordinates }, assignedCategories, calendarData, changeCalendarData: changeCalendarDataCall, categories,
     } = this.props;
+    if (!categories) return <Spinner message={i18n._(t`Loading categories...`)} />;
     return (
       <React.Fragment>
         <Calendar

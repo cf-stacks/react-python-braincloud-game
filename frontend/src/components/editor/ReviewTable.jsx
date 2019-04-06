@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'react-bootstrap';
 import { Trans, t } from '@lingui/macro';
@@ -21,8 +22,8 @@ export class ReviewTable extends React.Component {
   };
 
   componentDidMount = () => {
-    const { getQuestions: getQuestionsCall } = this.props;
-    getQuestionsCall();
+    const { getQuestions: getQuestionsCall, questions } = this.props;
+    if (!questions.length) getQuestionsCall();
   };
 
   onClick = (event) => {
@@ -32,7 +33,9 @@ export class ReviewTable extends React.Component {
 
   render() {
     const { selectedTab } = this.state;
-    const { questions, submitReview: submitReviewCall, user: { subordinates } } = this.props;
+    const {
+      questions, submitReview: submitReviewCall, user: { subordinates }, match,
+    } = this.props;
     return (
       <React.Fragment>
         <div className="jumbotron p-3">
@@ -50,10 +53,17 @@ export class ReviewTable extends React.Component {
               <Tab key={subordinate.id} eventKey={subordinate.id} title={subordinate.name} />
             ))}
           </Tabs>
-          <EditorReviewTab
-            questions={questions}
-            userId={selectedTab}
-            submitReview={submitReviewCall}
+          <Route
+            exact
+            path={match.path}
+            render={props => (
+              <EditorReviewTab
+                {...props}
+                questions={questions}
+                userId={selectedTab}
+                submitReview={submitReviewCall}
+              />
+            )}
           />
         </div>
       </React.Fragment>

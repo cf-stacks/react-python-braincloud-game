@@ -1,6 +1,7 @@
 import {
   AUTHOR_GET_STATISTICS,
   AUTHOR_GET_TODAY_LIST,
+  AUTHOR_SET_DEFAULT_CATEGORY,
 
   COMMON_ADD_QUESTION,
   LOGOUT_SUCCESS,
@@ -9,6 +10,7 @@ import {
 const initialState = {
   statistics: {},
   todayList: [],
+  defaultCategory: localStorage.getItem('defaultCategory'),
 };
 
 export default function (state = initialState, action) {
@@ -30,6 +32,13 @@ export default function (state = initialState, action) {
       };
     case LOGOUT_SUCCESS:
       return initialState;
+    case AUTHOR_SET_DEFAULT_CATEGORY:
+      if (!action.payload) localStorage.removeItem('defaultCategory');
+      else localStorage.setItem('defaultCategory', action.payload);
+      return {
+        ...state,
+        defaultCategory: action.payload,
+      };
     default:
       return state;
   }

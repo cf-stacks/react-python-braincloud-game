@@ -8,7 +8,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  availableCategories: [],
+  availableCategories: null,
   statistics: {},
   calendarData: {
     date: moment(),

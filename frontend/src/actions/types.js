@@ -1,6 +1,7 @@
 // ------------------------------------------- AUTHOR --------------------------------------------------------//
 export const AUTHOR_GET_STATISTICS = 'AUTHOR_GET_STATISTICS';
 export const AUTHOR_GET_TODAY_LIST = 'AUTHOR_GET_TODAY_LIST';
+export const AUTHOR_SET_DEFAULT_CATEGORY = 'AUTHOR_SET_DEFAULT_CATEGORY';
 
 // ------------------------------------------- EDITOR --------------------------------------------------------//
 export const EDITOR_GET_QUESTIONS = 'EDITOR_GET_QUESTIONS';
@@ -33,6 +34,7 @@ export const COMMON_CREATE_CATEGORY = 'COMMON_CREATE_CATEGORY';
 export const COMMON_CALENDAR_CHANGE = 'COMMON_CALENDAR_CHANGE';
 export const COMMON_GET_STATISTICS = 'COMMON_GET_STATISTICS';
 export const COMMON_ADD_QUESTION = 'COMMON_ADD_QUESTION';
+export const COMMON_EDIT_QUESTION = 'COMMON_EDIT_QUESTION';
 export const COMMON_GET_AVAILABLE_CATEGORIES = 'COMMON_GET_AVAILABLE_CATEGORIES';
 
 // -------------------------------------------- AUTH --------------------------------------------------------//

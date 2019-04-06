@@ -151,7 +151,7 @@ export class IStoppedTable extends React.Component {
                 categories={stoppedCategories}
                 getQuerySet={getStoppedCategoriesCall}
                 allowActions={{
-                  resume: true, delete: true,
+                  activate: true, delete: true,
                 }}
               />
             </Tab>

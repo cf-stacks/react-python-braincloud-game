@@ -1,0 +1,35 @@
+@keyframes changeBG {
+  0% { background-position: left;}
+  50% { background-position: right;}
+  100% { background-position: left;}
+}
+.Toastify__toast {
+  float: right;
+  clear: both;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  border-radius: 5px;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 15px 0 rgba(0, 0, 0, 0.3);
+  background-size: 200% auto;
+  color: white;
+  min-height: inherit;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.Toastify__toast:hover {
+  animation: changeBG 2s linear forwards infinite;
+}
+.Toastify__toast--success {
+  background-image: linear-gradient(to right, #218221 0%, #5bdb3c 51%, #218221 100%);
+}
+.Toastify__toast--default {
+  background-image: linear-gradient(to right, #777377 0%, #d4d5da 51%, #777377 100%);
+}
+.Toastify__toast--error {
+  background-image: linear-gradient(to right, #8d1c22 0%, #ef6966 51%, #8d1c22 100%);
+}
+.Toastify__toast--warning {
+  background-image: linear-gradient(to right, #8d8c16 0%, #dee261 51%, #8d8c16 100%);
+}
+.Toastify__toast--info {
+  background-image: linear-gradient(to right, #1812f3 0%, #4985f9 51%, #1812f3 100%);
+}

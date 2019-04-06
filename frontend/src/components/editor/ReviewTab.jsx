@@ -18,7 +18,7 @@ export class ReviewTab extends React.Component {
   };
 
   render() {
-    const { questions, userId } = this.props;
+    const { questions, userId, match } = this.props;
     let userQuestions = questions;
     if (userId) {
       userQuestions = questions.filter(question => question.author === userId);
@@ -69,7 +69,7 @@ export class ReviewTab extends React.Component {
                     </div>
                     <Link
                       className="btn btn-primary rounded-circle border border-secondary my-1"
-                      to={`quiz/question/${question.id}/`}
+                      to={`${match.url}quiz/question/${question.id}/`}
                     >
                       <i className="fas fa-pencil-alt" />
                     </Link>

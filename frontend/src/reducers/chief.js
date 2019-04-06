@@ -16,6 +16,7 @@ import {
   CHIEF_RESUME_CATEGORY,
   CHIEF_STOP_CATEGORY,
   COMMON_CREATE_CATEGORY,
+  COMMON_EDIT_QUESTION,
   LOGOUT_SUCCESS,
 } from '../actions/types';
 
@@ -79,10 +80,20 @@ export default function (state = initialState, action) {
       return {
         ...state,
         pendingQuestions: state.pendingQuestions.filter(question => question.id !== action.payload.id),
-        activeQuestions: action.type === CHIEF_ACCEPT_QUESTION ? (
+        activeQuestions: action.type === CHIEF_ACCEPT_QUESTION && action.payload.status === 1 ? (
           [action.payload, ...state.activeQuestions]
         ) : (
           [...state.activeQuestions]
+        ),
+        rejectedQuestions: action.type === CHIEF_REJECT_QUESTION ? (
+          [action.payload, ...state.rejectedQuestions]
+        ) : (
+          [...state.rejectedQuestions]
+        ),
+        stoppedQuestions: action.type === CHIEF_ACCEPT_QUESTION && action.payload.status === 3 ? (
+          [action.payload, ...state.stoppedQuestions]
+        ) : (
+          [...state.stoppedQuestions]
         ),
       };
     case CHIEF_DELETE_QUESTION:
@@ -126,6 +137,16 @@ export default function (state = initialState, action) {
       return {
         ...state,
         activeCategories: [action.payload, ...state.activeCategories],
+      };
+    case COMMON_EDIT_QUESTION:
+      return {
+        ...state,
+        pendingQuestions: state.pendingQuestions.map(
+          item => (item.id === action.payload.id ? action.payload : item),
+        ),
+        stoppedQuestions: state.stoppedQuestions.map(
+          item => (item.id === action.payload.id ? action.payload : item),
+        ),
       };
     case LOGOUT_SUCCESS:
       return initialState;

@@ -20,7 +20,6 @@ export const IDashboard = ({ match }) => (
     />
     <Route component={NotFoundPage} />
   </Switch>
-
 );
 
 const Dashboard = IDashboard;

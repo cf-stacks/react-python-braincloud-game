@@ -7,6 +7,7 @@ import {
   EDITOR_REJECT_QUESTION,
   EDITOR_CHANGE_ASSIGNED_CATEGORIES,
   LOGOUT_SUCCESS,
+  COMMON_EDIT_QUESTION,
 } from '../actions/types';
 import { safeGet } from '../utils/object_utils';
 
@@ -65,6 +66,11 @@ export default function (state = initialState, action) {
         questions: state.questions.filter(question => question.id !== action.payload.object.id),
       };
     }
+    case COMMON_EDIT_QUESTION:
+      return {
+        ...state,
+        questions: state.questions.map(item => (item.id === action.payload.id ? action.payload : item)),
+      };
     case LOGOUT_SUCCESS:
       return initialState;
     default:

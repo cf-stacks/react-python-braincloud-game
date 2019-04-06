@@ -5,6 +5,7 @@ import { returnErrors } from './messages';
 import {
   AUTHOR_GET_STATISTICS,
   AUTHOR_GET_TODAY_LIST,
+  AUTHOR_SET_DEFAULT_CATEGORY,
 } from './types';
 
 // GET AUTHOR STATISTICS
@@ -23,4 +24,9 @@ export const getTodayList = () => (dispatch) => {
     .then((res) => {
       dispatch({ type: AUTHOR_GET_TODAY_LIST, payload: res.data });
     }).catch(err => dispatch(returnErrors(err.response.data, err.response.status)));
+};
+
+// SET DEFAULT CATEGORY
+export const setDefaultCategory = categoryId => (dispatch) => {
+  dispatch({ type: AUTHOR_SET_DEFAULT_CATEGORY, payload: categoryId });
 };

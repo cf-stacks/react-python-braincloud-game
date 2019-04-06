@@ -12,12 +12,12 @@ export const IDashboard = ({ match }) => (
       path={match.path}
       component={() => (
         <React.Fragment>
-          <EditorCalendarData />
-          <EditorReviewTable />
+          <Route exact path={match.path} component={EditorCalendarData} />
+          <Route exact path={match.path} component={EditorReviewTable} />
         </React.Fragment>
       )}
     />
-    <Route exact path={`${match.path}/quiz/question/:questionId/`} component={QuestionForm} />
+    <Route exact path={`${match.path}quiz/question/:questionId/`} component={QuestionForm} />
     <Route component={NotFoundPage} />
   </Switch>
 );

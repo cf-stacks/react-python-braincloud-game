@@ -1,11 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Trans } from '@lingui/macro';
+import { t, Trans } from '@lingui/macro';
+
 import { getAvailableCategories, createCategory } from '../../actions/common';
 import { getAssignedCategories, changeAssignedCategories } from '../../actions/chief';
 import { safeGet } from '../../utils/object_utils';
 import CategorySelect from '../common/CategorySelect';
+import Spinner from '../common/Spinner';
+import { i18n } from '../App';
+
+
+export const Wrapper = props => (
+  <React.Fragment>
+    <div className="jumbotron p-3">
+      <h1 className="text-center"><Trans>Assigned categories</Trans></h1>
+      <hr />
+      <IAssignCategory {...props} />
+    </div>
+  </React.Fragment>
+);
+
 
 export class IAssignCategory extends React.Component {
   static propTypes = {
@@ -23,7 +38,7 @@ export class IAssignCategory extends React.Component {
       categories,
       assignedCategories,
     } = this.props;
-    if (!categories.length) getAvailableCategoriesCall();
+    if (!categories) getAvailableCategoriesCall();
     if (!Object.keys(assignedCategories).length) getAssignedCategoriesCall();
   };
 
@@ -62,29 +77,24 @@ export class IAssignCategory extends React.Component {
   };
 
   render = () => {
-    const { user } = this.props;
+    const { user, categories } = this.props;
+    if (!categories) return <Spinner message={i18n._(t`Loading categories...`)} />;
 
     return (
-      <React.Fragment>
-        <div className="jumbotron p-3">
-          <h1 className="text-center"><Trans>Assigned categories</Trans></h1>
-          <hr />
-          <table className="table table-striped table-sm">
-            <tbody className="thead-dark">
-              { user.subordinates.map(subordinate => (
-                <tr key={subordinate.id}>
-                  <th className="text-center align-middle" style={{ width: '20%' }}>
-                    {subordinate.name}
-                  </th>
-                  <td>
-                    { this.renderCell(subordinate.id) }
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </React.Fragment>
+      <table className="table table-striped table-sm">
+        <tbody className="thead-dark">
+          { user.subordinates.map(subordinate => (
+            <tr key={subordinate.id}>
+              <th className="text-center align-middle" style={{ width: '20%' }}>
+                {subordinate.name}
+              </th>
+              <td>
+                { this.renderCell(subordinate.id) }
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     );
   };
 }
@@ -100,5 +110,5 @@ const AssignCategory = connect(mapStateToProps, {
   createCategory,
   getAssignedCategories,
   changeAssignedCategories,
-})(IAssignCategory);
+})(Wrapper);
 export default AssignCategory;

@@ -6,7 +6,7 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import {
   deleteQuestion,
-  resumeQuestion,
+  activateQuestion,
   stopQuestion,
   acceptQuestion,
   rejectQuestion,
@@ -19,7 +19,7 @@ export class IQuestionTab extends React.Component {
     allowActions: PropTypes.object,
     getQuerySet: PropTypes.func.isRequired,
     deleteQuestion: PropTypes.func.isRequired,
-    resumeQuestion: PropTypes.func.isRequired,
+    activateQuestion: PropTypes.func.isRequired,
     stopQuestion: PropTypes.func.isRequired,
     acceptQuestion: PropTypes.func.isRequired,
     rejectQuestion: PropTypes.func.isRequired,
@@ -46,10 +46,11 @@ export class IQuestionTab extends React.Component {
       questions,
       allowActions,
       deleteQuestion: deleteQuestionCall,
-      resumeQuestion: resumeQuestionCall,
+      activateQuestion: activateQuestionCall,
       stopQuestion: stopQuestionCall,
       acceptQuestion: acceptQuestionCall,
       rejectQuestion: rejectQuestionCall,
+      match,
     } = this.props;
     const { count } = this.state;
     let userQuestions = questions;
@@ -129,11 +130,11 @@ export class IQuestionTab extends React.Component {
                       ) : (
                         null
                       )}
-                      { allowActions.resume ? (
+                      { allowActions.activate ? (
                         <button
                           type="button"
                           className="btn btn-success rounded-circle border border-secondary my-1"
-                          onClick={() => resumeQuestionCall(question)}
+                          onClick={() => activateQuestionCall(question)}
                         >
                           <i className="fas fa-play" />
                         </button>
@@ -143,7 +144,7 @@ export class IQuestionTab extends React.Component {
                       { allowActions.edit ? (
                         <Link
                           className="btn btn-primary rounded-circle border border-secondary my-1"
-                          to={`/quiz/question/${question.id}`}
+                          to={`${match.url}quiz/question/${question.id}/`}
                         >
                           <i className="fas fa-pencil-alt" />
                         </Link>
@@ -197,7 +198,7 @@ const mapStateToProps = (state, parentProps) => ({
 const QuestionTab = IQuestionTab;
 export default connect(mapStateToProps, {
   deleteQuestion,
-  resumeQuestion,
+  activateQuestion,
   stopQuestion,
   acceptQuestion,
   rejectQuestion,

@@ -14,11 +14,6 @@ export const IGameApp = ({ user }) => (
       <p className={styles.info}>
         <Trans key="2">Soon games will be here...</Trans>
       </p>
-      <iframe
-        title="HexGL game on HTML5"
-        src="http://hexgl.bkcore.com/play/"
-        style={{ width: '100vh', height: '60vh' }}
-      />
     </div>
   </div>
 );

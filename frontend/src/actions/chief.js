@@ -100,7 +100,7 @@ export const acceptQuestion = question => dispatch => (
   axios
     .post(`/api/internal/quiz/question/${question.id}/accept/`)
     .then((res) => {
-      dispatch(createMessage({ simpleSuccess: i18n._(t`Question accepted`) }));
+      dispatch(createMessage({ success: i18n._(t`Question accepted`) }));
       dispatch({
         type: CHIEF_ACCEPT_QUESTION, payload: res.data,
       });
@@ -114,7 +114,7 @@ export const rejectQuestion = question => dispatch => (
   axios
     .post(`/api/internal/quiz/question/${question.id}/reject/`)
     .then((res) => {
-      dispatch(createMessage({ simpleSuccess: i18n._(t`Question rejected`) }));
+      dispatch(createMessage({ warning: i18n._(t`Question rejected`) }));
       dispatch({
         type: CHIEF_REJECT_QUESTION, payload: res.data,
       });
@@ -128,7 +128,7 @@ export const deleteQuestion = question => dispatch => (
   axios
     .delete(`/api/internal/quiz/question/${question.id}/`)
     .then(() => {
-      dispatch(createMessage({ simpleSuccess: i18n._(t`Question deleted`) }));
+      dispatch(createMessage({ warning: i18n._(t`Question deleted`) }));
       dispatch({ type: CHIEF_DELETE_QUESTION, payload: question });
     }).catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
@@ -140,7 +140,7 @@ export const stopQuestion = question => dispatch => (
   axios
     .post(`/api/internal/quiz/question/${question.id}/stop/`)
     .then((res) => {
-      dispatch(createMessage({ simpleSuccess: i18n._(t`Question stopped`) }));
+      dispatch(createMessage({ warning: i18n._(t`Question stopped`) }));
       dispatch({ type: CHIEF_STOP_QUESTION, payload: res.data });
     }).catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
@@ -148,11 +148,11 @@ export const stopQuestion = question => dispatch => (
 );
 
 // RESUME QUESTION
-export const resumeQuestion = question => dispatch => (
+export const activateQuestion = question => dispatch => (
   axios
-    .post(`/api/internal/quiz/question/${question.id}/resume/`)
+    .post(`/api/internal/quiz/question/${question.id}/activate/`)
     .then((res) => {
-      dispatch(createMessage({ simpleSuccess: i18n._(t`Question resumed`) }));
+      dispatch(createMessage({ success: i18n._(t`Question activated`) }));
       dispatch({ type: CHIEF_RESUME_QUESTION, payload: res.data });
     }).catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
@@ -182,7 +182,7 @@ export const deleteCategory = category => dispatch => (
   axios
     .delete(`/api/internal/quiz/category/${category.id}/`)
     .then(() => {
-      dispatch(createMessage({ simpleSuccess: i18n._(t`Category deleted`) }));
+      dispatch(createMessage({ warning: i18n._(t`Category deleted`) }));
       dispatch({ type: CHIEF_DELETE_CATEGORY, payload: category });
     }).catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
@@ -194,7 +194,7 @@ export const stopCategory = category => dispatch => (
   axios
     .post(`/api/internal/quiz/category/${category.id}/stop/`)
     .then((res) => {
-      dispatch(createMessage({ simpleSuccess: i18n._(t`Category stopped`) }));
+      dispatch(createMessage({ warning: i18n._(t`Category stopped`) }));
       dispatch({ type: CHIEF_STOP_CATEGORY, payload: res.data });
     }).catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
@@ -202,11 +202,11 @@ export const stopCategory = category => dispatch => (
 );
 
 // RESUME QUESTION
-export const resumeCategory = category => dispatch => (
+export const activateCategory = category => dispatch => (
   axios
-    .post(`/api/internal/quiz/category/${category.id}/resume/`)
+    .post(`/api/internal/quiz/category/${category.id}/activate/`)
     .then((res) => {
-      dispatch(createMessage({ simpleSuccess: i18n._(t`Category resumed`) }));
+      dispatch(createMessage({ success: i18n._(t`Category activated`) }));
       dispatch({ type: CHIEF_RESUME_CATEGORY, payload: res.data });
     }).catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));

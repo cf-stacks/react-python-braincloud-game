@@ -14,14 +14,14 @@ export const IDashboard = ({ match }) => (
       path={match.path}
       component={() => (
         <React.Fragment>
-          <CalendarData />
-          <AssignCategory />
-          <QuestionTable />
-          <QuestionCategoryTable />
+          <Route exact path={match.path} component={CalendarData} />
+          <Route exact path={match.path} component={AssignCategory} />
+          <Route exact path={match.path} component={QuestionTable} />
+          <Route exact path={match.path} component={QuestionCategoryTable} />
         </React.Fragment>
       )}
     />
-    <Route exact path={`${match.path}/quiz/question/:questionId/`} component={QuestionForm} />
+    <Route exact path={`${match.path}quiz/question/:questionId/`} component={QuestionForm} />
     <Route component={NotFoundPage} />
   </Switch>
 );

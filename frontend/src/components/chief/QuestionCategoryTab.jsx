@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import {
   deleteCategory,
   stopCategory,
-  resumeCategory,
+  activateCategory,
 } from '../../actions/chief';
 
 export class IQuestionTab extends React.Component {
@@ -16,7 +16,7 @@ export class IQuestionTab extends React.Component {
     allowActions: PropTypes.object,
     getQuerySet: PropTypes.func.isRequired,
     deleteCategory: PropTypes.func.isRequired,
-    resumeCategory: PropTypes.func.isRequired,
+    activateCategory: PropTypes.func.isRequired,
     stopCategory: PropTypes.func.isRequired,
   };
 
@@ -41,7 +41,7 @@ export class IQuestionTab extends React.Component {
       categories,
       allowActions,
       deleteCategory: deleteCategoryCall,
-      resumeCategory: resumeCategoryCall,
+      activateCategory: activateCategoryCall,
       stopCategory: stopCategoryCall,
     } = this.props;
     const { count } = this.state;
@@ -90,11 +90,11 @@ export class IQuestionTab extends React.Component {
                   ) : (
                     null
                   )}
-                  { allowActions.resume ? (
+                  { allowActions.activate ? (
                     <button
                       type="button"
                       className="btn btn-success rounded-circle border border-secondary my-1"
-                      onClick={() => resumeCategoryCall(category)}
+                      onClick={() => activateCategoryCall(category)}
                     >
                       <i className="fas fa-play" />
                     </button>
@@ -143,6 +143,6 @@ const mapStateToProps = (state, parentProps) => ({
 const QuestionTab = IQuestionTab;
 export default connect(mapStateToProps, {
   deleteCategory,
-  resumeCategory,
+  activateCategory,
   stopCategory,
 })(QuestionTab);

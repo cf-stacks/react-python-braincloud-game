@@ -23,11 +23,11 @@ msgstr "Actions"
 
 #: src/components/chief/QuestionCategoryTable.jsx:108
 #: src/components/common/CategorySelect.jsx:57
-#: src/components/common/QuestionForm.jsx:101
+#: src/components/common/QuestionForm.jsx:159
 msgid "Add"
 msgstr "Add"
 
-#: src/components/common/QuestionForm.jsx:117
+#: src/components/common/QuestionForm.jsx:20
 msgid "Add quiz question"
 msgstr "Add quiz question"
 
@@ -35,21 +35,21 @@ msgstr "Add quiz question"
 msgid "Added today"
 msgstr "Added today"
 
-#: src/components/editor/ReviewTable.jsx:48
+#: src/components/editor/ReviewTable.jsx:49
 msgid "All"
 msgstr "All"
 
-#: src/components/chief/QuestionTab.jsx:79
-#: src/components/chief/QuestionTable.jsx:118
+#: src/components/chief/QuestionTab.jsx:80
+#: src/components/chief/QuestionTable.jsx:120
 #: src/components/editor/ReviewTab.jsx:33
 msgid "Answers"
 msgstr "Answers"
 
-#: src/components/common/QuestionForm.jsx:101
+#: src/components/common/QuestionForm.jsx:159
 msgid "Apply"
 msgstr "Apply"
 
-#: src/components/chief/AssignCategory.jsx:70
+#: src/components/chief/AssignCategory.jsx:17
 msgid "Assigned categories"
 msgstr "Assigned categories"
 
@@ -62,7 +62,7 @@ msgstr "Authors"
 msgid "Calendar data"
 msgstr "Calendar data"
 
-#: src/components/common/QuestionForm.jsx:108
+#: src/components/common/QuestionForm.jsx:166
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -72,31 +72,31 @@ msgid "Categories"
 msgstr "Categories"
 
 #: src/components/author/TodayList.jsx:30
-#: src/components/chief/QuestionTab.jsx:77
-#: src/components/chief/QuestionTable.jsx:109
-#: src/components/common/QuestionForm.jsx:122
+#: src/components/chief/QuestionTab.jsx:78
+#: src/components/chief/QuestionTable.jsx:111
+#: src/components/common/QuestionForm.jsx:174
 #: src/components/editor/ReviewTab.jsx:31
 msgid "Category"
 msgstr "Category"
 
-#: src/actions/common.js:18
+#: src/actions/common.js:20
 msgid "Category \"{name}\" added"
 msgstr "Category \"{name}\" added"
+
+#: src/actions/chief.js:209
+msgid "Category activated"
+msgstr "Category activated"
 
 #: src/actions/chief.js:185
 msgid "Category deleted"
 msgstr "Category deleted"
-
-#: src/actions/chief.js:209
-msgid "Category resumed"
-msgstr "Category resumed"
 
 #: src/actions/chief.js:197
 msgid "Category stopped"
 msgstr "Category stopped"
 
 #: src/components/author/TodayList.jsx:31
-#: src/components/common/QuestionForm.jsx:143
+#: src/components/common/QuestionForm.jsx:195
 msgid "Correct answer"
 msgstr "Correct answer"
 
@@ -105,14 +105,14 @@ msgid "Dashboard"
 msgstr "Dashboard"
 
 #: src/components/author/TodayList.jsx:29
-#: src/components/chief/QuestionTab.jsx:78
-#: src/components/chief/QuestionTable.jsx:100
-#: src/components/common/QuestionForm.jsx:131
+#: src/components/chief/QuestionTab.jsx:79
+#: src/components/chief/QuestionTable.jsx:102
+#: src/components/common/QuestionForm.jsx:183
 #: src/components/editor/ReviewTab.jsx:32
 msgid "Description"
 msgstr "Description"
 
-#: src/components/common/QuestionForm.jsx:117
+#: src/components/common/QuestionForm.jsx:20
 msgid "Edit quiz question"
 msgstr "Edit quiz question"
 
@@ -125,11 +125,11 @@ msgid "Email"
 msgstr "Email"
 
 #: src/components/chief/QuestionCategoryTable.jsx:91
-#: src/components/chief/QuestionTable.jsx:90
+#: src/components/chief/QuestionTable.jsx:92
 msgid "Filters"
 msgstr "Filters"
 
-#: src/components/layout/ErrorPage.jsx:23
+#: src/components/layout/ErrorPage.jsx:21
 msgid "Go home"
 msgstr "Go home"
 
@@ -138,17 +138,23 @@ msgid "Home"
 msgstr "Home"
 
 #: src/components/chief/QuestionCategoryTable.jsx:138
-#: src/components/chief/QuestionTable.jsx:139
+#: src/components/chief/QuestionTable.jsx:148
 msgid "In game"
 msgstr "In game"
 
-#: src/components/common/QuestionForm.jsx:155
+#: src/components/common/QuestionForm.jsx:207
 msgid "Incorrect answer 1"
 msgstr "Incorrect answer 1"
 
-#: src/components/common/QuestionForm.jsx:167
+#: src/components/common/QuestionForm.jsx:219
 msgid "Incorrect answer 2"
 msgstr "Incorrect answer 2"
+
+#: src/components/chief/AssignCategory.jsx:81
+#: src/components/common/QuestionForm.jsx:149
+#: src/components/editor/Categories.jsx:75
+msgid "Loading categories..."
+msgstr "Loading categories..."
 
 #: src/components/layout/Header.jsx:69
 msgid "Loading..."
@@ -189,7 +195,7 @@ msgstr "Page not found. Are you sure the path is correct?"
 msgid "Password"
 msgstr "Password"
 
-#: src/components/chief/QuestionTable.jsx:128
+#: src/components/chief/QuestionTable.jsx:130
 msgid "Pending"
 msgstr "Pending"
 
@@ -198,7 +204,11 @@ msgstr "Pending"
 msgid "Question accepted"
 msgstr "Question accepted"
 
-#: src/actions/common.js:40
+#: src/actions/chief.js:155
+msgid "Question activated"
+msgstr "Question activated"
+
+#: src/actions/common.js:42
 msgid "Question added"
 msgstr "Question added"
 
@@ -211,27 +221,23 @@ msgstr "Question deleted"
 msgid "Question rejected"
 msgstr "Question rejected"
 
-#: src/actions/chief.js:155
-msgid "Question resumed"
-msgstr "Question resumed"
-
 #: src/actions/chief.js:143
 msgid "Question stopped"
 msgstr "Question stopped"
 
-#: src/actions/common.js:56
+#: src/actions/common.js:60
 msgid "Question updated"
 msgstr "Question updated"
 
-#: src/components/chief/QuestionTable.jsx:86
+#: src/components/chief/QuestionTable.jsx:88
 msgid "Questions"
 msgstr "Questions"
 
-#: src/components/editor/ReviewTable.jsx:39
+#: src/components/editor/ReviewTable.jsx:40
 msgid "Questions for review"
 msgstr "Questions for review"
 
-#: src/components/chief/QuestionTable.jsx:161
+#: src/components/chief/QuestionTable.jsx:184
 msgid "Rejected"
 msgstr "Rejected"
 
@@ -240,7 +246,7 @@ msgid "Rejected last shift"
 msgstr "Rejected last shift"
 
 #: src/components/chief/QuestionCategoryTab.jsx:57
-#: src/components/chief/QuestionTab.jsx:64
+#: src/components/chief/QuestionTab.jsx:65
 msgid "See all"
 msgstr "See all"
 
@@ -249,11 +255,11 @@ msgstr "See all"
 msgid "Select category..."
 msgstr "Select category..."
 
-#: src/components/layout/ServerErrorPage.jsx:13
+#: src/components/layout/ServerErrorPage.jsx:18
 msgid "Server error happened. Report to developer!"
 msgstr "Server error happened. Report to developer!"
 
-#: src/components/layout/GameApp.jsx:44
+#: src/components/layout/GameApp.jsx:15
 msgid "Soon games will be here..."
 msgstr "Soon games will be here..."
 
@@ -262,7 +268,7 @@ msgid "Statistics"
 msgstr "Statistics"
 
 #: src/components/chief/QuestionCategoryTable.jsx:148
-#: src/components/chief/QuestionTable.jsx:150
+#: src/components/chief/QuestionTable.jsx:166
 msgid "Stopped"
 msgstr "Stopped"
 
@@ -286,7 +292,7 @@ msgstr "Total month"
 msgid "Week"
 msgstr "Week"
 
-#: src/components/layout/GameApp.jsx:41
+#: src/components/layout/GameApp.jsx:12
 msgid "Welcome, {0}!"
 msgstr "Welcome, {0}!"
 

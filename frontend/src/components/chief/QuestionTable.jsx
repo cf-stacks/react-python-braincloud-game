@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'react-bootstrap';
 import { t, Trans } from '@lingui/macro';
@@ -58,6 +59,7 @@ export class IStoppedTable extends React.Component {
       getPendingQuestions: getPendingQuestionsCall,
       getActiveQuestions: getActiveQuestionsCall,
       getRejectedQuestions: getRejectedQuestionsCall,
+      match,
     } = this.props;
     const { search } = this.state;
     if (search.description || search.category || search.answer) {
@@ -126,47 +128,75 @@ export class IStoppedTable extends React.Component {
             className="py-3"
           >
             <Tab eventKey="pending" title={`${i18n._(t`Pending`)} (${pendingQuestions.length})`}>
-              <QuestionTab
-                count={5}
-                users={subordinates}
-                questions={pendingQuestions}
-                getQuerySet={getPendingQuestionsCall}
-                allowActions={{
-                  delete: true, edit: true, accept: true, reject: true,
-                }}
+              <Route
+                exact
+                path={match.path}
+                render={props => (
+                  <QuestionTab
+                    {...props}
+                    count={5}
+                    users={subordinates}
+                    questions={pendingQuestions}
+                    getQuerySet={getPendingQuestionsCall}
+                    allowActions={{
+                      delete: true, edit: true, accept: true, reject: true,
+                    }}
+                  />
+                )}
               />
             </Tab>
             <Tab eventKey="active" title={`${i18n._(t`In game`)} (${activeQuestions.length})`}>
-              <QuestionTab
-                count={5}
-                users={subordinates}
-                questions={activeQuestions}
-                getQuerySet={getActiveQuestionsCall}
-                allowActions={{
-                  stop: true,
-                }}
+              <Route
+                exact
+                path={match.path}
+                render={props => (
+                  <QuestionTab
+                    {...props}
+                    count={5}
+                    users={subordinates}
+                    questions={activeQuestions}
+                    getQuerySet={getActiveQuestionsCall}
+                    allowActions={{
+                      stop: true,
+                    }}
+                  />
+                )}
               />
             </Tab>
             <Tab eventKey="stopped" title={`${i18n._(t`Stopped`)} (${stoppedQuestions.length})`}>
-              <QuestionTab
-                count={5}
-                users={subordinates}
-                questions={stoppedQuestions}
-                getQuerySet={getStoppedQuestionsCall}
-                allowActions={{
-                  delete: true, edit: true, resume: true,
-                }}
+              <Route
+                exact
+                path={match.path}
+                render={props => (
+                  <QuestionTab
+                    {...props}
+                    count={5}
+                    users={subordinates}
+                    questions={stoppedQuestions}
+                    getQuerySet={getStoppedQuestionsCall}
+                    allowActions={{
+                      delete: true, edit: true, activate: true,
+                    }}
+                  />
+                )}
               />
             </Tab>
             <Tab eventKey="rejected" title={`${i18n._(t`Rejected`)} (${rejectedQuestions.length})`}>
-              <QuestionTab
-                count={5}
-                users={subordinates}
-                questions={rejectedQuestions}
-                getQuerySet={getRejectedQuestionsCall}
-                allowActions={{
-                  delete: true,
-                }}
+              <Route
+                exact
+                path={match.path}
+                render={props => (
+                  <QuestionTab
+                    {...props}
+                    count={5}
+                    users={subordinates}
+                    questions={rejectedQuestions}
+                    getQuerySet={getRejectedQuestionsCall}
+                    allowActions={{
+                      delete: true,
+                    }}
+                  />
+                )}
               />
             </Tab>
           </Tabs>
