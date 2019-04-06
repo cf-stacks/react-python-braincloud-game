@@ -19,7 +19,7 @@ class QuestionSerializer(serializers.ModelSerializer):
         model = models.Question
         fields = (
             'id', 'category', 'description', 'answer_correct', 'answer_incorrect_1', 'answer_incorrect_2', 'author',
-            'created_at', 'reviewed_at',
+            'created_at', 'reviewed_at', 'status',
         )
 
 

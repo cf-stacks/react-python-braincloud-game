@@ -122,38 +122,26 @@ class QuestionViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
     @decorators.action(detail=True, methods=['POST'])
     def reject(self, request, *args, **kwargs):
         instance = self.get_object()
-        instance.status = models.Question.STATUS_REJECTED
-        instance.editor = request.user
-        instance.reviewed_at = timezone.now()
-        instance.save(update_fields=['status', 'editor', 'reviewed_at'])
-        serializer = self.get_serializer(instance)
-        return response.Response(data=serializer.data)
+        instance.reject(editor=request.user)
+        return response.Response(data=self.get_serializer(instance=instance).data)
 
     @decorators.action(detail=True, methods=['POST'])
     def accept(self, request, *args, **kwargs):
         instance = self.get_object()
-        instance.status = models.Question.STATUS_ACCEPTED
-        instance.editor = request.user
-        instance.reviewed_at = timezone.now()
-        instance.save(update_fields=['status', 'editor', 'reviewed_at'])
-        serializer = self.get_serializer(instance)
-        return response.Response(data=serializer.data)
+        instance.accept(editor=request.user)
+        return response.Response(data=self.get_serializer(instance=instance).data)
 
     @decorators.action(detail=True, methods=['POST'])
     def stop(self, request, *args, **kwargs):
         instance = self.get_object()
-        instance.status = models.Question.STATUS_STOPPED
-        instance.save(update_fields=['status'])
-        serializer = self.get_serializer(instance)
-        return response.Response(data=serializer.data)
+        instance.stop()
+        return response.Response(data=self.get_serializer(instance=instance).data)
 
     @decorators.action(detail=True, methods=['POST'])
-    def resume(self, request, *args, **kwargs):
+    def activate(self, request, *args, **kwargs):
         instance = self.get_object()
-        instance.status = models.Question.STATUS_ACCEPTED
-        instance.save(update_fields=['status'])
-        serializer = self.get_serializer(instance)
-        return response.Response(data=serializer.data)
+        instance.activate()
+        return response.Response(data=self.get_serializer(instance=instance).data)
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
@@ -274,18 +262,14 @@ class QuestionCategoryViewSet(mixins.LoggingMixin, viewsets.ModelViewSet):
     @decorators.action(detail=True, methods=['POST'])
     def stop(self, request, *args, **kwargs):
         instance = self.get_object()
-        instance.status = models.QuestionCategory.STATUS_STOPPED
-        instance.save(update_fields=['status'])
-        serializer = self.get_serializer(instance)
-        return response.Response(data=serializer.data)
+        instance.stop()
+        return response.Response(data=self.get_serializer(instance=instance).data)
 
     @decorators.action(detail=True, methods=['POST'])
-    def resume(self, request, *args, **kwargs):
+    def activate(self, request, *args, **kwargs):
         instance = self.get_object()
-        instance.status = models.QuestionCategory.STATUS_ACTIVE
-        instance.save(update_fields=['status'])
-        serializer = self.get_serializer(instance)
-        return response.Response(data=serializer.data)
+        instance.activate()
+        return response.Response(data=self.get_serializer(instance=instance).data)
 
     def perform_destroy(self, instance):
         instance.is_active = False

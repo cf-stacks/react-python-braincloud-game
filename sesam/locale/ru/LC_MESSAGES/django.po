@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-24 21:29+0300\n"
+"POT-Creation-Date: 2019-04-05 10:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,7 +48,7 @@ msgstr ""
 msgid "id"
 msgstr ""
 
-#: sesam/models.py:26 sesam/models.py:203
+#: sesam/models.py:26 sesam/models.py:271
 msgid "name"
 msgstr ""
 
@@ -56,7 +56,7 @@ msgstr ""
 msgid "staff status"
 msgstr ""
 
-#: sesam/models.py:28 sesam/models.py:94
+#: sesam/models.py:28 sesam/models.py:104 sesam/models.py:138
 msgid "active"
 msgstr ""
 
@@ -80,7 +80,7 @@ msgstr "бонусные очки"
 msgid "boss"
 msgstr "начальник"
 
-#: sesam/models.py:48 sesam/models.py:145
+#: sesam/models.py:48 sesam/models.py:179
 msgid "user"
 msgstr ""
 
@@ -88,105 +88,123 @@ msgstr ""
 msgid "users"
 msgstr ""
 
-#: sesam/models.py:95
+#: sesam/models.py:105
 msgid "created at"
 msgstr ""
 
-#: sesam/models.py:96
+#: sesam/models.py:106
 msgid "updated at"
 msgstr ""
 
-#: sesam/models.py:111
+#: sesam/models.py:125
 msgid "direction in"
 msgstr ""
 
-#: sesam/models.py:112
+#: sesam/models.py:126
 msgid "direction out"
 msgstr ""
 
-#: sesam/models.py:129 sesam/models.py:163
-msgid "question category"
-msgstr "категория вопроса"
+#: sesam/models.py:139 sesam/models.py:196
+msgid "stopped"
+msgstr "остановленный"
 
-#: sesam/models.py:130
-msgid "question categories"
-msgstr "категории вопросов"
-
-#: sesam/models.py:149
-msgid "assignment date"
-msgstr ""
-
-#: sesam/models.py:150
-#, fuzzy
-#| msgid "question category"
-msgid "category"
-msgstr "категория вопроса"
-
-#: sesam/models.py:158
-msgid "new"
-msgstr "новый"
-
-#: sesam/models.py:159
-msgid "accepted"
-msgstr "принятый"
-
-#: sesam/models.py:160
-msgid "rejected"
-msgstr "отклоненный"
-
-#: sesam/models.py:167
-msgid "description"
-msgstr "описание"
-
-#: sesam/models.py:169
-msgid "author"
-msgstr "автор"
-
-#: sesam/models.py:175
-msgid "editor"
-msgstr "редактор"
-
-#: sesam/models.py:183
+#: sesam/models.py:147 sesam/models.py:220
 msgid "status"
 msgstr "статус"
 
+#: sesam/models.py:150 sesam/models.py:199
+msgid "question category"
+msgstr "категория вопроса"
+
+#: sesam/models.py:151
+msgid "question categories"
+msgstr "категории вопросов"
+
+#: sesam/models.py:161
+msgid "The category cannot be stopped"
+msgstr "Тема не может быть остановлена"
+
+#: sesam/models.py:168
+msgid "The category cannot be activated"
+msgstr "Тема не может быть добавлена в игру"
+
+#: sesam/models.py:183
+msgid "assignment date"
+msgstr ""
+
 #: sesam/models.py:184
+msgid "category"
+msgstr "тема"
+
+#: sesam/models.py:193
+msgid "draft"
+msgstr ""
+
+#: sesam/models.py:194
+msgid "accepted"
+msgstr "принятый"
+
+#: sesam/models.py:195
+msgid "rejected"
+msgstr "отклоненный"
+
+#: sesam/models.py:204
+msgid "description"
+msgstr "описание"
+
+#: sesam/models.py:206
+msgid "author"
+msgstr "автор"
+
+#: sesam/models.py:212
+msgid "editor"
+msgstr "редактор"
+
+#: sesam/models.py:221
 msgid "correct answer"
 msgstr "правильный ответ"
 
-#: sesam/models.py:185
+#: sesam/models.py:222
 msgid "incorrect answer 1"
 msgstr "неправильный ответ 1"
 
-#: sesam/models.py:186
+#: sesam/models.py:223
 msgid "incorrect answer 2"
 msgstr "неправильный ответ 2"
 
-#: sesam/models.py:189
+#: sesam/models.py:226
 msgid "question"
 msgstr "вопрос"
 
-#: sesam/models.py:190
+#: sesam/models.py:227
 msgid "questions"
 msgstr "вопросы"
 
-#: sesam/models.py:198
+#: sesam/models.py:235
+msgid "The question cannot be activated"
+msgstr "Вопрос не может быть добавлен в игру"
+
+#: sesam/models.py:241 sesam/models.py:248
+msgid "The question cannot be accepted"
+msgstr "Вопрос не может быть принят"
+
+#: sesam/models.py:266
 msgid "quiz"
 msgstr "квиз"
 
-#: sesam/models.py:199
+#: sesam/models.py:267
 msgid "durak"
 msgstr "дурак"
 
-#: sesam/models.py:200
+#: sesam/models.py:268
 msgid "arkanoid"
 msgstr "арканоид"
 
-#: sesam/models.py:205
+#: sesam/models.py:273
 msgid "game type"
 msgstr "тип игры"
 
-#: sesam/models.py:207
+#: sesam/models.py:275
 msgid "setting"
 msgstr "настройка"
 
@@ -299,6 +317,9 @@ msgstr "Выйти"
 #: sesam/templates/sesam/home.html:7
 msgid "You have more than one role. Whom you want to be now?"
 msgstr "У вас больше чем одна роль. Кем вы хотите быть сейчас?"
+
+#~ msgid "new"
+#~ msgstr "новый"
 
 #~ msgid "chief"
 #~ msgstr "шеф-редактор"

@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 from sesam.managers import UserManager
 
@@ -156,6 +156,19 @@ class QuestionCategory(BaseModel):
     def __repr__(self):
         return f'<QuestionCategory {self.id}: {self.__str__()}>'
 
+    def stop(self):
+        if self.status != QuestionCategory.STATUS_ACTIVE:
+            raise ValidationError(ugettext('The category cannot be stopped'))
+        self.questions.filter(status=Question.STATUS_ACCEPTED).update(status=Question.STATUS_STOPPED)
+        self.status = QuestionCategory.STATUS_STOPPED
+        self.save(update_fields=['status'])
+
+    def activate(self):
+        if self.status != QuestionCategory.STATUS_STOPPED:
+            raise ValidationError(ugettext('The category cannot be activated'))
+        self.status = QuestionCategory.STATUS_ACTIVE
+        self.save(update_fields=['status'])
+
 
 class AssignedQuestionCategory(BaseModel):
 
@@ -186,6 +199,7 @@ class Question(BaseModel):
         verbose_name=_('question category'),
         to='sesam.QuestionCategory',
         on_delete=models.CASCADE,
+        related_name='questions'
     )
     description = models.TextField(verbose_name=_('description'))
     author = models.ForeignKey(
@@ -211,6 +225,37 @@ class Question(BaseModel):
     class Meta:
         verbose_name = _('question')
         verbose_name_plural = _('questions')
+
+    def stop(self):
+        self.status = Question.STATUS_STOPPED
+        self.save(update_fields=['status'])
+
+    def activate(self):
+        if self.category.status != QuestionCategory.STATUS_ACTIVE or self.status != Question.STATUS_STOPPED:
+            raise ValidationError(ugettext('The question cannot be activated'))
+        self.status = Question.STATUS_ACCEPTED
+        self.save(update_fields=['status'])
+
+    def accept(self, editor):
+        if self.status != Question.STATUS_DRAFT:
+            raise ValidationError(ugettext('The question cannot be accepted'))
+        change_status_to = None
+        if self.category.status == QuestionCategory.STATUS_ACTIVE:
+            change_status_to = Question.STATUS_ACCEPTED
+        elif self.category.status == QuestionCategory.STATUS_STOPPED:
+            change_status_to = Question.STATUS_STOPPED
+        if not change_status_to:
+            raise ValidationError(ugettext('The question cannot be accepted'))
+        self.status = change_status_to
+        self.reviewed_at = timezone.now()
+        self.editor = editor
+        self.save(update_fields=['status', 'reviewed_at', 'editor'])
+
+    def reject(self, editor):
+        self.status = Question.STATUS_REJECTED
+        self.reviewed_at = timezone.now()
+        self.editor = editor
+        self.save(update_fields=['status', 'reviewed_at', 'editor'])
 
 
 class Game(BaseModel):
