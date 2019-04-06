@@ -10,10 +10,10 @@ import {
   CHIEF_ACCEPT_QUESTION,
   CHIEF_REJECT_QUESTION,
   CHIEF_DELETE_QUESTION,
-  CHIEF_RESUME_QUESTION,
+  CHIEF_ACTIVATE_QUESTION,
   CHIEF_STOP_QUESTION,
   CHIEF_DELETE_CATEGORY,
-  CHIEF_RESUME_CATEGORY,
+  CHIEF_ACTIVATE_CATEGORY,
   CHIEF_STOP_CATEGORY,
   COMMON_CREATE_CATEGORY,
   COMMON_EDIT_QUESTION,
@@ -109,7 +109,7 @@ export default function (state = initialState, action) {
         activeQuestions: state.activeQuestions.filter(question => question.id !== action.payload.id),
         stoppedQuestions: [action.payload, ...state.stoppedQuestions],
       };
-    case CHIEF_RESUME_QUESTION:
+    case CHIEF_ACTIVATE_QUESTION:
       return {
         ...state,
         activeQuestions: [action.payload, ...state.activeQuestions],
@@ -118,20 +118,25 @@ export default function (state = initialState, action) {
     case CHIEF_DELETE_CATEGORY:
       return {
         ...state,
-        activeCategories: state.activeCategories.filter(question => question.id !== action.payload.id),
+        stoppedQuestions: state.stoppedQuestions.filter(question => question.category.id !== action.payload.id),
         stoppedCategories: state.stoppedCategories.filter(question => question.id !== action.payload.id),
       };
-    case CHIEF_STOP_CATEGORY:
+    case CHIEF_STOP_CATEGORY: {
+      const stoppedQuestions = state.activeQuestions.filter(question => question.category.id === action.payload.id);
+      console.log(stoppedQuestions);
       return {
         ...state,
+        activeQuestions: state.activeQuestions.filter(question => question.category.id !== action.payload.id),
+        stoppedQuestions: [...stoppedQuestions, ...state.stoppedQuestions],
         activeCategories: state.activeCategories.filter(question => question.id !== action.payload.id),
         stoppedCategories: [action.payload, ...state.stoppedCategories],
       };
-    case CHIEF_RESUME_CATEGORY:
+    }
+    case CHIEF_ACTIVATE_CATEGORY:
       return {
         ...state,
         activeCategories: [action.payload, ...state.activeCategories],
-        stoppedCategories: state.stoppedCategories.filter(question => question.id !== action.payload.id),
+        stoppedCategories: state.stoppedCategories.filter(category => category.id !== action.payload.id),
       };
     case COMMON_CREATE_CATEGORY:
       return {

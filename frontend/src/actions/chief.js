@@ -18,10 +18,10 @@ import {
   CHIEF_REJECT_QUESTION,
   CHIEF_DELETE_QUESTION,
   CHIEF_STOP_QUESTION,
-  CHIEF_RESUME_QUESTION,
+  CHIEF_ACTIVATE_QUESTION,
   CHIEF_DELETE_CATEGORY,
   CHIEF_STOP_CATEGORY,
-  CHIEF_RESUME_CATEGORY,
+  CHIEF_ACTIVATE_CATEGORY,
   COMMON_CALENDAR_CHANGE,
 } from './types';
 
@@ -147,13 +147,13 @@ export const stopQuestion = question => dispatch => (
     })
 );
 
-// RESUME QUESTION
+// ACTIVATE QUESTION
 export const activateQuestion = question => dispatch => (
   axios
     .post(`/api/internal/quiz/question/${question.id}/activate/`)
     .then((res) => {
       dispatch(createMessage({ success: i18n._(t`Question activated`) }));
-      dispatch({ type: CHIEF_RESUME_QUESTION, payload: res.data });
+      dispatch({ type: CHIEF_ACTIVATE_QUESTION, payload: res.data });
     }).catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
     })
@@ -201,13 +201,13 @@ export const stopCategory = category => dispatch => (
     })
 );
 
-// RESUME QUESTION
+// ACTIVATE CATEGORY
 export const activateCategory = category => dispatch => (
   axios
     .post(`/api/internal/quiz/category/${category.id}/activate/`)
     .then((res) => {
       dispatch(createMessage({ success: i18n._(t`Category activated`) }));
-      dispatch({ type: CHIEF_RESUME_CATEGORY, payload: res.data });
+      dispatch({ type: CHIEF_ACTIVATE_CATEGORY, payload: res.data });
     }).catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));
     })
