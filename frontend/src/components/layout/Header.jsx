@@ -6,7 +6,7 @@ import { Trans } from '@lingui/macro';
 import { Navbar, Nav } from 'react-bootstrap';
 
 import { logout } from '../../actions/auth';
-import logo from '../../images/logo.png';
+import logo from '../../images/logo3.png';
 
 import '../../css/Header.css';
 

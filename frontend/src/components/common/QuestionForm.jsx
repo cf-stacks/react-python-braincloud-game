@@ -57,6 +57,11 @@ export class IQuestionForm extends React.Component {
     };
   }
 
+  shouldComponentUpdate = (nextProps) => {
+    const { defaultCategory } = this.props;
+    return defaultCategory === nextProps.defaultCategory;
+  };
+
   componentDidMount = () => {
     const {
       getAvailableCategories: getAvailableCategoriesCall,
@@ -71,12 +76,19 @@ export class IQuestionForm extends React.Component {
     if (prevState.questionId !== questionId) {
       this.getQuestionData();
     }
-    return false;
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.questionId !== prevState.questionId) {
       return { questionId: nextProps.questionId };
+    }
+    if (nextProps.categories) {
+      let selectedOption = null;
+      if (!prevState.form.category && nextProps.defaultCategory) {
+        selectedOption = nextProps.categories.find(obj => (obj.id === nextProps.defaultCategory));
+        if (!selectedOption) nextProps.setDefaultCategory(selectedOption);
+      }
+      return { form: { ...prevState.form, category: selectedOption || prevState.form.category } };
     }
     return null;
   }
@@ -148,12 +160,10 @@ export class IQuestionForm extends React.Component {
 
   render() {
     const {
-      categories, questionId, defaultCategory, setDefaultCategory: setDefaultCategoryCall,
+      categories, questionId,
     } = this.props;
     if (!categories) return <Spinner message={i18n._(t`Loading categories...`)} />;
     const { form, requestStatus } = this.state;
-    const selectedOption = form.category || categories.find(obj => (obj.id === defaultCategory));
-    if (defaultCategory && !selectedOption) setDefaultCategoryCall(selectedOption);
     if (questionId && requestStatus === 404) return <NotFoundPage />;
     const submitButton = (
       <button type="submit" className="btn btn-outline-primary m-2">
@@ -176,7 +186,7 @@ export class IQuestionForm extends React.Component {
           <CategorySelect
             options={categories}
             onChange={this.onSelectChange}
-            value={selectedOption}
+            value={form.category}
           />
           <FieldError for="category" />
         </div>
