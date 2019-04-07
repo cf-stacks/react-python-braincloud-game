@@ -1,0 +1,7 @@
+input[name="answer_correct"] {
+    background: lightgreen;
+}
+
+input[name^="answer_incorrect"] {
+    background: lightpink;
+}

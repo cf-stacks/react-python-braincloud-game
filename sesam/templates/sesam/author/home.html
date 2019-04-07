@@ -1,0 +1,16 @@
+{% extends "sesam/base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+  <h1>{% trans "Statistics" %}:</h1>
+  <div class="d-flex flex-row justify-content-around">
+    <div>{% trans "Month total" %}: {{ total_month }}</div>
+    <div>{% trans "Added today" %}: {{ total_today }}</div>
+    <div>{% trans "Accepted last shift" %}: {{ accepted_yesterday }}</div>
+    <div>{% trans "Rejected last shift" %}: {{ accepted_yesterday }}</div>
+  </div>
+  <a href="{% url "author:quiz-create" %}" class="btn btn-primary">{% trans "Add question" %}</a>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "sesam/base.html" %}
+
+{% load i18n %}
+
+
+{% block content %}
+  <h1>{% trans "You have more than one role. Whom you want to be now?"%}</h1>
+  <ul>
+  {% for group in groups %}
+    <li>
+      <a href="{% url group|add:":home" %}">{% trans group|title %}</a>
+    </li>
+  {% endfor %}
+  </ul>
+{% endblock %}

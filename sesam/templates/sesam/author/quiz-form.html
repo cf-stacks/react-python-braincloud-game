@@ -1,0 +1,43 @@
+{% extends "sesam/base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block additional_css %}
+  <link href="{% static 'sesam/css/quiz-form.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <h1>{% trans "Question to add" %}:</h1>
+  <form method="post" class="form">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="row form-group">
+      <div class="col">
+        {{ form.category.label_tag }}
+        {{ form.category }}
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col">
+        {{ form.description.label_tag }}
+        {{ form.description }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4 form-group">
+        {{ form.answer_correct.label_tag }}
+        {{ form.answer_correct }}
+      </div>
+      <div class="col-4 form-group">
+        {{ form.answer_incorrect_1.label_tag }}
+        {{ form.answer_incorrect_1 }}
+      </div>
+      <div class="col-4 form-group">
+        {{ form.answer_incorrect_2.label_tag }}
+        {{ form.answer_incorrect_2 }}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">{% trans "Add" %}</button>
+  </form>
+{% endblock %}

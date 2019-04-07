@@ -1,0 +1,301 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2019-03-22 17:05+0300\n"
+"Mime-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/components/author/Statistics.jsx:37
+msgid "Accepted last shift"
+msgstr "Accepted last shift"
+
+#: src/components/chief/QuestionCategoryTab.jsx:70
+msgid "Actions"
+msgstr "Actions"
+
+#: src/components/chief/QuestionCategoryTable.jsx:108
+#: src/components/common/CategorySelect.jsx:57
+#: src/components/common/QuestionForm.jsx:159
+msgid "Add"
+msgstr "Add"
+
+#: src/components/common/QuestionForm.jsx:20
+msgid "Add quiz question"
+msgstr "Add quiz question"
+
+#: src/components/author/Statistics.jsx:32
+msgid "Added today"
+msgstr "Added today"
+
+#: src/components/editor/ReviewTable.jsx:49
+msgid "All"
+msgstr "All"
+
+#: src/components/chief/QuestionTab.jsx:80
+#: src/components/chief/QuestionTable.jsx:120
+#: src/components/editor/ReviewTab.jsx:33
+msgid "Answers"
+msgstr "Answers"
+
+#: src/components/common/QuestionForm.jsx:159
+msgid "Apply"
+msgstr "Apply"
+
+#: src/components/chief/AssignCategory.jsx:17
+msgid "Assigned categories"
+msgstr "Assigned categories"
+
+#: src/components/editor/CalendarData.jsx:34
+msgid "Authors"
+msgstr "Authors"
+
+#: src/components/chief/CalendarData.jsx:24
+#: src/components/editor/CalendarData.jsx:25
+msgid "Calendar data"
+msgstr "Calendar data"
+
+#: src/components/common/QuestionForm.jsx:166
+msgid "Cancel"
+msgstr "Cancel"
+
+#: src/components/chief/QuestionCategoryTable.jsx:85
+#: src/components/editor/CalendarData.jsx:37
+msgid "Categories"
+msgstr "Categories"
+
+#: src/components/author/TodayList.jsx:30
+#: src/components/chief/QuestionTab.jsx:78
+#: src/components/chief/QuestionTable.jsx:111
+#: src/components/common/QuestionForm.jsx:174
+#: src/components/editor/ReviewTab.jsx:31
+msgid "Category"
+msgstr "Category"
+
+#: src/actions/common.js:20
+msgid "Category \"{name}\" added"
+msgstr "Category \"{name}\" added"
+
+#: src/actions/chief.js:209
+msgid "Category activated"
+msgstr "Category activated"
+
+#: src/actions/chief.js:185
+msgid "Category deleted"
+msgstr "Category deleted"
+
+#: src/actions/chief.js:197
+msgid "Category stopped"
+msgstr "Category stopped"
+
+#: src/components/author/TodayList.jsx:31
+#: src/components/common/QuestionForm.jsx:195
+msgid "Correct answer"
+msgstr "Correct answer"
+
+#: src/components/layout/Header.jsx:109
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: src/components/author/TodayList.jsx:29
+#: src/components/chief/QuestionTab.jsx:79
+#: src/components/chief/QuestionTable.jsx:102
+#: src/components/common/QuestionForm.jsx:183
+#: src/components/editor/ReviewTab.jsx:32
+msgid "Description"
+msgstr "Description"
+
+#: src/components/common/QuestionForm.jsx:20
+msgid "Edit quiz question"
+msgstr "Edit quiz question"
+
+#: src/components/chief/CalendarData.jsx:33
+msgid "Editors"
+msgstr "Editors"
+
+#: src/components/accounts/Login.jsx:43
+msgid "Email"
+msgstr "Email"
+
+#: src/components/chief/QuestionCategoryTable.jsx:91
+#: src/components/chief/QuestionTable.jsx:92
+msgid "Filters"
+msgstr "Filters"
+
+#: src/components/layout/ErrorPage.jsx:21
+msgid "Go home"
+msgstr "Go home"
+
+#: src/components/layout/Header.jsx:105
+msgid "Home"
+msgstr "Home"
+
+#: src/components/chief/QuestionCategoryTable.jsx:138
+#: src/components/chief/QuestionTable.jsx:148
+msgid "In game"
+msgstr "In game"
+
+#: src/components/common/QuestionForm.jsx:207
+msgid "Incorrect answer 1"
+msgstr "Incorrect answer 1"
+
+#: src/components/common/QuestionForm.jsx:219
+msgid "Incorrect answer 2"
+msgstr "Incorrect answer 2"
+
+#: src/components/chief/AssignCategory.jsx:81
+#: src/components/common/QuestionForm.jsx:149
+#: src/components/editor/Categories.jsx:75
+msgid "Loading categories..."
+msgstr "Loading categories..."
+
+#: src/components/layout/Header.jsx:69
+msgid "Loading..."
+msgstr "Loading..."
+
+#: src/components/accounts/Login.jsx:65
+#: src/components/layout/Header.jsx:99
+msgid "Log in"
+msgstr "Log in"
+
+#: src/components/layout/Header.jsx:92
+msgid "Log out"
+msgstr "Log out"
+
+#: src/components/accounts/Login.jsx:40
+msgid "Login"
+msgstr "Login"
+
+#: src/components/common/Calendar.jsx:103
+msgid "Month"
+msgstr "Month"
+
+#: src/components/chief/QuestionCategoryTab.jsx:71
+#: src/components/chief/QuestionCategoryTable.jsx:100
+#: src/components/chief/QuestionCategoryTable.jsx:118
+msgid "Name"
+msgstr "Name"
+
+#: src/components/common/CategorySelect.jsx:70
+msgid "No categories to show"
+msgstr "No categories to show"
+
+#: src/components/layout/NotFoundPage.jsx:9
+msgid "Page not found. Are you sure the path is correct?"
+msgstr "Page not found. Are you sure the path is correct?"
+
+#: src/components/accounts/Login.jsx:54
+msgid "Password"
+msgstr "Password"
+
+#: src/components/chief/QuestionTable.jsx:130
+msgid "Pending"
+msgstr "Pending"
+
+#: src/actions/chief.js:103
+#: src/actions/editor.js:67
+msgid "Question accepted"
+msgstr "Question accepted"
+
+#: src/actions/chief.js:155
+msgid "Question activated"
+msgstr "Question activated"
+
+#: src/actions/common.js:42
+msgid "Question added"
+msgstr "Question added"
+
+#: src/actions/chief.js:131
+msgid "Question deleted"
+msgstr "Question deleted"
+
+#: src/actions/chief.js:117
+#: src/actions/editor.js:67
+msgid "Question rejected"
+msgstr "Question rejected"
+
+#: src/actions/chief.js:143
+msgid "Question stopped"
+msgstr "Question stopped"
+
+#: src/actions/common.js:60
+msgid "Question updated"
+msgstr "Question updated"
+
+#: src/components/chief/QuestionTable.jsx:88
+msgid "Questions"
+msgstr "Questions"
+
+#: src/components/editor/ReviewTable.jsx:40
+msgid "Questions for review"
+msgstr "Questions for review"
+
+#: src/components/chief/QuestionTable.jsx:184
+msgid "Rejected"
+msgstr "Rejected"
+
+#: src/components/author/Statistics.jsx:42
+msgid "Rejected last shift"
+msgstr "Rejected last shift"
+
+#: src/components/chief/QuestionCategoryTab.jsx:57
+#: src/components/chief/QuestionTab.jsx:65
+msgid "See all"
+msgstr "See all"
+
+#: src/components/common/CategorySelect.jsx:55
+#: src/components/common/CategorySelect.jsx:69
+msgid "Select category..."
+msgstr "Select category..."
+
+#: src/components/layout/ServerErrorPage.jsx:18
+msgid "Server error happened. Report to developer!"
+msgstr "Server error happened. Report to developer!"
+
+#: src/components/layout/GameApp.jsx:15
+msgid "Soon games will be here..."
+msgstr "Soon games will be here..."
+
+#: src/components/author/Statistics.jsx:23
+msgid "Statistics"
+msgstr "Statistics"
+
+#: src/components/chief/QuestionCategoryTable.jsx:148
+#: src/components/chief/QuestionTable.jsx:166
+msgid "Stopped"
+msgstr "Stopped"
+
+#: src/components/common/Calendar.jsx:111
+msgid "Today"
+msgstr "Today"
+
+#: src/components/author/TodayList.jsx:23
+msgid "Today added"
+msgstr "Today added"
+
+#: src/components/common/Calendar.jsx:73
+msgid "Total"
+msgstr "Total"
+
+#: src/components/author/Statistics.jsx:27
+msgid "Total month"
+msgstr "Total month"
+
+#: src/components/common/Calendar.jsx:103
+msgid "Week"
+msgstr "Week"
+
+#: src/components/layout/GameApp.jsx:12
+msgid "Welcome, {0}!"
+msgstr "Welcome, {0}!"
+
+#: src/components/layout/ForbiddenPage.jsx:9
+msgid "You do not have access to this page"
+msgstr "You do not have access to this page"

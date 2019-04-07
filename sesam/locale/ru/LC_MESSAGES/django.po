@@ -1,0 +1,328 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-05 10:38+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: sesam/admin.py:12
+msgid "Personal info"
+msgstr ""
+
+#: sesam/admin.py:13
+msgid "Permissions"
+msgstr ""
+
+#: sesam/admin.py:15
+msgid "Important dates"
+msgstr ""
+
+#: sesam/admin.py:16
+msgid "Money and Points"
+msgstr "деньги и баллы"
+
+#: sesam/forms/__init__.py:21 sesam/models.py:25
+msgid "email address"
+msgstr ""
+
+#: sesam/forms/__init__.py:22
+msgid "password"
+msgstr ""
+
+#: sesam/models.py:24
+msgid "id"
+msgstr ""
+
+#: sesam/models.py:26 sesam/models.py:271
+msgid "name"
+msgstr ""
+
+#: sesam/models.py:27
+msgid "staff status"
+msgstr ""
+
+#: sesam/models.py:28 sesam/models.py:104 sesam/models.py:138
+msgid "active"
+msgstr ""
+
+#: sesam/models.py:29
+msgid "date joined"
+msgstr ""
+
+#: sesam/models.py:30
+msgid "device id"
+msgstr "номер устройства"
+
+#: sesam/models.py:31
+msgid "money"
+msgstr "игровые деньги"
+
+#: sesam/models.py:32
+msgid "points"
+msgstr "бонусные очки"
+
+#: sesam/models.py:34
+msgid "boss"
+msgstr "начальник"
+
+#: sesam/models.py:48 sesam/models.py:179
+msgid "user"
+msgstr ""
+
+#: sesam/models.py:49
+msgid "users"
+msgstr ""
+
+#: sesam/models.py:105
+msgid "created at"
+msgstr ""
+
+#: sesam/models.py:106
+msgid "updated at"
+msgstr ""
+
+#: sesam/models.py:125
+msgid "direction in"
+msgstr ""
+
+#: sesam/models.py:126
+msgid "direction out"
+msgstr ""
+
+#: sesam/models.py:139 sesam/models.py:196
+msgid "stopped"
+msgstr "остановленный"
+
+#: sesam/models.py:147 sesam/models.py:220
+msgid "status"
+msgstr "статус"
+
+#: sesam/models.py:150 sesam/models.py:199
+msgid "question category"
+msgstr "категория вопроса"
+
+#: sesam/models.py:151
+msgid "question categories"
+msgstr "категории вопросов"
+
+#: sesam/models.py:161
+msgid "The category cannot be stopped"
+msgstr "Тема не может быть остановлена"
+
+#: sesam/models.py:168
+msgid "The category cannot be activated"
+msgstr "Тема не может быть добавлена в игру"
+
+#: sesam/models.py:183
+msgid "assignment date"
+msgstr ""
+
+#: sesam/models.py:184
+msgid "category"
+msgstr "тема"
+
+#: sesam/models.py:193
+msgid "draft"
+msgstr ""
+
+#: sesam/models.py:194
+msgid "accepted"
+msgstr "принятый"
+
+#: sesam/models.py:195
+msgid "rejected"
+msgstr "отклоненный"
+
+#: sesam/models.py:204
+msgid "description"
+msgstr "описание"
+
+#: sesam/models.py:206
+msgid "author"
+msgstr "автор"
+
+#: sesam/models.py:212
+msgid "editor"
+msgstr "редактор"
+
+#: sesam/models.py:221
+msgid "correct answer"
+msgstr "правильный ответ"
+
+#: sesam/models.py:222
+msgid "incorrect answer 1"
+msgstr "неправильный ответ 1"
+
+#: sesam/models.py:223
+msgid "incorrect answer 2"
+msgstr "неправильный ответ 2"
+
+#: sesam/models.py:226
+msgid "question"
+msgstr "вопрос"
+
+#: sesam/models.py:227
+msgid "questions"
+msgstr "вопросы"
+
+#: sesam/models.py:235
+msgid "The question cannot be activated"
+msgstr "Вопрос не может быть добавлен в игру"
+
+#: sesam/models.py:241 sesam/models.py:248
+msgid "The question cannot be accepted"
+msgstr "Вопрос не может быть принят"
+
+#: sesam/models.py:266
+msgid "quiz"
+msgstr "квиз"
+
+#: sesam/models.py:267
+msgid "durak"
+msgstr "дурак"
+
+#: sesam/models.py:268
+msgid "arkanoid"
+msgstr "арканоид"
+
+#: sesam/models.py:273
+msgid "game type"
+msgstr "тип игры"
+
+#: sesam/models.py:275
+msgid "setting"
+msgstr "настройка"
+
+#: sesam/templates/registration/login.html:13
+msgid "Authentication"
+msgstr "Аутентификация"
+
+#: sesam/templates/registration/login.html:33
+#: sesam/templates/sesam/header.html:26
+msgid "Log in"
+msgstr "Войти"
+
+#: sesam/templates/sesam/author/home.html:8
+msgid "Statistics"
+msgstr "Статистика"
+
+#: sesam/templates/sesam/author/home.html:10
+msgid "Month total"
+msgstr "Всего за месяц"
+
+#: sesam/templates/sesam/author/home.html:11
+msgid "Added today"
+msgstr "Добавлено сегодня"
+
+#: sesam/templates/sesam/author/home.html:12
+msgid "Accepted last shift"
+msgstr "Принятые за прошлую смену"
+
+#: sesam/templates/sesam/author/home.html:13
+msgid "Rejected last shift"
+msgstr "Отклоненные за прошлую смену"
+
+#: sesam/templates/sesam/author/home.html:15
+msgid "Add question"
+msgstr "Добавить вопрос"
+
+#: sesam/templates/sesam/author/quiz-form.html:11
+msgid "Question to add"
+msgstr "Добавление вопроса"
+
+#: sesam/templates/sesam/author/quiz-form.html:41
+msgid "Add"
+msgstr "Добавить"
+
+#: sesam/templates/sesam/chief/home.html:7
+msgid "Chapters"
+msgstr "Главы"
+
+#: sesam/templates/sesam/chief/home.html:9
+msgid "Statistics for chief"
+msgstr "Статистика для шеф-редактора"
+
+#: sesam/templates/sesam/chief/home.html:10
+msgid "Pending questions"
+msgstr "Неподтвержденные вопросы"
+
+#: sesam/templates/sesam/chief/home.html:11
+msgid "Questions in game"
+msgstr "Вопросы в игре"
+
+#: sesam/templates/sesam/chief/home.html:12
+msgid "Complains"
+msgstr "Жалобы"
+
+#: sesam/templates/sesam/chief/quiz-pending.html:19
+msgid "tags"
+msgstr ""
+
+#: sesam/templates/sesam/chief/quiz-pending.html:24
+#: sesam/templates/sesam/editor/quiz-accept.html:22
+msgid "Actions"
+msgstr "Действия"
+
+#: sesam/templates/sesam/chief/quiz-statistics.html:14
+msgid "Statistics for"
+msgstr "Статистика для"
+
+#: sesam/templates/sesam/chief/quiz-statistics.html:24
+msgid "month"
+msgstr "месяц"
+
+#: sesam/templates/sesam/chief/quiz-statistics.html:26
+msgid "week"
+msgstr "неделя"
+
+#: sesam/templates/sesam/chief/quiz-statistics.html:66
+msgid "Export"
+msgstr "Экспорт"
+
+#: sesam/templates/sesam/editor/home.html:7
+msgid "Review quiz questions"
+msgstr "Подтверждение новых вопросов"
+
+#: sesam/templates/sesam/editor/home.html:8
+msgid "Subordinates"
+msgstr "Сотрудники"
+
+#: sesam/templates/sesam/editor/home.html:14
+msgid "All subordinates"
+msgstr "Все сотрудники"
+
+#: sesam/templates/sesam/header.html:5
+msgid "sesam"
+msgstr "сезам"
+
+#: sesam/templates/sesam/header.html:24
+msgid "Log out"
+msgstr "Выйти"
+
+#: sesam/templates/sesam/home.html:7
+msgid "You have more than one role. Whom you want to be now?"
+msgstr "У вас больше чем одна роль. Кем вы хотите быть сейчас?"
+
+#~ msgid "new"
+#~ msgstr "новый"
+
+#~ msgid "chief"
+#~ msgstr "шеф-редактор"
+
+#~ msgid "Submit"
+#~ msgstr "Подтвердить"

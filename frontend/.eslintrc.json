@@ -1,0 +1,32 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": "airbnb",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "max-len": ["error", { "code": 120 }],
+        "jsx-a11y/label-has-for": [0],
+        "jsx-a11y/label-has-associated-control": [0],
+        "jsx-a11y/click-events-have-key-events": [0],
+        // Remove later
+        "react/prop-types": [0],
+        "react/forbid-prop-types": [0],
+        "react/require-default-props": [0]
+    }
+}

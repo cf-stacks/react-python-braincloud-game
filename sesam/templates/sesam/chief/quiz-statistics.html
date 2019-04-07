@@ -1,0 +1,67 @@
+{% extends "sesam/base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% load template_utils %}
+
+
+{% block additional_css %}
+  <link href="{% static 'sesam/css/quiz-statistics.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <h1>{% trans "Statistics for" %} {{ range.0|date:"F Y" }}</h1>
+  <div>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="hidden" value="{{ shift }}" name="shift" />
+    <input type="hidden" value="{{ view }}" name="view" />
+    <div class="d-flex justify-content-around">
+    <button class="btn btn-info" type="submit" name="backward"><</button>
+    {% if view == "week" %}
+
+      <button class="btn btn-primary" type="submit" value="month" name="new_view" >{% trans 'month'|title %}</button>
+    {% else %}
+      <button class="btn btn-primary" type="submit" value="week" name="new_view" >{% trans 'week'|title %}</button>
+    {% endif %}
+    <button class="btn btn-info" type="submit" name="forward">></button>
+    </div>
+  </form>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="hidden" value="{{ shift|add:"-7" }}" name="shift" />
+  </form>
+  </div>
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        {% for date in range %}
+          <th scope="col">{{ date|date:"D d" }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for editor_id, editor_data in editors.items %}
+        <tr class="table-primary">
+          <th scope="row">{{ editor_data.name }}</th>
+          {% for date in range %}
+            <td>{% get_statistic editor_data.data date %}</td>
+          {% endfor %}
+        </tr>
+        {% for author_id, author_data in editor_data.authors.items %}
+          <tr class="table-secondary">
+            <th scope="row">{{ author_data.name }}</th>
+            {% for date in range %}
+              <td>
+                {% get_statistic author_data.data date %}
+              </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      {% endfor %}
+    </tbody>
+  </table>
+  <button class="btn btn-success" type="submit">{% trans "Export" %}</button>
+{% endblock %}

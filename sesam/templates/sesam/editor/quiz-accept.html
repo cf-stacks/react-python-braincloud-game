@@ -1,0 +1,44 @@
+{% extends "sesam/base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+  <table class="table table-striped table-sm">
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    {% for form in formset %}
+      {% if forloop.first %}
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" style="width: 5%">#</th>
+            <th scope="col" style="width: 10%">{{ form.category.label }}</th>
+            <th scope="col" style="width: 30%">{{ form.description.label }}</th>
+            <th scope="col" style="width: 10%">{{ form.answer_correct.label }}</th>
+            <th scope="col" style="width: 10%">{{ form.answer_incorrect_1.label }}</th>
+            <th scope="col" style="width: 10%">{{ form.answer_incorrect_2.label }}</th>
+            <th scope="col" style="width: 15%">{% trans "Actions" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+      {% endif %}
+        {{ form.id }}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ form.instance.category.name }}</td>
+          <td>{{ form.description.value }}</td>
+          <td>{{ form.answer_correct.value }}</td>
+          <td>{{ form.answer_incorrect_1.value }}</td>
+          <td>{{ form.answer_incorrect_2.value }}</td>
+          <td>
+            <button class="btn btn-success" type="submit" name="accept" value="{{ form.instance.id }}"><i class="fas fa-check"></i></button>
+            <button class="btn btn-danger" type="submit" name="reject" value="{{ form.instance.id }}"><i class="fas fa-times"></i></button>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </form>
+  </table>
+{% endblock %}
