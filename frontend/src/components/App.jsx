@@ -22,7 +22,7 @@ import StaffRoute from './common/StaffRoute';
 import { loadUser } from '../actions/auth';
 import '../axios_config';
 import '../moment_config';
-import catalogRu from '../locale/ru/messages';
+import catalogRu from '../locale/ru/messages.po';
 import '../css/Toasts.css';
 
 toast.configure({
@@ -36,6 +36,7 @@ toast.configure({
 });
 const catalogs = { ru: catalogRu };
 export const i18n = setupI18n({ catalogs, language: 'ru' });
+
 
 class App extends React.Component {
   componentWillMount() {

@@ -22,13 +22,13 @@ from . import get_database_dict
 
 env = Env(
     # Application
-    S_SECRET_KEY={'cast': str},
+    S_SECRET_KEY={'cast': str, 'default': 'secret123'},
     S_DEBUG={'cast': bool, 'default': True},
-    S_DB_DEFAULT={'cast': str},
+    S_DB_DEFAULT={'default': "mysql://root@localhost:3306/test"},
     # GameSparks
-    GS_API_KEY={'cast': str},
-    GS_CREDENTIAL={'cast': str},
-    GS_SECRET={'cast': str},
+    GS_API_KEY={'cast': str, 'default': 'hhhh'},
+    GS_CREDENTIAL={'cast': str, 'default': 'hhhh'},
+    GS_SECRET={'cast': str, 'default': 'hhhh'},
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
